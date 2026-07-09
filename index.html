@@ -870,12 +870,13 @@
     }
     .trust-card.tc-orange { border-top-color: var(--orange); }
     .trust-card.tc-teal { border-top-color: var(--teal); }
-    .trust-card::after {
-      content: attr(data-deco);
+    .trust-card.tc-orange::after {
+      content: '🛡️';
       position: absolute;
-      right: -14px; bottom: -30px;
-      font-size: 130px;
-      opacity: 0.06;
+      right: -10px; bottom: -24px;
+      font-size: 120px;
+      opacity: 0.13;
+      transform: rotate(-12deg);
       pointer-events: none;
       line-height: 1;
     }
@@ -905,20 +906,6 @@
     }
     .trust-map-layout { display: grid; grid-template-columns: 128px 1fr; gap: 26px; align-items: center; }
     .trust-map-layout img { width: 100%; height: auto; filter: drop-shadow(0 6px 14px rgba(18,21,30,0.12)); }
-    .map-legend { display: flex; gap: 14px; margin-top: 12px; justify-content: center; }
-    .map-legend span {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--gray);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .map-legend i {
-      width: 10px; height: 10px;
-      border-radius: 3px;
-      display: inline-block;
-    }
     .county-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
     .county-tag {
       font-size: 13px;
@@ -1479,7 +1466,7 @@
   <section class="trust" aria-label="保障與據點">
     <div class="container">
       <div class="trust-grid">
-        <div class="trust-card tc-orange" data-deco="🛡️">
+        <div class="trust-card tc-orange">
           <div class="trust-head">
             <div class="trust-icon">🛡️</div>
             <h2>預付學費，有制度保障</h2>
@@ -1493,7 +1480,7 @@
             <span class="fact-chip">履約保證機制</span>
           </div>
         </div>
-        <div class="trust-card tc-teal" data-deco="📍">
+        <div class="trust-card tc-teal">
           <div class="trust-head">
             <div class="trust-icon">📍</div>
             <h2>全台 12 縣市，都找得到橘蘋</h2>
@@ -1501,11 +1488,6 @@
           <div class="trust-map-layout">
             <div>
               <img src="assets/tw-map.svg" alt="橘子蘋果教學據點分布圖：北部、中部、南部共 12 縣市" loading="lazy">
-              <div class="map-legend">
-                <span><i style="background:var(--orange);"></i>北部</span>
-                <span><i style="background:var(--teal);"></i>中部</span>
-                <span><i style="background:#FF7A6E;"></i>南部</span>
-              </div>
             </div>
             <div>
               <div class="county-tags">
