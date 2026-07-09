@@ -736,7 +736,28 @@
     .result-card p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.85; }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
-    .reviews { background: #fff; padding: 96px 0; }
+    .reviews {
+      background:
+        linear-gradient(180deg, #fff 0%, #FAFAF7 100%);
+      padding: 104px 0 96px;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(18,21,30,0.04);
+    }
+    .reviews::before {
+      content: "GOOGLE REVIEWS";
+      position: absolute;
+      top: 42px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: clamp(58px, 9vw, 132px);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: rgba(18,21,30,0.028);
+      white-space: nowrap;
+      pointer-events: none;
+    }
     .reviews-header { text-align: center; }
     .reviews-rating {
       display: flex;
@@ -764,8 +785,26 @@
     .google-badge:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
     .reviews-track-wrap {
       position: relative;
-      margin-top: -14px;
+      margin-top: -6px;
       overflow: hidden;
+    }
+    .reviews-track-wrap::before,
+    .reviews-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 56px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-track-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, #FAFAF7 0%, rgba(250,250,247,0) 100%);
+    }
+    .reviews-track-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, #FAFAF7 0%, rgba(250,250,247,0) 100%);
     }
     .reviews-track {
       display: flex;
@@ -774,7 +813,7 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding: 4px 2px 10px;
+      padding: 8px 8px 14px;
       cursor: grab;
     }
     .reviews-track::-webkit-scrollbar { display: none; }
@@ -783,21 +822,67 @@
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
       border-radius: 18px;
-      padding: 30px 28px;
+      padding: 34px 28px 26px;
       display: flex;
       flex-direction: column;
       position: relative;
+      overflow: hidden;
       scroll-snap-align: start;
       box-shadow: 0 10px 34px rgba(18,21,30,0.07);
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), var(--teal));
+    }
+    .review-card::after {
+      content: "”";
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      font-family: Georgia, serif;
+      font-size: 78px;
+      line-height: 1;
+      color: rgba(255,163,0,0.12);
+      pointer-events: none;
     }
     .review-card:hover {
       transform: translateY(-4px);
       border-color: rgba(255,163,0,0.45);
       box-shadow: 0 18px 48px rgba(18,21,30,0.12);
     }
-    .review-stars { color: var(--orange); font-size: 15px; letter-spacing: 2px; margin-bottom: 12px; }
-    .review-text { font-size: 14px; line-height: 1.9; flex: 1; }
+    .review-stars {
+      color: var(--orange);
+      font-size: 15px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .review-stars::after {
+      content: "Google review";
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--gray);
+      background: var(--light);
+      border: 1px solid rgba(18,21,30,0.06);
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+    .review-text {
+      font-size: 14.5px;
+      line-height: 1.95;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
     .review-meta {
       display: flex;
       justify-content: space-between;
@@ -809,10 +894,15 @@
     }
     .review-name { font-weight: 700; }
     .review-date { color: var(--gray); }
+    .reviews-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
     .reviews-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      position: static;
       width: 42px;
       height: 42px;
       border-radius: 50%;
@@ -826,17 +916,14 @@
       justify-content: center;
       cursor: pointer;
       box-shadow: 0 10px 26px rgba(18,21,30,0.14);
-      z-index: 3;
       transition: background 0.18s, color 0.18s, border-color 0.18s;
     }
     .reviews-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
-    .reviews-prev { left: 2px; }
-    .reviews-next { right: 2px; }
     .reviews-dots {
       display: flex;
       justify-content: center;
       gap: 7px;
-      margin-top: 22px;
+      margin-top: 0;
     }
     .reviews-dots .dot {
       width: 7px;
@@ -1142,6 +1229,7 @@
       .result-grid { grid-template-columns: 1fr; }
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
+      .reviews-controls { margin-top: 10px; }
       .videos-grid { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
@@ -1526,10 +1614,12 @@
             <div class="review-meta"><span class="review-name">李建志</span><span class="review-date">2024 年 9 月</span></div>
           </div>
         </div>
+      </div>
+      <div class="reviews-controls" aria-label="家長評價輪播控制">
         <button type="button" class="reviews-nav reviews-prev" id="reviewsPrev" aria-label="上一則家長評價">&#8249;</button>
+        <div class="reviews-dots" id="reviewsDots" aria-label="家長評價頁面"></div>
         <button type="button" class="reviews-nav reviews-next" id="reviewsNext" aria-label="下一則家長評價">&#8250;</button>
       </div>
-      <div class="reviews-dots" id="reviewsDots" aria-label="家長評價頁面"></div>
 
       <!-- 家長訪談影片（點擊才載入）-->
       <div class="videos-grid">
