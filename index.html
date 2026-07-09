@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>兒童程式設計課程首選｜橘子蘋果程式學苑</title>
+  <title>兒童程式設計課程首選｜Scratch、Python、AI 一條龍學習 - 橘子蘋果程式學苑</title>
   <meta name="description" content="橘子蘋果程式學苑成立於 2012 年，台灣規模最大的兒童程式教育機構之一。提供 Scratch、Python、AI 完整課程體系，全台 12 縣市 40+ 教學據點，累計超過 10 萬名學生，國小一年級起即可免費試聽。">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://orangeapple.co/">
 
   <!-- Open Graph -->
@@ -546,12 +547,29 @@
     }
 
     /* 學習重點 */
-    .stage-points { border-radius: 18px; padding: 26px 26px 24px; color: #fff; }
-    .stage-points.sp-teal { background: var(--teal); }
-    .stage-points.sp-orange { background: #F5A623; }
-    .stage-points.sp-coral { background: #F1594F; }
-    .stage-points h4 { font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: #fff; }
-    .stage-points p { font-size: 13px; line-height: 1.85; opacity: 0.96; }
+    .stage-points {
+      border-radius: 16px;
+      padding: 24px 26px 22px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-top: 5px solid;
+      box-shadow: 0 4px 18px rgba(18,21,30,0.05);
+      position: relative;
+    }
+    .stage-points.sp-teal { border-top-color: var(--teal); }
+    .stage-points.sp-orange { border-top-color: #F5A623; }
+    .stage-points.sp-coral { border-top-color: #F1594F; }
+    .stage-points h4 {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+    .sp-teal h4 { color: var(--teal-dark); }
+    .sp-orange h4 { color: #D18400; }
+    .sp-coral h4 { color: #E03A30; }
+    .stage-points p { font-size: 13.5px; line-height: 1.9; color: var(--gray); }
     .roadmap-endnote {
       text-align: right;
       font-size: 14.5px;
@@ -567,32 +585,63 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+    .branches-label {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.12em;
+      text-align: center;
+      margin: 64px 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .branches-label::before, .branches-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
     .branch-card {
       border-radius: 16px;
-      padding: 26px 26px 24px;
+      padding: 28px 28px 26px;
       text-decoration: none;
       position: relative;
       transition: transform 0.18s, box-shadow 0.18s;
-      border: 1.5px dashed;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-left: 6px solid;
+      box-shadow: 0 4px 18px rgba(18,21,30,0.05);
     }
-    .branch-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(18,21,30,0.1); }
-    .branch-card.b-navy { background: var(--navy-light); border-color: var(--navy); }
-    .branch-card.b-teal { background: var(--teal-light); border-color: var(--teal-dark); }
-    .branch-card.b-orange { background: var(--orange-light); border-color: var(--orange-dark); }
+    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(18,21,30,0.12); }
+    .branch-card.b-navy { border-left-color: var(--navy); }
+    .branch-card.b-teal { border-left-color: var(--teal); }
+    .branch-card.b-orange { border-left-color: var(--orange); }
+    .branch-icon {
+      width: 46px; height: 46px;
+      border-radius: 13px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 21px;
+      margin-bottom: 14px;
+    }
+    .b-navy .branch-icon { background: var(--navy-light); }
+    .b-teal .branch-icon { background: var(--teal-light); }
+    .b-orange .branch-icon { background: var(--orange-light); }
     .branch-label {
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .b-navy .branch-label { color: var(--navy); }
     .b-teal .branch-label { color: var(--teal-dark); }
     .b-orange .branch-label { color: var(--orange-dark); }
-    .branch-card h3 { font-size: 17.5px; font-weight: 900; margin-bottom: 6px; }
-    .branch-card p { font-size: 13px; color: var(--gray); line-height: 1.75; }
-    .branch-arrow { font-size: 13.5px; font-weight: 700; margin-top: 12px; display: inline-block; }
+    .branch-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 6px; }
+    .branch-card p { font-size: 13.5px; color: var(--gray); line-height: 1.8; }
+    .branch-arrow { font-size: 13.5px; font-weight: 700; margin-top: 14px; display: inline-block; }
     .b-navy .branch-arrow { color: var(--navy); }
     .b-teal .branch-arrow { color: var(--teal-dark); }
     .b-orange .branch-arrow { color: var(--orange-dark); }
@@ -812,24 +861,74 @@
     .trust-card {
       background: #fff;
       border-radius: 20px;
-      padding: 40px 38px;
+      padding: 36px 38px 34px;
       box-shadow: 0 4px 20px rgba(18,21,30,0.05);
+      border: 1px solid var(--border);
+      border-top: 6px solid;
+      position: relative;
+      overflow: hidden;
+    }
+    .trust-card.tc-orange { border-top-color: var(--orange); }
+    .trust-card.tc-teal { border-top-color: var(--teal); }
+    .trust-card::after {
+      content: attr(data-deco);
+      position: absolute;
+      right: -14px; bottom: -30px;
+      font-size: 130px;
+      opacity: 0.06;
+      pointer-events: none;
+      line-height: 1;
     }
     .trust-card h2 { font-size: 22px; margin-bottom: 12px; }
     .trust-card > p { font-size: 14.5px; line-height: 1.9; color: var(--gray); }
     .trust-card p a { color: #1a73e8; text-decoration: underline; }
-    .trust-icon { font-size: 34px; margin-bottom: 14px; }
-    .trust-map-layout { display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: center; }
-    .trust-map-layout img { width: 100%; height: auto; }
-    .county-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+    .trust-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .trust-icon {
+      width: 50px; height: 50px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .tc-orange .trust-icon { background: var(--orange-light); }
+    .tc-teal .trust-icon { background: var(--teal-light); }
+    .trust-head h2 { margin-bottom: 0; }
+    .fact-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .fact-chip {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--orange-dark);
+      background: var(--orange-light);
+      padding: 6px 14px;
+      border-radius: 8px;
+    }
+    .trust-map-layout { display: grid; grid-template-columns: 128px 1fr; gap: 26px; align-items: center; }
+    .trust-map-layout img { width: 100%; height: auto; filter: drop-shadow(0 6px 14px rgba(18,21,30,0.12)); }
+    .map-legend { display: flex; gap: 14px; margin-top: 12px; justify-content: center; }
+    .map-legend span {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--gray);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .map-legend i {
+      width: 10px; height: 10px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+    .county-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
     .county-tag {
       font-size: 13px;
       font-weight: 700;
-      background: var(--light);
-      border: 1px solid var(--border);
       padding: 5px 13px;
       border-radius: 100px;
     }
+    .county-tag.rn { background: var(--orange-light); color: var(--orange-dark); }
+    .county-tag.rc { background: var(--teal-light); color: var(--teal-dark); }
+    .county-tag.rs { background: var(--coral-light); color: #D9564A; }
     .trust-link { font-size: 14px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
     .trust-link:hover { text-decoration: underline; }
 
@@ -1174,20 +1273,24 @@
         <p class="roadmap-endnote">九階段修畢後，孩子將具備不輸大一資工系學生的程式能力。</p>
       </div>
 
+      <p class="branches-label">主線之外，三條專屬支線</p>
       <div class="branches">
         <a href="https://orangeapple.co/courses/expert" class="branch-card b-navy">
+          <span class="branch-icon">🏅</span>
           <span class="branch-label">BRANCH｜檢定認證支線</span>
           <h3>駭客學程</h3>
           <p>從 Python 之後分支：APCS 升學檢定、ITS 國際認證（Python／JavaScript／運算思維），橘蘋是官方考場。</p>
           <span class="branch-arrow">了解檢定課程 →</span>
         </a>
         <a href="https://orangeapple.co/courses/math" class="branch-card b-teal">
+          <span class="branch-icon">🧮</span>
           <span class="branch-label">BRANCH｜數學支線</span>
           <h3>橘蘋麥思數學</h3>
           <p>1-5 年級。美國數學思維邏輯系統在地化，和程式課同一套「先思考、再動手」的教學方法。</p>
           <span class="branch-arrow">了解麥思數學 →</span>
         </a>
         <a href="https://orangeapple.co/courses/ai-thinking" class="branch-card b-orange">
+          <span class="branch-icon">🧠</span>
           <span class="branch-label">BRANCH｜AI 素養支線</span>
           <h3>AI 思維實戰課</h3>
           <p>5 年級以上。提問力、批判性思考、數位倫理——不寫程式也該有的 AI 時代底層能力。</p>
@@ -1342,23 +1445,39 @@
   <section class="trust" aria-label="保障與據點">
     <div class="container">
       <div class="trust-grid">
-        <div class="trust-card">
-          <div class="trust-icon">🛡️</div>
-          <h2>預付學費，有制度保障</h2>
+        <div class="trust-card tc-orange" data-deco="🛡️">
+          <div class="trust-head">
+            <div class="trust-icon">🛡️</div>
+            <h2>預付學費，有制度保障</h2>
+          </div>
           <p>
-            橘子蘋果是「<a href="https://www.eqaa.org.tw/" target="_blank" rel="noopener">中華民國補教業品保協會</a>」正式會員（會員編號 020589，自 2018 年加入），家長預付的學費受協會履約保證機制保障，退費依協會規範辦理——讓孩子學得安心，也讓家長付得放心。
+            橘子蘋果是「<a href="https://www.eqaa.org.tw/" target="_blank" rel="noopener">中華民國補教業品保協會</a>」正式會員，家長預付的學費受協會履約保證機制保障，退費依協會規範辦理——讓孩子學得安心，也讓家長付得放心。
           </p>
+          <div class="fact-chips">
+            <span class="fact-chip">會員編號 020589</span>
+            <span class="fact-chip">2018 年加入</span>
+            <span class="fact-chip">履約保證機制</span>
+          </div>
         </div>
-        <div class="trust-card">
-          <div class="trust-icon">📍</div>
-          <h2>全台 12 縣市，都找得到橘蘋</h2>
+        <div class="trust-card tc-teal" data-deco="📍">
+          <div class="trust-head">
+            <div class="trust-icon">📍</div>
+            <h2>全台 12 縣市，都找得到橘蘋</h2>
+          </div>
           <div class="trust-map-layout">
-            <img src="assets/tw-map.svg" alt="橘子蘋果教學據點分布圖：北部、中部、南部共 12 縣市" loading="lazy">
+            <div>
+              <img src="assets/tw-map.svg" alt="橘子蘋果教學據點分布圖：北部、中部、南部共 12 縣市" loading="lazy">
+              <div class="map-legend">
+                <span><i style="background:var(--orange);"></i>北部</span>
+                <span><i style="background:var(--teal);"></i>中部</span>
+                <span><i style="background:#FF7A6E;"></i>南部</span>
+              </div>
+            </div>
             <div>
               <div class="county-tags">
-                <span class="county-tag">台北</span><span class="county-tag">新北</span><span class="county-tag">基隆</span><span class="county-tag">桃園</span><span class="county-tag">新竹市</span><span class="county-tag">新竹縣</span><span class="county-tag">苗栗</span><span class="county-tag">台中</span><span class="county-tag">嘉義</span><span class="county-tag">台南</span><span class="county-tag">高雄</span><span class="county-tag">屏東</span>
+                <span class="county-tag rn">台北</span><span class="county-tag rn">新北</span><span class="county-tag rn">基隆</span><span class="county-tag rn">桃園</span><span class="county-tag rc">新竹市</span><span class="county-tag rc">新竹縣</span><span class="county-tag rc">苗栗</span><span class="county-tag rc">台中</span><span class="county-tag rs">嘉義</span><span class="county-tag rs">台南</span><span class="county-tag rs">高雄</span><span class="county-tag rs">屏東</span>
               </div>
-              <p style="margin-bottom:14px; font-size:14.5px; line-height:1.9; color:var(--gray);">實體教室與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
+              <p style="margin-bottom:14px; font-size:14.5px; line-height:1.9; color:var(--gray);">40+ 教學據點，實體與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
               <a href="https://orangeapple.co/classroom" class="trust-link">查看所有教室位置 →</a>
             </div>
           </div>
