@@ -345,15 +345,15 @@
     .pathfinder-copy { text-align: center; }
     .pathfinder-header p { color: var(--gray); font-size: 16px; margin-top: 14px; }
     .pathfinder-helper {
-      width: 132px;
-      height: 132px;
+      width: 150px;
+      height: 160px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      transform: rotate(2deg);
+      transform: rotate(-2deg) translateY(6px);
     }
     .pathfinder-helper img {
-      width: 116px;
+      width: 96px;
       height: auto;
       filter: drop-shadow(0 14px 18px rgba(18,21,30,0.16));
     }
@@ -441,13 +441,24 @@
     .roadmap-header { text-align: center; margin-bottom: 44px; }
     .roadmap-header p { color: var(--gray); margin-top: 14px; }
     .stage-note {
-      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
       font-size: 13px;
       font-weight: 700;
       color: var(--gray);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
-    .stage-note .s { color: #FFC24D; letter-spacing: 1px; }
+    .stage-note .s {
+      font-family: var(--mono);
+      color: #D18400;
+      background: #FFF3DC;
+      border: 1px solid rgba(245,166,35,0.28);
+      border-radius: 999px;
+      padding: 3px 9px;
+      letter-spacing: 0.04em;
+    }
     .roadmap-body { position: relative; }
     .stage-cols {
       display: grid;
@@ -507,17 +518,14 @@
     }
     .stage-nodes .spacer-koding {
       position: absolute;
-      left: -18px; bottom: calc(50% + 14px);
-      width: 88px;
+      left: -18px; bottom: calc(50% + 4px);
+      width: 82px;
       z-index: 2;
       pointer-events: none;
     }
-    .spacer-koding .kd { width: 68px; }
-    .spacer-koding .fl {
-      position: absolute;
-      width: 40px;
-      top: -26px; right: -4px;
-      transform: rotate(8deg);
+    .spacer-koding .kd {
+      width: 82px;
+      filter: drop-shadow(0 8px 14px rgba(18,21,30,0.16));
     }
     .stage-node {
       display: flex;
@@ -549,15 +557,28 @@
     .g2 .rn-num { color: #D18400; }
     .g3 .rn-num { color: #E03A30; }
     .rn-label { font-size: 11px; font-weight: 700; line-height: 1.35; color: var(--text); }
-    .rn-stars {
+    .rn-cert {
       position: absolute;
-      top: -26px; left: 50%;
+      top: -31px; left: 50%;
       transform: translateX(-50%);
-      color: #FFC24D;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #D18400;
+      background: #FFF3DC;
+      border: 1px solid rgba(245,166,35,0.35);
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 800;
       white-space: nowrap;
+      box-shadow: 0 4px 10px rgba(18,21,30,0.08);
+    }
+    .rn-cert.ct {
+      color: #E03A30;
+      background: #FFEDEA;
+      border-color: rgba(241,89,79,0.32);
     }
 
     /* 學習重點 */
@@ -1404,12 +1425,13 @@
       .path-grid { grid-template-columns: 1fr; gap: 44px; }
       .camps-inner { flex-direction: column; align-items: flex-start; }
       .stage-cols { grid-template-columns: 1fr; gap: 14px; }
+      .stage-note { justify-content: center; flex-wrap: wrap; text-align: center; }
       .stage-road::before, .stage-road::after { display: none; }
       .stage-road { margin: 8px 0; }
       .stage-nodes { grid-template-columns: repeat(3, 1fr); gap: 34px 8px; }
       .stage-nodes .spacer-koding { display: none; }
       .rn-circle { width: 96px; height: 96px; }
-      .rn-stars { top: -22px; }
+      .rn-cert { top: -24px; font-size: 9.5px; padding: 2px 6px; }
       .stage-points { margin-bottom: 6px; }
       .roadmap-endnote { text-align: center; }
       .branches { grid-template-columns: 1fr; }
@@ -1517,7 +1539,7 @@
           <p>每個年齡有不同的認知發展，橘蘋為每個階段設計了最適合的起點。</p>
         </div>
         <div class="pathfinder-helper" aria-hidden="true">
-          <img src="assets/koding-question.png" alt="" loading="lazy">
+          <img src="assets/koding-flag-hold.png" alt="" loading="lazy">
         </div>
       </div>
       <div class="path-grid">
@@ -1572,7 +1594,7 @@
         <p>台灣唯一完整九階段課程體系——孩子不用換補習班，就能從國小學到高中。</p>
       </div>
 
-      <p class="stage-note"><span class="s">★★★</span> 有能力挑戰國際程式認證</p>
+      <p class="stage-note"><span class="s">ITS</span> 國際認證銜接點：Python・JavaScript・HTML/CSS・運算思維</p>
 
       <div class="roadmap-body">
         <div class="stage-cols">
@@ -1596,8 +1618,7 @@
         <div class="stage-road">
           <div class="stage-nodes">
             <div class="spacer-koding" aria-hidden="true">
-              <img src="assets/koding-run.png" alt="" class="kd">
-              <img src="assets/koding-flag.png" alt="" class="fl">
+              <img src="assets/koding-flag-hold.png" alt="" class="kd">
             </div>
             <a href="https://orangeapple.co/courses/scratch-basic" class="stage-node g1">
               <span class="rn-circle"><span class="rn-num">01</span><span class="rn-label">Scratch<br>程式觀念</span></span>
@@ -1609,20 +1630,22 @@
               <span class="rn-circle"><span class="rn-num">03</span><span class="rn-label">Python 初階<br>程式開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/python" class="stage-node g2">
-              <span class="rn-stars">★★★</span>
+              <span class="rn-cert">ITS Python</span>
               <span class="rn-circle"><span class="rn-num">04</span><span class="rn-label">Python 進階<br>程式開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/javascript" class="stage-node g2">
-              <span class="rn-stars">★★★</span>
+              <span class="rn-cert">ITS JS</span>
               <span class="rn-circle"><span class="rn-num">05</span><span class="rn-label">JavaScript<br>程式開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/html5" class="stage-node g3">
+              <span class="rn-cert ct">ITS HTML</span>
               <span class="rn-circle"><span class="rn-num">06</span><span class="rn-label">HTML/CSS<br>網頁開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/database" class="stage-node g3">
               <span class="rn-circle"><span class="rn-num">07</span><span class="rn-label">網路與<br>資料庫應用</span></span>
             </a>
             <a href="https://orangeapple.co/courses/algorithm" class="stage-node g3">
+              <span class="rn-cert ct">ITS CT</span>
               <span class="rn-circle"><span class="rn-num">08</span><span class="rn-label">演算法認識<br>與開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/ai" class="stage-node g3">
@@ -1638,11 +1661,11 @@
           </div>
           <div class="stage-points sp-orange">
             <h4>學習重點</h4>
-            <p>深入 Python 與 JavaScript 兩大主流語言，交互應用完成更複雜的專案，並可挑戰該語言的國際認證，升學加分可使用。</p>
+            <p>深入 Python 與 JavaScript 兩大主流語言，交互應用完成更複雜的專案；Python 進階與 JavaScript 階段可銜接 ITS 國際認證。</p>
           </div>
           <div class="stage-points sp-coral">
             <h4>學習重點</h4>
-            <p>學會大學必修的網頁、資料庫與演算法知識，用視覺化、遊戲化方式拆解難題，最終導入 AI 人工智慧的運作原理與開發邏輯。</p>
+            <p>學會大學必修的網頁、資料庫與演算法知識；HTML/CSS 可銜接 ITS HTML & CSS，演算法階段則適合整理運算思維能力，最終導入 AI。</p>
           </div>
         </div>
 
@@ -1655,7 +1678,7 @@
           <span class="branch-icon">🏅</span>
           <span class="branch-label">BRANCH｜檢定認證支線</span>
           <h3>駭客學程</h3>
-          <p>從 Python 之後分支：APCS 升學檢定、ITS 國際認證（Python／JavaScript／運算思維），橘蘋是官方考場。</p>
+          <p>從 Python 之後分支：APCS 升學檢定、ITS 國際認證（Python／JavaScript／HTML & CSS／運算思維），橘蘋是 ITS 官方考場。</p>
           <span class="branch-arrow">了解檢定課程 →</span>
         </a>
         <a href="https://orangeapple.co/courses/math" class="branch-card b-teal">
