@@ -333,8 +333,35 @@
       padding: 88px 0 96px;
       clip-path: polygon(0 0, 100% 32px, 100% 100%, 0 100%);
     }
-    .pathfinder-header { text-align: center; margin-bottom: 64px; }
+    .pathfinder-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      max-width: 760px;
+      margin: 0 auto 64px;
+      text-align: left;
+    }
+    .pathfinder-copy { text-align: center; }
     .pathfinder-header p { color: var(--gray); font-size: 16px; margin-top: 14px; }
+    .pathfinder-helper {
+      width: 118px;
+      height: 118px;
+      border-radius: 28px;
+      background: #fff;
+      border: 1px solid rgba(18,21,30,0.08);
+      box-shadow: 0 18px 44px rgba(18,21,30,0.10);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+      transform: rotate(2deg);
+    }
+    .pathfinder-helper img {
+      width: 94px;
+      height: auto;
+      filter: drop-shadow(0 8px 12px rgba(18,21,30,0.14));
+    }
     .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .path-card {
       background: #fff;
@@ -371,14 +398,6 @@
     .c-coral .path-arrow { color: var(--coral); }
     .c-orange .path-arrow { color: var(--orange-dark); }
     .c-teal .path-arrow { color: var(--teal-dark); }
-    .path-mascot {
-      position: absolute;
-      top: -34px; right: 16px;
-      width: 76px; height: auto;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
-      transition: transform 0.25s;
-    }
-    .path-card:hover .path-mascot { transform: rotate(-8deg) scale(1.08); }
 
     /* ══════════ 5. 營隊招生 Banner ══════════ */
     .camps {
@@ -1384,6 +1403,9 @@
       .hero::after { display: none; }
       .hero-inner { grid-template-columns: 1fr; padding: 56px 0 72px; }
       .hero-img { transform: none; }
+      .pathfinder-header { display: block; text-align: center; }
+      .pathfinder-copy { text-align: center; }
+      .pathfinder-helper { display: none; }
       .path-grid { grid-template-columns: 1fr; gap: 44px; }
       .camps-inner { flex-direction: column; align-items: flex-start; }
       .stage-cols { grid-template-columns: 1fr; gap: 14px; }
@@ -1494,13 +1516,17 @@
   <section class="pathfinder" aria-label="依年齡選課程">
     <div class="container">
       <div class="pathfinder-header">
-        <span class="tag">// find_your_path</span>
-        <h2>孩子幾年級？<br>從這裡開始找課程</h2>
-        <p>每個年齡有不同的認知發展，橘蘋為每個階段設計了最適合的起點。</p>
+        <div class="pathfinder-copy">
+          <span class="tag">// find_your_path</span>
+          <h2>孩子幾年級？<br>從這裡開始找課程</h2>
+          <p>每個年齡有不同的認知發展，橘蘋為每個階段設計了最適合的起點。</p>
+        </div>
+        <div class="pathfinder-helper" aria-hidden="true">
+          <img src="assets/koding-question.png" alt="" loading="lazy">
+        </div>
       </div>
       <div class="path-grid">
         <a href="https://orangeapple.co/courses/kids-coding-foundations" class="path-card c-coral">
-          <img src="assets/koding-super.png" alt="橘子蘋果吉祥物叩叮" class="path-mascot" loading="lazy">
           <span class="path-grade">GRADE 1-3｜國小低年級</span>
           <h3>玩創系列・程式啟蒙</h3>
           <p>從圖像化積木開始，用頑皮艾伯特、STEAM 積木、麥塊、Roblox 建立程式邏輯的第一步。不用打字、不用英文，玩著玩著就懂了序列、迴圈、條件判斷。</p>
