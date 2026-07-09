@@ -450,7 +450,18 @@
       color: var(--gray);
       margin-bottom: 16px;
     }
-    .stage-note .s {
+    .stage-note a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .stage-note a:hover {
+      color: var(--orange-dark);
+      border-bottom-color: rgba(255,163,0,0.5);
+    }
+    .stage-note .s,
+    .stage-note .cert-main {
       font-family: var(--mono);
       color: #D18400;
       background: #FFF3DC;
@@ -458,6 +469,10 @@
       border-radius: 999px;
       padding: 3px 9px;
       letter-spacing: 0.04em;
+    }
+    .stage-note .cert-main:hover {
+      color: #D18400;
+      border-color: rgba(245,166,35,0.55);
     }
     .roadmap-body { position: relative; }
     .stage-cols {
@@ -518,13 +533,13 @@
     }
     .stage-nodes .spacer-koding {
       position: absolute;
-      left: -18px; bottom: calc(50% + 4px);
-      width: 82px;
+      left: -42px; bottom: calc(50% + 16px);
+      width: 68px;
       z-index: 2;
       pointer-events: none;
     }
     .spacer-koding .kd {
-      width: 82px;
+      width: 68px;
       filter: drop-shadow(0 8px 14px rgba(18,21,30,0.16));
     }
     .stage-node {
@@ -575,6 +590,7 @@
       white-space: nowrap;
       box-shadow: 0 4px 10px rgba(18,21,30,0.08);
     }
+    .rn-cert.wide { font-size: 10px; padding: 3px 7px; }
     .rn-cert.ct {
       color: #E03A30;
       background: #FFEDEA;
@@ -1645,7 +1661,17 @@
         <p>台灣唯一完整九階段課程體系——孩子不用換補習班，就能從國小學到高中。</p>
       </div>
 
-      <p class="stage-note"><span class="s">ITS</span> 國際認證銜接點：Python・JavaScript・HTML/CSS・運算思維</p>
+      <p class="stage-note">
+        <a href="https://orangeapple.co/courses/its" class="cert-main">ITS 國際認證</a>
+        <span>銜接點：</span>
+        <a href="https://orangeapple.co/articles/its-python-cert">Python</a>
+        <span>・</span>
+        <a href="https://orangeapple.co/articles/its-js-cert">JavaScript</a>
+        <span>・</span>
+        <a href="https://orangeapple.co/articles/its-html-css-cert">HTML/CSS</a>
+        <span>・</span>
+        <a href="https://orangeapple.co/articles/its-ct-cert">運算思維</a>
+      </p>
 
       <div class="roadmap-body">
         <div class="stage-cols">
@@ -1696,7 +1722,7 @@
               <span class="rn-circle"><span class="rn-num">07</span><span class="rn-label">網路與<br>資料庫應用</span></span>
             </a>
             <a href="https://orangeapple.co/courses/algorithm" class="stage-node g3">
-              <span class="rn-cert ct">ITS CT</span>
+              <span class="rn-cert ct wide">ITS 運算思維</span>
               <span class="rn-circle"><span class="rn-num">08</span><span class="rn-label">演算法認識<br>與開發</span></span>
             </a>
             <a href="https://orangeapple.co/courses/ai" class="stage-node g3">
@@ -1716,7 +1742,7 @@
           </div>
           <div class="stage-points sp-coral">
             <h4>學習重點</h4>
-            <p>學會大學必修的網頁、資料庫與演算法知識；HTML/CSS 可銜接 ITS HTML & CSS，演算法階段則適合整理運算思維能力，最終導入 AI。</p>
+            <p>高階課程把孩子從單一程式語言帶到完整軟體開發：先用 HTML/CSS 建立網頁介面，再理解網路、資料庫與資料交換，接著進入演算法與問題拆解，最後導入 AI 應用。這一段可銜接 ITS HTML & CSS，並在演算法階段整理 ITS 運算思維能力。</p>
           </div>
         </div>
 
