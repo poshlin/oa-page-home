@@ -1023,24 +1023,14 @@
       background: #fff;
       border-radius: 20px;
       padding: 36px 38px 34px;
-      box-shadow: 0 4px 20px rgba(18,21,30,0.05);
-      border: 1px solid var(--border);
-      border-top: 6px solid;
+      box-shadow: 0 18px 54px rgba(18,21,30,0.07);
+      border: 1px solid rgba(18,21,30,0.08);
+      border-top: 7px solid;
       position: relative;
       overflow: hidden;
     }
     .trust-card.tc-orange { border-top-color: var(--orange); }
     .trust-card.tc-teal { border-top-color: var(--teal); }
-    .trust-card.tc-orange::after {
-      content: '🛡️';
-      position: absolute;
-      right: -10px; bottom: -24px;
-      font-size: 120px;
-      opacity: 0.13;
-      transform: rotate(-12deg);
-      pointer-events: none;
-      line-height: 1;
-    }
     .trust-card h2 { font-size: 22px; margin-bottom: 12px; }
     .trust-card > p { font-size: 14.5px; line-height: 1.9; color: var(--gray); }
     .trust-card p a { color: #1a73e8; text-decoration: underline; }
@@ -1065,8 +1055,77 @@
       padding: 6px 14px;
       border-radius: 8px;
     }
+    .trust-proof {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #FFF8EC, #fff);
+      border: 1px solid rgba(255,163,0,0.18);
+    }
+    .trust-proof-mark {
+      min-height: 92px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid rgba(255,163,0,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 0 6px rgba(255,163,0,0.08);
+      font-size: 38px;
+    }
+    .trust-proof-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--orange-dark);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .trust-proof-title {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--dark);
+      line-height: 1.45;
+    }
+    .trust-proof-note {
+      margin-top: 6px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--gray);
+    }
     .trust-map-layout { display: grid; grid-template-columns: 128px 1fr; gap: 26px; align-items: center; }
-    .trust-map-layout img { width: 100%; height: auto; filter: drop-shadow(0 6px 14px rgba(18,21,30,0.12)); }
+    .trust-map-layout img { width: 100%; height: auto; filter: drop-shadow(0 8px 18px rgba(18,21,30,0.14)); }
+    .trust-region-card {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .region-stat {
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      background: var(--light);
+      border: 1px solid rgba(18,21,30,0.06);
+    }
+    .region-stat strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 20px;
+      line-height: 1.2;
+      color: var(--teal-dark);
+    }
+    .region-stat span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gray);
+    }
     .county-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
     .county-tag {
       font-size: 13px;
@@ -1077,7 +1136,7 @@
     .county-tag.rn { background: var(--orange-light); color: var(--orange-dark); }
     .county-tag.rc { background: var(--teal-light); color: var(--teal-dark); }
     .county-tag.rs { background: var(--coral-light); color: #D9564A; }
-    .trust-link { font-size: 14px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
+    .trust-link { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
     .trust-link:hover { text-decoration: underline; }
 
     /* ══════════ 12. FAQ ══════════ */
@@ -1673,6 +1732,14 @@
             <span class="fact-chip">2018 年加入</span>
             <span class="fact-chip">履約保證機制</span>
           </div>
+          <div class="trust-proof">
+            <div class="trust-proof-mark">🛡️</div>
+            <div>
+              <div class="trust-proof-label">TUITION PROTECTION</div>
+              <div class="trust-proof-title">補教業品保協會會員</div>
+              <div class="trust-proof-note">以制度化履約保障降低家長預付疑慮，讓教育投資更安心。</div>
+            </div>
+          </div>
         </div>
         <div class="trust-card tc-teal">
           <div class="trust-head">
@@ -1688,6 +1755,11 @@
                 <span class="county-tag rn">台北</span><span class="county-tag rn">新北</span><span class="county-tag rn">基隆</span><span class="county-tag rn">桃園</span><span class="county-tag rc">新竹市</span><span class="county-tag rc">新竹縣</span><span class="county-tag rc">苗栗</span><span class="county-tag rc">台中</span><span class="county-tag rs">嘉義</span><span class="county-tag rs">台南</span><span class="county-tag rs">高雄</span><span class="county-tag rs">屏東</span>
               </div>
               <p style="margin-bottom:14px; font-size:14.5px; line-height:1.9; color:var(--gray);">40+ 教學據點，實體與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
+              <div class="trust-region-card" aria-label="教學據點摘要">
+                <div class="region-stat"><strong>12</strong><span>縣市</span></div>
+                <div class="region-stat"><strong>40+</strong><span>據點</span></div>
+                <div class="region-stat"><strong>MY</strong><span>吉隆坡</span></div>
+              </div>
               <a href="https://orangeapple.co/classroom" class="trust-link">查看所有教室位置 →</a>
             </div>
           </div>
