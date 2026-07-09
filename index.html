@@ -729,46 +729,80 @@
     .classroom-point h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
     .classroom-point p { font-size: 14.5px; color: var(--gray); line-height: 1.8; }
 
-    /* ══════════ 8. 成果實證（深色）══════════ */
+    /* ══════════ 8. 成果實證 ══════════ */
     .results {
-      background: var(--dark);
-      padding: 120px 0 96px;
+      background:
+        linear-gradient(180deg, #F7F8FA 0%, #fff 100%);
+      padding: 112px 0 98px;
       position: relative;
       overflow: hidden;
       clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
       margin-top: -40px;
+      border-bottom: 1px solid rgba(18,21,30,0.06);
     }
     .results::before {
-      content: '';
+      content: 'OUTCOMES';
       position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 28px 28px;
+      right: max(24px, calc((100vw - 1180px) / 2));
+      top: 58px;
+      font-family: var(--mono);
+      font-size: clamp(56px, 8vw, 112px);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: rgba(18,21,30,0.035);
+      pointer-events: none;
     }
     .results .container { position: relative; }
-    .results h2 { color: #fff; }
+    .results h2 { color: var(--text); }
     .results-header { text-align: center; margin-bottom: 56px; }
-    .results-header p { color: rgba(255,255,255,0.55); margin-top: 14px; font-size: 15.5px; }
+    .results-header p { color: var(--gray); margin-top: 14px; font-size: 15.5px; }
     .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .result-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(18,21,30,0.08);
       border-radius: 16px;
-      padding: 32px 30px;
-      transition: border-color 0.2s;
+      padding: 28px 28px 24px;
+      text-decoration: none;
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 14px 36px rgba(18,21,30,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
-    .result-card:hover { border-color: rgba(255,163,0,0.4); }
+    .result-card::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--orange), var(--teal));
+    }
+    .result-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,163,0,0.32);
+      box-shadow: 0 20px 46px rgba(18,21,30,0.11);
+    }
+    .result-card:nth-child(2)::before { background: linear-gradient(90deg, var(--teal), #72D6CF); }
+    .result-card:nth-child(3)::before { background: linear-gradient(90deg, #F1594F, var(--orange)); }
+    .result-card:nth-child(4)::before { background: linear-gradient(90deg, var(--dark), var(--teal)); }
     .result-label {
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 700;
-      color: var(--teal);
+      color: var(--orange-dark);
       letter-spacing: 0.08em;
       display: block;
       margin-bottom: 12px;
     }
-    .result-card h3 { color: #fff; font-size: 18.5px; font-weight: 800; margin-bottom: 8px; }
-    .result-card p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.85; }
+    .result-card h3 { color: var(--text); font-size: 18.5px; font-weight: 800; margin-bottom: 10px; }
+    .result-card p { color: var(--gray); font-size: 14px; line-height: 1.85; margin-bottom: 22px; }
+    .result-action {
+      margin-top: auto;
+      color: var(--orange-dark);
+      font-size: 13.5px;
+      font-weight: 800;
+    }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
     .reviews {
@@ -1018,23 +1052,39 @@
     }
     .video-card iframe { width: 100%; height: 100%; border: 0; }
 
-    /* ══════════ 10. 獎項膠帶 ══════════ */
+    /* ══════════ 10. 得獎與媒體 ══════════ */
     .award-strip {
-      background: var(--dark-2);
-      padding: 32px 0;
+      background: #fff;
+      padding: 34px 0;
+      border-top: 1px solid rgba(18,21,30,0.06);
+      border-bottom: 1px solid rgba(18,21,30,0.06);
     }
     .award-strip-inner {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px 32px;
+      gap: 10px;
       flex-wrap: wrap;
     }
+    .award-strip-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--gray);
+      margin-right: 8px;
+    }
     .award-pill {
-      color: rgba(255,255,255,0.75);
+      color: var(--text);
       font-size: 13.5px;
       font-weight: 700;
       white-space: nowrap;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid rgba(18,21,30,0.08);
+      border-radius: 999px;
+      padding: 8px 13px;
+      box-shadow: 0 8px 20px rgba(18,21,30,0.04);
     }
     .award-pill .y { font-family: var(--mono); color: var(--orange); font-size: 12px; margin-left: 4px; }
     .award-strip-more {
@@ -1043,6 +1093,7 @@
       font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
+      padding: 8px 4px 8px 10px;
     }
     .award-strip-more:hover { text-decoration: underline; }
 
@@ -1524,7 +1575,7 @@
           提供從 <span class="intro-code">Scratch</span> 到 <span class="intro-code">AI</span> 的九階段完整課程體系，<br>
           全台 <strong>12 縣市、40+ 教學據點</strong>，累計超過 <strong>10 萬名學生</strong>。
         </p>
-        <p class="intro-more">想更認識我們的故事與團隊？<a href="https://orangeapple.co/about">關於橘子蘋果 →</a></p>
+        <p class="intro-more">想看更多橘蘋觀點與媒體故事？<a href="https://orangeapple.co/articles">閱讀橘蘋觀點 →</a></p>
       </div>
     </div>
   </section>
@@ -1749,26 +1800,30 @@
         <p>不是「有學到東西」而已——是拿得出證據的成果。</p>
       </div>
       <div class="result-grid">
-        <div class="result-card">
+        <a href="https://www.youtube.com/watch?v=QL6EXBbQbDs&amp;t=58s" class="result-card" target="_blank" rel="noopener">
           <span class="result-label">APCS 檢定</span>
           <h3>APCS 佳績，錄取清大資工</h3>
           <p>橘蘋學員以 APCS 檢定優異成績，透過個人申請錄取國立清華大學資訊工程學系——程式能力直接成為升學的敲門磚。</p>
-        </div>
-        <div class="result-card">
+          <span class="result-action">觀看黃昱嘉錄取經驗分享 →</span>
+        </a>
+        <a href="https://orangeapple.co/articles/%E5%85%8D%E8%80%83%E5%AD%B8%E6%B8%AC%E6%8F%90%E6%97%A9%E5%8D%8A%E5%B9%B4%E9%8C%84%E5%8F%96%E4%BA%A4%E5%A4%A7%E8%B3%87%E5%B7%A5%EF%BC%81%E4%BB%96%E6%80%8E%E9%BA%BC%E8%BE%A6%E5%88%B0%E7%9A%84%EF%BC%9F" class="result-card">
           <span class="result-label">特殊選才</span>
           <h3>百川計畫，錄取陽明交大</h3>
           <p>學員透過陽明交通大學「百川計畫」特殊選才管道錄取資工系，用程式作品與實作能力證明自己，不只靠考試分數。</p>
-        </div>
-        <div class="result-card">
+          <span class="result-action">閱讀交大資工案例 →</span>
+        </a>
+        <a href="https://orangeapple.co/articles" class="result-card">
           <span class="result-label">媒體報導</span>
           <h3>學員李明謙，受商業周刊專題報導</h3>
           <p>從橘蘋走出去的學生李明謙，進入頂尖大學後的傑出表現受《商業周刊》專題報導——孩子的成長故事，媒體替我們說。</p>
-        </div>
-        <div class="result-card">
+          <span class="result-action">查看橘蘋觀點與媒體故事 →</span>
+        </a>
+        <a href="https://orangeapple.co/articles/15%E6%AD%B2%E5%9C%8B%E4%B8%AD%E7%94%9F%E5%B9%AB%E5%8D%9A%E7%89%A9%E9%A4%A8%E9%96%8B%E7%99%BC%E9%81%8A%E6%88%B2" class="result-card">
           <span class="result-label">真實專案</span>
           <h3>為國立臺灣史前文化博物館開發遊戲</h3>
           <p>橘蘋學員團隊為史前博物館開發「玩程式・學工藝」互動遊戲——學程式不只是練習題，而是做出真實世界會用到的作品。</p>
-        </div>
+          <span class="result-action">閱讀博物館專案故事 →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1862,12 +1917,13 @@
   <section class="award-strip" aria-label="得獎紀錄">
     <div class="container">
       <div class="award-strip-inner">
-        <span class="award-pill">🌏 HolonIQ Taiwan EdTech 50<span class="y">2023</span></span>
-        <span class="award-pill">🏆 金塾獎<span class="y">2022</span></span>
-        <span class="award-pill">🚢 品牌金舶獎<span class="y">2021</span></span>
-        <span class="award-pill">🌱 親子天下教育新創 20+<span class="y">2020</span></span>
-        <span class="award-pill">📖 遠見專題報導<span class="y">2017</span></span>
-        <a href="https://orangeapple.co/about" class="award-strip-more">完整得獎與媒體報導 →</a>
+        <span class="award-strip-label">AWARDS / MEDIA</span>
+        <span class="award-pill">HolonIQ Taiwan EdTech 50<span class="y">2023</span></span>
+        <span class="award-pill">金塾獎<span class="y">2022</span></span>
+        <span class="award-pill">品牌金舶獎<span class="y">2021</span></span>
+        <span class="award-pill">親子天下教育新創 20+<span class="y">2020</span></span>
+        <span class="award-pill">遠見專題報導<span class="y">2017</span></span>
+        <a href="https://orangeapple.co/articles" class="award-strip-more">看橘蘋觀點與媒體故事 →</a>
       </div>
     </div>
   </section>
