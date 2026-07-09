@@ -941,12 +941,19 @@
       align-items: start;
     }
     .faq-sticky { position: sticky; top: 32px; }
-    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; counter-reset: faq; }
     .faq-item {
-      background: var(--light);
-      border-radius: 12px;
+      background: #fff;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(18,21,30,0.03);
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .faq-item:hover { border-color: #D8D8D8; }
+    .faq-item.open {
+      border-color: rgba(255,163,0,0.55);
+      box-shadow: 0 10px 30px rgba(255,163,0,0.12);
     }
     .faq-q {
       width: 100%;
@@ -954,7 +961,6 @@
       border: none;
       padding: 20px 24px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
       font-size: 15px;
       font-weight: 700;
@@ -962,29 +968,48 @@
       cursor: pointer;
       text-align: left;
       font-family: inherit;
-      gap: 16px;
+      gap: 14px;
     }
+    .faq-q::before {
+      counter-increment: faq;
+      content: "Q" counter(faq);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--orange);
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      background: var(--orange-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s, color 0.25s;
+    }
+    .faq-item.open .faq-q::before { background: var(--orange); color: #fff; }
+    .faq-q .q-text { flex: 1; }
     .faq-icon {
       flex-shrink: 0;
+      margin-left: auto;
       width: 28px; height: 28px;
       border-radius: 50%;
-      background: var(--orange-light);
-      color: var(--orange-dark);
+      background: var(--light);
+      color: var(--gray);
       display: flex; align-items: center; justify-content: center;
       font-size: 17px;
-      transition: transform 0.25s;
+      transition: transform 0.25s, background 0.25s, color 0.25s;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--orange-light); color: var(--orange-dark); }
     .faq-a {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
-      padding: 0 24px;
+      padding: 0 24px 0 72px;
       font-size: 14.5px;
       line-height: 1.9;
       color: var(--gray);
     }
-    .faq-item.open .faq-a { max-height: 600px; padding: 0 24px 22px; }
+    .faq-item.open .faq-a { max-height: 600px; padding: 0 24px 24px 72px; }
     .faq-a a { color: #1a73e8; font-weight: 400; text-decoration: underline; }
     .faq-a a:hover { color: #1557b0; }
     .faq-more { font-size: 14px; color: var(--gray); margin-top: 18px; }
@@ -1007,6 +1032,22 @@
       background: rgba(255,255,255,0.07);
       top: -160px; left: -100px;
     }
+    .cta::after {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.22);
+      bottom: -110px; right: -60px;
+    }
+    .cta-code {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
     .cta h2 { color: #fff; margin-bottom: 14px; }
     .cta p { color: rgba(255,255,255,0.92); font-size: 16.5px; margin-bottom: 36px; }
     .cta .btn-primary {
@@ -1017,12 +1058,6 @@
     .cta .btn-primary:hover { background: var(--dark); color: #fff; }
     .cta-sub { margin-top: 22px; font-size: 14px; position: relative; }
     .cta-sub a { color: #fff; font-weight: 700; }
-    .cta-mascot {
-      position: absolute;
-      width: 130px;
-      bottom: -10px; right: 5%;
-      pointer-events: none;
-    }
 
     /* ══════════ RESPONSIVE ══════════ */
     @media (max-width: 960px) {
@@ -1053,7 +1088,6 @@
       .trust-grid { grid-template-columns: 1fr; }
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
       .faq-sticky { position: static; }
-      .cta-mascot { display: none; }
     }
     @media (max-width: 600px) {
       .hero h1 br { display: none; }
@@ -1560,13 +1594,13 @@
 
   <!-- ══ 13. 最終 CTA ══ -->
   <section class="cta" aria-label="免費試聽">
-    <div class="container">
+    <div class="container" style="position:relative;">
+      <p class="cta-code">&lt;first_class free=&quot;true&quot;&gt;</p>
       <h2>第一堂課，免費體驗</h2>
       <p>所有常態課程皆可免費試聽——讓孩子親自感受，再決定要不要開始。</p>
       <a href="https://orangeapple.co/contact" class="btn-primary">取得免費試聽</a>
       <p class="cta-sub">或來電 <a href="tel:+886277098229">(02) 7709-8229</a>，由專人為您規劃</p>
     </div>
-    <img src="assets/koding-run.png" alt="" class="cta-mascot" aria-hidden="true" loading="lazy">
   </section>
 
   <!-- Rails Layout 會把全站頁尾注入這裡 -->
