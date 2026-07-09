@@ -421,66 +421,143 @@
     }
     .camps .btn-primary:hover { background: var(--dark); color: #fff; }
 
-    /* ══════════ 6. 課程路徑地圖 ══════════ */
+    /* ══════════ 6. 九階段課程路徑 ══════════ */
     .roadmap { background: #fff; padding: 96px 0 88px; }
-    .roadmap-header { text-align: center; margin-bottom: 72px; }
+    .roadmap-header { text-align: center; margin-bottom: 44px; }
     .roadmap-header p { color: var(--gray); margin-top: 14px; }
-    .map-track {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0;
-    }
-    .map-track::before {
-      content: '';
-      position: absolute;
-      top: 26px; left: 10%; right: 10%;
-      height: 6px;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--coral), var(--orange), #FFC24D, var(--teal), var(--navy));
-      z-index: 0;
-    }
-    .map-node {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      text-decoration: none;
-      padding: 0 10px;
-    }
-    .map-dot {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      margin: 0 auto 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--mono);
-      font-weight: 800;
-      font-size: 17px;
-      color: #fff;
-      border: 5px solid #fff;
-      box-shadow: 0 6px 18px rgba(18,21,30,0.16);
-      transition: transform 0.2s;
-    }
-    .map-node:hover .map-dot { transform: scale(1.15); }
-    .map-node.m1 .map-dot { background: var(--coral); }
-    .map-node.m2 .map-dot { background: var(--orange); }
-    .map-node.m3 .map-dot { background: #F5A623; }
-    .map-node.m4 .map-dot { background: var(--teal); }
-    .map-node.m5 .map-dot { background: var(--navy); }
-    .map-node h3 { font-size: 16.5px; font-weight: 900; margin-bottom: 4px; }
-    .map-grade {
-      font-family: var(--mono);
-      font-size: 11.5px;
+    .stage-note {
+      text-align: right;
+      font-size: 13px;
       font-weight: 700;
       color: var(--gray);
-      display: block;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
     }
-    .map-desc { font-size: 12.5px; color: var(--gray); line-height: 1.7; }
-    .map-flag {
+    .stage-note .s { color: #FFC24D; letter-spacing: 1px; }
+    .roadmap-body { position: relative; }
+    .stage-cols {
+      display: grid;
+      grid-template-columns: 2fr 3fr 4fr;
+      gap: 18px;
+      position: relative;
+    }
+    .stage-head {
+      border-radius: 18px;
+      color: #fff;
+      text-align: center;
+      padding: 24px 16px 22px;
+    }
+    .stage-head.sh-teal { background: var(--teal); }
+    .stage-head.sh-orange { background: #F5A623; }
+    .stage-head.sh-coral { background: #F1594F; }
+    .stage-head h3 { color: #fff; font-size: 22px; font-weight: 900; letter-spacing: 0.15em; }
+    .stage-head .sub { font-size: 12.5px; opacity: 0.92; display: block; margin: 2px 0 12px; }
+    .stage-badge {
+      display: inline-block;
+      background: #fff;
+      font-size: 13.5px;
+      font-weight: 900;
+      padding: 5px 18px;
+      border-radius: 100px;
+    }
+    .sh-teal .stage-badge { color: var(--teal-dark); }
+    .sh-orange .stage-badge { color: #D18400; }
+    .sh-coral .stage-badge { color: #E03A30; }
+
+    /* 道路 */
+    .stage-road { position: relative; margin: 44px 0 40px; }
+    .stage-road::before {
+      content: '';
       position: absolute;
-      top: -58px; right: 4%;
-      width: 54px;
-      transform: rotate(6deg);
+      top: 50%; left: 0; right: 0;
+      height: 24px;
+      transform: translateY(-50%);
+      background: #7E828C;
+      border-radius: 14px;
+    }
+    .stage-road::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 14px; right: 14px;
+      height: 3px;
+      transform: translateY(-50%);
+      background: repeating-linear-gradient(90deg, #fff 0 16px, transparent 16px 34px);
+      border-radius: 2px;
+    }
+    .stage-nodes {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      align-items: center;
+    }
+    .stage-nodes .spacer-koding {
+      position: absolute;
+      left: -18px; bottom: calc(50% + 14px);
+      width: 88px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .spacer-koding .kd { width: 68px; }
+    .spacer-koding .fl {
+      position: absolute;
+      width: 40px;
+      top: -26px; right: -4px;
+      transform: rotate(8deg);
+    }
+    .stage-node {
+      display: flex;
+      justify-content: center;
+      text-decoration: none;
+      position: relative;
+    }
+    .rn-circle {
+      width: 92px; height: 92px;
+      background: #fff;
+      border-radius: 50%;
+      border: 3px dashed;
+      box-shadow: 0 6px 20px rgba(18,21,30,0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+      padding: 6px;
+    }
+    .stage-node:hover .rn-circle { transform: translateY(-6px) scale(1.06); box-shadow: 0 14px 30px rgba(18,21,30,0.2); }
+    .stage-node.g1 .rn-circle { border-color: var(--teal); }
+    .stage-node.g2 .rn-circle { border-color: #F5A623; }
+    .stage-node.g3 .rn-circle { border-color: #F1594F; }
+    .rn-num { font-family: var(--mono); font-weight: 800; font-size: 16px; line-height: 1.1; }
+    .g1 .rn-num { color: var(--teal-dark); }
+    .g2 .rn-num { color: #D18400; }
+    .g3 .rn-num { color: #E03A30; }
+    .rn-label { font-size: 11px; font-weight: 700; line-height: 1.35; color: var(--text); }
+    .rn-stars {
+      position: absolute;
+      top: -26px; left: 50%;
+      transform: translateX(-50%);
+      color: #FFC24D;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.12);
+      white-space: nowrap;
+    }
+
+    /* 學習重點 */
+    .stage-points { border-radius: 18px; padding: 26px 26px 24px; color: #fff; }
+    .stage-points.sp-teal { background: var(--teal); }
+    .stage-points.sp-orange { background: #F5A623; }
+    .stage-points.sp-coral { background: #F1594F; }
+    .stage-points h4 { font-size: 14.5px; font-weight: 900; margin-bottom: 8px; color: #fff; }
+    .stage-points p { font-size: 13px; line-height: 1.85; opacity: 0.96; }
+    .roadmap-endnote {
+      text-align: right;
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-top: 24px;
+      color: var(--text);
     }
 
     /* 支線 */
@@ -742,6 +819,8 @@
     .trust-card > p { font-size: 14.5px; line-height: 1.9; color: var(--gray); }
     .trust-card p a { color: #1a73e8; text-decoration: underline; }
     .trust-icon { font-size: 34px; margin-bottom: 14px; }
+    .trust-map-layout { display: grid; grid-template-columns: 120px 1fr; gap: 24px; align-items: center; }
+    .trust-map-layout img { width: 100%; height: auto; }
     .county-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
     .county-tag {
       font-size: 13px;
@@ -853,15 +932,15 @@
       .hero-img { transform: none; }
       .path-grid { grid-template-columns: 1fr; gap: 44px; }
       .camps-inner { flex-direction: column; align-items: flex-start; }
-      .map-track { grid-template-columns: 1fr; gap: 28px; }
-      .map-track::before {
-        top: 0; bottom: 0; left: 25px; right: auto;
-        width: 6px; height: auto;
-        background: linear-gradient(180deg, var(--coral), var(--orange), #FFC24D, var(--teal), var(--navy));
-      }
-      .map-node { display: grid; grid-template-columns: 52px 1fr; gap: 16px; text-align: left; padding: 0; }
-      .map-dot { margin: 0; }
-      .map-flag { display: none; }
+      .stage-cols { grid-template-columns: 1fr; gap: 14px; }
+      .stage-road::before, .stage-road::after { display: none; }
+      .stage-road { margin: 8px 0; }
+      .stage-nodes { grid-template-columns: repeat(3, 1fr); gap: 34px 8px; }
+      .stage-nodes .spacer-koding { display: none; }
+      .rn-circle { width: 96px; height: 96px; }
+      .rn-stars { top: -22px; }
+      .stage-points { margin-bottom: 6px; }
+      .roadmap-endnote { text-align: center; }
       .branches { grid-template-columns: 1fr; }
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
@@ -1014,42 +1093,85 @@
     <div class="container">
       <div class="roadmap-header">
         <span class="tag">// learning_roadmap</span>
-        <h2>一條路，從第一塊積木<br>走到人工智慧</h2>
-        <p>台灣唯一完整九階段課程體系——孩子不用換補習班，就能從 6 歲學到 18 歲。</p>
+        <h2>九階段課程，<br>從第一塊積木走到人工智慧</h2>
+        <p>台灣唯一完整九階段課程體系——孩子不用換補習班，就能從國小學到高中。</p>
       </div>
 
-      <div class="map-track">
-        <img src="assets/koding-flag.png" alt="" class="map-flag" aria-hidden="true" loading="lazy">
-        <a href="https://orangeapple.co/courses/kids-coding-foundations" class="map-node m1">
-          <div class="map-dot">0</div>
-          <span class="map-grade">GRADE 1-3</span>
-          <h3>玩創啟蒙</h3>
-          <p class="map-desc">艾伯特・積木<br>麥塊・Roblox</p>
-        </a>
-        <a href="https://orangeapple.co/courses/scratch-basic" class="map-node m2">
-          <div class="map-dot">1</div>
-          <span class="map-grade">GRADE 4+</span>
-          <h3>Scratch</h3>
-          <p class="map-desc">實戰班・菁英班<br>圖像化程式基礎</p>
-        </a>
-        <a href="https://orangeapple.co/courses/python" class="map-node m3">
-          <div class="map-dot">2</div>
-          <span class="map-grade">GRADE 4-7｜國中直入</span>
-          <h3>Python</h3>
-          <p class="map-desc">開發班・進階班<br>真實程式語言</p>
-        </a>
-        <a href="https://orangeapple.co/courses/javascript" class="map-node m4">
-          <div class="map-dot">3</div>
-          <span class="map-grade">GRADE 8+</span>
-          <h3>JavaScript・網頁</h3>
-          <p class="map-desc">JS・HTML5<br>做出上線作品</p>
-        </a>
-        <a href="https://orangeapple.co/courses/ai" class="map-node m5">
-          <div class="map-dot">4</div>
-          <span class="map-grade">進階三階段</span>
-          <h3>資料庫→演算法→AI</h3>
-          <p class="map-desc">體系終點<br>大學資工先修程度</p>
-        </a>
+      <p class="stage-note"><span class="s">★★★</span> 有能力挑戰國際程式認證</p>
+
+      <div class="roadmap-body">
+        <div class="stage-cols">
+          <div class="stage-head sh-teal">
+            <h3>入門</h3>
+            <span class="sub">初學建議小四</span>
+            <span class="stage-badge">圖像化程式語法</span>
+          </div>
+          <div class="stage-head sh-orange">
+            <h3>進階</h3>
+            <span class="sub">初學建議國一</span>
+            <span class="stage-badge">文字式程式語法</span>
+          </div>
+          <div class="stage-head sh-coral">
+            <h3>高階</h3>
+            <span class="sub">進階修畢限定</span>
+            <span class="stage-badge">文字式程式語法</span>
+          </div>
+        </div>
+
+        <div class="stage-road">
+          <div class="stage-nodes">
+            <div class="spacer-koding" aria-hidden="true">
+              <img src="assets/koding-run.png" alt="" class="kd">
+              <img src="assets/koding-flag.png" alt="" class="fl">
+            </div>
+            <a href="https://orangeapple.co/courses/scratch-basic" class="stage-node g1">
+              <span class="rn-circle"><span class="rn-num">01</span><span class="rn-label">Scratch<br>程式觀念</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/scratch-basic" class="stage-node g1">
+              <span class="rn-circle"><span class="rn-num">02</span><span class="rn-label">Scratch<br>運算思維</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/python" class="stage-node g2">
+              <span class="rn-circle"><span class="rn-num">03</span><span class="rn-label">Python 初階<br>程式開發</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/python" class="stage-node g2">
+              <span class="rn-stars">★★★</span>
+              <span class="rn-circle"><span class="rn-num">04</span><span class="rn-label">Python 進階<br>程式開發</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/javascript" class="stage-node g2">
+              <span class="rn-stars">★★★</span>
+              <span class="rn-circle"><span class="rn-num">05</span><span class="rn-label">JavaScript<br>程式開發</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/html5" class="stage-node g3">
+              <span class="rn-circle"><span class="rn-num">06</span><span class="rn-label">HTML/CSS<br>網頁開發</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/database" class="stage-node g3">
+              <span class="rn-circle"><span class="rn-num">07</span><span class="rn-label">網路與<br>資料庫應用</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/algorithm" class="stage-node g3">
+              <span class="rn-circle"><span class="rn-num">08</span><span class="rn-label">演算法認識<br>與開發</span></span>
+            </a>
+            <a href="https://orangeapple.co/courses/ai" class="stage-node g3">
+              <span class="rn-circle"><span class="rn-num">09</span><span class="rn-label">AI<br>人工智慧</span></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="stage-cols">
+          <div class="stage-points sp-teal">
+            <h4>學習重點</h4>
+            <p>建立序列、迴圈、條件式等程式基礎觀念，結合數學與遊戲設計實作，培養有條理解決問題的運算思維。</p>
+          </div>
+          <div class="stage-points sp-orange">
+            <h4>學習重點</h4>
+            <p>深入 Python 與 JavaScript 兩大主流語言，交互應用完成更複雜的專案，並可挑戰該語言的國際認證，升學加分可使用。</p>
+          </div>
+          <div class="stage-points sp-coral">
+            <h4>學習重點</h4>
+            <p>學會大學必修的網頁、資料庫與演算法知識，用視覺化、遊戲化方式拆解難題，最終導入 AI 人工智慧的運作原理與開發邏輯。</p>
+          </div>
+        </div>
+
+        <p class="roadmap-endnote">九階段修畢後，孩子將具備不輸大一資工系學生的程式能力。</p>
       </div>
 
       <div class="branches">
@@ -1230,11 +1352,16 @@
         <div class="trust-card">
           <div class="trust-icon">📍</div>
           <h2>全台 12 縣市，都找得到橘蘋</h2>
-          <div class="county-tags">
-            <span class="county-tag">台北</span><span class="county-tag">新北</span><span class="county-tag">基隆</span><span class="county-tag">桃園</span><span class="county-tag">新竹市</span><span class="county-tag">新竹縣</span><span class="county-tag">苗栗</span><span class="county-tag">台中</span><span class="county-tag">嘉義</span><span class="county-tag">台南</span><span class="county-tag">高雄</span><span class="county-tag">屏東</span>
+          <div class="trust-map-layout">
+            <img src="assets/tw-map.svg" alt="橘子蘋果教學據點分布圖：北部、中部、南部共 12 縣市" loading="lazy">
+            <div>
+              <div class="county-tags">
+                <span class="county-tag">台北</span><span class="county-tag">新北</span><span class="county-tag">基隆</span><span class="county-tag">桃園</span><span class="county-tag">新竹市</span><span class="county-tag">新竹縣</span><span class="county-tag">苗栗</span><span class="county-tag">台中</span><span class="county-tag">嘉義</span><span class="county-tag">台南</span><span class="county-tag">高雄</span><span class="county-tag">屏東</span>
+              </div>
+              <p style="margin-bottom:14px; font-size:14.5px; line-height:1.9; color:var(--gray);">實體教室與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
+              <a href="https://orangeapple.co/classroom" class="trust-link">查看所有教室位置 →</a>
+            </div>
           </div>
-          <p style="margin-bottom:14px;">實體教室與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
-          <a href="https://orangeapple.co/classroom" class="trust-link">查看所有教室位置 →</a>
         </div>
       </div>
     </div>
