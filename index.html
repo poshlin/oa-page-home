@@ -1140,42 +1140,157 @@
     .trust-link:hover { text-decoration: underline; }
 
     /* ══════════ 12. FAQ ══════════ */
-    .faq { background: #fff; padding: 96px 0; }
+    .faq {
+      background:
+        linear-gradient(180deg, #fff 0%, #F7F8FA 100%);
+      padding: 104px 0;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(18,21,30,0.04);
+    }
+    .faq::before {
+      content: "ASK BEFORE YOU START";
+      position: absolute;
+      top: 42px;
+      left: 5vw;
+      font-family: var(--mono);
+      font-size: clamp(48px, 8vw, 112px);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: rgba(18,21,30,0.026);
+      white-space: nowrap;
+      pointer-events: none;
+    }
     .faq-grid {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(0, 2fr);
       gap: 64px;
       align-items: start;
+      position: relative;
+      z-index: 1;
     }
-    .faq-sticky { position: sticky; top: 32px; }
-    .faq-list { display: flex; flex-direction: column; gap: 12px; counter-reset: faq; }
+    .faq-sticky {
+      position: sticky;
+      top: 32px;
+      padding: 34px 32px;
+      border-radius: 22px;
+      background: #fff;
+      border: 1px solid rgba(18,21,30,0.08);
+      box-shadow: 0 18px 54px rgba(18,21,30,0.07);
+      overflow: hidden;
+    }
+    .faq-sticky::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 7px;
+      background: linear-gradient(90deg, var(--orange), var(--teal));
+    }
+    .faq-sticky h2 {
+      margin: 0 0 16px;
+      font-size: clamp(30px, 4vw, 44px);
+    }
+    .faq-intro {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+    .faq-proof-list {
+      display: grid;
+      gap: 10px;
+      margin: 26px 0;
+    }
+    .faq-proof {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--light);
+      border: 1px solid rgba(18,21,30,0.06);
+    }
+    .faq-proof b {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--orange-light);
+      color: var(--orange-dark);
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    .faq-proof strong {
+      display: block;
+      font-size: 14px;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .faq-proof span {
+      display: block;
+      margin-top: 3px;
+      font-size: 12.5px;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+    .faq-more {
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 18px;
+    }
+    .faq-more a { color: #1a73e8; text-decoration: underline; }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      counter-reset: faq;
+    }
     .faq-item {
       background: #fff;
-      border-radius: 14px;
+      border-radius: 18px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(18,21,30,0.03);
-      transition: border-color 0.25s, box-shadow 0.25s;
+      border: 1px solid rgba(18,21,30,0.08);
+      box-shadow: 0 8px 28px rgba(18,21,30,0.045);
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      position: relative;
     }
-    .faq-item:hover { border-color: #D8D8D8; }
+    .faq-item::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: transparent;
+      transition: background 0.25s;
+    }
+    .faq-item:hover {
+      border-color: rgba(18,21,30,0.16);
+      transform: translateY(-2px);
+    }
     .faq-item.open {
       border-color: rgba(255,163,0,0.55);
-      box-shadow: 0 10px 30px rgba(255,163,0,0.12);
+      box-shadow: 0 18px 48px rgba(255,163,0,0.14);
+      background: linear-gradient(135deg, #fff 0%, #FFF9EF 100%);
     }
+    .faq-item.open::before { background: var(--orange); }
     .faq-q {
       width: 100%;
       background: none;
       border: none;
-      padding: 20px 24px;
+      padding: 22px 28px;
       display: flex;
       align-items: center;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
       color: var(--text);
       cursor: pointer;
       text-align: left;
       font-family: inherit;
-      gap: 14px;
+      gap: 16px;
     }
     .faq-q::before {
       counter-increment: faq;
@@ -1185,8 +1300,8 @@
       font-weight: 800;
       color: var(--orange);
       flex-shrink: 0;
-      width: 34px; height: 34px;
-      border-radius: 10px;
+      width: 44px; height: 44px;
+      border-radius: 14px;
       background: var(--orange-light);
       display: inline-flex;
       align-items: center;
@@ -1198,7 +1313,7 @@
     .faq-icon {
       flex-shrink: 0;
       margin-left: auto;
-      width: 28px; height: 28px;
+      width: 34px; height: 34px;
       border-radius: 50%;
       background: var(--light);
       color: var(--gray);
@@ -1211,16 +1326,14 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease;
-      padding: 0 24px 0 72px;
+      padding: 0 32px 0 88px;
       font-size: 14.5px;
-      line-height: 1.9;
+      line-height: 2;
       color: var(--gray);
     }
-    .faq-item.open .faq-a { max-height: 600px; padding: 0 24px 24px 72px; }
+    .faq-item.open .faq-a { max-height: 600px; padding: 0 32px 28px 88px; }
     .faq-a a { color: #1a73e8; font-weight: 400; text-decoration: underline; }
     .faq-a a:hover { color: #1557b0; }
-    .faq-more { font-size: 14px; color: var(--gray); margin-top: 18px; }
-    .faq-more a { color: #1a73e8; text-decoration: underline; }
 
     /* ══════════ 13. 最終 CTA ══════════ */
     .cta {
@@ -1295,7 +1408,7 @@
       .stat-item { padding: 16px; }
       .trust-grid { grid-template-columns: 1fr; }
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
-      .faq-sticky { position: static; }
+      .faq-sticky { position: relative; top: auto; }
     }
     @media (max-width: 600px) {
       .hero h1 br { display: none; }
@@ -1774,8 +1887,22 @@
       <div class="faq-grid">
         <div class="faq-sticky">
           <span class="tag">// faq</span>
-          <h2 style="margin-bottom:16px;">選課前，<br>家長最常問的六件事</h2>
-          <p style="font-size:15px; color:var(--gray); line-height:1.8; margin-bottom:20px;">為孩子選一堂課之前，你想知道的都在這裡。</p>
+          <h2>選課前，<br>家長最常問的六件事</h2>
+          <p class="faq-intro">為孩子選一堂課之前，先把年齡、程度、費用與上課形式釐清，才不會用錯方式開始。</p>
+          <div class="faq-proof-list" aria-label="選課前確認重點">
+            <div class="faq-proof">
+              <b>01</b>
+              <div><strong>先看年級與程度</strong><span>從小一啟蒙到國高中檢定，各階段起點不同。</span></div>
+            </div>
+            <div class="faq-proof">
+              <b>02</b>
+              <div><strong>再選線上或實體</strong><span>依家庭作息、接送距離與孩子學習習慣判斷。</span></div>
+            </div>
+            <div class="faq-proof">
+              <b>03</b>
+              <div><strong>最後安排試聽</strong><span>讓孩子實際上課，再決定是否進入長期課程。</span></div>
+            </div>
+          </div>
           <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener" class="btn-primary" style="font-size:14px; padding:12px 24px;">加入 LINE@ 諮詢</a>
           <p class="faq-more">更多問題？看<a href="https://orangeapple.co/faq">完整常見問題</a></p>
         </div>
