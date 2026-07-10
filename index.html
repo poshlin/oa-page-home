@@ -474,6 +474,87 @@
       color: #D18400;
       border-color: rgba(245,166,35,0.55);
     }
+    .junior-map {
+      margin: 0 0 36px;
+      padding: 22px;
+      border: 1px solid rgba(18,21,30,0.08);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(228,249,247,0.78), rgba(255,243,220,0.72) 48%, rgba(255,237,234,0.68));
+      box-shadow: 0 14px 34px rgba(18,21,30,0.06);
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .junior-map::after {
+      content: '';
+      position: absolute;
+      left: 122px; right: 34px; top: 50%;
+      height: 4px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(0,196,179,0.35), rgba(245,166,35,0.35), rgba(241,89,79,0.28));
+      border-radius: 999px;
+      pointer-events: none;
+    }
+    .junior-koding {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .junior-koding img {
+      width: 76px;
+      filter: drop-shadow(0 10px 16px rgba(18,21,30,0.14));
+    }
+    .junior-koding span {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--teal-dark);
+      background: #fff;
+      border-radius: 999px;
+      padding: 4px 9px;
+      box-shadow: 0 6px 14px rgba(18,21,30,0.06);
+    }
+    .junior-flow {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .junior-card {
+      min-height: 132px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(18,21,30,0.08);
+      border-radius: 14px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 10px 24px rgba(18,21,30,0.06);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .junior-card:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(18,21,30,0.1); }
+    .junior-age {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--orange-dark);
+      background: var(--orange-light);
+      border-radius: 999px;
+      padding: 3px 9px;
+      margin-bottom: 10px;
+    }
+    .junior-card h3 { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
+    .junior-card p { font-size: 13px; line-height: 1.75; color: var(--gray); }
+    .junior-card .soon { color: #E03A30; font-weight: 800; }
     .roadmap-body { position: relative; }
     .stage-cols {
       display: grid;
@@ -530,17 +611,6 @@
       display: grid;
       grid-template-columns: repeat(9, 1fr);
       align-items: center;
-    }
-    .stage-nodes .spacer-koding {
-      position: absolute;
-      left: -42px; bottom: calc(50% + 16px);
-      width: 68px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .spacer-koding .kd {
-      width: 68px;
-      filter: drop-shadow(0 8px 14px rgba(18,21,30,0.16));
     }
     .stage-node {
       display: flex;
@@ -1493,10 +1563,14 @@
       .camps-inner { flex-direction: column; align-items: flex-start; }
       .stage-cols { grid-template-columns: 1fr; gap: 14px; }
       .stage-note { justify-content: center; flex-wrap: wrap; text-align: center; }
+      .junior-map { grid-template-columns: 1fr; padding: 20px; }
+      .junior-map::after { display: none; }
+      .junior-koding { flex-direction: row; justify-content: center; }
+      .junior-koding img { width: 58px; }
+      .junior-flow { grid-template-columns: 1fr; }
       .stage-road::before, .stage-road::after { display: none; }
       .stage-road { margin: 8px 0; }
       .stage-nodes { grid-template-columns: repeat(3, 1fr); gap: 34px 8px; }
-      .stage-nodes .spacer-koding { display: none; }
       .rn-circle { width: 96px; height: 96px; }
       .rn-cert { top: -24px; font-size: 9.5px; padding: 2px 6px; }
       .stage-points { margin-bottom: 6px; }
@@ -1674,6 +1748,30 @@
       </p>
 
       <div class="roadmap-body">
+        <div class="junior-map" aria-label="低年級探索入口">
+          <div class="junior-koding" aria-hidden="true">
+            <img src="assets/koding-flag-hold.png" alt="" loading="lazy">
+            <span>START</span>
+          </div>
+          <div class="junior-flow">
+            <a href="https://orangeapple.co/courses/kids-coding-foundations" class="junior-card">
+              <span class="junior-age">GRADE 1-2</span>
+              <h3>艾伯特 / 創意機械積木</h3>
+              <p>同年齡的兩種啟蒙入口：線上可從艾伯特建立序列、迴圈、條件；實體可用 STEAM 積木訓練手作與邏輯。</p>
+            </a>
+            <a href="https://orangeapple.co/courses/kids-coding-foundations" class="junior-card">
+              <span class="junior-age">GRADE 3-6</span>
+              <h3>Minecraft / Roblox AI</h3>
+              <p>用孩子熟悉的遊戲情境，從「玩遊戲」轉成「設計規則、做出作品」，銜接 Scratch 與後續文字式程式。</p>
+            </a>
+            <a href="https://orangeapple.co/courses/kids-coding-foundations" class="junior-card">
+              <span class="junior-age">GRADE 5-9</span>
+              <h3>麥塊 Python / Roblox Lua</h3>
+              <p><span class="soon">即將推出：</span>讓已熟悉麥塊與 Roblox 的孩子，用更接近真實開發的語言，銜接 Python、JavaScript 主線。</p>
+            </a>
+          </div>
+        </div>
+
         <div class="stage-cols">
           <div class="stage-head sh-teal">
             <h3>入門</h3>
@@ -1694,9 +1792,6 @@
 
         <div class="stage-road">
           <div class="stage-nodes">
-            <div class="spacer-koding" aria-hidden="true">
-              <img src="assets/koding-flag-hold.png" alt="" class="kd">
-            </div>
             <a href="https://orangeapple.co/courses/scratch-basic" class="stage-node g1">
               <span class="rn-circle"><span class="rn-num">01</span><span class="rn-label">Scratch<br>程式觀念</span></span>
             </a>
