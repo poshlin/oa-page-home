@@ -731,12 +731,104 @@
       margin-top: 24px;
       color: var(--text);
     }
+    .cert-lanes {
+      margin-top: 30px;
+      padding: 24px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(29,44,77,0.96), rgba(29,44,77,0.90)),
+        linear-gradient(90deg, rgba(245,166,35,0.25), rgba(0,196,179,0.18));
+      box-shadow: 0 18px 42px rgba(18,21,30,0.14);
+      color: #fff;
+    }
+    .cert-lanes-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .cert-lanes-kicker {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .cert-lanes h3 {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0;
+      color: #fff;
+    }
+    .cert-lanes-head p {
+      max-width: 420px;
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .cert-card {
+      min-height: 176px;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s, background 0.18s, border-color 0.18s;
+    }
+    .cert-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(245,166,35,0.5);
+    }
+    .cert-card .route {
+      width: fit-content;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      background: rgba(245,166,35,0.16);
+      color: #FFC15A;
+      margin-bottom: 14px;
+    }
+    .cert-card h4 {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+    .cert-card p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.74);
+      margin: 0;
+    }
+    .cert-card .arrow {
+      margin-top: auto;
+      padding-top: 16px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #FFC15A;
+    }
 
     /* 支線 */
     .branches {
       margin-top: 72px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
     .branches-label {
@@ -1608,6 +1700,9 @@
       .rn-cert { top: -24px; font-size: 9.5px; padding: 2px 6px; }
       .stage-points { margin-bottom: 6px; }
       .roadmap-endnote { text-align: center; }
+      .cert-lanes-head { display: block; text-align: center; }
+      .cert-lanes-head p { margin: 12px auto 0; }
+      .cert-grid { grid-template-columns: 1fr; }
       .branches { grid-template-columns: 1fr; }
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
@@ -1879,18 +1974,41 @@
           </div>
         </div>
 
-        <p class="roadmap-endnote">菁英九階段修畢後，孩子將具備不輸大一資工系學生的程式能力；再往上，還能銜接 APCS 與 ITS 國際認證。</p>
+        <div class="cert-lanes" aria-label="升學與認證主線">
+          <div class="cert-lanes-head">
+            <div>
+              <span class="cert-lanes-kicker">ADVANCED ROUTES</span>
+              <h3>九階段之後，不只結束，而是分流到升學與認證</h3>
+            </div>
+            <p>孩子的年級、目標和時間壓力不同，路徑也不同；橘蘋會依程度評估，安排 ITS、APCS 或選手班。</p>
+          </div>
+          <div class="cert-grid">
+            <a href="https://orangeapple.co/courses/its" class="cert-card">
+              <span class="route">ROUTE 01</span>
+              <h4>ITS 國際認證</h4>
+              <p>國一、國二時間較充裕，可在 Python 進階、JavaScript、HTML/CSS 或演算法後分段考取，累積學習歷程與國際證照。</p>
+              <span class="arrow">了解 ITS 認證 →</span>
+            </a>
+            <a href="https://orangeapple.co/courses/apcs" class="cert-card">
+              <span class="route">ROUTE 02</span>
+              <h4>APCS 升學檢定</h4>
+              <p>國二以上或高中生若有升學壓力，可從菁英高階銜接 APCS 初階、進階；急件學生也可經程度評估後直接切入。</p>
+              <span class="arrow">了解 APCS 課程 →</span>
+            </a>
+            <a href="https://orangeapple.co/courses/expert" class="cert-card">
+              <span class="route">ROUTE 03</span>
+              <h4>選手班與競賽訓練</h4>
+              <p>APCS 初階、進階之後，想追求更高級分或競賽表現，可持續半年到一年進入解題、演算法與實戰訓練。</p>
+              <span class="arrow">了解駭客學程 →</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="roadmap-endnote">菁英九階段修畢後，孩子將具備不輸大一資工系學生的程式能力；再依年級與升學壓力，銜接 ITS、APCS 或選手班。</p>
       </div>
 
-      <p class="branches-label">完整地圖之外，三條專屬加速支線</p>
+      <p class="branches-label">完整地圖之外，兩條能力加速支線</p>
       <div class="branches">
-        <a href="https://orangeapple.co/courses/expert" class="branch-card b-navy">
-          <span class="branch-icon">🏅</span>
-          <span class="branch-label">BRANCH｜檢定認證支線</span>
-          <h3>駭客學程</h3>
-          <p>從 Python 之後分支：APCS 升學檢定、ITS 國際認證（Python／JavaScript／HTML & CSS／運算思維），橘蘋是 ITS 官方考場。</p>
-          <span class="branch-arrow">了解檢定課程 →</span>
-        </a>
         <a href="https://orangeapple.co/courses/math" class="branch-card b-teal">
           <span class="branch-icon">🧮</span>
           <span class="branch-label">BRANCH｜數學支線</span>
