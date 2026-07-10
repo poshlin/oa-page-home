@@ -1261,38 +1261,56 @@
     }
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 30px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
     }
     .video-card {
-      border-radius: 18px;
+      border-radius: 16px;
       overflow: hidden;
       position: relative;
-      aspect-ratio: 4/5;
       cursor: pointer;
-      background: var(--dark);
-      border: none;
+      background: #fff;
+      border: 1px solid rgba(18,21,30,0.08);
       padding: 0;
-      min-height: 250px;
-      box-shadow: 0 14px 34px rgba(18,21,30,0.13);
+      min-height: 0;
+      box-shadow: 0 10px 28px rgba(18,21,30,0.08);
       text-align: left;
+      font: inherit;
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      align-items: stretch;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    }
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(245,166,35,0.32);
+      box-shadow: 0 18px 42px rgba(18,21,30,0.12);
     }
     .video-card.featured {
       grid-column: 1 / -1;
-      aspect-ratio: 21/9;
-      min-height: 520px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+      min-height: 390px;
     }
-    .video-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.72; transition: opacity 0.2s, transform 0.3s; }
-    .video-card:hover img { opacity: 1; transform: scale(1.04); }
-    .video-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(18,21,30,0.04), rgba(18,21,30,0.88)),
-        linear-gradient(90deg, rgba(0,196,179,0.14), rgba(245,166,35,0.08));
-      pointer-events: none;
+    .video-thumb {
+      position: relative;
+      display: block;
+      min-height: 180px;
+      background: #111827;
+      overflow: hidden;
+    }
+    .video-card.featured .video-thumb { min-height: 390px; }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.92;
+      transition: transform 0.3s, opacity 0.2s;
+    }
+    .video-card:hover .video-thumb img {
+      transform: scale(1.03);
+      opacity: 1;
     }
     .video-play {
       position: absolute;
@@ -1306,10 +1324,7 @@
       z-index: 2;
       box-shadow: 0 12px 30px rgba(245,166,35,0.34);
     }
-    .video-card.featured .video-play {
-      width: 72px;
-      height: 72px;
-    }
+    .video-card.featured .video-play { width: 72px; height: 72px; }
     .video-play::after {
       content: '';
       border-style: solid;
@@ -1318,29 +1333,29 @@
       margin-left: 4px;
     }
     .video-copy {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      z-index: 2;
-      padding: 18px;
-      color: #fff;
+      padding: 20px;
+      color: var(--text);
       pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .video-card.featured .video-copy {
-      padding: 34px;
-      max-width: 760px;
+      padding: 36px;
+      max-width: none;
     }
     .video-eyebrow {
       display: block;
       width: fit-content;
       padding: 4px 8px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.16);
-      color: #FFD48A;
+      background: var(--orange-light);
+      color: var(--orange-dark);
       font-family: var(--mono);
       font-size: 10px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     .video-title {
       display: block;
@@ -1348,6 +1363,7 @@
       font-weight: 900;
       line-height: 1.35;
       margin-bottom: 8px;
+      color: var(--text);
     }
     .video-card.featured .video-title {
       font-size: clamp(26px, 3vw, 38px);
@@ -1355,32 +1371,84 @@
     }
     .video-desc {
       display: block;
-      color: rgba(255,255,255,0.82);
+      color: var(--gray);
       font-size: 13px;
       line-height: 1.65;
       max-width: 540px;
     }
-    .video-card:not(.featured) .video-desc { display: none; }
     .video-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
     .video-tags span {
       padding: 4px 8px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.9);
+      background: rgba(18,21,30,0.06);
+      color: var(--gray);
       font-size: 11px;
       font-weight: 700;
     }
     .video-card:not(.featured) .video-tags span:nth-child(n+3) { display: none; }
-    .video-card iframe { width: 100%; height: 100%; border: 0; }
+    .video-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(18,21,30,0.78);
+      backdrop-filter: blur(8px);
+    }
+    .video-lightbox.open { display: flex; }
+    .video-dialog {
+      width: min(1080px, 100%);
+      position: relative;
+      border-radius: 18px;
+      aspect-ratio: 16/9;
+    }
+    #videoFrame {
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.34);
+    }
+    #videoFrame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .video-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.34);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
 
     @media (max-width: 1180px) {
-      .videos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .video-card.featured { grid-column: 1 / -1; min-height: 460px; }
+      .video-card,
+      .video-card.featured {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .video-thumb,
+      .video-card.featured .video-thumb {
+        aspect-ratio: 16/9;
+        min-height: 0;
+      }
     }
 
     /* ══════════ 10. 得獎與媒體 ══════════ */
@@ -1834,11 +1902,10 @@
       .video-card.featured {
         grid-column: auto;
         grid-row: auto;
-        aspect-ratio: 4/5;
-        min-height: 380px;
+        min-height: 0;
       }
       .video-card.featured .video-copy { padding: 22px; }
-      .video-card { min-height: 320px; }
+      .video-card { min-height: 0; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
       .stat-item { padding: 16px; }
@@ -2304,8 +2371,8 @@
       </div>
       <div class="videos-grid">
         <button type="button" class="video-card featured" data-yt="37WdvQI4-lk" aria-label="播放家長訪談影片：永傑的學習故事">
-          <img src="https://i.ytimg.com/vi/37WdvQI4-lk/hqdefault.jpg" alt="家長訪談影片：永傑的學習故事" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/37WdvQI4-lk/hq720.jpg" alt="家長訪談影片：永傑的學習故事" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">CROSS-CULTURE FAMILY</span>
             <span class="video-title">從艾伯特到 Minecraft，孩子在線上課變得更自律</span>
@@ -2314,8 +2381,8 @@
           </span>
         </button>
         <button type="button" class="video-card" data-yt="rfFJfJha7dg" aria-label="播放家長訪談影片：婷璿的學習故事">
-          <img src="https://i.ytimg.com/vi/rfFJfJha7dg/hqdefault.jpg" alt="家長訪談影片：婷璿的學習故事" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/rfFJfJha7dg/hq720.jpg" alt="家長訪談影片：婷璿的學習故事" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">SCRATCH TO SCHOOL</span>
             <span class="video-title">從自學 Scratch 到成績進步</span>
@@ -2324,8 +2391,8 @@
           </span>
         </button>
         <button type="button" class="video-card" data-yt="vBKLmm7a8Ig" aria-label="播放家長訪談影片：慕唯的學習故事">
-          <img src="https://i.ytimg.com/vi/vBKLmm7a8Ig/hqdefault.jpg" alt="家長訪談影片：慕唯的學習故事" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/vBKLmm7a8Ig/hq720.jpg" alt="家長訪談影片：慕唯的學習故事" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">GAME TO CODE</span>
             <span class="video-title">Minecraft 不只是玩，而是開始理解規則</span>
@@ -2334,8 +2401,8 @@
           </span>
         </button>
         <button type="button" class="video-card" data-yt="D7kbJxJFaPU" aria-label="播放家長訪談影片：七年級挑戰 APCS">
-          <img src="https://i.ytimg.com/vi/D7kbJxJFaPU/hqdefault.jpg" alt="家長訪談影片：七年級挑戰 APCS" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/D7kbJxJFaPU/hq720.jpg" alt="家長訪談影片：七年級挑戰 APCS" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">APCS PATH</span>
             <span class="video-title">七年級就開始挑戰 APCS 試題</span>
@@ -2344,8 +2411,8 @@
           </span>
         </button>
         <button type="button" class="video-card" data-yt="Dr_BiKDhL3o" aria-label="播放家長訪談影片：孩子主動想做遊戲">
-          <img src="https://i.ytimg.com/vi/Dr_BiKDhL3o/hqdefault.jpg" alt="家長訪談影片：孩子主動想做遊戲" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/Dr_BiKDhL3o/hq720.jpg" alt="家長訪談影片：孩子主動想做遊戲" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">CREATE GAMES</span>
             <span class="video-title">孩子主動說：我想做遊戲給別人玩</span>
@@ -2354,8 +2421,8 @@
           </span>
         </button>
         <button type="button" class="video-card" data-yt="_exNE-2QSPI" aria-label="播放家長訪談影片：程式訓練孩子的思考方式">
-          <img src="https://i.ytimg.com/vi/_exNE-2QSPI/hqdefault.jpg" alt="家長訪談影片：程式訓練孩子的思考方式" loading="lazy">
-          <span class="video-play"></span>
+          <span class="video-thumb"><img src="https://i.ytimg.com/vi/_exNE-2QSPI/hq720.jpg" alt="家長訪談影片：程式訓練孩子的思考方式" loading="lazy">
+            <span class="video-play"></span></span>
           <span class="video-copy">
             <span class="video-eyebrow">THINKING SKILL</span>
             <span class="video-title">家長看見孩子學到的是思考方式</span>
@@ -2363,6 +2430,12 @@
             <span class="video-tags"><span>Python 證照</span><span>成就感</span><span>歸納邏輯</span></span>
           </span>
         </button>
+      </div>
+      <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
+        <div class="video-dialog" role="dialog" aria-modal="true" aria-label="家長訪談影片播放器">
+          <button type="button" class="video-close" id="videoClose" aria-label="關閉影片">×</button>
+          <div id="videoFrame"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -2680,20 +2753,45 @@
       requestAnimationFrame(function () { scrollToIndex(current, false); });
     })();
 
-    /* ── 家長訪談影片：點擊才載入 YouTube ── */
-    document.querySelectorAll('.video-card').forEach(function (card) {
-      card.addEventListener('click', function () {
-        var id = card.dataset.yt;
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
-        iframe.title = card.getAttribute('aria-label') || '家長訪談影片';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        card.innerHTML = '';
-        card.appendChild(iframe);
-        card.style.cursor = 'default';
-      }, { once: true });
-    });
+    /* ── 家長訪談影片：點擊開啟 lightbox ── */
+    (function () {
+      var lightbox = document.getElementById('videoLightbox');
+      var frame = document.getElementById('videoFrame');
+      var close = document.getElementById('videoClose');
+      if (!lightbox || !frame || !close) return;
+
+      function closeVideo() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        frame.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.video-card').forEach(function (card) {
+        card.addEventListener('click', function () {
+          var id = card.dataset.yt;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+          iframe.title = card.getAttribute('aria-label') || '家長訪談影片';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          frame.innerHTML = '';
+          frame.appendChild(iframe);
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+          close.focus();
+        });
+      });
+
+      close.addEventListener('click', closeVideo);
+      lightbox.addEventListener('click', function (event) {
+        if (event.target === lightbox) closeVideo();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && lightbox.classList.contains('open')) closeVideo();
+      });
+    })();
   </script>
 
 </body>
