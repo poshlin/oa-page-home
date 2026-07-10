@@ -436,10 +436,27 @@
     }
     .camps .btn-primary:hover { background: var(--dark); color: #fff; }
 
-    /* ══════════ 6. 九階段課程路徑 ══════════ */
+    /* ══════════ 6. 完整課程路徑 ══════════ */
     .roadmap { background: #fff; padding: 96px 0 88px; }
     .roadmap-header { text-align: center; margin-bottom: 44px; }
     .roadmap-header p { color: var(--gray); margin-top: 14px; }
+    .roadmap-scope {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .roadmap-scope span {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid rgba(18,21,30,0.08);
+      border-radius: 999px;
+      padding: 7px 13px;
+      box-shadow: 0 8px 18px rgba(18,21,30,0.05);
+    }
     .stage-note {
       display: flex;
       justify-content: flex-end;
@@ -1730,13 +1747,18 @@
     </div>
   </section>
 
-  <!-- ══ 6. 課程路徑地圖 ══ -->
-  <section class="roadmap" aria-label="課程學習路徑">
+  <!-- ══ 6. 完整課程路徑地圖 ══ -->
+  <section class="roadmap" aria-label="完整課程學習地圖">
     <div class="container">
       <div class="roadmap-header">
         <span class="tag">// learning_roadmap</span>
-        <h2>九階段課程，<br>從第一塊積木走到人工智慧</h2>
-        <p>台灣唯一完整九階段課程體系——孩子不用換補習班，就能從國小學到高中。</p>
+        <h2>完整學習地圖，<br>從玩創啟蒙走到升學認證</h2>
+        <p>橘蘋把低年級玩創探索、菁英九階段主線、國高中駭客認證整合成同一套路徑——孩子不用換體系，就能一路從國小學到高中。</p>
+        <div class="roadmap-scope" aria-label="課程體系範圍">
+          <span>玩創與遊戲探索｜1-9 年級</span>
+          <span>菁英九階段｜4 年級以上</span>
+          <span>駭客認證｜國高中升學</span>
+        </div>
       </div>
 
       <p class="stage-note">
@@ -1845,10 +1867,10 @@
           </div>
         </div>
 
-        <p class="roadmap-endnote">九階段修畢後，孩子將具備不輸大一資工系學生的程式能力。</p>
+        <p class="roadmap-endnote">菁英九階段修畢後，孩子將具備不輸大一資工系學生的程式能力；再往上，還能銜接 APCS 與 ITS 國際認證。</p>
       </div>
 
-      <p class="branches-label">主線之外，三條專屬支線</p>
+      <p class="branches-label">完整地圖之外，三條專屬加速支線</p>
       <div class="branches">
         <a href="https://orangeapple.co/courses/expert" class="branch-card b-navy">
           <span class="branch-icon">🏅</span>
