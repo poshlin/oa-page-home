@@ -1261,27 +1261,27 @@
     }
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 28px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 30px;
     }
     .video-card {
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
       position: relative;
-      aspect-ratio: 16/9;
+      aspect-ratio: 4/5;
       cursor: pointer;
       background: var(--dark);
       border: none;
       padding: 0;
-      min-height: 230px;
-      box-shadow: 0 12px 30px rgba(18,21,30,0.12);
+      min-height: 250px;
+      box-shadow: 0 14px 34px rgba(18,21,30,0.13);
       text-align: left;
     }
     .video-card.featured {
-      grid-column: span 2;
-      grid-row: span 2;
-      min-height: 476px;
+      grid-column: 1 / -1;
+      aspect-ratio: 21/9;
+      min-height: 520px;
     }
     .video-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.72; transition: opacity 0.2s, transform 0.3s; }
     .video-card:hover img { opacity: 1; transform: scale(1.04); }
@@ -1290,8 +1290,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(18,21,30,0.08), rgba(18,21,30,0.84)),
-        linear-gradient(90deg, rgba(0,196,179,0.18), rgba(245,166,35,0.10));
+        linear-gradient(180deg, rgba(18,21,30,0.04), rgba(18,21,30,0.88)),
+        linear-gradient(90deg, rgba(0,196,179,0.14), rgba(245,166,35,0.08));
       pointer-events: none;
     }
     .video-play {
@@ -1321,11 +1321,14 @@
       position: absolute;
       left: 0; right: 0; bottom: 0;
       z-index: 2;
-      padding: 20px;
+      padding: 18px;
       color: #fff;
       pointer-events: none;
     }
-    .video-card.featured .video-copy { padding: 28px; }
+    .video-card.featured .video-copy {
+      padding: 34px;
+      max-width: 760px;
+    }
     .video-eyebrow {
       display: block;
       width: fit-content;
@@ -1341,7 +1344,7 @@
     }
     .video-title {
       display: block;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
       line-height: 1.35;
       margin-bottom: 8px;
@@ -1357,11 +1360,12 @@
       line-height: 1.65;
       max-width: 540px;
     }
+    .video-card:not(.featured) .video-desc { display: none; }
     .video-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .video-tags span {
       padding: 4px 8px;
@@ -1371,7 +1375,13 @@
       font-size: 11px;
       font-weight: 700;
     }
+    .video-card:not(.featured) .video-tags span:nth-child(n+3) { display: none; }
     .video-card iframe { width: 100%; height: 100%; border: 0; }
+
+    @media (max-width: 1180px) {
+      .videos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .video-card.featured { grid-column: 1 / -1; min-height: 460px; }
+    }
 
     /* ══════════ 10. 得獎與媒體 ══════════ */
     .award-strip {
@@ -1821,7 +1831,13 @@
       .reviews-nav { display: none; }
       .reviews-controls { margin-top: 10px; }
       .videos-grid { grid-template-columns: 1fr; }
-      .video-card.featured { grid-column: auto; grid-row: auto; min-height: 360px; }
+      .video-card.featured {
+        grid-column: auto;
+        grid-row: auto;
+        aspect-ratio: 4/5;
+        min-height: 380px;
+      }
+      .video-card.featured .video-copy { padding: 22px; }
       .video-card { min-height: 320px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
