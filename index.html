@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;800;900&display=swap" rel="stylesheet">
   <title>兒童程式設計課程首選｜Scratch、Python、AI 一條龍學習 - 橘子蘋果程式學苑</title>
   <meta name="description" content="橘子蘋果程式學苑成立於 2012 年，台灣規模最大的兒童程式教育機構之一。提供 Scratch、Python、AI 完整課程體系，全台 12 縣市 40+ 教學據點，累計超過 10 萬名學生，國小一年級起即可免費試聽。">
   <meta name="robots" content="index, follow">
@@ -443,13 +446,13 @@
       border-radius: var(--r-pill);
       margin-bottom: 18px;
     }
-    .c-coral .path-grade { color: var(--coral); background: var(--coral-light); }
+    .c-coral .path-grade { color: var(--coral-dark); background: var(--coral-light); }
     .c-orange .path-grade { color: var(--orange-dark); background: var(--orange-light); }
     .c-teal .path-grade { color: var(--teal-dark); background: var(--teal-light); }
     .path-card h3 { font-size: 21px; font-weight: 900; margin-bottom: 10px; }
     .path-card > p { font-size: 14px; color: var(--gray); line-height: 1.8; flex: 1; }
     .path-arrow { margin-top: 20px; font-weight: 700; font-size: 14px; }
-    .c-coral .path-arrow { color: var(--coral); }
+    .c-coral .path-arrow { color: var(--coral-dark); }
     .c-orange .path-arrow { color: var(--orange-dark); }
     .c-teal .path-arrow { color: var(--teal-dark); }
 
@@ -489,7 +492,7 @@
     }
     .camps .btn-primary {
       background: #fff;
-      color: var(--coral);
+      color: var(--coral-dark);
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       flex-shrink: 0;
     }
@@ -1162,7 +1165,7 @@
     .video-card:not(.featured) { height: 100%; }
     .video-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(245,166,35,0.32);
+      border-color: rgba(255,163,0,0.32);
       box-shadow: var(--e2);
     }
     .video-card.featured {
@@ -1170,8 +1173,8 @@
       width: 100%;
     }
     .video-card.outcome {
-      border-color: rgba(245,166,35,0.38);
-      box-shadow: 0 12px 34px rgba(245,166,35,0.12), 0 10px 28px rgba(18,21,30,0.06);
+      border-color: rgba(255,163,0,0.38);
+      box-shadow: 0 12px 34px rgba(255,163,0,0.12), 0 10px 28px rgba(18,21,30,0.06);
     }
     .video-thumb {
       position: relative;
@@ -1198,7 +1201,7 @@
     }
     .video-card:hover .video-thumb img { opacity: 1; }
     .video-card.outcome .video-eyebrow {
-      background: rgba(245,166,35,0.16);
+      background: rgba(255,163,0,0.16);
       color: var(--orange-dark);
     }
     .video-play {
@@ -1211,7 +1214,7 @@
       display: flex; align-items: center; justify-content: center;
       pointer-events: none;
       z-index: 2;
-      box-shadow: 0 12px 30px rgba(245,166,35,0.34);
+      box-shadow: 0 12px 30px rgba(255,163,0,0.34);
     }
     .video-card.featured .video-play { width: 72px; height: 72px; }
     .video-play::after {
