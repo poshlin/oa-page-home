@@ -149,26 +149,53 @@
   </script>
 
   <style>
-    /* ══════════ DESIGN TOKENS ══════════ */
+    /* ══════════ DESIGN TOKENS（收斂系統）══════════ */
     :root {
+      /* ── 品牌強調色：橘（主）＋珊瑚（能量）＋藍綠（學習）＋navy（升學）── */
       --orange: #FFA300;
       --orange-dark: #E08900;
       --orange-deep: #FF8A00;
       --orange-light: #FFF3DC;
       --coral: #FF6F61;
+      --coral-dark: #D64A3D;
       --coral-light: #FFEDEA;
       --teal: #00C4B3;
       --teal-dark: #009E90;
       --teal-light: #E4F9F7;
       --navy: #1B2A4A;
       --navy-light: #E9EEF8;
+      /* ── 墨與中性 ── */
       --dark: #12151E;
-      --dark-2: #1B1F2E;
       --text: #2A2D35;
       --gray: #6B7280;
-      --light: #F8F8F8;
-      --border: #E8E8E8;
+      --line: #E6E8EC;
+      --border: #E6E8EC;
+      /* ── 底色：只留白 + 單一暖白 ── */
+      --surface: #FFFFFF;
+      --light: #FAF9F6;
+      /* ── 文字連結：藍綠深階，取代 Google 藍 ── */
+      --link: #009E90;
       --mono: 'SF Mono', 'JetBrains Mono', Consolas, monospace;
+      /* ── 圓角：4 階 ── */
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-pill: 999px;
+      /* ── 陰影：3 階 + CTA 光暈 ── */
+      --e1: 0 2px 8px rgba(18,21,30,0.06);
+      --e2: 0 12px 32px rgba(18,21,30,0.10);
+      --e3: 0 24px 64px rgba(18,21,30,0.14);
+      --e-cta: 0 8px 24px rgba(255,163,0,0.32);
+      /* ── 間距：8pt 尺標 ── */
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s5: 24px;
+      --s6: 32px;
+      --s7: 48px;
+      --s8: 64px;
+      --s9: 96px;
+      --s10: 128px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -198,14 +225,14 @@
       color: var(--orange-dark);
       background: var(--orange-light);
       padding: 6px 14px;
-      border-radius: 6px;
+      border-radius: var(--r-sm);
       margin-bottom: 20px;
       letter-spacing: 0.05em;
     }
     .tag-dark { background: rgba(255,163,0,0.12); color: var(--orange); }
 
-    h1, h2, h3 { line-height: 1.35; color: var(--text); }
-    h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 900; letter-spacing: 0.01em; }
+    h1, h2, h3 { line-height: 1.25; color: var(--text); }
+    h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; letter-spacing: 0.01em; line-height: 1.16; }
 
     .btn-primary {
       display: inline-block;
@@ -214,12 +241,12 @@
       font-size: 16px;
       font-weight: 700;
       padding: 16px 36px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
       text-decoration: none;
       transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-      box-shadow: 0 4px 16px rgba(255,163,0,0.35);
+      box-shadow: var(--e-cta);
     }
-    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,163,0,0.45); }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,163,0,0.42); }
     .btn-secondary {
       display: inline-block;
       background: #fff;
@@ -227,7 +254,7 @@
       font-size: 16px;
       font-weight: 700;
       padding: 14px 32px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
       text-decoration: none;
       border: 2px solid var(--border);
       transition: border-color 0.18s, color 0.18s;
@@ -282,10 +309,10 @@
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
     .hero-img-wrap { position: relative; }
     .hero-img {
-      border-radius: 20px;
+      border-radius: var(--r-lg);
       overflow: hidden;
       aspect-ratio: 4/3;
-      box-shadow: 0 24px 64px rgba(18,21,30,0.28);
+      box-shadow: var(--e3);
       transform: rotate(1.5deg);
     }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -297,8 +324,8 @@
       font-size: 12px;
       font-weight: 700;
       padding: 10px 16px;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      border-radius: var(--r-sm);
+      box-shadow: var(--e2);
       transform: rotate(-3deg);
     }
     .hero-badge.b1 { top: -16px; left: -12px; }
@@ -306,9 +333,9 @@
       position: absolute;
       bottom: -18px; right: -6px;
       background: #fff;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       padding: 12px 18px;
-      box-shadow: 0 12px 32px rgba(18,21,30,0.18);
+      box-shadow: var(--e2);
       transform: rotate(-2deg);
       font-size: 13px;
       font-weight: 700;
@@ -352,12 +379,12 @@
       background: var(--orange-light);
       color: var(--orange-dark);
       padding: 1px 8px;
-      border-radius: 5px;
+      border-radius: var(--r-sm);
       font-weight: 700;
     }
-    .intro-more { margin-top: 20px; font-size: 14.5px; }
-    .intro-more a { color: #1a73e8; text-decoration: underline; font-weight: 400; }
-    .intro-more a:hover { color: #1557b0; }
+    .intro-more { margin-top: 20px; font-size: 14px; }
+    .intro-more a { color: var(--link); text-decoration: underline; font-weight: 400; }
+    .intro-more a:hover { color: var(--teal-dark); }
 
     /* ══════════ 4. 年齡分流三卡（三色）══════════ */
     .pathfinder {
@@ -392,17 +419,17 @@
     .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .path-card {
       background: #fff;
-      border-radius: 20px;
+      border-radius: var(--r-lg);
       padding: 40px 30px 32px;
       text-decoration: none;
       border-top: 6px solid;
-      box-shadow: 0 4px 20px rgba(18,21,30,0.06);
+      box-shadow: var(--e1);
       transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
       display: flex;
       flex-direction: column;
     }
-    .path-card:hover { transform: translateY(-8px) rotate(-0.5deg); box-shadow: 0 20px 48px rgba(18,21,30,0.14); }
+    .path-card:hover { transform: translateY(-8px) rotate(-0.5deg); box-shadow: var(--e2); }
     .path-card.c-coral { border-color: var(--coral); }
     .path-card.c-orange { border-color: var(--orange); }
     .path-card.c-teal { border-color: var(--teal); }
@@ -413,15 +440,15 @@
       display: inline-block;
       align-self: flex-start;
       padding: 5px 12px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
       margin-bottom: 18px;
     }
     .c-coral .path-grade { color: var(--coral); background: var(--coral-light); }
     .c-orange .path-grade { color: var(--orange-dark); background: var(--orange-light); }
     .c-teal .path-grade { color: var(--teal-dark); background: var(--teal-light); }
     .path-card h3 { font-size: 21px; font-weight: 900; margin-bottom: 10px; }
-    .path-card > p { font-size: 14.5px; color: var(--gray); line-height: 1.8; flex: 1; }
-    .path-arrow { margin-top: 20px; font-weight: 700; font-size: 14.5px; }
+    .path-card > p { font-size: 14px; color: var(--gray); line-height: 1.8; flex: 1; }
+    .path-arrow { margin-top: 20px; font-weight: 700; font-size: 14px; }
     .c-coral .path-arrow { color: var(--coral); }
     .c-orange .path-arrow { color: var(--orange-dark); }
     .c-teal .path-arrow { color: var(--teal-dark); }
@@ -453,12 +480,12 @@
     .camps-sub { color: rgba(255,255,255,0.9); font-size: 15px; margin-top: 8px; }
     .camps-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
     .camps-chip {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #fff;
       border: 1.5px solid rgba(255,255,255,0.5);
       padding: 4px 14px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
     }
     .camps .btn-primary {
       background: #fff;
@@ -468,324 +495,203 @@
     }
     .camps .btn-primary:hover { background: var(--dark); color: #fff; }
 
-    /* ══════════ 6. 完整課程路徑 ══════════ */
+    /* ══════════ 6. 學習系統地圖（3 里程碑脊椎）══════════ */
     .roadmap {
-      background:
-        radial-gradient(circle at 18% 16%, rgba(0,178,169,0.10), transparent 32%),
-        radial-gradient(circle at 82% 20%, rgba(255,163,0,0.13), transparent 34%),
-        linear-gradient(180deg, #fff 0%, #F7FAFB 100%);
-      padding: 104px 0 96px;
+      background: var(--surface);
+      padding: var(--s9) 0;
     }
-    .roadmap-header { text-align: center; margin-bottom: 42px; }
-    .roadmap-header p { color: var(--gray); margin: 14px auto 0; max-width: 820px; }
-    .roadmap-scope {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 22px;
-    }
+    .roadmap-header { text-align: center; margin-bottom: var(--s7); }
+    .roadmap-header p { color: var(--gray); margin: 14px auto 0; max-width: 760px; }
+    .roadmap-scope { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
     .roadmap-scope span {
       font-size: 13px;
-      font-weight: 800;
-      color: var(--text);
-      background: rgba(255,255,255,0.76);
-      border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 999px;
-      padding: 7px 13px;
-      box-shadow: 0 8px 18px rgba(18,21,30,0.05);
+      font-weight: 700;
+      color: var(--gray);
+      background: var(--light);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      padding: 7px 14px;
     }
+
     .map-panel {
       position: relative;
-      padding: 34px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.94), rgba(250,252,252,0.88)),
-        linear-gradient(90deg, rgba(0,178,169,0.10), rgba(255,163,0,0.12), rgba(241,89,79,0.10));
-      border: 1px solid rgba(18,21,30,0.08);
-      box-shadow: 0 28px 72px rgba(18,21,30,0.10);
-      overflow: hidden;
+      padding: 40px 40px 34px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--e2);
     }
-    .map-panel::before {
+
+    /* ── 脊椎：一條連貫的路，串起 3 個里程碑 ── */
+    .map-flow { position: relative; }
+    .map-flow::before {
       content: '';
       position: absolute;
-      inset: 24px;
-      border-radius: 24px;
-      border: 1px dashed rgba(18,21,30,0.08);
-      pointer-events: none;
+      left: 26px;
+      top: 26px;
+      bottom: 40px;
+      width: 3px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, var(--teal), var(--orange) 52%, var(--navy));
+      border-radius: var(--r-pill);
     }
-    .map-guide {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 28px;
+
+    .ms {
       position: relative;
-      z-index: 1;
-    }
-    .map-guide-koding {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 220px;
-    }
-    .map-guide-koding img {
-      width: 70px;
-      filter: drop-shadow(0 12px 18px rgba(18,21,30,0.14));
-    }
-    .map-guide-koding strong {
-      display: block;
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--text);
-      line-height: 1.35;
-    }
-    .map-guide-koding span {
-      display: block;
-      color: var(--gray);
-      font-size: 13px;
-      line-height: 1.6;
-      margin-top: 4px;
-    }
-    .map-legend {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-    }
-    .map-legend span {
-      font-size: 12px;
-      font-weight: 900;
-      color: #5D6675;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid rgba(18,21,30,0.08);
-      padding: 7px 11px;
-      box-shadow: 0 8px 18px rgba(18,21,30,0.04);
-    }
-    .map-lane {
-      position: relative;
-      z-index: 1;
-      margin-top: 24px;
-    }
-    .map-lane-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 14px;
-    }
-    .map-lane-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 18px;
-      font-weight: 950;
-      color: var(--text);
-    }
-    .map-lane-title .num {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      color: #fff;
-      background: var(--text);
-      border-radius: 999px;
-      padding: 4px 9px;
-    }
-    .map-lane-head p {
-      color: var(--gray);
-      font-size: 13.5px;
-      line-height: 1.7;
-      margin: 0;
-      max-width: 650px;
-      text-align: right;
-    }
-    .road-track {
-      position: relative;
-      padding: 18px 0;
-    }
-    .road-track::before {
-      content: '';
-      position: absolute;
-      left: 10px; right: 10px; top: 50%;
-      height: 22px;
-      transform: translateY(-50%);
-      background: #79808A;
-      border-radius: 999px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24), 0 12px 26px rgba(18,21,30,0.12);
-    }
-    .road-track::after {
-      content: '';
-      position: absolute;
-      left: 24px; right: 24px; top: 50%;
-      height: 3px;
-      transform: translateY(-50%);
-      background: repeating-linear-gradient(90deg, rgba(255,255,255,0.95) 0 16px, transparent 16px 34px);
-      border-radius: 999px;
-    }
-    .station-grid {
-      position: relative;
-      z-index: 1;
       display: grid;
-      gap: 13px;
-      align-items: stretch;
+      grid-template-columns: 52px 1fr;
+      column-gap: 22px;
+      padding-bottom: 32px;
     }
-    .station-grid.explore { grid-template-columns: repeat(4, 1fr); }
-    .station-grid.core { grid-template-columns: repeat(9, 1fr); }
-    .station-grid.exit { grid-template-columns: repeat(3, 1fr); }
-    .station {
+    .ms:last-child { padding-bottom: 0; }
+    .ms-dot {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--r-pill);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 108px;
-      padding: 15px 14px;
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.96);
-      border: 1px solid rgba(18,21,30,0.08);
-      box-shadow: 0 12px 28px rgba(18,21,30,0.08);
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .station:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,163,0,0.34);
-      box-shadow: 0 18px 38px rgba(18,21,30,0.13);
-    }
-    .station .age,
-    .station .code,
-    .station .route {
-      width: fit-content;
-      margin: 0 auto 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      border-radius: 999px;
-      padding: 3px 8px;
-    }
-    .station h3,
-    .station h4 {
-      color: var(--text);
-      font-size: 15px;
-      font-weight: 950;
-      line-height: 1.38;
-      margin: 0;
-    }
-    .station p {
-      color: var(--gray);
-      font-size: 12.5px;
-      line-height: 1.62;
-      margin: 8px 0 0;
-    }
-    .station.teal { border-top: 5px solid var(--teal); }
-    .station.orange { border-top: 5px solid var(--orange); }
-    .station.coral { border-top: 5px solid var(--coral); }
-    .station.navy { border-top: 5px solid var(--navy); }
-    .station.teal .age,
-    .station.teal .code { color: var(--teal-dark); background: var(--teal-light); }
-    .station.orange .age,
-    .station.orange .code { color: var(--orange-dark); background: var(--orange-light); }
-    .station.coral .age,
-    .station.coral .code { color: #E03A30; background: #FFEDEA; }
-    .station.navy .route { color: var(--navy); background: var(--navy-light); }
-    .station .cert {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 22px;
-      margin: 8px auto 0;
       font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 900;
-      color: #D18400;
-      background: #FFF3DC;
-      border: 1px solid rgba(245,166,35,0.32);
-      border-radius: 999px;
-      padding: 3px 7px;
-    }
-    .map-cert-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 12px;
-      color: var(--gray);
-      font-size: 12.5px;
       font-weight: 800;
-    }
-    .map-cert-links a {
-      color: #D18400;
-      text-decoration: none;
-      background: #FFF3DC;
-      border: 1px solid rgba(245,166,35,0.28);
-      border-radius: 999px;
-      padding: 5px 10px;
-    }
-    .map-cert-links a:hover { border-color: rgba(245,166,35,0.55); }
-    .station.exit {
-      min-height: 150px;
-      text-align: left;
-      align-items: flex-start;
-      padding: 22px;
-    }
-    .station.exit h3 { font-size: 20px; }
-    .station.exit p { font-size: 13.5px; }
-    .station.exit .arrow {
-      margin-top: auto;
-      padding-top: 14px;
-      color: var(--orange-dark);
-      font-size: 13px;
-      font-weight: 900;
-    }
-    .support-lanes {
-      position: relative;
+      font-size: 15px;
+      color: #fff;
+      box-shadow: var(--e1);
       z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 24px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(18,21,30,0.08);
     }
-    .support-lane {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 14px;
-      align-items: center;
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(18,21,30,0.08);
+    .ms.m1 .ms-dot { background: var(--teal); }
+    .ms.m2 .ms-dot { background: var(--orange); }
+    .ms.m3 .ms-dot { background: var(--navy); }
+    .ms-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-top: 8px; }
+    .ms-title { font-size: 21px; font-weight: 800; color: var(--text); line-height: 1.2; }
+    .ms-tag { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--gray); }
+    .ms-desc { color: var(--gray); font-size: 14px; line-height: 1.75; margin: 8px 0 0; max-width: 660px; }
+    .ms-body { min-width: 0; }
+    .ms-content { margin-top: 18px; }
+
+    /* 里程碑 1：探索入口 */
+    .entry-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .entry {
+      display: block;
       text-decoration: none;
       color: inherit;
-      box-shadow: 0 10px 24px rgba(18,21,30,0.05);
+      padding: 16px 16px 18px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--teal);
+      box-shadow: var(--e1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .support-lane:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(18,21,30,0.10); }
+    .entry:hover { transform: translateY(-4px); box-shadow: var(--e2); }
+    .entry .g { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal-dark); margin-bottom: 8px; }
+    .entry h4 { font-size: 15px; font-weight: 800; line-height: 1.35; margin: 0; color: var(--text); }
+    .entry p { color: var(--gray); font-size: 12px; line-height: 1.6; margin: 6px 0 0; }
+
+    /* 里程碑 2：菁英九階段主幹（緊湊 01-09 進度軌）*/
+    .stage-track { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; }
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      gap: 8px;
+      padding: 14px 6px 12px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .stage:hover { transform: translateY(-4px); box-shadow: var(--e2); border-color: rgba(255,163,0,0.35); }
+    .stage .n {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--r-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--orange-dark);
+      background: var(--orange-light);
+    }
+    .stage b { display: flex; align-items: center; text-align: center; min-height: 33px; font-size: 12px; font-weight: 700; line-height: 1.35; color: var(--text); }
+    .stage .c { font-family: var(--mono); font-size: 9px; font-weight: 800; letter-spacing: 0.02em; color: var(--orange-dark); }
+    .stage.cert .n { color: #fff; background: var(--orange); }
+    .map-cert-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; color: var(--gray); font-size: 12px; font-weight: 700; }
+    .map-cert-links a { color: var(--orange-dark); text-decoration: none; background: var(--orange-light); border-radius: var(--r-pill); padding: 5px 11px; }
+    .map-cert-links a:hover { background: #FCE7BF; }
+
+    /* 里程碑 3：成果出口 */
+    .exit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .exit-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      padding: 20px;
+      border-radius: var(--r-md);
+      background: var(--navy-light);
+      border: 1px solid rgba(27,42,74,0.12);
+      border-top: 4px solid var(--navy);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .exit-card:hover { transform: translateY(-4px); box-shadow: var(--e2); }
+    .exit-card .r { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--navy); margin-bottom: 10px; }
+    .exit-card h4 { font-size: 18px; font-weight: 800; margin: 0 0 8px; color: var(--navy); line-height: 1.3; }
+    .exit-card p { font-size: 13px; line-height: 1.7; color: var(--gray); margin: 0; }
+    .exit-card .arrow { margin-top: auto; padding-top: 16px; font-size: 13px; font-weight: 800; color: var(--orange-dark); }
+
+    /* 支線（能力補強線）：脊椎之外的註腳 */
+    .map-support {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 32px 0 0;
+      padding-top: 24px;
+      border-top: 1px dashed var(--line);
+    }
+    .map-support-label { grid-column: 1 / -1; font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--gray); margin-bottom: 2px; }
+    .support-lane {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: var(--r-md);
+      background: var(--light);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .support-lane:hover { transform: translateY(-3px); box-shadow: var(--e1); }
     .support-icon {
-      width: 48px; height: 48px;
-      border-radius: 15px;
+      width: 44px; height: 44px;
+      border-radius: var(--r-md);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: 0.04em;
-      color: var(--orange-dark);
-      background: #fff;
-    }
-    .support-lane h3 { font-size: 17px; font-weight: 950; margin-bottom: 4px; }
-    .support-lane p { color: var(--gray); font-size: 13px; line-height: 1.7; margin: 0; }
-    .map-endnote {
-      position: relative;
-      z-index: 1;
-      margin: 24px 0 0;
-      color: var(--text);
-      text-align: center;
-      font-size: 14.5px;
+      font-size: 11px;
       font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--gray);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .support-lane h4 { font-size: 15px; font-weight: 800; margin: 0 0 3px; }
+    .support-lane p { color: var(--gray); font-size: 12px; line-height: 1.65; margin: 0; }
+    .map-endnote {
+      margin: 22px 0 0;
+      color: var(--gray);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.7;
+      font-weight: 400;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ══════════ 7. 一堂課長什麼樣子 ══════════ */
@@ -802,10 +708,10 @@
     }
     .classroom-img-wrap { position: relative; }
     .classroom-img {
-      border-radius: 20px;
+      border-radius: var(--r-lg);
       overflow: hidden;
       aspect-ratio: 4/3;
-      box-shadow: 0 20px 48px rgba(18,21,30,0.14);
+      box-shadow: var(--e2);
       transform: rotate(-1.5deg);
     }
     .classroom-img img { width: 100%; height: 100%; object-fit: cover; }
@@ -813,11 +719,11 @@
       position: absolute;
       width: 44%;
       bottom: -36px; right: -18px;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       overflow: hidden;
       aspect-ratio: 1;
       border: 6px solid #fff;
-      box-shadow: 0 14px 36px rgba(18,21,30,0.2);
+      box-shadow: var(--e2);
       transform: rotate(3deg);
     }
     .classroom-img-2 img { width: 100%; height: 100%; object-fit: cover; }
@@ -826,7 +732,7 @@
     .classroom-point-icon {
       flex-shrink: 0;
       width: 44px; height: 44px;
-      border-radius: 12px;
+      border-radius: var(--r-md);
       font-size: 20px;
       display: flex; align-items: center; justify-content: center;
     }
@@ -834,46 +740,33 @@
     .cp-2 { background: var(--teal-light); }
     .cp-3 { background: var(--coral-light); }
     .classroom-point h3 { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
-    .classroom-point p { font-size: 14.5px; color: var(--gray); line-height: 1.8; }
+    .classroom-point p { font-size: 14px; color: var(--gray); line-height: 1.8; }
 
     /* ══════════ 8. 成果實證 ══════════ */
     .results {
-      background:
-        linear-gradient(180deg, #F7F8FA 0%, #fff 100%);
-      padding: 112px 0 98px;
+      background: var(--surface);
+      padding: var(--s10) 0 var(--s9);
       position: relative;
       overflow: hidden;
       clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
       margin-top: -40px;
-      border-bottom: 1px solid rgba(18,21,30,0.06);
-    }
-    .results::before {
-      content: 'OUTCOMES';
-      position: absolute;
-      right: max(24px, calc((100vw - 1180px) / 2));
-      top: 58px;
-      font-family: var(--mono);
-      font-size: clamp(56px, 8vw, 112px);
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: rgba(18,21,30,0.035);
-      pointer-events: none;
+      border-bottom: 1px solid var(--line);
     }
     .results .container { position: relative; }
     .results h2 { color: var(--text); }
     .results-header { text-align: center; margin-bottom: 56px; }
-    .results-header p { color: var(--gray); margin-top: 14px; font-size: 15.5px; }
+    .results-header p { color: var(--gray); margin-top: 14px; font-size: 15px; }
     .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .result-card {
       background: rgba(255,255,255,0.92);
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 16px;
+      border-radius: var(--r-md);
       padding: 28px 28px 24px;
       text-decoration: none;
       min-height: 230px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 14px 36px rgba(18,21,30,0.06);
+      box-shadow: var(--e2);
       position: relative;
       overflow: hidden;
       transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -888,10 +781,10 @@
     .result-card:hover {
       transform: translateY(-5px);
       border-color: rgba(255,163,0,0.32);
-      box-shadow: 0 20px 46px rgba(18,21,30,0.11);
+      box-shadow: var(--e2);
     }
     .result-card:nth-child(2)::before { background: linear-gradient(90deg, var(--teal), #72D6CF); }
-    .result-card:nth-child(3)::before { background: linear-gradient(90deg, #F1594F, var(--orange)); }
+    .result-card:nth-child(3)::before { background: linear-gradient(90deg, var(--coral), var(--orange)); }
     .result-card:nth-child(4)::before { background: linear-gradient(90deg, var(--dark), var(--teal)); }
     .result-label {
       font-family: var(--mono);
@@ -902,31 +795,22 @@
       display: block;
       margin-bottom: 12px;
     }
-    .result-card h3 { color: var(--text); font-size: 18.5px; font-weight: 800; margin-bottom: 10px; }
+    .result-card h3 { color: var(--text); font-size: 18px; font-weight: 800; margin-bottom: 10px; }
     .result-card p { color: var(--gray); font-size: 14px; line-height: 1.85; margin-bottom: 22px; }
     .result-action {
       margin-top: auto;
       color: var(--orange-dark);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
     }
 
     /* ══════════ 8.5 學生成果證據牆 ══════════ */
     .proof-wall {
-      background:
-        radial-gradient(circle at 78% 18%, rgba(0,178,169,0.10), transparent 34%),
-        linear-gradient(180deg, #fff 0%, #F7FAFB 48%, #fff 100%);
-      padding: 96px 0 104px;
+      background: var(--light);
+      padding: var(--s9) 0 var(--s10);
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid rgba(18,21,30,0.06);
-    }
-    .proof-wall::before {
-      content: '';
-      position: absolute;
-      inset: 34px max(24px, calc((100vw - 1180px) / 2)) auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,163,0,0.45), rgba(0,178,169,0.34), transparent);
+      border-bottom: 1px solid var(--line);
     }
     .proof-shell {
       display: grid;
@@ -945,7 +829,7 @@
     }
     .proof-copy p {
       color: var(--gray);
-      font-size: 15.5px;
+      font-size: 15px;
       line-height: 1.95;
       max-width: 410px;
     }
@@ -959,9 +843,9 @@
     .proof-stat {
       background: rgba(255,255,255,0.72);
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 14px;
+      border-radius: var(--r-md);
       padding: 14px 16px;
-      box-shadow: 0 10px 28px rgba(18,21,30,0.05);
+      box-shadow: var(--e1);
     }
     .proof-stat strong {
       display: block;
@@ -973,21 +857,11 @@
     .proof-stat span {
       display: block;
       color: var(--gray);
-      font-size: 12.5px;
+      font-size: 12px;
       margin-top: 6px;
     }
     .honor-showcase {
       position: relative;
-    }
-    .honor-showcase::before {
-      content: '';
-      position: absolute;
-      inset: 22px 22px auto auto;
-      width: 210px;
-      height: 210px;
-      border-radius: 999px;
-      border: 1px dashed rgba(0,178,169,0.20);
-      pointer-events: none;
     }
     .honor-feature-grid {
       display: grid;
@@ -1000,9 +874,9 @@
     .award-post {
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 16px;
+      border-radius: var(--r-md);
       overflow: hidden;
-      box-shadow: 0 16px 38px rgba(18,21,30,0.075);
+      box-shadow: var(--e2);
       position: relative;
       padding: 8px;
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
@@ -1011,13 +885,13 @@
       width: 100%;
       aspect-ratio: 1;
       object-fit: cover;
-      border-radius: 11px;
+      border-radius: var(--r-md);
       display: block;
     }
     .award-post:hover {
       transform: translateY(-4px);
       border-color: rgba(255,163,0,0.28);
-      box-shadow: 0 22px 52px rgba(18,21,30,0.11);
+      box-shadow: var(--e3);
     }
     .award-post::after {
       content: '';
@@ -1027,10 +901,10 @@
       top: 0;
       height: 4px;
       border-radius: 0 0 999px 999px;
-      background: linear-gradient(90deg, #0B4FB3, var(--teal), var(--orange));
+      background: linear-gradient(90deg, var(--teal), var(--orange));
     }
     .award-feature {
-      box-shadow: 0 24px 62px rgba(18,21,30,0.13);
+      box-shadow: var(--e3);
     }
     .award-feature:first-child { transform: rotate(-1deg); }
     .award-feature:nth-child(2) { transform: rotate(1deg); }
@@ -1043,12 +917,12 @@
       z-index: 1;
     }
     .award-mosaic .award-post {
-      border-radius: 12px;
+      border-radius: var(--r-md);
       padding: 5px;
-      box-shadow: 0 10px 26px rgba(18,21,30,0.06);
+      box-shadow: var(--e1);
     }
     .award-mosaic .award-post img {
-      border-radius: 8px;
+      border-radius: var(--r-sm);
     }
     .honor-note {
       display: flex;
@@ -1062,33 +936,18 @@
       color: #59616E;
       background: rgba(255,255,255,0.82);
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       padding: 8px 11px;
-      box-shadow: 0 8px 20px rgba(18,21,30,0.04);
+      box-shadow: var(--e1);
     }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
     .reviews {
-      background:
-        linear-gradient(180deg, #fff 0%, #FAFAF7 100%);
-      padding: 104px 0 96px;
+      background: var(--surface);
+      padding: var(--s9) 0;
       position: relative;
       overflow: hidden;
-      border-top: 1px solid rgba(18,21,30,0.04);
-    }
-    .reviews::before {
-      content: "GOOGLE REVIEWS";
-      position: absolute;
-      top: 42px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--mono);
-      font-size: clamp(58px, 9vw, 132px);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: rgba(18,21,30,0.028);
-      white-space: nowrap;
-      pointer-events: none;
+      border-top: 1px solid var(--line);
     }
     .reviews-header { text-align: center; }
     .reviews-rating {
@@ -1101,17 +960,17 @@
     }
     .rating-num { font-family: var(--mono); font-size: 40px; font-weight: 800; }
     .rating-stars { color: var(--orange); font-size: 22px; letter-spacing: 2px; }
-    .rating-count { color: var(--gray); font-size: 14.5px; }
+    .rating-count { color: var(--gray); font-size: 14px; }
     .google-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       background: var(--light);
       border: 1px solid var(--border);
       padding: 8px 16px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
       transition: box-shadow 0.18s;
     }
     .google-badge:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); }
@@ -1132,11 +991,11 @@
     }
     .reviews-track-wrap::before {
       left: 0;
-      background: linear-gradient(90deg, #FAFAF7 0%, rgba(250,250,247,0) 100%);
+      background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 100%);
     }
     .reviews-track-wrap::after {
       right: 0;
-      background: linear-gradient(270deg, #FAFAF7 0%, rgba(250,250,247,0) 100%);
+      background: linear-gradient(270deg, #fff 0%, rgba(255,255,255,0) 100%);
     }
     .reviews-track {
       display: flex;
@@ -1153,24 +1012,15 @@
       flex: 0 0 330px;
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 18px;
+      border-radius: var(--r-md);
       padding: 34px 28px 26px;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
       scroll-snap-align: start;
-      box-shadow: 0 10px 34px rgba(18,21,30,0.07);
+      box-shadow: var(--e1);
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .review-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 5px;
-      background: linear-gradient(90deg, var(--orange), var(--teal));
     }
     .review-card::after {
       content: "”";
@@ -1185,8 +1035,8 @@
     }
     .review-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255,163,0,0.45);
-      box-shadow: 0 18px 48px rgba(18,21,30,0.12);
+      border-color: var(--line);
+      box-shadow: var(--e2);
     }
     .review-stars {
       color: var(--orange);
@@ -1205,11 +1055,11 @@
       color: var(--gray);
       background: var(--light);
       border: 1px solid rgba(18,21,30,0.06);
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       padding: 3px 8px;
     }
     .review-text {
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 1.95;
       flex: 1;
       position: relative;
@@ -1247,7 +1097,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 10px 26px rgba(18,21,30,0.14);
+      box-shadow: var(--e1);
       transition: background 0.18s, color 0.18s, border-color 0.18s;
     }
     .reviews-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
@@ -1262,7 +1112,7 @@
       height: 7px;
       padding: 0;
       border: 0;
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       background: #D8DCE3;
       cursor: pointer;
       transition: width 0.2s, background 0.2s;
@@ -1294,7 +1144,7 @@
       margin-top: 32px;
     }
     .video-card {
-      border-radius: 16px;
+      border-radius: var(--r-md);
       overflow: hidden;
       position: relative;
       cursor: pointer;
@@ -1302,7 +1152,7 @@
       border: 1px solid rgba(18,21,30,0.08);
       padding: 0;
       min-height: 0;
-      box-shadow: 0 10px 28px rgba(18,21,30,0.08);
+      box-shadow: var(--e1);
       text-align: left;
       font: inherit;
       display: flex;
@@ -1313,7 +1163,7 @@
     .video-card:hover {
       transform: translateY(-3px);
       border-color: rgba(245,166,35,0.32);
-      box-shadow: 0 18px 42px rgba(18,21,30,0.12);
+      box-shadow: var(--e2);
     }
     .video-card.featured {
       grid-column: 1 / -1;
@@ -1388,7 +1238,7 @@
       display: block;
       width: fit-content;
       padding: 4px 8px;
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       background: var(--orange-light);
       color: var(--orange-dark);
       font-family: var(--mono);
@@ -1432,7 +1282,7 @@
     }
     .video-tags span {
       padding: 4px 8px;
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       background: rgba(18,21,30,0.06);
       color: var(--gray);
       font-size: 11px;
@@ -1454,13 +1304,13 @@
     .video-dialog {
       width: min(1080px, 100%);
       position: relative;
-      border-radius: 18px;
+      border-radius: var(--r-md);
       aspect-ratio: 16/9;
     }
     #videoFrame {
       width: 100%;
       height: 100%;
-      border-radius: 18px;
+      border-radius: var(--r-md);
       overflow: hidden;
       background: #000;
       box-shadow: 0 24px 80px rgba(0,0,0,0.34);
@@ -1502,18 +1352,17 @@
     }
 
     /* ══════════ 10. 得獎與媒體 ══════════ */
-    .award-strip {
-      background: #fff;
-      padding: 34px 0;
-      border-top: 1px solid rgba(18,21,30,0.06);
-      border-bottom: 1px solid rgba(18,21,30,0.06);
-    }
+    .trust-header { text-align: center; margin-bottom: var(--s7); }
+    .trust-header p { color: var(--gray); margin: 14px auto 0; max-width: 620px; }
     .award-strip-inner {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: var(--s6);
+      padding-bottom: var(--s6);
+      border-bottom: 1px solid var(--line);
     }
     .award-strip-label {
       font-family: var(--mono);
@@ -1525,20 +1374,20 @@
     }
     .award-pill {
       color: var(--text);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       white-space: nowrap;
       text-decoration: none;
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
-      border-radius: 999px;
+      border-radius: var(--r-pill);
       padding: 8px 13px;
-      box-shadow: 0 8px 20px rgba(18,21,30,0.04);
+      box-shadow: var(--e1);
     }
     .award-pill .y { font-family: var(--mono); color: var(--orange); font-size: 12px; margin-left: 4px; }
     .award-strip-more {
       color: var(--orange);
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
@@ -1547,7 +1396,7 @@
     .award-strip-more:hover { text-decoration: underline; }
 
     /* ══════════ 11. 品保 + 據點（合併帶）══════════ */
-    .trust { background: var(--light); padding: 88px 0; }
+    .trust { background: var(--light); padding: var(--s9) 0; }
     .trust-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1556,9 +1405,9 @@
     }
     .trust-card {
       background: #fff;
-      border-radius: 20px;
+      border-radius: var(--r-lg);
       padding: 36px 38px 34px;
-      box-shadow: 0 18px 54px rgba(18,21,30,0.07);
+      box-shadow: var(--e2);
       border: 1px solid rgba(18,21,30,0.08);
       border-top: 7px solid;
       position: relative;
@@ -1567,12 +1416,12 @@
     .trust-card.tc-orange { border-top-color: var(--orange); }
     .trust-card.tc-teal { border-top-color: var(--teal); }
     .trust-card h2 { font-size: 22px; margin-bottom: 12px; }
-    .trust-card > p { font-size: 14.5px; line-height: 1.9; color: var(--gray); }
-    .trust-card p a { color: #1a73e8; text-decoration: underline; }
+    .trust-card > p { font-size: 14px; line-height: 1.9; color: var(--gray); }
+    .trust-card p a { color: var(--link); text-decoration: underline; }
     .trust-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
     .trust-icon {
       width: 50px; height: 50px;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       display: flex; align-items: center; justify-content: center;
       font-size: 24px;
       flex-shrink: 0;
@@ -1588,7 +1437,7 @@
       color: var(--orange-dark);
       background: var(--orange-light);
       padding: 6px 14px;
-      border-radius: 8px;
+      border-radius: var(--r-sm);
     }
     .trust-proof {
       margin-top: 24px;
@@ -1597,13 +1446,13 @@
       gap: 18px;
       align-items: center;
       padding: 18px;
-      border-radius: 16px;
+      border-radius: var(--r-md);
       background: linear-gradient(135deg, #FFF8EC, #fff);
       border: 1px solid rgba(255,163,0,0.18);
     }
     .trust-proof-mark {
       min-height: 92px;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       background: #fff;
       border: 1px solid rgba(255,163,0,0.22);
       display: flex;
@@ -1628,7 +1477,7 @@
     }
     .trust-proof-note {
       margin-top: 6px;
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.65;
       color: var(--gray);
     }
@@ -1641,7 +1490,7 @@
       gap: 10px;
     }
     .region-stat {
-      border-radius: 14px;
+      border-radius: var(--r-md);
       padding: 12px 10px;
       text-align: center;
       background: var(--light);
@@ -1666,35 +1515,21 @@
       font-size: 13px;
       font-weight: 700;
       padding: 5px 13px;
-      border-radius: 100px;
+      border-radius: var(--r-pill);
     }
     .county-tag.rn { background: var(--orange-light); color: var(--orange-dark); }
     .county-tag.rc { background: var(--teal-light); color: var(--teal-dark); }
-    .county-tag.rs { background: var(--coral-light); color: #D9564A; }
+    .county-tag.rs { background: var(--coral-light); color: var(--coral-dark); }
     .trust-link { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--teal-dark); text-decoration: none; }
     .trust-link:hover { text-decoration: underline; }
 
     /* ══════════ 12. FAQ ══════════ */
     .faq {
-      background:
-        linear-gradient(180deg, #fff 0%, #F7F8FA 100%);
-      padding: 104px 0;
+      background: var(--surface);
+      padding: var(--s9) 0;
       position: relative;
       overflow: hidden;
-      border-top: 1px solid rgba(18,21,30,0.04);
-    }
-    .faq::before {
-      content: "ASK BEFORE YOU START";
-      position: absolute;
-      top: 42px;
-      left: 5vw;
-      font-family: var(--mono);
-      font-size: clamp(48px, 8vw, 112px);
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      color: rgba(18,21,30,0.026);
-      white-space: nowrap;
-      pointer-events: none;
+      border-top: 1px solid var(--line);
     }
     .faq-grid {
       display: grid;
@@ -1708,10 +1543,10 @@
       position: sticky;
       top: 32px;
       padding: 34px 32px;
-      border-radius: 22px;
+      border-radius: var(--r-lg);
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
-      box-shadow: 0 18px 54px rgba(18,21,30,0.07);
+      box-shadow: var(--e2);
       overflow: hidden;
     }
     .faq-sticky::after {
@@ -1744,14 +1579,14 @@
       gap: 12px;
       align-items: center;
       padding: 12px;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       background: var(--light);
       border: 1px solid rgba(18,21,30,0.06);
     }
     .faq-proof b {
       width: 42px;
       height: 42px;
-      border-radius: 12px;
+      border-radius: var(--r-md);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1769,7 +1604,7 @@
     .faq-proof span {
       display: block;
       margin-top: 3px;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--gray);
       line-height: 1.45;
     }
@@ -1778,7 +1613,7 @@
       color: var(--gray);
       margin-top: 18px;
     }
-    .faq-more a { color: #1a73e8; text-decoration: underline; }
+    .faq-more a { color: var(--link); text-decoration: underline; }
     .faq-list {
       display: flex;
       flex-direction: column;
@@ -1787,10 +1622,10 @@
     }
     .faq-item {
       background: #fff;
-      border-radius: 18px;
+      border-radius: var(--r-md);
       overflow: hidden;
       border: 1px solid rgba(18,21,30,0.08);
-      box-shadow: 0 8px 28px rgba(18,21,30,0.045);
+      box-shadow: var(--e1);
       transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
       position: relative;
     }
@@ -1836,7 +1671,7 @@
       color: var(--orange);
       flex-shrink: 0;
       width: 44px; height: 44px;
-      border-radius: 14px;
+      border-radius: var(--r-md);
       background: var(--orange-light);
       display: inline-flex;
       align-items: center;
@@ -1862,13 +1697,13 @@
       overflow: hidden;
       transition: max-height 0.35s ease;
       padding: 0 32px 0 88px;
-      font-size: 14.5px;
+      font-size: 14px;
       line-height: 2;
       color: var(--gray);
     }
     .faq-item.open .faq-a { max-height: 600px; padding: 0 32px 28px 88px; }
-    .faq-a a { color: #1a73e8; font-weight: 400; text-decoration: underline; }
-    .faq-a a:hover { color: #1557b0; }
+    .faq-a a { color: var(--link); font-weight: 400; text-decoration: underline; }
+    .faq-a a:hover { color: var(--teal-dark); }
 
     /* ══════════ 13. 最終 CTA ══════════ */
     .cta {
@@ -1904,7 +1739,7 @@
       margin-bottom: 18px;
     }
     .cta h2 { color: #fff; margin-bottom: 14px; }
-    .cta p { color: rgba(255,255,255,0.92); font-size: 16.5px; margin-bottom: 36px; }
+    .cta p { color: rgba(255,255,255,0.92); font-size: 16px; margin-bottom: 36px; }
     .cta .btn-primary {
       background: #fff;
       color: var(--orange-dark);
@@ -1924,23 +1759,12 @@
       .pathfinder-helper { display: none; }
       .path-grid { grid-template-columns: 1fr; gap: 44px; }
       .camps-inner { flex-direction: column; align-items: flex-start; }
-      .map-panel { padding: 22px; border-radius: 22px; }
-      .map-panel::before { inset: 14px; border-radius: 18px; }
-      .map-guide { display: block; text-align: center; }
-      .map-guide-koding { justify-content: center; margin-bottom: 18px; }
-      .map-guide-koding img { width: 58px; }
-      .map-legend { justify-content: center; }
-      .map-lane-head { display: block; text-align: center; }
-      .map-lane-title { justify-content: center; }
-      .map-lane-head p { text-align: center; margin: 10px auto 0; }
-      .map-cert-links { justify-content: center; }
-      .road-track::before,
-      .road-track::after { display: none; }
-      .station-grid.explore,
-      .station-grid.core,
-      .station-grid.exit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .station.exit { min-height: 0; }
-      .support-lanes { grid-template-columns: 1fr; }
+      .map-panel { padding: 24px; }
+      .ms { column-gap: 16px; }
+      .entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stage-track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .exit-grid { grid-template-columns: 1fr; }
+      .map-support { grid-template-columns: 1fr; }
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
       .result-grid { grid-template-columns: 1fr; }
@@ -1978,15 +1802,12 @@
       .intro p br { display: none; }
       .intro-inner { text-align: left; }
       .award-strip-inner { flex-direction: column; gap: 10px; }
-      .map-panel { padding: 18px; }
-      .map-guide-koding { display: block; }
-      .map-guide-koding img { margin-bottom: 8px; }
-      .station-grid.explore,
-      .station-grid.core,
-      .station-grid.exit { grid-template-columns: 1fr; }
-      .station { min-height: 0; }
-      .support-lane { grid-template-columns: 1fr; text-align: center; }
-      .support-icon { margin: 0 auto; }
+      .map-panel { padding: 18px 16px; }
+      .map-flow::before { left: 20px; }
+      .ms { grid-template-columns: 40px 1fr; column-gap: 14px; }
+      .ms-dot { width: 40px; height: 40px; font-size: 13px; }
+      .entry-grid { grid-template-columns: 1fr; }
+      .stage-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .proof-stats { grid-template-columns: 1fr; }
       .honor-feature-grid { grid-template-columns: 1fr; }
       .award-feature:first-child,
@@ -2139,8 +1960,8 @@
     <div class="container">
       <div class="roadmap-header">
         <span class="tag">// learning_roadmap</span>
-        <h2>完整學習地圖，<br>從玩創啟蒙走到升學認證</h2>
-        <p>橘蘋把低年級玩創探索、菁英九階段主線、國高中駭客認證整合成同一套路徑——孩子不用換體系，就能一路從國小學到高中。</p>
+        <h2>橘蘋培養系統，<br>從玩創啟蒙走到升學認證</h2>
+        <p>低年級玩創探索、菁英九階段主線、國高中駭客認證，整合成同一條路徑——孩子不用換體系，就能一路從國小學到高中。</p>
         <div class="roadmap-scope" aria-label="課程體系範圍">
           <span>玩創與遊戲探索｜1-9 年級</span>
           <span>菁英九階段｜4 年級以上</span>
@@ -2149,140 +1970,123 @@
       </div>
 
       <div class="map-panel">
-        <div class="map-guide">
-          <div class="map-guide-koding" aria-hidden="true">
-            <img src="assets/koding-flag-hold.png" alt="" loading="lazy">
-            <div>
-              <strong>從興趣入口，走到成果出口</strong>
-              <span>叩叮只在起點帶路，真正主角是孩子一路累積的能力。</span>
+        <div class="map-flow">
+
+          <div class="ms m1">
+            <div class="ms-dot">01</div>
+            <div class="ms-body">
+              <div class="ms-head">
+                <span class="ms-title">探索入口</span>
+                <span class="ms-tag">// 1-9 年級・玩創與遊戲</span>
+              </div>
+              <p class="ms-desc">低年級不必急著背語法，先用遊戲、手作與圖像化任務，建立序列、迴圈、條件與規則感。</p>
+              <div class="ms-content">
+                <div class="entry-grid">
+                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                    <span class="g">GRADE 1-2</span>
+                    <h4>艾伯特 / 創意機械積木</h4>
+                    <p>線上圖像化啟蒙，或實體 STEAM 積木手作。</p>
+                  </a>
+                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                    <span class="g">GRADE 3-6</span>
+                    <h4>Minecraft / Roblox AI</h4>
+                    <p>從熟悉的遊戲情境轉向規則設計與作品創作。</p>
+                  </a>
+                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                    <span class="g">GRADE 5-9</span>
+                    <h4>麥塊 Python</h4>
+                    <p>線上獨家進階遊戲程式課，用 MakeCode Python 做任務創作。</p>
+                  </a>
+                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                    <span class="g">GRADE 5-9</span>
+                    <h4>Roblox Lua</h4>
+                    <p>線上獨家，把玩家帶進遊戲機制、互動規則與關卡設計。</p>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="map-legend" aria-label="地圖圖例">
-            <span>探索入口</span>
-            <span>九階段主幹</span>
-            <span>升學與認證出口</span>
-            <span>能力補強線</span>
-          </div>
-        </div>
 
-        <div class="map-lane">
-          <div class="map-lane-head">
-            <div class="map-lane-title"><span class="num">01</span>探索入口</div>
-            <p>低年級不必急著背語法，先用遊戲、手作與圖像化任務建立序列、迴圈、條件與規則感。</p>
-          </div>
-          <div class="road-track">
-            <div class="station-grid explore">
-              <a href="https://orangeapple.co/courses/kids-coding-foundations" class="station teal">
-                <span class="age">GRADE 1-2</span>
-                <h3>艾伯特 / 創意機械積木</h3>
-                <p>線上圖像化啟蒙，或實體 STEAM 積木手作。</p>
-              </a>
-              <a href="https://orangeapple.co/courses/kids-coding-foundations" class="station teal">
-                <span class="age">GRADE 3-6</span>
-                <h3>Minecraft / Roblox AI</h3>
-                <p>從熟悉的遊戲情境轉向規則設計與作品創作。</p>
-              </a>
-              <a href="https://orangeapple.co/courses/kids-coding-foundations" class="station orange">
-                <span class="age">GRADE 5-9</span>
-                <h3>麥塊 Python</h3>
-                <p>線上獨家進階遊戲程式課，用 MakeCode Python 做任務與模組創作。</p>
-              </a>
-              <a href="https://orangeapple.co/courses/kids-coding-foundations" class="station orange">
-                <span class="age">GRADE 5-9</span>
-                <h3>Roblox Lua</h3>
-                <p>線上獨家，把玩家帶進遊戲機制、互動規則與關卡設計。</p>
-              </a>
+          <div class="ms m2">
+            <div class="ms-dot">02</div>
+            <div class="ms-body">
+              <div class="ms-head">
+                <span class="ms-title">菁英九階段主幹</span>
+                <span class="ms-tag">// 4 年級以上・一條龍不換體系</span>
+              </div>
+              <p class="ms-desc">從 Scratch 到 Python、JavaScript、HTML/CSS、資料庫、演算法與 AI，完整建立作品力、解題力與軟體開發觀念。標示 <strong>ITS</strong> 者為國際認證銜接點。</p>
+              <div class="ms-content">
+                <div class="stage-track" aria-label="菁英九階段">
+                  <a href="https://orangeapple.co/courses/scratch-basic" class="stage"><span class="n">01</span><b>Scratch 程式觀念</b></a>
+                  <a href="https://orangeapple.co/courses/scratch-basic" class="stage"><span class="n">02</span><b>Scratch 運算思維</b></a>
+                  <a href="https://orangeapple.co/courses/python" class="stage"><span class="n">03</span><b>Python 初階</b></a>
+                  <a href="https://orangeapple.co/courses/python" class="stage cert"><span class="n">04</span><b>Python 進階</b><span class="c">ITS Python</span></a>
+                  <a href="https://orangeapple.co/courses/javascript" class="stage cert"><span class="n">05</span><b>JavaScript</b><span class="c">ITS JS</span></a>
+                  <a href="https://orangeapple.co/courses/html5" class="stage cert"><span class="n">06</span><b>HTML/CSS</b><span class="c">ITS HTML</span></a>
+                  <a href="https://orangeapple.co/courses/database" class="stage"><span class="n">07</span><b>網路與資料庫</b></a>
+                  <a href="https://orangeapple.co/courses/algorithm" class="stage cert"><span class="n">08</span><b>演算法開發</b><span class="c">ITS 運算思維</span></a>
+                  <a href="https://orangeapple.co/courses/ai" class="stage"><span class="n">09</span><b>AI 人工智慧</b></a>
+                </div>
+                <div class="map-cert-links" aria-label="ITS 國際認證銜接點">
+                  <span>ITS 銜接點</span>
+                  <a href="https://orangeapple.co/courses/its">國際認證總覽</a>
+                  <a href="https://orangeapple.co/articles/its-python-cert">Python</a>
+                  <a href="https://orangeapple.co/articles/its-js-cert">JavaScript</a>
+                  <a href="https://orangeapple.co/articles/its-html-css-cert">HTML/CSS</a>
+                  <a href="https://orangeapple.co/articles/its-ct-cert">運算思維</a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="map-lane">
-          <div class="map-lane-head">
-            <div class="map-lane-title"><span class="num">02</span>菁英九階段主幹</div>
-            <p>從 Scratch 到 Python、JavaScript、HTML/CSS、資料庫、演算法與 AI，完整建立作品力、解題力與軟體開發觀念。</p>
-          </div>
-          <div class="road-track">
-            <div class="station-grid core">
-              <a href="https://orangeapple.co/courses/scratch-basic" class="station teal">
-                <span class="code">01</span><h4>Scratch<br>程式觀念</h4>
-              </a>
-              <a href="https://orangeapple.co/courses/scratch-basic" class="station teal">
-                <span class="code">02</span><h4>Scratch<br>運算思維</h4>
-              </a>
-              <a href="https://orangeapple.co/courses/python" class="station orange">
-                <span class="code">03</span><h4>Python 初階<br>程式開發</h4>
-              </a>
-              <a href="https://orangeapple.co/courses/python" class="station orange">
-                <span class="code">04</span><h4>Python 進階<br>程式開發</h4><span class="cert">ITS Python</span>
-              </a>
-              <a href="https://orangeapple.co/courses/javascript" class="station orange">
-                <span class="code">05</span><h4>JavaScript<br>程式開發</h4><span class="cert">ITS JS</span>
-              </a>
-              <a href="https://orangeapple.co/courses/html5" class="station coral">
-                <span class="code">06</span><h4>HTML/CSS<br>網頁開發</h4><span class="cert">ITS HTML</span>
-              </a>
-              <a href="https://orangeapple.co/courses/database" class="station coral">
-                <span class="code">07</span><h4>網路與<br>資料庫應用</h4>
-              </a>
-              <a href="https://orangeapple.co/courses/algorithm" class="station coral">
-                <span class="code">08</span><h4>演算法認識<br>與開發</h4><span class="cert">ITS 運算思維</span>
-              </a>
-              <a href="https://orangeapple.co/courses/ai" class="station coral">
-                <span class="code">09</span><h4>AI<br>人工智慧</h4>
-              </a>
+          <div class="ms m3">
+            <div class="ms-dot">03</div>
+            <div class="ms-body">
+              <div class="ms-head">
+                <span class="ms-title">成果出口</span>
+                <span class="ms-tag">// 國高中・升學與競賽</span>
+              </div>
+              <p class="ms-desc">完整打底後，孩子把作品能力、檢定成績與學習歷程，轉化成更清楚的升學與競賽成果。</p>
+              <div class="ms-content">
+                <div class="exit-grid">
+                  <a href="https://orangeapple.co/courses/its" class="exit-card">
+                    <span class="r">EXIT 01</span>
+                    <h4>ITS 國際認證</h4>
+                    <p>把 Python、JavaScript、HTML/CSS 與運算思維能力轉化為國際證照。</p>
+                    <span class="arrow">了解 ITS 認證 →</span>
+                  </a>
+                  <a href="https://orangeapple.co/courses/apcs" class="exit-card">
+                    <span class="r">EXIT 02</span>
+                    <h4>APCS 升學檢定</h4>
+                    <p>把語法、演算法與解題能力，整理成升學可被看見的成績。</p>
+                    <span class="arrow">了解 APCS 課程 →</span>
+                  </a>
+                  <a href="https://orangeapple.co/courses/expert" class="exit-card">
+                    <span class="r">EXIT 03</span>
+                    <h4>選手班與競賽訓練</h4>
+                    <p>持續進入解題、演算法與實戰訓練，追求更高級分或競賽表現。</p>
+                    <span class="arrow">了解駭客學程 →</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="map-cert-links" aria-label="ITS 國際認證銜接點">
-            <span>ITS 銜接點</span>
-            <a href="https://orangeapple.co/courses/its">國際認證總覽</a>
-            <a href="https://orangeapple.co/articles/its-python-cert">Python</a>
-            <a href="https://orangeapple.co/articles/its-js-cert">JavaScript</a>
-            <a href="https://orangeapple.co/articles/its-html-css-cert">HTML/CSS</a>
-            <a href="https://orangeapple.co/articles/its-ct-cert">運算思維</a>
-          </div>
+
         </div>
 
-        <div class="map-lane">
-          <div class="map-lane-head">
-            <div class="map-lane-title"><span class="num">03</span>成果出口</div>
-            <p>完整打底後，孩子可以把作品能力、檢定成績與學習歷程，轉化成更清楚的升學與競賽成果。</p>
-          </div>
-          <div class="road-track">
-            <div class="station-grid exit">
-              <a href="https://orangeapple.co/courses/its" class="station exit navy">
-                <span class="route">EXIT 01</span>
-                <h3>ITS 國際認證</h3>
-                <p>把 Python、JavaScript、HTML/CSS 與運算思維能力轉化為國際證照。</p>
-                <span class="arrow">了解 ITS 認證 →</span>
-              </a>
-              <a href="https://orangeapple.co/courses/apcs" class="station exit navy">
-                <span class="route">EXIT 02</span>
-                <h3>APCS 升學檢定</h3>
-                <p>把語法、演算法與解題能力整理成升學可被看見的成績。</p>
-                <span class="arrow">了解 APCS 課程 →</span>
-              </a>
-              <a href="https://orangeapple.co/courses/expert" class="station exit navy">
-                <span class="route">EXIT 03</span>
-                <h3>選手班與競賽訓練</h3>
-                <p>持續進入解題、演算法與實戰訓練，追求更高級分或競賽表現。</p>
-                <span class="arrow">了解駭客學程 →</span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="support-lanes" aria-label="能力補強支線">
+        <div class="map-support" aria-label="能力補強支線">
+          <span class="map-support-label">// 能力補強線（可與主幹並行）</span>
           <a href="https://orangeapple.co/courses/math" class="support-lane">
             <span class="support-icon">MATH</span>
             <div>
-              <h3>橘蘋麥思數學</h3>
+              <h4>橘蘋麥思數學</h4>
               <p>1-5 年級，美國數學思維邏輯系統在地化，補強程式學習背後的推理能力。</p>
             </div>
           </a>
           <a href="https://orangeapple.co/courses/ai-thinking" class="support-lane">
             <span class="support-icon">AI</span>
             <div>
-              <h3>AI 思維實戰課</h3>
+              <h4>AI 思維實戰課</h4>
               <p>5 年級以上，訓練提問力、批判性思考與數位倫理，補上 AI 時代的底層能力。</p>
             </div>
           </a>
@@ -2580,10 +2384,16 @@
     </div>
   </section>
 
-  <!-- ══ 10. 獎項膠帶 ══ -->
-  <section class="award-strip" aria-label="得獎紀錄">
+  <!-- ══ 10. 延伸安心帶：獎項・制度・據點（三層信任證據之「制度層」）══ -->
+  <section class="trust" aria-label="值得信任的理由">
     <div class="container">
-      <div class="award-strip-inner">
+      <div class="trust-header">
+        <span class="tag">// why_trust_us</span>
+        <h2>超過 10 萬個家庭信任橘蘋的理由</h2>
+        <p>得獎肯定、制度保障，加上遍佈全台的據點——把「放心」建立在可查證的事實上。</p>
+      </div>
+
+      <div class="award-strip-inner" aria-label="得獎與媒體">
         <span class="award-strip-label">AWARDS / MEDIA</span>
         <span class="award-pill">HolonIQ Taiwan EdTech 50<span class="y">2023</span></span>
         <span class="award-pill">金塾獎<span class="y">2022</span></span>
@@ -2592,12 +2402,7 @@
         <span class="award-pill">遠見專題報導<span class="y">2017</span></span>
         <a href="https://orangeapple.co/articles" class="award-strip-more">看橘蘋觀點與媒體故事 →</a>
       </div>
-    </div>
-  </section>
 
-  <!-- ══ 11. 品保 + 據點 ══ -->
-  <section class="trust" aria-label="保障與據點">
-    <div class="container">
       <div class="trust-grid">
         <div class="trust-card tc-orange">
           <div class="trust-head">
@@ -2634,7 +2439,7 @@
               <div class="county-tags">
                 <span class="county-tag rn">台北</span><span class="county-tag rn">新北</span><span class="county-tag rn">基隆</span><span class="county-tag rn">桃園</span><span class="county-tag rc">新竹市</span><span class="county-tag rc">新竹縣</span><span class="county-tag rc">苗栗</span><span class="county-tag rc">台中</span><span class="county-tag rs">嘉義</span><span class="county-tag rs">台南</span><span class="county-tag rs">高雄</span><span class="county-tag rs">屏東</span>
               </div>
-              <p style="margin-bottom:14px; font-size:14.5px; line-height:1.9; color:var(--gray);">40+ 教學據點，實體與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
+              <p style="margin-bottom:14px; font-size:14px; line-height:1.9; color:var(--gray);">實體與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
               <div class="trust-region-card" aria-label="教學據點摘要">
                 <div class="region-stat"><strong>12</strong><span>縣市</span></div>
                 <div class="region-stat"><strong>40+</strong><span>據點</span></div>
