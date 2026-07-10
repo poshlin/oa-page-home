@@ -820,142 +820,72 @@
       font-weight: 800;
     }
 
-    /* ══════════ 8.5 學生成果證據牆 ══════════ */
+    /* ══════════ 8.5 學生榮譽牆（極簡牆磚）══════════ */
     .proof-wall {
       background: var(--light);
       padding: var(--s9) 0 var(--s10);
-      position: relative;
-      overflow: hidden;
       border-bottom: 1px solid var(--line);
     }
-    .proof-shell {
-      display: grid;
-      grid-template-columns: 0.72fr 1.28fr;
-      gap: 44px;
-      align-items: start;
-    }
-    .proof-copy {
-      position: sticky;
-      top: 92px;
-      padding: 34px 0;
-    }
-    .proof-copy h2 {
-      margin: 18px 0 18px;
-      color: var(--text);
-    }
-    .proof-copy p {
-      color: var(--gray);
-      font-size: 16px;
-      line-height: 1.95;
-      max-width: 410px;
-    }
+    .proof-head { text-align: center; max-width: 720px; margin: 0 auto var(--s7); }
+    .proof-head h2 { margin: 14px 0; color: var(--text); }
+    .proof-head p { color: var(--gray); font-size: 16px; line-height: 1.9; }
     .proof-stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      max-width: 430px;
-      margin-top: 30px;
-    }
-    .proof-stat {
-      background: rgba(255,255,255,0.72);
-      border: 1px solid var(--line-soft);
-      border-radius: var(--r-md);
-      padding: 14px 16px;
-      box-shadow: var(--e1);
-    }
-    .proof-stat strong {
-      display: block;
-      font-family: var(--mono);
-      color: var(--orange-dark);
-      font-size: 18px;
-      line-height: 1.1;
-    }
-    .proof-stat span {
-      display: block;
-      color: var(--gray);
-      font-size: 12px;
-      margin-top: 6px;
-    }
-    .honor-showcase {
-      position: relative;
-    }
-    .honor-feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-    }
-    .award-post {
-      background: #fff;
-      border: 1px solid var(--line-soft);
-      border-radius: var(--r-md);
-      overflow: hidden;
-      box-shadow: var(--e2);
-      position: relative;
-      padding: 8px;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    }
-    .award-post img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      border-radius: var(--r-md);
-      display: block;
-    }
-    .award-post:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255,163,0,0.28);
-      box-shadow: var(--e3);
-    }
-    .award-post::after {
-      content: '';
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      top: 0;
-      height: 4px;
-      border-radius: 0 0 999px 999px;
-      background: linear-gradient(90deg, var(--teal), var(--orange));
-    }
-    .award-feature {
-      box-shadow: var(--e3);
-    }
-    .award-feature:first-child { transform: rotate(-1deg); }
-    .award-feature:nth-child(2) { transform: rotate(1deg); }
-    .award-feature:hover { transform: translateY(-4px) rotate(0deg); }
-    .award-mosaic {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-    .award-mosaic .award-post {
-      border-radius: var(--r-md);
-      padding: 5px;
-      box-shadow: var(--e1);
-    }
-    .award-mosaic .award-post img {
-      border-radius: var(--r-sm);
-    }
-    .honor-note {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
+      justify-content: center;
+      gap: 10px;
+      margin: 24px auto 0;
     }
-    .honor-note span {
-      font-size: 12px;
-      font-weight: 800;
-      color: #59616E;
-      background: rgba(255,255,255,0.82);
+    .proof-stat {
+      background: var(--surface);
       border: 1px solid var(--line-soft);
       border-radius: var(--r-pill);
-      padding: 8px 11px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
       box-shadow: var(--e1);
     }
+    .proof-stat strong { font-family: var(--mono); color: var(--orange-dark); font-size: 14px; font-weight: 700; }
+    .proof-stat span { color: var(--gray); font-size: 12px; }
+
+    .honor-wall {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .htile {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      padding: 10px 10px 2px;
+      box-shadow: var(--e1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin: 0;
+    }
+    .htile:hover { transform: translateY(-4px); box-shadow: var(--e2); }
+    .htile .ph {
+      position: relative;
+      aspect-ratio: 1/1;
+      border-radius: var(--r-sm);
+      overflow: hidden;
+      background: #E9E5DD;
+    }
+    .htile .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .htile .badge {
+      position: absolute;
+      left: 8px;
+      bottom: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: var(--r-pill);
+      padding: 4px 11px;
+      box-shadow: 0 4px 12px rgba(18,21,30,0.20);
+    }
+    .htile .badge.t-race { background: var(--orange); color: #3A2400; }
+    .htile .badge.t-cert { background: var(--teal-dark); color: #fff; }
+    .htile .nm { margin: 11px 4px 0; font-size: 15px; font-weight: 800; color: var(--text); line-height: 1.2; }
+    .htile .cap { margin: 3px 4px 12px; color: var(--gray); font-size: 12px; }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
     .reviews {
@@ -1784,17 +1714,7 @@
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
       .result-grid { grid-template-columns: 1fr; }
-      .proof-shell { grid-template-columns: 1fr; gap: 22px; }
-      .proof-copy {
-        position: relative;
-        top: auto;
-        text-align: center;
-        padding: 0;
-      }
-      .proof-copy p,
-      .proof-stats { margin-left: auto; margin-right: auto; }
-      .honor-feature-grid { max-width: 720px; margin-left: auto; margin-right: auto; }
-      .award-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .honor-wall { grid-template-columns: repeat(3, 1fr); }
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
       .reviews-controls { margin-top: 10px; }
@@ -1824,22 +1744,7 @@
       .ms-dot { width: 40px; height: 40px; font-size: 13px; }
       .entry-grid { grid-template-columns: 1fr; }
       .stage-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .proof-stats { grid-template-columns: 1fr; }
-      .honor-feature-grid { grid-template-columns: 1fr; }
-      .award-feature:first-child,
-      .award-feature:nth-child(2),
-      .award-feature:hover { transform: none; }
-      .award-mosaic {
-        display: flex;
-        gap: 12px;
-        overflow-x: auto;
-        padding: 4px 4px 16px;
-        scroll-snap-type: x proximity;
-      }
-      .award-mosaic .award-post {
-        flex: 0 0 42%;
-        scroll-snap-align: start;
-      }
+      .honor-wall { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     }
   </style>
 </head>
@@ -2191,61 +2096,82 @@
     </div>
   </section>
 
-  <!-- ══ 8.5 學生成果證據牆 ══ -->
+  <!-- ══ 8.5 學生榮譽牆 ══ -->
   <section class="proof-wall" aria-label="學生得獎與檢定成果">
     <div class="container">
-      <div class="proof-shell">
-        <div class="proof-copy">
-          <span class="tag">// proof_wall</span>
-          <h2>學生得獎與檢定成果，持續回報中</h2>
-          <p>橘子蘋果學生的成果不只停在課堂作品，也延伸到 Scratch 競賽、AI 素養、科技教育創意實作與 APCS 檢定。這些由家長與學生回報的證書、合照與心得，會持續累積成品牌最重要的信任資料庫。</p>
-          <div class="proof-stats" aria-label="學生得獎成果分類">
-            <div class="proof-stat"><strong>2021-2026</strong><span>成果回報持續累積</span></div>
-            <div class="proof-stat"><strong>APCS / Scratch</strong><span>檢定與競賽並行</span></div>
-            <div class="proof-stat"><strong>AI / 科技實作</strong><span>從作品走到真實任務</span></div>
-            <div class="proof-stat"><strong>證書 + 合照</strong><span>可被驗證的學習證據</span></div>
-          </div>
+      <div class="proof-head">
+        <span class="tag">// student_honors</span>
+        <h2>學生得獎與檢定成果</h2>
+        <p>從 Scratch 競賽、貓咪盃到 APCS／ITS 國際檢定——這些是橘蘋孩子拿得出證書的真實成果，持續回報累積中。</p>
+        <div class="proof-stats" aria-label="成果分類">
+          <div class="proof-stat"><strong>2021–2026</strong><span>成果持續累積</span></div>
+          <div class="proof-stat"><strong>競賽</strong><span>Scratch・貓咪盃</span></div>
+          <div class="proof-stat"><strong>檢定</strong><span>APCS・ITS・ITSA</span></div>
+          <div class="proof-stat"><strong>證書＋合照</strong><span>可驗證的證據</span></div>
         </div>
+      </div>
 
-        <div class="honor-showcase">
-          <div class="honor-feature-grid" aria-label="精選學生榮譽榜">
-            <figure class="award-post award-feature">
-              <img src="assets/award-posts/award-01.jpg" alt="橘子蘋果榮譽榜：學生 Scratch 程式設計競賽優等成果" loading="lazy">
-            </figure>
-            <figure class="award-post award-feature">
-              <img src="assets/award-posts/award-18.jpg" alt="橘子蘋果榮譽榜：學生 APCS 程式檢定實作五級分成果" loading="lazy">
-            </figure>
-          </div>
-
-          <div class="award-mosaic" aria-label="橘子蘋果學生得獎與檢定成果牆">
-            <figure class="award-post"><img src="assets/award-posts/award-03.jpg" alt="橘子蘋果學生 Scratch 競賽銀牌成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-04.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-05.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-06.jpg" alt="橘子蘋果學生 Scratch 互動遊戲競賽第一名成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-07.jpg" alt="橘子蘋果學生 Scratch 競賽第三名成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-08.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-09.jpg" alt="橘子蘋果學生 Scratch 程式設計競賽特優成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-10.jpg" alt="橘子蘋果學生 APCS 程式檢定成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-11.jpg" alt="橘子蘋果學生 APCS 程式檢定實作四級分成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-12.jpg" alt="橘子蘋果學生 Scratch 與 AI 程式設計競賽佳作成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-13.jpg" alt="橘子蘋果學生 Scratch 程式設計第一名成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-14.jpg" alt="橘子蘋果學生 Scratch 互動遊戲競賽特優成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-15.jpg" alt="橘子蘋果學生 Scratch 程式設計第二名成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-16.jpg" alt="橘子蘋果學生程式競賽甲等成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-17.jpg" alt="橘子蘋果學生 Scratch 程式設計優等成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-02.jpg" alt="橘子蘋果學生 APCS 程式檢定實作級分成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-19.jpg" alt="橘子蘋果學生 Scratch 與 AI 程式設計競賽第一名成果" loading="lazy"></figure>
-            <figure class="award-post"><img src="assets/award-posts/award-20.jpg" alt="橘子蘋果學生 APCS 程式檢定成果" loading="lazy"></figure>
-          </div>
-
-          <div class="honor-note" aria-label="成果類型">
-            <span>Scratch 競賽</span>
-            <span>APCS 程式檢定</span>
-            <span>貓咪盃</span>
-            <span>AI 程式設計</span>
-            <span>跨縣市成果</span>
-          </div>
-        </div>
+      <div class="honor-wall" aria-label="學生榮譽牆">
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-01.jpg" alt="橘子蘋果學生蕭宇希 防災 Scratch 程式競賽特優成果與證書合照" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">蕭宇希</div><div class="cap">防災 Scratch 賽 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-02.jpg" alt="橘子蘋果學生陳榆之 貓咪盃程式競賽銅牌成果與證書合照" loading="lazy"><span class="badge t-race">銅牌</span></div>
+          <div class="nm">陳榆之</div><div class="cap">貓咪盃 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-03.jpg" alt="橘子蘋果學生黃偉倫 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">黃偉倫</div><div class="cap">APCS 檢定 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-05.jpg" alt="橘子蘋果學生田齊雲 校內 Scratch 程式設計競賽特優成果與證書合照" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">田齊雲</div><div class="cap">校內 Scratch 賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-06.jpg" alt="橘子蘋果學生何軒志 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">何軒志</div><div class="cap">APCS 檢定 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-07.jpg" alt="橘子蘋果學生李柏霆 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">李柏霆</div><div class="cap">APCS 檢定 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-10.jpg" alt="橘子蘋果學生黃子齊 Scratch 程式設計競賽第二名成果與證書合照" loading="lazy"><span class="badge t-race">第二名</span></div>
+          <div class="nm">黃子齊</div><div class="cap">Scratch 競賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-11.jpg" alt="橘子蘋果學生楊燿愷 校內資訊競賽 Scratch 遊戲組特優成果與證書合照" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">楊燿愷</div><div class="cap">校內資訊賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-12.jpg" alt="橘子蘋果學生洪可芸 Scratch 程式設計市賽優等成果與證書合照" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">洪可芸</div><div class="cap">Scratch 市賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-13.jpg" alt="橘子蘋果學生江旻叡 校內 Scratch 程式競賽優等成果與證書合照" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">江旻叡</div><div class="cap">校內 Scratch 賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-14.jpg" alt="橘子蘋果學生林品丞 Scratch 程式設計競賽佳作成果與證書合照" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">林品丞</div><div class="cap">Scratch 競賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-15.jpg" alt="橘子蘋果學生林宥騰 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">林宥騰</div><div class="cap">APCS 檢定 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-16.jpg" alt="橘子蘋果學生劉耀王 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">劉耀王</div><div class="cap">APCS 檢定 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-17.jpg" alt="橘子蘋果學生李承遠 APCS 程式檢定通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">李承遠</div><div class="cap">APCS 檢定 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-18.jpg" alt="橘子蘋果學生鞠坤達 ITSA 程式能力線上評量通過成果與證書合照" loading="lazy"><span class="badge t-cert">通過</span></div>
+          <div class="nm">鞠坤達</div><div class="cap">ITSA 檢定 · 2021</div>
+        </figure>
       </div>
     </div>
   </section>
