@@ -1050,7 +1050,8 @@
     /* ══════════ 8.5 學生成果證據牆 ══════════ */
     .proof-wall {
       background:
-        linear-gradient(180deg, #fff 0%, #FBF7EF 52%, #fff 100%);
+        radial-gradient(circle at 78% 18%, rgba(0,178,169,0.10), transparent 34%),
+        linear-gradient(180deg, #fff 0%, #F7FAFB 48%, #fff 100%);
       padding: 96px 0 104px;
       position: relative;
       overflow: hidden;
@@ -1065,7 +1066,7 @@
     }
     .proof-shell {
       display: grid;
-      grid-template-columns: 0.78fr 1.22fr;
+      grid-template-columns: 0.72fr 1.28fr;
       gap: 44px;
       align-items: start;
     }
@@ -1111,107 +1112,95 @@
       font-size: 12.5px;
       margin-top: 6px;
     }
-    .proof-board {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 16px;
+    .honor-showcase {
+      position: relative;
     }
-    .proof-card {
-      grid-column: span 2;
+    .honor-showcase::before {
+      content: '';
+      position: absolute;
+      inset: 22px 22px auto auto;
+      width: 210px;
+      height: 210px;
+      border-radius: 999px;
+      border: 1px dashed rgba(0,178,169,0.20);
+      pointer-events: none;
+    }
+    .honor-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .award-post {
       background: #fff;
       border: 1px solid rgba(18,21,30,0.08);
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 16px 38px rgba(18,21,30,0.075);
       position: relative;
+      padding: 8px;
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .proof-card.featured {
-      grid-column: span 3;
+    .award-post img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 11px;
+      display: block;
     }
-    .proof-card:hover {
+    .award-post:hover {
       transform: translateY(-4px);
       border-color: rgba(255,163,0,0.28);
       box-shadow: 0 22px 52px rgba(18,21,30,0.11);
     }
-    .proof-card::after {
+    .award-post::after {
       content: '';
       position: absolute;
-      top: 14px; left: 50%;
-      width: 62px; height: 18px;
-      transform: translateX(-50%) rotate(-2deg);
-      border-radius: 3px;
-      background: rgba(255,240,203,0.86);
-      box-shadow: 0 2px 8px rgba(18,21,30,0.08);
-      pointer-events: none;
+      left: 18px;
+      right: 18px;
+      top: 0;
+      height: 4px;
+      border-radius: 0 0 999px 999px;
+      background: linear-gradient(90deg, #0B4FB3, var(--teal), var(--orange));
     }
-    .proof-photo {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4/3;
-      background:
-        linear-gradient(135deg, #F7F4EE, #F1F5F5);
-      overflow: hidden;
+    .award-feature {
+      box-shadow: 0 24px 62px rgba(18,21,30,0.13);
     }
-    .proof-card.featured .proof-photo {
-      aspect-ratio: 5/4;
+    .award-feature:first-child { transform: rotate(-1deg); }
+    .award-feature:nth-child(2) { transform: rotate(1deg); }
+    .award-feature:hover { transform: translateY(-4px) rotate(0deg); }
+    .award-mosaic {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
     }
-    .proof-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
+    .award-mosaic .award-post {
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow: 0 10px 26px rgba(18,21,30,0.06);
     }
-    .proof-photo.document img {
-      object-fit: contain;
-      padding: 12px;
-      background: linear-gradient(135deg, #fafafa, #f1f3f5);
+    .award-mosaic .award-post img {
+      border-radius: 8px;
     }
-    .proof-photo.portrait img {
-      object-fit: contain;
-      padding: 10px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,163,0,0.10), transparent 34%),
-        linear-gradient(135deg, #F8F6F1, #EEF6F5);
-    }
-    .proof-body {
-      padding: 20px 20px 22px;
-    }
-    .proof-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--orange-dark);
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 10px;
-    }
-    .proof-card h3 {
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .proof-card p {
-      color: var(--gray);
-      font-size: 13.5px;
-      line-height: 1.75;
-    }
-    .proof-tags {
+    .honor-note {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 20px;
     }
-    .proof-tags span {
+    .honor-note span {
       font-size: 12px;
       font-weight: 800;
-      color: #737A86;
-      background: #F0F1F3;
+      color: #59616E;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(18,21,30,0.08);
       border-radius: 999px;
-      padding: 6px 9px;
+      padding: 8px 11px;
+      box-shadow: 0 8px 20px rgba(18,21,30,0.04);
     }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
@@ -2101,9 +2090,8 @@
       }
       .proof-copy p,
       .proof-stats { margin-left: auto; margin-right: auto; }
-      .proof-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .proof-card,
-      .proof-card.featured { grid-column: span 1; }
+      .honor-feature-grid { max-width: 720px; margin-left: auto; margin-right: auto; }
+      .award-mosaic { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
       .reviews-controls { margin-top: 10px; }
@@ -2128,7 +2116,21 @@
       .intro-inner { text-align: left; }
       .award-strip-inner { flex-direction: column; gap: 10px; }
       .proof-stats { grid-template-columns: 1fr; }
-      .proof-board { grid-template-columns: 1fr; }
+      .honor-feature-grid { grid-template-columns: 1fr; }
+      .award-feature:first-child,
+      .award-feature:nth-child(2),
+      .award-feature:hover { transform: none; }
+      .award-mosaic {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 4px 4px 16px;
+        scroll-snap-type: x proximity;
+      }
+      .award-mosaic .award-post {
+        flex: 0 0 42%;
+        scroll-snap-align: start;
+      }
     }
   </style>
 </head>
@@ -2527,86 +2529,44 @@
           </div>
         </div>
 
-        <div class="proof-board">
-          <article class="proof-card featured">
-            <span class="proof-photo portrait"><img src="assets/outcomes/yujh-photo.jpg" alt="橘子蘋果學生陳榆之拿著 Scratch 暨 AI 程式設計競賽證書" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">NATIONAL CONTEST</span>
-              <h3>陳榆之：貓咪盃銅牌與 Scratch 暨 AI 成果</h3>
-              <p>同一年累積全國中小學資訊應用競賽貓咪盃銅牌，以及 Scratch 暨 AI 程式設計競賽成果。</p>
-              <div class="proof-tags"><span>貓咪盃</span><span>Scratch</span><span>AI</span></div>
-            </div>
-          </article>
+        <div class="honor-showcase">
+          <div class="honor-feature-grid" aria-label="精選學生榮譽榜">
+            <figure class="award-post award-feature">
+              <img src="assets/award-posts/award-01.jpg" alt="橘子蘋果榮譽榜：學生 Scratch 程式設計競賽優等成果" loading="lazy">
+            </figure>
+            <figure class="award-post award-feature">
+              <img src="assets/award-posts/award-02.jpg" alt="橘子蘋果榮譽榜：學生 APCS 程式檢定實作級分成果" loading="lazy">
+            </figure>
+          </div>
 
-          <article class="proof-card featured">
-            <span class="proof-photo portrait"><img src="assets/outcomes/yuxi-photo.jpg" alt="橘子蘋果學生蕭宇希拿著防災教育 Scratch 程式競賽特優證書" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">SCRATCH AWARD</span>
-              <h3>蕭宇希：防災教育 Scratch 程式競賽特優</h3>
-              <p>從課堂作品到主題競賽，孩子把 Scratch 創作能力轉化成可被看見的正式獎項。</p>
-              <div class="proof-tags"><span>特優</span><span>Scratch</span><span>主題創作</span></div>
-            </div>
-          </article>
+          <div class="award-mosaic" aria-label="橘子蘋果學生得獎與檢定成果牆">
+            <figure class="award-post"><img src="assets/award-posts/award-03.jpg" alt="橘子蘋果學生 Scratch 競賽銀牌成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-04.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-05.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-06.jpg" alt="橘子蘋果學生 Scratch 互動遊戲競賽第一名成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-07.jpg" alt="橘子蘋果學生 Scratch 競賽第三名成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-08.jpg" alt="橘子蘋果學生 Scratch 競賽優等成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-09.jpg" alt="橘子蘋果學生 Scratch 程式設計競賽特優成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-10.jpg" alt="橘子蘋果學生 APCS 程式檢定成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-11.jpg" alt="橘子蘋果學生 APCS 程式檢定實作四級分成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-12.jpg" alt="橘子蘋果學生 Scratch 與 AI 程式設計競賽佳作成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-13.jpg" alt="橘子蘋果學生 Scratch 程式設計第一名成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-14.jpg" alt="橘子蘋果學生 Scratch 互動遊戲競賽特優成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-15.jpg" alt="橘子蘋果學生 Scratch 程式設計第二名成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-16.jpg" alt="橘子蘋果學生程式競賽甲等成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-17.jpg" alt="橘子蘋果學生 Scratch 程式設計優等成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-18.jpg" alt="橘子蘋果學生 APCS 程式檢定實作五級分成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-19.jpg" alt="橘子蘋果學生 Scratch 與 AI 程式設計競賽第一名成果" loading="lazy"></figure>
+            <figure class="award-post"><img src="assets/award-posts/award-20.jpg" alt="橘子蘋果學生 APCS 程式檢定成果" loading="lazy"></figure>
+          </div>
 
-          <article class="proof-card">
-            <span class="proof-photo document"><img src="assets/outcomes/pancheng-apcs.jpg" alt="橘子蘋果學生潘品宬 APCS 程式檢定證明" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">APCS</span>
-              <h3>潘品宬：競賽與檢定雙成果</h3>
-              <p>同時累積貓咪盃與 APCS 程式檢定成果，展現作品力與檢定力並進。</p>
-              <div class="proof-tags"><span>APCS</span><span>貓咪盃</span></div>
-            </div>
-          </article>
-
-          <article class="proof-card">
-            <span class="proof-photo portrait"><img src="assets/outcomes/yujh-medal.jpg" alt="橘子蘋果學生陳榆之拿著貓咪盃競賽獎牌" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">MEDAL STORY</span>
-              <h3>從證書到獎牌，成果能被看見</h3>
-              <p>孩子不只是完成課程，也能帶著作品走進競賽，把學習變成真實舞台上的表現。</p>
-              <div class="proof-tags"><span>獎牌</span><span>作品力</span></div>
-            </div>
-          </article>
-
-          <article class="proof-card">
-            <span class="proof-photo portrait"><img src="assets/outcomes/weicheng-ai.jpg" alt="橘子蘋果學生陳韋呈拿著新竹縣 AI 素養爭霸賽獎狀" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">AI LITERACY</span>
-              <h3>陳韋呈：AI 素養第二名</h3>
-              <p>從程式學習延伸到 AI 素養與跨域應用，成果不只限於單一語言。</p>
-              <div class="proof-tags"><span>AI 素養</span><span>第二名</span></div>
-            </div>
-          </article>
-
-          <article class="proof-card">
-            <span class="proof-photo document"><img src="assets/outcomes/pancheng-scratch.jpg" alt="橘子蘋果學生潘品宬貓咪盃競賽證明" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">SCRATCH PROOF</span>
-              <h3>潘品宬：貓咪盃競賽證明</h3>
-              <p>Scratch 不是低年級玩具，而是能被正式競賽驗證的創作與邏輯訓練。</p>
-              <div class="proof-tags"><span>Scratch</span><span>競賽證明</span></div>
-            </div>
-          </article>
-
-          <article class="proof-card">
-            <span class="proof-photo portrait"><img src="assets/outcomes/shaoyang-tech.jpg" alt="橘子蘋果學生王紹瑒分享科技教育創意實作競賽心得" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">MAKER PROJECT</span>
-              <h3>王紹瑒：科技教育創意實作</h3>
-              <p>把程式與創意實作結合，讓孩子從解題走向完整作品與競賽表現。</p>
-              <div class="proof-tags"><span>科技實作</span><span>Scratch</span></div>
-            </div>
-          </article>
-
-          <article class="proof-card">
-            <span class="proof-photo document"><img src="assets/outcomes/yuxi-cert.jpg" alt="橘子蘋果學生蕭宇希防災教育 Scratch 程式競賽特優證書" loading="lazy"></span>
-            <div class="proof-body">
-              <span class="proof-label">CERTIFICATE</span>
-              <h3>正式獎狀，是作品被外部認可的證據</h3>
-              <p>首頁不只展示心得，也保留正式證書畫面，讓成果更像可驗證的學習紀錄。</p>
-              <div class="proof-tags"><span>證書</span><span>外部認可</span></div>
-            </div>
-          </article>
+          <div class="honor-note" aria-label="成果類型">
+            <span>Scratch 競賽</span>
+            <span>APCS 程式檢定</span>
+            <span>貓咪盃</span>
+            <span>AI 程式設計</span>
+            <span>跨縣市成果</span>
+          </div>
         </div>
       </div>
     </div>
