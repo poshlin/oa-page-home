@@ -229,7 +229,7 @@
         "mainEntity": [
           { "@type": "Question", "name": "兒童幾歲適合開始學程式？", "acceptedAnswer": { "@type": "Answer", "text": "國小一年級（約 6-7 歲）即可開始。橘子蘋果依年齡與認知發展設計課程：1-3 年級從圖像化的玩創系列啟蒙（艾伯特、麥塊、Roblox），4 年級以上進入 Scratch 菁英課程，國中以上可直接從 Python 入門。零經驗完全可以學，課程從邏輯觀念開始建立，不需要任何基礎。" } },
           { "@type": "Question", "name": "完全沒有基礎的孩子可以學嗎？", "acceptedAnswer": { "@type": "Answer", "text": "可以。橘子蘋果的課程設計以零基礎為預設起點，透過遊戲化情境與專案式學習引導孩子入門。每個孩子上課前會依年齡與程度安排適合的起始課程，程度好的孩子也可透過跳級測驗直接進入進階班，確保每個孩子都在最適合自己的位置學習。" } },
-          { "@type": "Question", "name": "橘子蘋果的學費怎麼計算？一個月大約多少錢？", "acceptedAnswer": { "@type": "Answer", "text": "課程以「一期（15 堂）」計費、非月繳；為方便家長抓預算，換算成每月大致為：常態程式課（Scratch、麥塊、Python 等）平均每月約 NT$4,000–5,500，低年級啟蒙課約 3,000 元起，多階段合購另有優惠。你可以先從單一階段開始，不必一次報好幾年；精確費用依孩子程度與課程精算，試聽後由顧問說明，不需要當場決定。想了解台灣兒童程式課的費用行情與價差原因，可參考〈兒童程式課費用完整解析〉；或加入官方 LINE@ 或來電 (02) 7709-8229 諮詢。" } },
+          { "@type": "Question", "name": "學費怎麼計算？一個月大約多少錢？", "acceptedAnswer": { "@type": "Answer", "text": "課程以「一期（15 堂）」計費、非月繳；為方便家長抓預算：常態程式課一期約 NT$1.8–2.1 萬、平均每月約 4,000–5,500 元，低年級啟蒙課約每月 3,000 元起，多階段合購另有優惠。你可以先從單一階段開始，不必一次報好幾年；精確費用依孩子程度與課程精算，試聽後由顧問說明，不需要當場決定。想了解台灣兒童程式課的費用行情與價差原因，可參考〈兒童程式課費用完整解析〉；或加入官方 LINE@ 或來電 (02) 7709-8229 諮詢。" } },
           { "@type": "Question", "name": "免費試聽之後會被推銷嗎？可以不當場決定嗎？", "acceptedAnswer": { "@type": "Answer", "text": "不會強迫。試聽是讓孩子與家長確認適不適合，試聽後顧問會依孩子程度給建議與報價，你可以帶回家考慮、不需要當場決定；覺得不適合直接說不就好。橘蘋以孩子的長期學習為重，不會為了成交硬推不合適的課。" } },
           { "@type": "Question", "name": "孩子上了之後如果沒興趣怎麼辦？", "acceptedAnswer": { "@type": "Answer", "text": "可以先從單一階段開始、不必一次承諾長期，每週的學習報告也能讓你及早看出孩子的狀態。若真的不適合，退費依「中華民國補教業品保協會」的履約保證規範辦理，預付學費受制度保障。" } },
           { "@type": "Question", "name": "上課頻率是怎麼安排的？每堂多久？", "acceptedAnswer": { "@type": "Answer", "text": "常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時，低年級的頑皮艾伯特啟蒙課每堂約 50-90 分鐘；每階段為 15 堂，孩子依自己的節奏穩定完成。" } },
@@ -1327,11 +1327,11 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(18,21,30,0.55), rgba(18,21,30,0.10) 45%, rgba(18,21,30,0.20));
+      background: linear-gradient(to top, rgba(18,21,30,0.62), rgba(18,21,30,0.30) 45%, rgba(18,21,30,0.38));
       z-index: 1;
       pointer-events: none;
     }
-    .video-card.outcome .video-thumb::after { background: linear-gradient(to top, rgba(18,21,30,0.30), rgba(18,21,30,0.03) 55%, transparent); }
+    .video-card.outcome .video-thumb::after { background: linear-gradient(to top, rgba(18,21,30,0.34), rgba(18,21,30,0.10) 55%, rgba(18,21,30,0.14)); }
     .video-card.featured .video-thumb { min-height: 0; }
     .video-card.outcome .video-thumb {
       background:
@@ -1343,8 +1343,8 @@
       height: 100%;
       object-fit: contain;
       display: block;
-      opacity: 0.92;
-      filter: saturate(0.9);
+      opacity: 0.9;
+      filter: saturate(0.62) brightness(0.96);
       transition: opacity 0.2s;
     }
     .video-card:hover .video-thumb img { opacity: 1; }
@@ -2023,7 +2023,7 @@
       text-decoration: none;
     }
     .sticky-cta span { display: block; font-size: 11px; font-weight: 600; opacity: 0.9; margin-top: 2px; }
-    @media (max-width: 760px) { .sticky-cta { display: block; } }
+    @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: 84px; } }
   </style>
 </head>
 <body>
@@ -2104,7 +2104,7 @@
         </div>
         <div class="quickqa-card cost">
           <h3>一期／一個月大約多少錢？</h3>
-          <p>常態程式課平均<strong>每月約 NT$4,000–5,500</strong>、低年級啟蒙課約 3,000 元起（以一期 15 堂計費、非月繳）。精確費用試聽後由顧問依孩子程度精算，不需當場決定、也不會硬推。</p>
+          <p>常態程式課一期（15 堂）約 <strong>NT$1.8–2.1 萬</strong>、平均每月約 4,000–5,500 元；低年級啟蒙課約每月 3,000 元起（非月繳、多階段合購另有優惠）。精確費用試聽後由顧問依孩子程度精算，不需當場決定、也不會硬推。</p>
         </div>
       </div>
     </div>
@@ -2974,7 +2974,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              課程以「一期（15 堂）」計費、非月繳；為方便你抓預算，換算成每月大致為：<strong>常態程式課（Scratch、麥塊、Python 等）平均每月約 NT$4,000–5,500，低年級啟蒙課約 3,000 元起</strong>，多階段合購另有優惠。你可以先從單一階段開始，不必一次報好幾年；精確費用依孩子程度與課程精算，<strong>試聽後由顧問說明，不需當場決定</strong>。想先了解台灣兒童程式課的<a href="https://orangeapple.co/articles/kids-coding-class-cost">費用行情與價差原因</a>，也可以參考我們的完整解析；或加入 <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener">官方 LINE@</a> 或來電 (02) 7709-8229 諮詢。
+              課程以「一期（15 堂）」計費、非月繳；為方便你抓預算：<strong>常態程式課一期約 NT$1.8–2.1 萬、平均每月約 4,000–5,500 元，低年級啟蒙課約每月 3,000 元起</strong>，多階段合購另有優惠。你可以先從單一階段開始，不必一次報好幾年；精確費用依孩子程度與課程精算，<strong>試聽後由顧問說明，不需當場決定</strong>。想先了解台灣兒童程式課的<a href="https://orangeapple.co/articles/kids-coding-class-cost">費用行情與價差原因</a>，也可以參考我們的完整解析；或加入 <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener">官方 LINE@</a> 或來電 (02) 7709-8229 諮詢。
             </div>
           </div>
           <div class="faq-item">
