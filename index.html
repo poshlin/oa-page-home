@@ -233,7 +233,7 @@
           { "@type": "Question", "name": "學費怎麼計算？可以先從單一階段開始嗎？", "acceptedAnswer": { "@type": "Answer", "text": "課程費用會依孩子適合的課程、線上或實體形式、購買階段與付款方式而有所不同。多數常態課程可先從單一階段開始，不必一次規劃多年課程。體驗或程度評估後，顧問會提供課程內容、堂數與完整費用明細，讓家長充分了解後再決定。想先研究兒童程式課的市場行情與價差，也可閱讀〈兒童程式課費用完整解析〉。" } },
           { "@type": "Question", "name": "免費試聽之後會被推銷嗎？可以不當場決定嗎？", "acceptedAnswer": { "@type": "Answer", "text": "不會強迫。試聽是讓孩子與家長確認適不適合，試聽後顧問會依孩子程度給建議與報價，你可以帶回家考慮、不需要當場決定；覺得不適合直接說不就好。橘蘋以孩子的長期學習為重，不會為了成交硬推不合適的課。" } },
           { "@type": "Question", "name": "孩子上了之後如果沒興趣怎麼辦？", "acceptedAnswer": { "@type": "Answer", "text": "可以先從單一階段開始、不必一次承諾長期，每週的學習報告也能讓你及早看出孩子的狀態。若真的不適合，退費依「中華民國補教業品保協會」的履約保證規範辦理，預付學費受制度保障。" } },
-          { "@type": "Question", "name": "上課頻率是怎麼安排的？每堂多久？", "acceptedAnswer": { "@type": "Answer", "text": "常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時，低年級的頑皮艾伯特啟蒙課每堂約 50-90 分鐘；每階段為 15 堂，孩子依自己的節奏穩定完成。" } },
+          { "@type": "Question", "name": "上課頻率是怎麼安排的？每堂多久？", "acceptedAnswer": { "@type": "Answer", "text": "常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時，低年級的頑皮艾伯特啟蒙課每堂約 50 分鐘；每階段為 15 堂，孩子依自己的節奏穩定完成。" } },
           { "@type": "Question", "name": "線上課和實體課該怎麼選？", "acceptedAnswer": { "@type": "Answer", "text": "雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合實體小班；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，線上班級規模約 1:6 到 1:10。" } },
           { "@type": "Question", "name": "上課需要準備什麼設備？", "acceptedAnswer": { "@type": "Answer", "text": "多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前顧問會依孩子選讀的課程，告知需要準備的設備。" } },
           { "@type": "Question", "name": "學程式對升學有什麼幫助？", "acceptedAnswer": { "@type": "Answer", "text": "程式能力已納入升學管道：APCS 大學程式設計先修檢測成績可用於申請資工相關科系，橘蘋學員曾以 APCS 佳績錄取清大資工、透過百川計畫錄取陽明交大。ITS 國際認證則可放入學習歷程檔案。橘子蘋果是 ITS 官方考場，提供完整的檢定與認證培訓課程，學員在 APCS、ITS 等國際與國家級認證屢創佳績。" } },
@@ -2057,6 +2057,7 @@
     @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); } }
 
     /* ══ WCAG AA 文字對比修正（2026-07-12）：accent 當文字改深墨、背景色不動；banner 白字改藏藍 ══ */
+    /* 例外：.hero h1 .hl「橘子蘋果」保留亮橘品牌色（保旭 2026-07-12 拍板 B；a11y 已知例外，勿再列 Critical） */
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
@@ -2068,6 +2069,7 @@
     .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--navy); }
     .camps-chip { border-color: rgba(27,42,74,0.45); }
     .cta .btn-primary, .camps .btn-primary { color: var(--orange-ink); }
+    .ms-title { margin: 0; }
   </style>
 </head>
 <body>
@@ -2075,6 +2077,7 @@
   <!-- Rails Layout 會把全站頁首注入這裡 -->
   <oa-header></oa-header>
 
+  <main>
   <!-- ══ 1. HERO ══ -->
   <section class="hero" aria-label="橘子蘋果程式學苑">
     <div class="container">
@@ -2275,7 +2278,7 @@
             <div class="ms-dot">01</div>
             <div class="ms-body">
               <div class="ms-head">
-                <span class="ms-title">探索入口</span>
+                <h3 class="ms-title">探索入口</h3>
                 <span class="ms-tag">// 1-9 年級・玩創與遊戲</span>
               </div>
               <p class="ms-desc">低年級不必急著背語法，先用遊戲、手作與圖像化任務，建立序列、迴圈、條件與規則感。</p>
@@ -2312,7 +2315,7 @@
             <div class="ms-dot">02</div>
             <div class="ms-body">
               <div class="ms-head">
-                <span class="ms-title">菁英九階段主幹</span>
+                <h3 class="ms-title">菁英九階段主幹</h3>
                 <span class="ms-tag">// 4 年級以上・一條龍不換體系</span>
               </div>
               <p class="ms-desc">從 Scratch 到 Python、JavaScript、HTML/CSS、資料庫、演算法與 AI，完整建立作品力、解題力與軟體開發觀念。標示 <strong>ITS</strong> 者為國際認證銜接點。</p>
@@ -2344,7 +2347,7 @@
             <div class="ms-dot">03</div>
             <div class="ms-body">
               <div class="ms-head">
-                <span class="ms-title">成果出口</span>
+                <h3 class="ms-title">成果出口</h3>
                 <span class="ms-tag">// 國高中・升學與競賽</span>
               </div>
               <p class="ms-desc">完整打底後，孩子把作品能力、檢定成績與學習歷程，轉化成更清楚的升學與競賽成果。</p>
@@ -3049,7 +3052,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時，低年級的頑皮艾伯特啟蒙課每堂約 50-90 分鐘；每階段為 15 堂，孩子依自己的節奏穩定完成。
+              常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時，低年級的頑皮艾伯特啟蒙課每堂約 50 分鐘；每階段為 15 堂，孩子依自己的節奏穩定完成。
             </div>
           </div>
           <div class="faq-item">
@@ -3107,6 +3110,7 @@
   <!-- Rails Layout 會把全站頁尾注入這裡 -->
   <!-- 手機常駐浮動 CTA -->
   <button type="button" class="sticky-cta" data-oa-cta="sticky">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></button>
+  </main>
 
   <oa-footer></oa-footer>
 
@@ -3188,8 +3192,8 @@
       var total = originalCards.length;
       if (!total) return;
 
-      originalCards.forEach(function (card) { track.appendChild(card.cloneNode(true)); });
-      originalCards.slice().reverse().forEach(function (card) { track.insertBefore(card.cloneNode(true), track.firstChild); });
+      originalCards.forEach(function (card) { var c = card.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });
+      originalCards.slice().reverse().forEach(function (card) { var c = card.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.insertBefore(c, track.firstChild); });
 
       var allCards = Array.prototype.slice.call(track.querySelectorAll('.review-card'));
       var current = total;
