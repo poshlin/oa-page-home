@@ -315,8 +315,8 @@
       border-radius: var(--r-lg);
       overflow: hidden;
       aspect-ratio: 4/3;
-      box-shadow: var(--e3);
-      transform: rotate(1.5deg);
+      box-shadow: 0 18px 44px rgba(18,21,30,0.13);
+      transform: rotate(2deg);
     }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; }
     .hero-badge {
@@ -329,7 +329,7 @@
       padding: 10px 16px;
       border-radius: var(--r-sm);
       box-shadow: var(--e2);
-      transform: rotate(-3deg);
+      transform: rotate(-2deg);
     }
     .hero-badge.b1 { top: -16px; left: -12px; }
     .hero-float {
@@ -727,7 +727,7 @@
       overflow: hidden;
       aspect-ratio: 4/3;
       box-shadow: var(--e2);
-      transform: rotate(-1.5deg);
+      transform: rotate(-2deg);
     }
     .classroom-img img { width: 100%; height: 100%; object-fit: cover; }
     .classroom-img-2 {
@@ -739,7 +739,7 @@
       aspect-ratio: 1;
       border: 6px solid #fff;
       box-shadow: var(--e2);
-      transform: rotate(3deg);
+      transform: rotate(2deg);
     }
     .classroom-img-2 img { width: 100%; height: 100%; object-fit: cover; }
     .classroom h2 { margin-bottom: 8px; }
@@ -790,7 +790,7 @@
       content: '';
       position: absolute;
       left: 0; right: 0; top: 0;
-      height: 5px;
+      height: 4px;
       background: linear-gradient(90deg, var(--orange), var(--teal));
     }
     .result-card:hover {
@@ -798,9 +798,7 @@
       border-color: rgba(255,163,0,0.32);
       box-shadow: var(--e2);
     }
-    .result-card:nth-child(2)::before { background: linear-gradient(90deg, var(--teal), #72D6CF); }
-    .result-card:nth-child(3)::before { background: linear-gradient(90deg, var(--coral), var(--orange)); }
-    .result-card:nth-child(4)::before { background: linear-gradient(90deg, var(--dark), var(--teal)); }
+    /* result accent bar unified (single orange→teal) across all four cards */
     .result-label {
       font-family: var(--mono);
       font-size: 12px;
@@ -1389,7 +1387,7 @@
       padding: 36px 38px 34px;
       box-shadow: var(--e2);
       border: 1px solid var(--line-soft);
-      border-top: 7px solid;
+      border-top: 6px solid;
       position: relative;
       overflow: hidden;
     }
@@ -1769,7 +1767,6 @@
       .faq-sticky { position: relative; top: auto; }
     }
     @media (max-width: 600px) {
-      .hero h1 br { display: none; }
       .intro p br { display: none; }
       .intro-inner { text-align: left; }
       .award-strip-inner { flex-direction: column; gap: 10px; }
@@ -2713,12 +2710,14 @@
         var target = parseInt(el.dataset.target, 10) || 0;
         var dur = target >= 100 ? 1400 : 1000;
         var start = null;
+        el.dataset.animating = '1';
         function step(ts) {
           if (!start) start = ts;
           var p = Math.min((ts - start) / dur, 1);
           var eased = 1 - Math.pow(1 - p, 3);
           el.textContent = Math.round(target * eased);
-          if (p < 1) requestAnimationFrame(step);
+          if (p < 1) { requestAnimationFrame(step); }
+          else { el.dataset.animating = ''; }
         }
         requestAnimationFrame(step);
       }
@@ -2731,6 +2730,14 @@
         });
       }, { threshold: 0.5 });
       els.forEach(function (el) { io.observe(el); });
+      /* 保底：分頁切到背景時 rAF 會暫停，把進行中的數字直接補到終值，避免凍在半途 */
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          els.forEach(function (el) {
+            if (el.dataset.animating) { el.textContent = el.dataset.target; el.dataset.animating = ''; }
+          });
+        }
+      });
     })();
 
     /* ── 家長評價輪播：8 則真實 Google 評論，無外部套件 ── */
