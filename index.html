@@ -298,8 +298,8 @@
     .hero-label strong { color: var(--orange); font-weight: 700; }
     .hero h1 {
       font-size: clamp(32px, 5vw, 52px);
-      font-weight: 900;
-      letter-spacing: 0.01em;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       margin-bottom: 20px;
     }
     .hero h1 .hl { color: var(--orange); }
@@ -449,7 +449,7 @@
     .c-coral .path-grade { color: var(--coral-dark); background: var(--coral-light); }
     .c-orange .path-grade { color: var(--orange-dark); background: var(--orange-light); }
     .c-teal .path-grade { color: var(--teal-dark); background: var(--teal-light); }
-    .path-card h3 { font-size: 21px; font-weight: 900; margin-bottom: 10px; }
+    .path-card h3 { font-size: 21px; font-weight: 800; margin-bottom: 10px; }
     .path-card > p { font-size: 14px; color: var(--gray); line-height: 1.8; flex: 1; }
     .path-arrow { margin-top: 20px; font-weight: 700; font-size: 14px; }
     .c-coral .path-arrow { color: var(--coral-dark); }
@@ -632,7 +632,7 @@
       color: var(--orange-dark);
       background: var(--orange-light);
     }
-    .stage b { display: flex; align-items: center; text-align: center; min-height: 33px; font-size: 12px; font-weight: 700; line-height: 1.35; color: var(--text); }
+    .stage b { display: flex; align-items: center; text-align: center; min-height: 33px; font-size: 12px; font-weight: 700; line-height: 1.35; color: var(--text); word-break: keep-all; }
     .stage .c { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--orange-dark); }
     .stage.cert .n { color: #fff; background: var(--orange); }
     .map-cert-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; color: var(--gray); font-size: 12px; font-weight: 700; }
@@ -748,12 +748,12 @@
       flex-shrink: 0;
       width: 44px; height: 44px;
       border-radius: var(--r-md);
-      font-size: 21px;
       display: flex; align-items: center; justify-content: center;
     }
-    .cp-1 { background: var(--orange-light); }
-    .cp-2 { background: var(--teal-light); }
-    .cp-3 { background: var(--coral-light); }
+    .classroom-point-icon svg { width: 23px; height: 23px; }
+    .cp-1 { background: var(--orange-light); color: var(--orange-dark); }
+    .cp-2 { background: var(--teal-light); color: var(--teal-dark); }
+    .cp-3 { background: var(--coral-light); color: var(--coral-dark); }
     .classroom-point h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
     .classroom-point p { font-size: 14px; color: var(--gray); line-height: 1.8; }
 
@@ -895,11 +895,21 @@
       overflow: hidden;
       background: #E9E5DD;
     }
-    .htile .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .htile .ph img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.93) brightness(1.03) contrast(1.02); }
+    .htile .ph::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 42%;
+      background: linear-gradient(to top, rgba(18,21,30,0.30), rgba(18,21,30,0));
+      z-index: 1;
+      pointer-events: none;
+    }
     .htile .badge {
       position: absolute;
       left: 8px;
       bottom: 8px;
+      z-index: 2;
       font-size: 11px;
       font-weight: 800;
       border-radius: var(--r-pill);
@@ -1099,7 +1109,7 @@
     }
     .videos-header h3 {
       font-size: clamp(26px, 3vw, 38px);
-      font-weight: 900;
+      font-weight: 800;
       margin-bottom: 10px;
     }
     .videos-header p {
@@ -1220,7 +1230,7 @@
     .video-title {
       display: block;
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.35;
       margin-bottom: 8px;
       color: var(--text);
@@ -1393,11 +1403,11 @@
       width: 50px; height: 50px;
       border-radius: var(--r-md);
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
       flex-shrink: 0;
     }
-    .tc-orange .trust-icon { background: var(--orange-light); }
-    .tc-teal .trust-icon { background: var(--teal-light); }
+    .trust-icon svg { width: 26px; height: 26px; }
+    .tc-orange .trust-icon { background: var(--orange-light); color: var(--orange-dark); }
+    .tc-teal .trust-icon { background: var(--teal-light); color: var(--teal-dark); }
     .trust-head h2 { margin-bottom: 0; }
     .fact-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
     .fact-chip {
@@ -1429,8 +1439,9 @@
       align-items: center;
       justify-content: center;
       box-shadow: inset 0 0 0 6px rgba(255,163,0,0.08);
-      font-size: 40px;
+      color: var(--orange-dark);
     }
+    .trust-proof-mark svg { width: 54px; height: 54px; }
     .trust-proof-label {
       font-family: var(--mono);
       font-size: 12px;
@@ -1441,7 +1452,7 @@
     }
     .trust-proof-title {
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 800;
       color: var(--dark);
       line-height: 1.45;
     }
@@ -2058,21 +2069,21 @@
           <span class="tag">// in_the_classroom</span>
           <h2>一堂課，<br>長什麼樣子？</h2>
           <div class="classroom-point">
-            <div class="classroom-point-icon cp-1">🎯</div>
+            <div class="classroom-point-icon cp-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></div>
             <div>
               <h3>每堂課完成一個專案</h3>
               <p>不是抄程式碼——每堂課孩子都會做出一個屬於自己的作品，從動畫、遊戲到 AI 應用，成就感是最好的學習動機。</p>
             </div>
           </div>
           <div class="classroom-point">
-            <div class="classroom-point-icon cp-2">👥</div>
+            <div class="classroom-point-icon cp-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8" r="3"/><path d="M2.8 19a5.7 5.7 0 0 1 11.4 0"/><path d="M16 5.6a3 3 0 0 1 0 5.6"/><path d="M17 13.4a5.5 5.5 0 0 1 4.2 5.4"/></svg></div>
             <div>
               <h3>小班制，老師看得到每個孩子</h3>
               <p>實體小班約 1:8 到 1:13；線上採「影片講師＋真人輔導老師」雙師模式，班級規模約 1:6 到 1:10，孩子按「我要發問」，老師就一對一引導。</p>
             </div>
           </div>
           <div class="classroom-point">
-            <div class="classroom-point-icon cp-3">📋</div>
+            <div class="classroom-point-icon cp-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4.8" width="14" height="15.7" rx="2.2"/><rect x="9" y="3" width="6" height="3.3" rx="1.2"/><path d="M8.8 11.5h6.4M8.8 15h4.2"/></svg></div>
             <div>
               <h3>每週學習報告，家長看得見進度</h3>
               <p>每堂課後老師撰寫課程報告——今天學了什麼、孩子的表現、下一步的目標，讓你不用猜孩子到底學得怎麼樣。</p>
@@ -2126,7 +2137,7 @@
       <div class="proof-head">
         <span class="tag">// student_honors</span>
         <h2>學生得獎與檢定成果</h2>
-        <p>從 Scratch 競賽、貓咪盃到 APCS／ITS 國際檢定，橘蘋孩子在各級賽事持續得獎——這裡精選近年 <strong>50</strong> 位，每一位都有證書與合照可查。</p>
+        <p>從 Scratch 競賽、貓咪盃到 APCS／ITS 國際檢定，橘蘋孩子在各級賽事持續得獎——這裡精選近年 <strong>50</strong> 位，皆有得獎證書與檢定成績可查。</p>
         <div class="proof-stats" aria-label="成果分類">
           <div class="proof-stat"><strong>2021–2026</strong><span>成果持續累積</span></div>
           <div class="proof-stat"><strong>競賽</strong><span>Scratch・貓咪盃</span></div>
@@ -2519,7 +2530,7 @@
       <div class="trust-grid">
         <div class="trust-card tc-orange">
           <div class="trust-head">
-            <div class="trust-icon">🛡️</div>
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7 2.4v5.2c0 4.4-2.9 7.8-7 9.3-4.1-1.5-7-4.9-7-9.3V5.2z"/><path d="M8.7 12l2.3 2.3 4.3-4.7"/></svg></div>
             <h2>預付學費，有制度保障</h2>
           </div>
           <p>
@@ -2531,7 +2542,7 @@
             <span class="fact-chip">履約保證機制</span>
           </div>
           <div class="trust-proof">
-            <div class="trust-proof-mark">🛡️</div>
+            <div class="trust-proof-mark"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18.5 30.5l-4 8 5-1.2 2.2 4.7 3.5-8"/><path d="M29.5 30.5l4 8-5-1.2-2.2 4.7-3.5-8"/><circle cx="24" cy="19" r="13"/><circle cx="24" cy="19" r="9"/><path d="M19.5 19l3 3 6-6.6"/></svg></div>
             <div>
               <div class="trust-proof-label">TUITION PROTECTION</div>
               <div class="trust-proof-title">補教業品保協會會員</div>
@@ -2541,7 +2552,7 @@
         </div>
         <div class="trust-card tc-teal">
           <div class="trust-head">
-            <div class="trust-icon">📍</div>
+            <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c4.6-4.7 7-8 7-11.2A7 7 0 0 0 5 9.8C5 13 7.4 16.3 12 21z"/><circle cx="12" cy="9.7" r="2.6"/></svg></div>
             <h2>全台 12 縣市，都找得到橘蘋</h2>
           </div>
           <div class="trust-map-layout">
