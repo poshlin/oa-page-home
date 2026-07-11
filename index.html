@@ -340,6 +340,10 @@
       --light: #FAF9F6;
       /* ── 文字連結：藍綠深階（加深至過 WCAG AA 4.5:1），取代 Google 藍 ── */
       --link: #007368;
+      /* ── accent「當文字」專用深墨色（過 WCAG AA；背景仍用亮色 --orange 等） ── */
+      --orange-ink: #9A5A00;
+      --teal-ink: #00776B;
+      --coral-ink: #BE3B2C;
       --mono: 'SF Mono', 'JetBrains Mono', Consolas, monospace;
       /* ── 圓角：4 階 ── */
       --r-sm: 8px;
@@ -406,6 +410,9 @@
       display: inline-block;
       background: var(--orange);
       color: var(--navy);
+      font-family: inherit;
+      border: 0;
+      cursor: pointer;
       font-size: 16px;
       font-weight: 700;
       padding: 16px 36px;
@@ -763,6 +770,9 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .entry:hover { transform: translateY(-4px); box-shadow: var(--e2); }
+    .entry-soon { position: relative; border-top-color: var(--orange); opacity: 0.94; }
+    .entry-soon:hover { transform: none; box-shadow: var(--e1); }
+    .soon-badge { position: absolute; top: 10px; right: 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--orange-ink); background: var(--orange-light); padding: 3px 8px; border-radius: var(--r-pill); }
     .entry .g { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal-dark); margin-bottom: 8px; }
     .entry h4 { font-size: 16px; font-weight: 800; line-height: 1.35; margin: 0; color: var(--text); }
     .entry p { color: var(--gray); font-size: 12px; line-height: 1.6; margin: 6px 0 0; }
@@ -2032,6 +2042,9 @@
       z-index: 90;
       background: var(--orange);
       color: var(--navy);
+      font-family: inherit;
+      border: 0;
+      cursor: pointer;
       font-weight: 800;
       font-size: 16px;
       text-align: center;
@@ -2042,6 +2055,19 @@
     }
     .sticky-cta span { display: block; font-size: 11px; font-weight: 600; opacity: 0.9; margin-top: 2px; }
     @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); } }
+
+    /* ══ WCAG AA 文字對比修正（2026-07-12）：accent 當文字改深墨、背景色不動；banner 白字改藏藍 ══ */
+    .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
+    .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
+    .proof-stat strong, .honor-count strong, .map-cert-links a,
+    .hero-label strong, .c-orange .path-grade, .path-arrow.c-orange { color: var(--orange-ink); }
+    .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .county-tag.rc { color: var(--teal-ink); }
+    .badge.t-cert { background: var(--teal-ink); }
+    .c-coral .path-grade, .path-arrow.c-coral, .county-tag.rs { color: var(--coral-ink); }
+    .video-tags span { color: #5A606B; }
+    .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--navy); }
+    .camps-chip { border-color: rgba(27,42,74,0.45); }
+    .cta .btn-primary, .camps .btn-primary { color: var(--orange-ink); }
   </style>
 </head>
 <body>
@@ -2062,7 +2088,7 @@
           </p>
           <p class="hero-promise">找到起點，<b>一路走出成果</b>。</p>
           <div class="hero-cta">
-            <a href="https://orangeapple.co/contact" class="btn-primary">取得免費試聽</a>
+            <button type="button" class="btn-primary" data-oa-cta="hero">取得免費試聽</button>
             <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener" class="btn-secondary">LINE@ 線上諮詢</a>
           </div>
         </div>
@@ -2265,16 +2291,18 @@
                     <h4>Minecraft / Roblox AI</h4>
                     <p>從熟悉的遊戲情境轉向規則設計與作品創作。</p>
                   </a>
-                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                  <div class="entry entry-soon">
+                    <span class="soon-badge">即將開課</span>
                     <span class="g">GRADE 5-9</span>
                     <h4>麥塊 Python</h4>
-                    <p>線上獨家進階遊戲程式課，用 MakeCode Python 做任務創作。</p>
-                  </a>
-                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                    <p>線上獨家進階課，用 MakeCode Python 對 Minecraft 下指令、做任務創作。</p>
+                  </div>
+                  <div class="entry entry-soon">
+                    <span class="soon-badge">即將開課</span>
                     <span class="g">GRADE 5-9</span>
                     <h4>Roblox Lua</h4>
-                    <p>線上獨家，把玩家帶進遊戲機制、互動規則與關卡設計。</p>
-                  </a>
+                    <p>線上獨家進階課，用 Lua 打造遊戲機制、互動規則與關卡設計。</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3071,14 +3099,14 @@
       <p class="cta-code">&lt;first_class free=&quot;true&quot;&gt;</p>
       <h2>第一堂課，免費體驗</h2>
       <p>多數常態課程皆可免費試聽——讓孩子親自感受，再決定要不要開始。</p>
-      <a href="https://orangeapple.co/contact" class="btn-primary">取得免費試聽</a>
+      <button type="button" class="btn-primary" data-oa-cta="bottom">取得免費試聽</button>
       <p class="cta-sub">或來電 <a href="tel:+886277098229">(02) 7709-8229</a>，由專人為您規劃</p>
     </div>
   </section>
 
   <!-- Rails Layout 會把全站頁尾注入這裡 -->
   <!-- 手機常駐浮動 CTA -->
-  <a href="https://orangeapple.co/contact" class="sticky-cta">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></a>
+  <button type="button" class="sticky-cta" data-oa-cta="sticky">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></button>
 
   <oa-footer></oa-footer>
 
