@@ -331,7 +331,7 @@
       /* ── 墨與中性 ── */
       --dark: #12151E;
       --text: #2A2D35;
-      --gray: #6B7280;
+      --gray: #5B616D;
       --line: #E6E8EC;
       --line-soft: rgba(18,21,30,0.08);
       --border: #E6E8EC;
@@ -2057,18 +2057,24 @@
     @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); } }
 
     /* ══ WCAG AA 文字對比修正（2026-07-12）：accent 當文字改深墨、背景色不動；banner 白字改藏藍 ══ */
-    /* 例外：.hero h1 .hl「橘子蘋果」保留亮橘品牌色（保旭 2026-07-12 拍板 B；a11y 已知例外，勿再列 Critical） */
+    /* 例外（保旭拍板 B，a11y 已知例外、勿列 Critical）：①.hero h1 .hl「橘子蘋果」品牌字 ②評分星星 .stars/.rating-stars/.review-stars——星星為通行慣例，且旁有「4.9／2,200+ 則」數字文字佐證，屬裝飾性強化，darken 反削弱信任 */
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
-    .hero-label strong, .c-orange .path-grade, .path-arrow.c-orange { color: var(--orange-ink); }
-    .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .county-tag.rc { color: var(--teal-ink); }
-    .badge.t-cert { background: var(--teal-ink); }
-    .c-coral .path-grade, .path-arrow.c-coral, .county-tag.rs { color: var(--coral-ink); }
+    .hero-label strong, .c-orange .path-grade, .c-orange .path-arrow,
+    .result-action, .roadmap-summary, .trust-proof-label, .quickqa-card.cost strong,
+    .proof-head p strong, .hero-promise b, .intro p strong,
+    .video-card.outcome .video-eyebrow { color: var(--orange-ink); }
+    .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .c-teal .path-arrow, .county-tag.rc { color: var(--teal-ink); }
+    .htile .badge.t-cert { background: var(--teal-ink); }
+    .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b, .roadmap-summary-icon { color: var(--orange-ink); }
+    .c-coral .path-grade, .c-coral .path-arrow, .county-tag.rs { color: var(--coral-ink); }
     .video-tags span { color: #5A606B; }
     .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--navy); }
     .camps-chip { border-color: rgba(27,42,74,0.45); }
     .cta .btn-primary, .camps .btn-primary { color: var(--orange-ink); }
+    .video-card.outcome .video-eyebrow { color: var(--orange-ink) !important; }
+    .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--navy); }
     .ms-title { margin: 0; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
