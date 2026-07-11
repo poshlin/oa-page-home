@@ -1029,6 +1029,11 @@
     .proof-stat span { color: var(--gray); font-size: 12px; }
 
     .honor-wallwrap { position: relative; }
+    .honor-wallwrap::before, .honor-wallwrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 56px; z-index: 2; pointer-events: none;
+    }
+    .honor-wallwrap::before { left: 0; background: linear-gradient(90deg, var(--light), rgba(250,249,246,0)); }
+    .honor-wallwrap::after { right: 0; background: linear-gradient(270deg, var(--light), rgba(250,249,246,0)); }
     .honor-wall {
       display: grid;
       grid-template-rows: repeat(2, auto);
