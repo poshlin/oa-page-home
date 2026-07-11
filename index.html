@@ -149,6 +149,16 @@
       }
     ]
   }
+    /* ── 學生榮譽牆：左右滑動 ── */
+    (function () {
+      var wall = document.getElementById('honorWall');
+      var prev = document.getElementById('honorPrev');
+      var next = document.getElementById('honorNext');
+      if (!wall || !prev || !next) return;
+      function page(dir) { wall.scrollBy({ left: dir * Math.round(wall.clientWidth * 0.85), behavior: 'smooth' }); }
+      prev.addEventListener('click', function () { page(-1); });
+      next.addEventListener('click', function () { page(1); });
+    })();
   </script>
 
   <style>
@@ -849,11 +859,33 @@
     .proof-stat strong { font-family: var(--mono); color: var(--orange-dark); font-size: 14px; font-weight: 700; }
     .proof-stat span { color: var(--gray); font-size: 12px; }
 
+    .honor-wallwrap { position: relative; }
     .honor-wall {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, auto);
+      grid-auto-flow: column;
+      grid-auto-columns: 190px;
       gap: 16px;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      padding: 4px 2px 14px;
+      scrollbar-width: thin;
     }
+    .honor-wall::-webkit-scrollbar { height: 8px; }
+    .honor-wall::-webkit-scrollbar-track { background: transparent; }
+    .honor-wall::-webkit-scrollbar-thumb { background: rgba(18,21,30,0.16); border-radius: var(--r-pill); }
+    .honor-controls { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 18px; }
+    .honor-count { font-size: 13px; color: var(--gray); }
+    .honor-count strong { font-family: var(--mono); color: var(--orange-dark); font-weight: 700; }
+    .honor-nav {
+      width: 44px; height: 44px; border-radius: var(--r-pill);
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text); font-size: 22px; line-height: 1; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--e1); transition: background 0.18s, color 0.18s, border-color 0.18s;
+    }
+    .honor-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
     .htile {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -862,6 +894,7 @@
       box-shadow: var(--e1);
       transition: transform 0.2s, box-shadow 0.2s;
       margin: 0;
+      scroll-snap-align: start;
     }
     .htile:hover { transform: translateY(-4px); box-shadow: var(--e2); }
     .htile .ph {
@@ -884,8 +917,8 @@
     }
     .htile .badge.t-race { background: var(--orange); color: #3A2400; }
     .htile .badge.t-cert { background: var(--teal-dark); color: #fff; }
-    .htile .nm { margin: 11px 4px 0; font-size: 15px; font-weight: 800; color: var(--text); line-height: 1.2; }
-    .htile .cap { margin: 3px 4px 12px; color: var(--gray); font-size: 12px; }
+    .htile .nm { margin: 11px 4px 0; font-size: 15px; font-weight: 800; color: var(--text); line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .htile .cap { margin: 3px 4px 12px; color: var(--gray); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
     /* ══════════ 9. 評價精選 + 訪談影片 ══════════ */
     .reviews {
@@ -1714,7 +1747,7 @@
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
       .result-grid { grid-template-columns: 1fr; }
-      .honor-wall { grid-template-columns: repeat(3, 1fr); }
+      .honor-wall { grid-auto-columns: 172px; }
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
       .reviews-controls { margin-top: 10px; }
@@ -1744,7 +1777,7 @@
       .ms-dot { width: 40px; height: 40px; font-size: 13px; }
       .entry-grid { grid-template-columns: 1fr; }
       .stage-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .honor-wall { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .honor-wall { grid-auto-columns: 150px; gap: 12px; }
     }
   </style>
 </head>
@@ -2111,73 +2144,138 @@
         </div>
       </div>
 
-      <div class="honor-wall" aria-label="學生榮譽牆">
+      <div class="honor-wallwrap">
+      <div class="honor-wall" id="honorWall" aria-label="學生榮譽牆（可左右滑動）">
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-01.jpg" alt="橘子蘋果學生彭心惟 Scratch 貓咪盃程式競賽特優成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="ph"><img src="assets/honors/vid-01.jpg" alt="橘子蘋果學生彭心惟 Scratch 貓咪盃創意競賽動畫短片組特優成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">特優</span></div>
           <div class="nm">彭心惟</div><div class="cap">貓咪盃 · 2026</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-02.jpg" alt="橘子蘋果學生曾豊鈞 貓咪盃程式競賽優等成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="ph"><img src="assets/honors/vid-03.jpg" alt="橘子蘋果學生陳品翰 全國貓咪盃競賽代表權選拔特優成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">陳品翰</div><div class="cap">貓咪盃選拔 · 2026</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/vid-12.jpg" alt="橘子蘋果學生陳軒唯 資訊應用競賽 Scratch 程式組特優成果" style="object-position:center 20%" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">陳軒唯</div><div class="cap">資訊應用賽 · 2026</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/vid-02.jpg" alt="橘子蘋果學生曾豊鈞 Scratch 貓咪盃互動遊戲組優等成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">優等</span></div>
           <div class="nm">曾豊鈞</div><div class="cap">貓咪盃 · 2026</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-03.jpg" alt="橘子蘋果學生陳品翰 全國貓咪盃競賽代表權選拔特優成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">特優</span></div>
-          <div class="nm">陳品翰</div><div class="cap">貓咪盃 · 2026</div>
+          <div class="ph"><img src="assets/honors/vid-14.jpg" alt="橘子蘋果學生彭信兒 Scratch 貓咪盃創意競賽動畫短片組優等成果" style="object-position:center 6%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">彭信兒</div><div class="cap">貓咪盃 · 2026</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-05.jpg" alt="橘子蘋果學生陳韋呈 新竹縣 AI 素養爭霸賽第二名成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">第二名</span></div>
-          <div class="nm">陳韋呈</div><div class="cap">AI 素養賽 · 2025</div>
+          <div class="ph"><img src="assets/honors/vid-15.jpg" alt="橘子蘋果學生周翔 臺中市資訊應用競賽 Scratch 創意設計組佳作成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">周翔</div><div class="cap">資訊應用賽 · 2026</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-06.jpg" alt="橘子蘋果學生蘇修鋐 Scratch 程式競賽國中互動遊戲組第三名成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">第三名</span></div>
-          <div class="nm">蘇修鋐</div><div class="cap">Scratch 競賽 · 2025</div>
+          <div class="ph"><img src="assets/honors/vid-17.jpg" alt="橘子蘋果學生陳彥希 南投縣貓咪盃競賽遊戲組佳作成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">陳彥希</div><div class="cap">貓咪盃 · 2026</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/vid-08.jpg" alt="橘子蘋果學生林裕崴 新竹縣貓咪盃程式競賽優等成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">優等</span></div>
-          <div class="nm">林裕崴</div><div class="cap">貓咪盃 · 2025</div>
+          <div class="ph"><img src="assets/honors/vid-13.jpg" alt="橘子蘋果學生王紹瑒 科技教育創意實作競賽資訊科技組第五名成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">第五名</span></div>
+          <div class="nm">王紹瑒</div><div class="cap">科技創意實作 · 2026</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-01.jpg" alt="橘子蘋果學生蕭宇希 防災教育 Scratch 程式競賽特優成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">特優</span></div>
           <div class="nm">蕭宇希</div><div class="cap">防災 Scratch 賽 · 2025</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/honor-02.jpg" alt="橘子蘋果學生陳榆之 貓咪盃程式競賽銅牌成果" style="object-position:center 22%" loading="lazy"><span class="badge t-race">銅牌</span></div>
+          <div class="ph"><img src="assets/honors/vid-05.jpg" alt="橘子蘋果學生陳韋呈 新竹縣 AI 素養爭霸賽第二名成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">第二名</span></div>
+          <div class="nm">陳韋呈</div><div class="cap">AI 素養賽 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/vid-16.jpg" alt="橘子蘋果學生黃傑熙 高雄創意101 Scratch 程式競賽生活應用組銅牌成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">銅牌</span></div>
+          <div class="nm">黃傑熙</div><div class="cap">創意101 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-02.jpg" alt="橘子蘋果學生陳榆之 全國貓咪盃程式競賽銅牌成果" style="object-position:center 22%" loading="lazy"><span class="badge t-race">銅牌</span></div>
           <div class="nm">陳榆之</div><div class="cap">貓咪盃 · 2025</div>
         </figure>
         <figure class="htile">
+          <div class="ph"><img src="assets/honors/vid-06.jpg" alt="橘子蘋果學生蘇修鋐 Scratch 程式競賽國中互動遊戲組第三名成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">第三名</span></div>
+          <div class="nm">蘇修鋐</div><div class="cap">Scratch 競賽 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/vid-08.jpg" alt="橘子蘋果學生林裕崴 新竹縣貓咪盃程式競賽動畫組優等成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">林裕崴</div><div class="cap">貓咪盃 · 2025</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-01.jpg" alt="橘子蘋果學生楊采穎 貓咪盃 Scratch 校內競賽優等成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">楊采穎</div><div class="cap">貓咪盃 · 2025</div>
+        </figure>
+        <figure class="htile">
           <div class="ph"><img src="assets/honors/vid-09.jpg" alt="橘子蘋果學生高煒勝 APCS 大學程式設計檢定成果" style="object-position:center 10%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">高煒勝</div><div class="cap">程式檢定 · 2025</div>
+          <div class="nm">高煒勝</div><div class="cap">APCS 檢定 · 2025</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/vid-10.jpg" alt="橘子蘋果學生傅少麒 APCS 大學程式設計檢定成果" style="object-position:center 12%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">傅少麒</div><div class="cap">程式檢定 · 2025</div>
+          <div class="nm">傅少麒</div><div class="cap">APCS 檢定 · 2025</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/vid-11.jpg" alt="橘子蘋果學生潘品宬 APCS 大學程式設計檢定成果" style="object-position:center 14%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">潘品宬</div><div class="cap">程式檢定 · 2025</div>
+          <div class="nm">潘品宬</div><div class="cap">APCS 檢定 · 2025</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-03.jpg" alt="橘子蘋果學生黃偉倫 APCS 大學程式設計檢定成果" style="object-position:center 18%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">黃偉倫</div><div class="cap">程式檢定 · 2025</div>
-        </figure>
-        <figure class="htile">
-          <div class="ph"><img src="assets/honors/honor-06.jpg" alt="橘子蘋果學生何軒志 APCS 大學程式設計檢定成果" style="object-position:center 18%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">何軒志</div><div class="cap">程式檢定 · 2024</div>
+          <div class="nm">黃偉倫</div><div class="cap">APCS 檢定 · 2025</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-07.jpg" alt="橘子蘋果學生李柏霆 APCS 大學程式設計檢定實作題第五級成果" style="object-position:center center" loading="lazy"><span class="badge t-cert">實作 5 級</span></div>
-          <div class="nm">李柏霆</div><div class="cap">程式檢定 · 2024</div>
+          <div class="nm">李柏霆</div><div class="cap">APCS 檢定 · 2024</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/honor-10.jpg" alt="橘子蘋果學生黃子齊 Scratch 程式設計競賽第二名成果" style="object-position:center center" loading="lazy"><span class="badge t-race">第二名</span></div>
-          <div class="nm">黃子齊</div><div class="cap">Scratch 競賽 · 2023</div>
+          <div class="ph"><img src="assets/honors/ph-02.jpg" alt="橘子蘋果學生李賢宥 Scratch 互動遊戲競賽第一名成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">第一名</span></div>
+          <div class="nm">李賢宥</div><div class="cap">Scratch 互動賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-05.jpg" alt="橘子蘋果學生孫威稐 校內網路應用競賽 Scratch 程式設計第一名成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">第一名</span></div>
+          <div class="nm">孫威稐</div><div class="cap">校內網路賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-03.jpg" alt="橘子蘋果學生黃奕琰 校內資訊競賽 Scratch 程式設計特優成果" style="object-position:center center" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">黃奕琰</div><div class="cap">校內資訊賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-09.jpg" alt="橘子蘋果學生莊凱捷 貓咪盃 Scratch 程式設計競賽特優成果" style="object-position:center 18%" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">莊凱捷</div><div class="cap">貓咪盃 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-07.jpg" alt="橘子蘋果學生林宥翔 高雄創意101 Scratch 程式競賽遊戲組銀牌成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">銀牌</span></div>
+          <div class="nm">林宥翔</div><div class="cap">創意101 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-04.jpg" alt="橘子蘋果學生張晁矓 新北市 Scratch 程式設計競賽複賽遊戲組優等成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">張晁矓</div><div class="cap">新北 Scratch 賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-06.jpg" alt="橘子蘋果學生簡楷洧 校內 Scratch 程式設計遊戲組優等成果" style="object-position:center 15%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">簡楷洧</div><div class="cap">校內 Scratch 賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-08.jpg" alt="橘子蘋果學生楊恩 臺南市 Scratch 暨 AI 程式設計競賽佳作成果" style="object-position:center 14%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">楊恩</div><div class="cap">臺南 AI 賽 · 2024</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-06.jpg" alt="橘子蘋果學生何軒志 APCS 大學程式設計檢定成果" style="object-position:center 18%" loading="lazy"><span class="badge t-cert">APCS</span></div>
+          <div class="nm">何軒志</div><div class="cap">APCS 檢定 · 2024</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-11.jpg" alt="橘子蘋果學生楊燿愷 校內資訊競賽 Scratch 遊戲組特優成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">特優</span></div>
           <div class="nm">楊燿愷</div><div class="cap">校內資訊賽 · 2023</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/honor-12.jpg" alt="橘子蘋果學生洪可芸 Scratch 程式設計競賽優等成果" style="object-position:center 20%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="ph"><img src="assets/honors/honor-15.jpg" alt="橘子蘋果學生林宥騰 APCS 大學程式設計檢定實作題第四級成果" style="object-position:center 15%" loading="lazy"><span class="badge t-cert">實作 4 級</span></div>
+          <div class="nm">林宥騰</div><div class="cap">APCS 檢定 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-10.jpg" alt="橘子蘋果學生黃子齊 金門縣 Scratch 程式設計競賽第二名成果" style="object-position:center center" loading="lazy"><span class="badge t-race">第二名</span></div>
+          <div class="nm">黃子齊</div><div class="cap">Scratch 競賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/honor-12.jpg" alt="橘子蘋果學生洪可芸 澎湖縣 Scratch 程式設計競賽優等成果" style="object-position:center 20%" loading="lazy"><span class="badge t-race">優等</span></div>
           <div class="nm">洪可芸</div><div class="cap">Scratch 競賽 · 2023</div>
         </figure>
         <figure class="htile">
@@ -2185,26 +2283,72 @@
           <div class="nm">江旻叡</div><div class="cap">校內 Scratch 賽 · 2023</div>
         </figure>
         <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-12.jpg" alt="橘子蘋果學生莊明震 南投縣貓咪盃 Scratch 競賽遊戲組優等成果" style="object-position:center 12%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">莊明震</div><div class="cap">貓咪盃 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-13.jpg" alt="橘子蘋果學生黃子軒 南投縣貓咪盃 Scratch 競賽動畫組優等成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">優等</span></div>
+          <div class="nm">黃子軒</div><div class="cap">貓咪盃 · 2023</div>
+        </figure>
+        <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-14.jpg" alt="橘子蘋果學生林品丞 Scratch 程式設計競賽佳作成果" style="object-position:center 20%" loading="lazy"><span class="badge t-race">佳作</span></div>
           <div class="nm">林品丞</div><div class="cap">Scratch 競賽 · 2023</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img src="assets/honors/honor-15.jpg" alt="橘子蘋果學生林宥騰 APCS 大學程式設計檢定實作題第四級成果" style="object-position:center 15%" loading="lazy"><span class="badge t-cert">實作 4 級</span></div>
-          <div class="nm">林宥騰</div><div class="cap">程式檢定 · 2023</div>
+          <div class="ph"><img src="assets/honors/ph-10.jpg" alt="橘子蘋果學生林秉翊 校內資訊應用競賽 Scratch 程式組佳作成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">林秉翊</div><div class="cap">校內資訊賽 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-11.jpg" alt="橘子蘋果學生張為濬 校內貓咪盃比賽佳作成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">張為濬</div><div class="cap">校內貓咪盃 · 2023</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-16.jpg" alt="橘子蘋果學生劉耀王 APCS 大學程式設計檢定成果" style="object-position:center 8%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">劉耀王</div><div class="cap">程式檢定 · 2023</div>
+          <div class="nm">劉耀王</div><div class="cap">APCS 檢定 · 2023</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-17.jpg" alt="橘子蘋果學生詹曜誠 高雄市科技教育競賽資訊科技國中組金牌成果" style="object-position:center 32%" loading="lazy"><span class="badge t-race">金牌</span></div>
+          <div class="nm">詹曜誠</div><div class="cap">高雄科技賽 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-18.jpg" alt="橘子蘋果學生王泓之 臺中市全國貓咪盃 Scratch 遊戲組第一名成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">第一名</span></div>
+          <div class="nm">王泓之</div><div class="cap">臺中貓咪盃 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-16.jpg" alt="橘子蘋果學生廖羿涵 校內資訊競賽 Scratch 程式設計特優成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">特優</span></div>
+          <div class="nm">廖羿涵</div><div class="cap">校內資訊賽 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-14.jpg" alt="橘子蘋果學生黃彥榤 高雄創意101 Scratch 程式競賽遊戲組銅牌成果" style="object-position:center 26%" loading="lazy"><span class="badge t-race">銅牌</span></div>
+          <div class="nm">黃彥榤</div><div class="cap">創意101 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-15.jpg" alt="橘子蘋果學生黃泓淵 新北市 Scratch 程式設計競賽複賽遊戲組佳作成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">黃泓淵</div><div class="cap">新北 Scratch 賽 · 2022</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-17.jpg" alt="橘子蘋果學生李承遠 APCS 大學程式設計檢定成果" style="object-position:center 20%" loading="lazy"><span class="badge t-cert">APCS</span></div>
-          <div class="nm">李承遠</div><div class="cap">程式檢定 · 2022</div>
+          <div class="nm">李承遠</div><div class="cap">APCS 檢定 · 2022</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-20.jpg" alt="橘子蘋果學生廖柏甯 臺中市科技教育創意實作競賽資訊科技組第三名成果" style="object-position:center 7%" loading="lazy"><span class="badge t-race">第三名</span></div>
+          <div class="nm">廖柏甯</div><div class="cap">臺中科技賽 · 2021</div>
+        </figure>
+        <figure class="htile">
+          <div class="ph"><img src="assets/honors/ph-19.jpg" alt="橘子蘋果學生黃翊修 網際網路程式設計全國大賽國中組佳作成果" style="object-position:center 10%" loading="lazy"><span class="badge t-race">佳作</span></div>
+          <div class="nm">黃翊修</div><div class="cap">全國網際賽 · 2021</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img src="assets/honors/honor-18.jpg" alt="橘子蘋果學生鞠坤達 ITSA 程式能力線上評量成果" style="object-position:center 12%" loading="lazy"><span class="badge t-cert">ITSA</span></div>
-          <div class="nm">鞠坤達</div><div class="cap">程式檢定 · 2021</div>
+          <div class="nm">鞠坤達</div><div class="cap">ITSA 檢定 · 2021</div>
         </figure>
       </div>
+      <div class="honor-controls">
+        <button type="button" class="honor-nav" id="honorPrev" aria-label="上一批">&#8249;</button>
+        <span class="honor-count">共 <strong>49</strong> 位得獎學生 · 左右滑動看更多</span>
+        <button type="button" class="honor-nav" id="honorNext" aria-label="下一批">&#8250;</button>
+      </div>
+    </div>
     </div>
   </section>
 
