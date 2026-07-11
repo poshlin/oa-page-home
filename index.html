@@ -407,7 +407,7 @@
     .hero-promise b { color: var(--orange-dark); font-weight: 800; }
     .hero-mech { font-size: 14px; line-height: 1.7; color: var(--gray); margin: -14px 0 22px; max-width: 560px; }
     .results-symbol { font-size: clamp(16px, 2vw, 20px); font-weight: 700; color: var(--dark); margin-top: 16px; line-height: 1.5; }
-    .results-symbol b { color: var(--orange-ink); }
+    .results-symbol b { color: var(--orange-dark); }
     .incontent-cta { text-align: center; padding: var(--s6) 0; }
 
     .btn-primary {
@@ -776,7 +776,7 @@
     .entry:hover { transform: translateY(-4px); box-shadow: var(--e2); }
     .entry-soon { position: relative; border-top-color: var(--orange); opacity: 0.94; }
     .entry-soon:hover { transform: none; box-shadow: var(--e1); }
-    .soon-badge { position: absolute; top: 10px; right: 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--orange-ink); background: var(--orange-light); padding: 3px 8px; border-radius: var(--r-pill); }
+    .soon-badge { position: absolute; top: 10px; right: 10px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--orange-dark); background: var(--orange-light); padding: 3px 8px; border-radius: var(--r-pill); }
     .entry .g { display: block; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal-dark); margin-bottom: 8px; }
     .entry h4 { font-size: 16px; font-weight: 800; line-height: 1.35; margin: 0; color: var(--text); }
     .entry p { color: var(--gray); font-size: 12px; line-height: 1.6; margin: 6px 0 0; }
@@ -2060,24 +2060,23 @@
     .sticky-cta span { display: block; font-size: 11px; font-weight: 400; opacity: 0.92; margin-top: 2px; }
     @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); } }
 
-    /* ══ WCAG AA 文字對比修正（2026-07-12）：accent 當文字改深墨、背景色不動；banner 白字改藏藍 ══ */
-    /* 例外（保旭拍板 B，a11y 已知例外、勿列 Critical）：①.hero h1 .hl「橘子蘋果」品牌字 ②評分星星 .stars/.rating-stars/.review-stars——星星為通行慣例，且旁有「4.9／2,200+ 則」數字文字佐證，屬裝飾性強化，darken 反削弱信任 */
+    /* ══ 對比策略（2026-07-12，保旭拍板）：banner 白字→藏藍、按鈕維持深字（過 AA）；但「橘色 accent 強調文字」保留原品牌橘 --orange-dark、不 darken——經比較深墨土色反傷品牌質感，屬記錄在案的 a11y 例外（同 H1 品牌字/評分星星）。真正閱讀正文（深灰/深墨）本就過 AA；teal/coral accent 不土且過 AA 故保留加深。勿把橘 accent 文字重列為 Critical。 ══ */
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
     .hero-label strong, .c-orange .path-grade, .c-orange .path-arrow,
     .result-action, .roadmap-summary, .trust-proof-label, .quickqa-card.cost strong,
     .proof-head p strong, .hero-promise b, .intro p strong,
-    .video-card.outcome .video-eyebrow { color: var(--orange-ink); }
+    .video-card.outcome .video-eyebrow { color: var(--orange-dark); }
     .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .c-teal .path-arrow, .county-tag.rc { color: var(--teal-ink); }
     .htile .badge.t-cert { background: var(--teal-ink); }
-    .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b, .roadmap-summary-icon { color: var(--orange-ink); }
+    .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b, .roadmap-summary-icon { color: var(--orange-dark); }
     .c-coral .path-grade, .c-coral .path-arrow, .county-tag.rs { color: var(--coral-ink); }
     .video-tags span { color: #5A606B; }
     .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--navy); }
     .camps-chip { border-color: rgba(27,42,74,0.45); }
     .cta .btn-primary, .camps .btn-primary { color: var(--orange-ink); }
-    .video-card.outcome .video-eyebrow { color: var(--orange-ink) !important; }
+    .video-card.outcome .video-eyebrow { color: var(--orange-dark) !important; }
     .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--navy); }
     .ms-title { margin: 0; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
