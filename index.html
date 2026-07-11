@@ -94,6 +94,7 @@
         "educationalLevel": "國小 1–3 年級",
         "teaches": "圖像化程式觀念（序列、迴圈、條件）、Minecraft 與 Roblox 遊戲程式、電子積木",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -106,6 +107,7 @@
         "educationalLevel": "國小 4 年級以上",
         "teaches": "Scratch、運算思維、程式邏輯",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -118,6 +120,7 @@
         "educationalLevel": "國小 4 年級以上；國中無程式基礎可直接入門",
         "teaches": "Python 程式設計",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -130,6 +133,7 @@
         "educationalLevel": "國小 4 年級以上；8 年級無程式基礎可直接入門",
         "teaches": "JavaScript 程式設計",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -142,6 +146,7 @@
         "educationalLevel": "完成菁英第八階段、18 歲以下",
         "teaches": "人工智慧、機器學習概念",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -154,6 +159,7 @@
         "educationalLevel": "國中以上為主（ITS 部分課程國小 5 年級以上可評估）",
         "teaches": "APCS 大學程式設計先修檢測、ITS 國際認證（Python、JavaScript、HTML&CSS、運算思維）",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -166,6 +172,7 @@
         "educationalLevel": "國小 1–6 年級",
         "teaches": "數學思維、邏輯推理",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["online"] }
       },
@@ -178,6 +185,7 @@
         "educationalLevel": "國小 5 年級以上",
         "teaches": "Prompt Engineering、AI 素養、數位倫理、批判性思考",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["online"] }
       },
@@ -190,6 +198,7 @@
         "educationalLevel": "國小 1 年級至高中",
         "teaches": "Minecraft、Roblox、Python、AI、APCS 主題課程",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -202,6 +211,7 @@
         "educationalLevel": "國中 7 年級以上、具程式基礎（如 APCS 實作 2 級分或修畢 APCS 課程）",
         "teaches": "競賽演算法（動態規劃、圖論、遞迴、樹狀圖）、資料結構、程式效能、解題技巧、競賽實戰",
         "inLanguage": "zh-TW",
+        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
         "courseMode": ["onsite", "online"],
         "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"] }
       },
@@ -328,8 +338,8 @@
       --r-pill: 999px;
       /* ── 陰影：3 階 + CTA 光暈 ── */
       --e1: 0 2px 8px rgba(18,21,30,0.06);
-      --e2: 0 12px 32px rgba(18,21,30,0.10);
-      --e3: 0 24px 64px rgba(18,21,30,0.14);
+      --e2: 0 8px 24px rgba(18,21,30,0.08);
+      --e3: 0 16px 44px rgba(18,21,30,0.11);
       --e-cta: 0 8px 24px rgba(255,163,0,0.32);
       /* ── 間距：8pt 尺標 ── */
       --s2: 8px;
@@ -1960,6 +1970,9 @@
     .mainline-sub { font-size: 12px; color: var(--gray); line-height: 1.55; }
     .roadmap-mainline-note { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: var(--s7); }
     @media (max-width: 700px) { .roadmap-mainline { grid-template-columns: repeat(2, 1fr); gap: 22px 8px; } .roadmap-mainline::before { display: none; } }
+
+    /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
+    .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
   </style>
 </head>
 <body>
@@ -2675,8 +2688,12 @@
         <div class="reviews-dots" id="reviewsDots" aria-label="家長評價頁面"></div>
         <button type="button" class="reviews-nav reviews-next" id="reviewsNext" aria-label="下一則家長評價">&#8250;</button>
       </div>
+    </div>
+  </section>
 
-      <!-- 家長訪談影片（點擊才載入）-->
+  <!-- ══ 9b. 家長訪談影片（孩子故事節奏，與評論拆開）══ -->
+  <section class="videos" aria-label="家長訪談影片">
+    <div class="container">
       <div class="videos-header">
         <h3>六種家庭故事，一個升學成果</h3>
         <p>從低年級啟蒙、Scratch 自學、Minecraft 動機，到 APCS、Python 證照、長期邏輯訓練與清大資工錄取，這些是真實走過的學習路徑。</p>
