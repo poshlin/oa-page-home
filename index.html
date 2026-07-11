@@ -387,7 +387,7 @@
     .tag-dark { background: rgba(255,163,0,0.12); color: var(--orange); }
 
     h1, h2, h3 { line-height: 1.25; color: var(--text); }
-    h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; letter-spacing: 0.01em; line-height: 1.16; }
+    h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; letter-spacing: -0.005em; line-height: 1.16; }
 
     .btn-primary {
       display: inline-block;
@@ -1313,6 +1313,16 @@
         linear-gradient(135deg, rgba(18,21,30,0.96), rgba(37,48,72,0.92));
       overflow: hidden;
     }
+    /* scrim：壓下 YouTube 縮圖的吵雜、讓播放鍵更清楚（底深、整體微壓）*/
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(18,21,30,0.55), rgba(18,21,30,0.10) 45%, rgba(18,21,30,0.20));
+      z-index: 1;
+      pointer-events: none;
+    }
+    .video-card.outcome .video-thumb::after { background: linear-gradient(to top, rgba(18,21,30,0.30), rgba(18,21,30,0.03) 55%, transparent); }
     .video-card.featured .video-thumb { min-height: 0; }
     .video-card.outcome .video-thumb {
       background:
@@ -1325,6 +1335,7 @@
       object-fit: contain;
       display: block;
       opacity: 0.92;
+      filter: saturate(0.9);
       transition: opacity 0.2s;
     }
     .video-card:hover .video-thumb img { opacity: 1; }
@@ -1775,7 +1786,7 @@
     }
     .faq-item.open {
       border-color: rgba(255,163,0,0.55);
-      box-shadow: 0 18px 48px rgba(255,163,0,0.14);
+      box-shadow: 0 8px 24px rgba(18,21,30,0.08);
       background: linear-gradient(135deg, #fff 0%, #FFF9EF 100%);
     }
     .faq-item.open::before { background: var(--orange); }
@@ -1970,9 +1981,38 @@
     .mainline-sub { font-size: 12px; color: var(--gray); line-height: 1.55; }
     .roadmap-mainline-note { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: var(--s7); }
     @media (max-width: 700px) { .roadmap-mainline { grid-template-columns: repeat(2, 1fr); gap: 22px 8px; } .roadmap-mainline::before { display: none; } }
+    /* 九階段預設收合（漸進揭露，讓中段變輕）*/
+    .roadmap-detail > .map-panel { margin-top: var(--s6); }
+    .roadmap-detail:not([open]) > .map-panel { display: none; }
+    .roadmap-summary { cursor: pointer; text-align: center; font-size: 14px; font-weight: 700; color: var(--orange-dark); background: var(--orange-light); border: 1px solid rgba(255,163,0,0.22); border-radius: var(--r-pill); padding: 12px 26px; max-width: 620px; margin: 0 auto; list-style: none; transition: background 0.2s; }
+    .roadmap-summary::-webkit-details-marker { display: none; }
+    .roadmap-summary:hover { background: #FCE7BF; }
+    .roadmap-summary-icon { display: inline-block; margin-left: 8px; font-weight: 800; transition: transform 0.2s; }
+    .roadmap-detail[open] .roadmap-summary-icon { transform: rotate(45deg); }
+    .roadmap-detail[open] .map-flow.js-reveal .ms,
+    .roadmap-detail[open] .map-flow.js-reveal .ms .ms-dot { opacity: 1 !important; transform: none !important; }
 
     /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
     .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
+
+    /* ══════════ 手機常駐浮動 CTA（心動那刻能馬上行動）══════════ */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      left: 16px; right: 16px; bottom: 14px;
+      z-index: 90;
+      background: var(--orange);
+      color: #fff;
+      font-weight: 800;
+      font-size: 16px;
+      text-align: center;
+      padding: 15px 20px;
+      border-radius: var(--r-pill);
+      box-shadow: 0 8px 28px rgba(255,163,0,0.42);
+      text-decoration: none;
+    }
+    .sticky-cta span { display: block; font-size: 11px; font-weight: 600; opacity: 0.9; margin-top: 2px; }
+    @media (max-width: 760px) { .sticky-cta { display: block; } }
   </style>
 </head>
 <body>
@@ -2166,8 +2206,8 @@
           <div class="mainline-sub">檢定認證與競賽成果</div>
         </div>
       </div>
-      <p class="roadmap-mainline-note">以下是完整的九階段學習路徑細節 ↓</p>
-
+      <details class="roadmap-detail">
+        <summary class="roadmap-summary">看完整九階段學習路徑（Scratch → Python → JavaScript → 資料庫 → 演算法 → AI）<span class="roadmap-summary-icon">＋</span></summary>
       <div class="map-panel">
         <div class="map-flow">
 
@@ -2293,6 +2333,7 @@
 
         <p class="map-endnote">菁英九階段修畢後，孩子將具備完整程式作品力、解題力與 AI 應用基礎；再依年級、目標與升學需求，銜接 ITS、APCS 或選手班。</p>
       </div>
+      </details>
     </div>
   </section>
 
@@ -2994,13 +3035,16 @@
     <div class="container" style="position:relative;">
       <p class="cta-code">&lt;first_class free=&quot;true&quot;&gt;</p>
       <h2>第一堂課，免費體驗</h2>
-      <p>所有常態課程皆可免費試聽——讓孩子親自感受，再決定要不要開始。</p>
+      <p>多數常態課程皆可免費試聽——讓孩子親自感受，再決定要不要開始。</p>
       <a href="https://orangeapple.co/contact" class="btn-primary">取得免費試聽</a>
       <p class="cta-sub">或來電 <a href="tel:+886277098229">(02) 7709-8229</a>，由專人為您規劃</p>
     </div>
   </section>
 
   <!-- Rails Layout 會把全站頁尾注入這裡 -->
+  <!-- 手機常駐浮動 CTA -->
+  <a href="https://orangeapple.co/contact" class="sticky-cta">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></a>
+
   <oa-footer></oa-footer>
 
   <script>
