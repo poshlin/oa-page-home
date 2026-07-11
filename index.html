@@ -739,7 +739,7 @@
     }
     .ms.m1 .ms-dot { background: var(--teal); }
     .ms.m2 .ms-dot { background: var(--orange); }
-    .ms.m3 .ms-dot { background: var(--navy); }
+    .ms.m3 .ms-dot { background: var(--dark); }
     .ms-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-top: 8px; }
     .ms-title { font-size: 21px; font-weight: 800; color: var(--text); line-height: 1.2; }
     .ms-tag { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--gray); }
@@ -1007,10 +1007,10 @@
     .proof-head p { color: var(--gray); font-size: 16px; line-height: 1.9; }
     .proof-head p strong { color: var(--orange-dark); font-weight: 800; }
     .proof-stats {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
+      max-width: 600px;
       margin: 24px auto 0;
     }
     .proof-stat {
@@ -1020,9 +1020,11 @@
       padding: 8px 16px;
       display: flex;
       align-items: baseline;
+      justify-content: center;
       gap: 8px;
       box-shadow: var(--e1);
     }
+    @media (max-width: 560px) { .proof-stats { grid-template-columns: 1fr; max-width: 320px; } }
     .proof-stat strong { font-family: var(--mono); color: var(--orange-dark); font-size: 14px; font-weight: 700; }
     .proof-stat span { color: var(--gray); font-size: 12px; }
 
@@ -2077,7 +2079,8 @@
     .camps-chip { border-color: rgba(18,21,30,0.5); }
     .cta .btn-primary, .camps .btn-primary { color: var(--dark); }
     .video-card.outcome .video-eyebrow { color: var(--orange) !important; }
-    .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--navy); }
+    .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--dark); }
+    .ms.m3 .ms-dot { color: #fff; }
     .ms-title { margin: 0; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
