@@ -960,32 +960,39 @@
     .results-header p { color: var(--gray); margin-top: 14px; font-size: 16px; }
     .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .result-card {
-      background: rgba(255,255,255,0.92);
+      background: #fff;
       border: 1px solid var(--line-soft);
       border-radius: var(--r-md);
-      padding: 28px 28px 24px;
+      padding: 26px 28px 24px;
       text-decoration: none;
       min-height: 230px;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--e2);
+      box-shadow: var(--e1);
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+    /* 每張卡一種「分類色」：左緣 3px 色條（取代舊的四張同色橘→青彩虹頂條）*/
     .result-card::before {
       content: '';
       position: absolute;
-      left: 0; right: 0; top: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--orange), var(--teal));
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--rc, var(--orange));
     }
     .result-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,163,0,0.32);
+      transform: translateY(-4px);
       box-shadow: var(--e2);
     }
-    /* result accent bar unified (single orange→teal) across all four cards */
+    .result-card.rc-orange { --rc: var(--orange); }
+    .result-card.rc-teal   { --rc: var(--teal); }
+    .result-card.rc-coral  { --rc: var(--coral); }
+    .result-card.rc-navy   { --rc: var(--navy); }
+    .result-card.rc-orange .result-label, .result-card.rc-orange .result-action { color: var(--orange-ink); }
+    .result-card.rc-teal   .result-label, .result-card.rc-teal   .result-action { color: var(--teal-ink); }
+    .result-card.rc-coral  .result-label, .result-card.rc-coral  .result-action { color: var(--coral-ink); }
+    .result-card.rc-navy   .result-label, .result-card.rc-navy   .result-action { color: var(--navy); }
     .result-label {
       font-family: var(--mono);
       font-size: 12px;
@@ -1037,11 +1044,15 @@
     .proof-stat span { color: var(--gray); font-size: 12px; }
 
     .honor-wallwrap { position: relative; }
-    .honor-wallwrap::before, .honor-wallwrap::after {
-      content: ''; position: absolute; top: 0; bottom: 0; width: 56px; z-index: 2; pointer-events: none;
+    /* 邊緣淡出：用 mask 溶掉內容本身（自動適應背景色），左右由 CSS 變數 --fl/--fr 控制 */
+    .honor-wall, .reviews-track {
+      --fade: 3rem; --fl: 0px; --fr: 0px;
+      -webkit-mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+              mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
     }
-    .honor-wallwrap::before { left: 0; background: linear-gradient(90deg, var(--light), rgba(250,249,246,0)); }
-    .honor-wallwrap::after { right: 0; background: linear-gradient(270deg, var(--light), rgba(250,249,246,0)); }
+    /* 榮譽牆（有限清單）：淡出隨捲動位置動態開關——最左端只留右淡出、最右端只留左淡出、中間兩側都在 */
+    .honor-wallwrap.fade-l .honor-wall { --fl: var(--fade); }
+    .honor-wallwrap.fade-r .honor-wall { --fr: var(--fade); }
     .honor-wall {
       display: grid;
       grid-template-rows: repeat(2, auto);
@@ -1151,24 +1162,8 @@
       margin-top: -6px;
       overflow: hidden;
     }
-    .reviews-track-wrap::before,
-    .reviews-track-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 44px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .reviews-track-wrap::before {
-      left: 0;
-      background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0) 100%);
-    }
-    .reviews-track-wrap::after {
-      right: 0;
-      background: linear-gradient(270deg, #fff 0%, rgba(255,255,255,0) 100%);
-    }
+    /* 評論（無限迴圈、永遠在中段）：兩側淡出常亮，寬度與榮譽牆統一（--fade）*/
+    .reviews-track { --fl: var(--fade); --fr: var(--fade); }
     .reviews-track {
       display: flex;
       gap: 20px;
@@ -2507,25 +2502,25 @@
         </div>
       </div>
       <div class="result-grid">
-        <a href="https://www.youtube.com/watch?v=QL6EXBbQbDs&amp;t=58s" class="result-card" target="_blank" rel="noopener">
+        <a href="https://www.youtube.com/watch?v=QL6EXBbQbDs&amp;t=58s" class="result-card rc-orange" target="_blank" rel="noopener">
           <span class="result-label">APCS 檢定</span>
           <h3>APCS 佳績，錄取清大資工</h3>
           <p>橘蘋學員以 APCS 檢定優異成績，透過個人申請錄取國立清華大學資訊工程學系——程式能力直接成為升學的敲門磚。</p>
           <span class="result-action">觀看黃昱嘉錄取經驗分享 →</span>
         </a>
-        <a href="https://orangeapple.co/articles/%E5%85%8D%E8%80%83%E5%AD%B8%E6%B8%AC%E6%8F%90%E6%97%A9%E5%8D%8A%E5%B9%B4%E9%8C%84%E5%8F%96%E4%BA%A4%E5%A4%A7%E8%B3%87%E5%B7%A5%EF%BC%81%E4%BB%96%E6%80%8E%E9%BA%BC%E8%BE%A6%E5%88%B0%E7%9A%84%EF%BC%9F" class="result-card">
+        <a href="https://orangeapple.co/articles/%E5%85%8D%E8%80%83%E5%AD%B8%E6%B8%AC%E6%8F%90%E6%97%A9%E5%8D%8A%E5%B9%B4%E9%8C%84%E5%8F%96%E4%BA%A4%E5%A4%A7%E8%B3%87%E5%B7%A5%EF%BC%81%E4%BB%96%E6%80%8E%E9%BA%BC%E8%BE%A6%E5%88%B0%E7%9A%84%EF%BC%9F" class="result-card rc-teal">
           <span class="result-label">特殊選才</span>
           <h3>百川計畫，錄取陽明交大</h3>
           <p>學員透過陽明交通大學「百川計畫」特殊選才管道錄取資工系，用程式作品與實作能力證明自己，不只靠考試分數。</p>
           <span class="result-action">閱讀交大資工案例 →</span>
         </a>
-        <a href="https://techorange.com/2017/08/14/9-years-old-boy-for-tw-to-scratch-china/" class="result-card" target="_blank" rel="noopener">
+        <a href="https://techorange.com/2017/08/14/9-years-old-boy-for-tw-to-scratch-china/" class="result-card rc-coral" target="_blank" rel="noopener">
           <span class="result-label">媒體報導</span>
           <h3>9 歲學員，代表台灣挑戰 Scratch</h3>
           <p>橘蘋學員以 Scratch 創作能力登上科技媒體報導，從國小階段就把程式作品帶到更大的舞台——不是只會上課，而是能被看見。</p>
           <span class="result-action">閱讀科技橘報報導 →</span>
         </a>
-        <a href="https://orangeapple.co/articles/15%E6%AD%B2%E5%9C%8B%E4%B8%AD%E7%94%9F%E5%B9%AB%E5%8D%9A%E7%89%A9%E9%A4%A8%E9%96%8B%E7%99%BC%E9%81%8A%E6%88%B2" class="result-card">
+        <a href="https://orangeapple.co/articles/15%E6%AD%B2%E5%9C%8B%E4%B8%AD%E7%94%9F%E5%B9%AB%E5%8D%9A%E7%89%A9%E9%A4%A8%E9%96%8B%E7%99%BC%E9%81%8A%E6%88%B2" class="result-card rc-navy">
           <span class="result-label">真實專案</span>
           <h3>為國立臺灣史前文化博物館開發遊戲</h3>
           <p>橘蘋學員團隊為史前博物館開發「玩程式・學工藝」互動遊戲——學程式不只是練習題，而是做出真實世界會用到的作品。</p>
@@ -3439,10 +3434,22 @@
       var wall = document.getElementById('honorWall');
       var prev = document.getElementById('honorPrev');
       var next = document.getElementById('honorNext');
-      if (!wall || !prev || !next) return;
+      if (!wall) return;
+      var wrap = wall.closest('.honor-wallwrap');
       function page(dir) { wall.scrollLeft += dir * Math.round(wall.clientWidth * 0.85); }
-      prev.addEventListener('click', function () { page(-1); });
-      next.addEventListener('click', function () { page(1); });
+      if (prev) prev.addEventListener('click', function () { page(-1); });
+      if (next) next.addEventListener('click', function () { page(1); });
+      /* 邊緣淡出：隨捲動位置動態開關左右 */
+      function updateFade() {
+        if (!wrap) return;
+        var max = wall.scrollWidth - wall.clientWidth;
+        var x = wall.scrollLeft;
+        wrap.classList.toggle('fade-l', x > 1);
+        wrap.classList.toggle('fade-r', x < max - 1);
+      }
+      wall.addEventListener('scroll', updateFade, { passive: true });
+      window.addEventListener('resize', updateFade);
+      updateFade();
     })();
   </script>
 
