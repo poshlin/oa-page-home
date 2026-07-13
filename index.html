@@ -1062,9 +1062,8 @@
       -webkit-mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
               mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
     }
-    /* 榮譽牆（有限清單）：淡出隨捲動位置動態開關——最左端只留右淡出、最右端只留左淡出、中間兩側都在 */
-    .honor-wallwrap.fade-l .honor-wall { --fl: var(--fade); }
-    .honor-wallwrap.fade-r .honor-wall { --fr: var(--fade); }
+    /* 榮譽牆：兩側淡出常亮、左右對稱（與評論一致），一載入就邀請家長往左右滑 */
+    .honor-wall { --fl: var(--fade); --fr: var(--fade); }
     .honor-wall {
       display: grid;
       grid-template-rows: repeat(2, auto);
@@ -3450,22 +3449,10 @@
       var wall = document.getElementById('honorWall');
       var prev = document.getElementById('honorPrev');
       var next = document.getElementById('honorNext');
-      if (!wall) return;
-      var wrap = wall.closest('.honor-wallwrap');
+      if (!wall || !prev || !next) return;
       function page(dir) { wall.scrollLeft += dir * Math.round(wall.clientWidth * 0.85); }
-      if (prev) prev.addEventListener('click', function () { page(-1); });
-      if (next) next.addEventListener('click', function () { page(1); });
-      /* 邊緣淡出：隨捲動位置動態開關左右 */
-      function updateFade() {
-        if (!wrap) return;
-        var max = wall.scrollWidth - wall.clientWidth;
-        var x = wall.scrollLeft;
-        wrap.classList.toggle('fade-l', x > 1);
-        wrap.classList.toggle('fade-r', x < max - 1);
-      }
-      wall.addEventListener('scroll', updateFade, { passive: true });
-      window.addEventListener('resize', updateFade);
-      updateFade();
+      prev.addEventListener('click', function () { page(-1); });
+      next.addEventListener('click', function () { page(1); });
     })();
   </script>
 
