@@ -2030,11 +2030,20 @@
     /* 九階段預設收合（漸進揭露，讓中段變輕）*/
     .roadmap-detail > .map-panel { margin-top: var(--s6); }
     .roadmap-detail:not([open]) > .map-panel { display: none; }
-    .roadmap-summary { cursor: pointer; text-align: center; font-size: 14px; font-weight: 700; color: var(--orange-dark); background: var(--orange-light); border: 1px solid rgba(255,163,0,0.22); border-radius: var(--r-pill); padding: 12px 26px; max-width: 620px; margin: 0 auto; list-style: none; transition: background 0.2s; }
+    .roadmap-summary { cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; text-align: left; background: #fff; border: 2px solid var(--orange); border-radius: var(--r-md); padding: 14px 16px 14px 20px; max-width: 620px; margin: 0 auto; list-style: none; box-shadow: var(--e1); transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s; }
     .roadmap-summary::-webkit-details-marker { display: none; }
-    .roadmap-summary:hover { background: #FCE7BF; }
-    .roadmap-summary-icon { display: inline-block; margin-left: 8px; font-weight: 800; transition: transform 0.2s; }
-    .roadmap-detail[open] .roadmap-summary-icon { transform: rotate(45deg); }
+    .roadmap-summary:hover { box-shadow: var(--e2); transform: translateY(-1px); border-color: var(--orange-deep); }
+    .roadmap-summary:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 2px; }
+    .roadmap-summary-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .roadmap-summary-lead { font-size: 15px; font-weight: 800; color: var(--dark); }
+    .roadmap-summary-sub { font-size: 12px; font-weight: 600; color: var(--gray); font-family: var(--mono); }
+    .roadmap-summary-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: var(--orange); color: var(--dark); font-size: 13px; font-weight: 800; padding: 8px 14px; border-radius: var(--r-pill); }
+    .roadmap-summary-chevron { transition: transform 0.25s; }
+    .roadmap-detail[open] .roadmap-summary-chevron { transform: rotate(180deg); }
+    .rs-txt-open { display: none; }
+    .roadmap-detail[open] .rs-txt-closed { display: none; }
+    .roadmap-detail[open] .rs-txt-open { display: inline; }
+    @media (max-width: 560px) { .roadmap-summary { padding: 12px 12px 12px 16px; gap: 10px; } .roadmap-summary-sub { font-size: 11px; } .roadmap-summary-btn { padding: 7px 11px; font-size: 12px; } }
     .roadmap-detail[open] .map-flow.js-reveal .ms,
     .roadmap-detail[open] .map-flow.js-reveal .ms .ms-dot { opacity: 1 !important; transform: none !important; }
 
@@ -2073,12 +2082,12 @@
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
     .hero-label strong, .c-orange .path-grade, .c-orange .path-arrow,
-    .result-action, .roadmap-summary, .trust-proof-label, .quickqa-card.cost strong,
+    .result-action, .trust-proof-label, .quickqa-card.cost strong,
     .proof-head p strong, .hero-promise b, .intro p strong,
     .video-card.outcome .video-eyebrow { color: var(--orange); }
     .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .c-teal .path-arrow, .county-tag.rc { color: var(--teal-ink); }
     .htile .badge.t-cert { background: var(--teal-ink); }
-    .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b, .roadmap-summary-icon { color: var(--orange); }
+    .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b { color: var(--orange); }
     .c-coral .path-grade, .c-coral .path-arrow, .county-tag.rs { color: var(--coral-ink); }
     .video-tags span { color: #5A606B; }
     .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--dark); }
@@ -2290,7 +2299,17 @@
         </div>
       </div>
       <details class="roadmap-detail">
-        <summary class="roadmap-summary">看完整九階段學習路徑（Scratch → Python → JavaScript → 資料庫 → 演算法 → AI）<span class="roadmap-summary-icon">＋</span></summary>
+        <summary class="roadmap-summary">
+          <span class="roadmap-summary-main">
+            <span class="roadmap-summary-lead">看完整九階段學習路徑</span>
+            <span class="roadmap-summary-sub">Scratch → Python → JavaScript → 資料庫 → 演算法 → AI</span>
+          </span>
+          <span class="roadmap-summary-btn">
+            <span class="rs-txt-closed">展開全部</span>
+            <span class="rs-txt-open">收合</span>
+            <svg class="roadmap-summary-chevron" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </summary>
       <div class="map-panel">
         <div class="map-flow">
 
