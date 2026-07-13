@@ -735,7 +735,8 @@
       display: grid;
       grid-template-columns: 52px 1fr;
       column-gap: 22px;
-      padding-bottom: 32px;
+      align-items: start;
+      padding-bottom: 16px;
     }
     .ms:last-child { padding-bottom: 0; }
     .ms-dot {
@@ -755,7 +756,14 @@
     .ms.m1 .ms-dot { background: var(--teal); }
     .ms.m2 .ms-dot { background: var(--orange); }
     .ms.m3 .ms-dot { background: var(--dark); }
-    .ms-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-top: 8px; }
+    .ms-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 52px; padding: 4px 42px 4px 2px; cursor: pointer; list-style: none; position: relative; border-radius: 10px; transition: background 0.15s; }
+    .ms-head::-webkit-details-marker { display: none; }
+    .ms-head:hover { background: var(--light); }
+    .ms-head:hover .ms-title, .ms-acc[open] .ms-title { color: var(--orange-deep); }
+    .ms-head:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 2px; }
+    .ms-chevron { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); color: var(--gray); transition: transform 0.25s; flex-shrink: 0; }
+    .ms-acc[open] .ms-chevron { transform: translateY(-50%) rotate(180deg); }
+    .ms-reveal { padding-top: 2px; }
     .ms-title { font-size: 21px; font-weight: 800; color: var(--text); line-height: 1.2; }
     .ms-tag { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--gray); }
     .ms-desc { color: var(--gray); font-size: 14px; line-height: 1.75; margin: 8px 0 0; max-width: 660px; }
@@ -2086,25 +2094,11 @@
       .kd-labelwrap { flex: 1; max-width: none; }
       .kd-label { white-space: normal; }
     }
-    /* 九階段預設收合（漸進揭露，讓中段變輕）*/
-    .roadmap-detail > .map-panel { margin-top: var(--s6); }
-    .roadmap-detail:not([open]) > .map-panel { display: none; }
-    .roadmap-summary { cursor: pointer; display: flex; align-items: center; gap: 20px; text-align: left; background: #fff; border: 2px solid var(--orange); border-radius: var(--r-md); padding: 14px 18px 14px 22px; width: fit-content; max-width: 100%; margin: 0 auto; list-style: none; box-shadow: var(--e1); transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s; }
-    .roadmap-summary::-webkit-details-marker { display: none; }
-    .roadmap-summary:hover { box-shadow: var(--e2); transform: translateY(-1px); border-color: var(--orange-deep); }
-    .roadmap-summary:focus-visible { outline: 3px solid var(--orange-deep); outline-offset: 2px; }
-    .roadmap-summary-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-    .roadmap-summary-lead { font-size: 15px; font-weight: 800; color: var(--dark); }
-    .roadmap-summary-sub { font-size: 12px; font-weight: 600; color: var(--gray); font-family: var(--mono); }
-    .roadmap-summary-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: var(--orange); color: var(--dark); font-size: 13px; font-weight: 800; padding: 8px 14px; border-radius: var(--r-pill); }
-    .roadmap-summary-chevron { transition: transform 0.25s; }
-    .roadmap-detail[open] .roadmap-summary-chevron { transform: rotate(180deg); }
-    .rs-txt-open { display: none; }
-    .roadmap-detail[open] .rs-txt-closed { display: none; }
-    .roadmap-detail[open] .rs-txt-open { display: inline; }
-    @media (max-width: 560px) { .roadmap-summary { padding: 12px 12px 12px 16px; gap: 10px; } .roadmap-summary-sub { font-size: 11px; } .roadmap-summary-btn { padding: 7px 11px; font-size: 12px; } }
-    .roadmap-detail[open] .map-flow.js-reveal .ms,
-    .roadmap-detail[open] .map-flow.js-reveal .ms .ms-dot { opacity: 1 !important; transform: none !important; }
+    /* 九階段細節：3 里程碑各自展開（預設全收合）*/
+    .map-panel { margin-top: var(--s6); }
+    .map-panel-head { text-align: center; margin-bottom: 26px; }
+    .map-panel-lead { font-size: clamp(19px, 2.4vw, 22px); font-weight: 900; color: var(--dark); }
+    .map-panel-sub { font-size: 13px; color: var(--gray); margin-top: 8px; line-height: 1.7; }
 
     /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
     .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
@@ -2353,28 +2347,22 @@
           <div class="kd-stop kd-goal"><img class="kd-char" src="assets/mascot/kd-grad.png" width="120" height="120" alt="" loading="lazy"><div class="kd-node">8</div><div class="kd-labelwrap"><div class="kd-label">升學成果</div><div class="kd-desc">錄取理想校系</div></div></div>
         </div>
       </div>
-      <details class="roadmap-detail">
-        <summary class="roadmap-summary">
-          <span class="roadmap-summary-main">
-            <span class="roadmap-summary-lead">孩子每一階會學到什麼？</span>
-            <span class="roadmap-summary-sub">玩創啟蒙 → 菁英九階 → 升學認證（含能力補強支線）</span>
-          </span>
-          <span class="roadmap-summary-btn">
-            <span class="rs-txt-closed">展開全部</span>
-            <span class="rs-txt-open">收合</span>
-            <svg class="roadmap-summary-chevron" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </span>
-        </summary>
       <div class="map-panel">
+        <div class="map-panel-head">
+          <h3 class="map-panel-lead">孩子每一階會學到什麼？</h3>
+          <p class="map-panel-sub">點開下面三段，看每一階段的課程內容與銜接：玩創啟蒙 → 菁英九階 → 升學認證。</p>
+        </div>
         <div class="map-flow">
 
           <div class="ms m1">
             <div class="ms-dot">01</div>
-            <div class="ms-body">
-              <div class="ms-head">
+            <details class="ms-body ms-acc">
+              <summary class="ms-head">
                 <h3 class="ms-title">探索入口</h3>
                 <span class="ms-tag">// 1-9 年級・玩創與遊戲</span>
-              </div>
+                <svg class="ms-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="ms-reveal">
               <p class="ms-desc">低年級不必急著背語法，先用遊戲、手作與圖像化任務，建立序列、迴圈、條件與規則感。</p>
               <div class="ms-content">
                 <div class="entry-grid">
@@ -2402,16 +2390,19 @@
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
+            </details>
           </div>
 
           <div class="ms m2">
             <div class="ms-dot">02</div>
-            <div class="ms-body">
-              <div class="ms-head">
+            <details class="ms-body ms-acc">
+              <summary class="ms-head">
                 <h3 class="ms-title">菁英九階段主幹</h3>
                 <span class="ms-tag">// 4 年級以上・九階一條龍</span>
-              </div>
+                <svg class="ms-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="ms-reveal">
               <p class="ms-desc">從 Scratch 到 Python、JavaScript、HTML/CSS、資料庫、演算法與 AI，完整建立作品力、解題力與軟體開發觀念。標示 <strong>ITS</strong> 者為國際認證銜接點。</p>
               <div class="ms-content">
                 <div class="stage-track" aria-label="菁英九階段">
@@ -2434,16 +2425,19 @@
                   <a href="https://orangeapple.co/articles/its-ct-cert">運算思維</a>
                 </div>
               </div>
-            </div>
+              </div>
+            </details>
           </div>
 
           <div class="ms m3">
             <div class="ms-dot">03</div>
-            <div class="ms-body">
-              <div class="ms-head">
+            <details class="ms-body ms-acc">
+              <summary class="ms-head">
                 <h3 class="ms-title">成果出口</h3>
                 <span class="ms-tag">// 國高中・升學與競賽</span>
-              </div>
+                <svg class="ms-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </summary>
+              <div class="ms-reveal">
               <p class="ms-desc">完整打底後，孩子把作品能力、檢定成績與學習歷程，轉化成更清楚的升學與競賽成果。</p>
               <div class="ms-content">
                 <div class="exit-grid">
@@ -2467,7 +2461,8 @@
                   </a>
                 </div>
               </div>
-            </div>
+              </div>
+            </details>
           </div>
 
         </div>
@@ -2492,7 +2487,6 @@
 
         <p class="map-endnote">菁英九階段修畢後，孩子將具備完整程式作品力、解題力與 AI 應用基礎；再依年級、目標與升學需求，銜接 ITS、APCS 或選手班。</p>
       </div>
-      </details>
     </div>
   </section>
 
