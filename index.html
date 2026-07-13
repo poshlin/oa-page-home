@@ -3455,6 +3455,10 @@
       function page(dir) { wall.scrollLeft += dir * Math.round(wall.clientWidth * 0.85); }
       prev.addEventListener('click', function () { page(-1); });
       next.addEventListener('click', function () { page(1); });
+      /* 初始往右捲一點，讓最左那張也露出「半截卡」——左右兩緣對稱 peek，暗示兩邊都能滑 */
+      var sb = wall.style.scrollBehavior; wall.style.scrollBehavior = 'auto';
+      wall.scrollLeft = 104;
+      wall.style.scrollBehavior = sb;
     })();
   </script>
 
