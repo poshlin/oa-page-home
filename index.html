@@ -1990,18 +1990,30 @@
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
       .reviews-controls { margin-top: 10px; }
-      .videos-grid { grid-template-columns: 1fr; }
-      .video-card.featured {
-        grid-column: auto;
-        grid-row: auto;
-        min-height: 0;
-      }
-      .video-card.featured .video-copy { padding: 22px; }
-      .video-card { min-height: 0; }
+      /* 影片：7 支改橫向左滑（露半截當提示），不再藏卡、不再另給 YouTube 連結 */
+      .videos-grid { display: flex; grid-template-columns: none; gap: 14px; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        margin: 0 -24px; padding: 2px 24px 12px; }
+      .videos-grid::-webkit-scrollbar { display: none; }
+      .videos-grid > .video-card { flex: 0 0 80%; scroll-snap-align: start; min-height: 0; }
+      /* 左滑裡 featured 回歸一般卡尺寸，7 張等高不參差 */
+      .video-card.featured { grid-column: auto; grid-row: auto; min-height: 0; }
+      .videos-grid > .video-card.featured .video-copy { padding: 18px 18px 20px; }
+      .videos-grid > .video-card.featured .video-title { font-size: 18px; min-height: 46px; }
+      .videos-grid > .video-card.featured .video-desc { min-height: 44px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .videos-grid > .video-card.featured .video-tags span:nth-child(n+3) { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
       .stat-item { padding: 16px; }
-      .trust-grid { grid-template-columns: 1fr; }
+      /* 品保協會 + 教學據點：兩張卡改橫向左滑 */
+      .trust-grid { display: flex; grid-template-columns: none; gap: 14px; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        margin: 0 -24px; padding: 2px 24px 12px; }
+      .trust-grid::-webkit-scrollbar { display: none; }
+      .trust-grid > .trust-card { flex: 0 0 88%; scroll-snap-align: start; }
+      /* 地圖卡：手機改直式堆疊（地圖置頂縮小），避免文字/吉隆坡 stat 被擠爆切掉 */
+      .trust-map-layout { grid-template-columns: 1fr; gap: 14px; }
+      .trust-map-layout img { max-width: 150px; margin: 0 auto; display: block; }
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
       .faq-sticky { position: relative; top: auto; }
     }
@@ -2102,11 +2114,6 @@
 
     /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
     .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
-    .videos-more-m { display: none; }
-    @media (max-width: 760px) {
-      .video-card.m-hide { display: none; }
-      .videos-more-m { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; margin-top: var(--s5); padding: 14px 20px; border-radius: var(--r-pill); border: 1px solid var(--border); background: #fff; color: var(--navy); font-weight: 700; font-size: 15px; text-decoration: none; }
-    }
 
     /* ══════════ 手機常駐浮動 CTA（心動那刻能馬上行動）══════════ */
     .sticky-cta {
@@ -2924,7 +2931,7 @@
             <span class="video-tags"><span>Scratch</span><span>階段式地圖</span><span>成績進步</span></span>
           </span>
         </button>
-        <button type="button" class="video-card m-hide" data-yt="vBKLmm7a8Ig" aria-label="播放家長訪談影片：慕唯的學習故事">
+        <button type="button" class="video-card" data-yt="vBKLmm7a8Ig" aria-label="播放家長訪談影片：慕唯的學習故事">
           <span class="video-thumb"><img width="1280" height="720" src="https://i.ytimg.com/vi/vBKLmm7a8Ig/hq720.jpg" alt="家長訪談影片：慕唯的學習故事" loading="lazy">
             <span class="video-play"></span></span>
           <span class="video-copy">
@@ -2944,7 +2951,7 @@
             <span class="video-tags"><span>APCS</span><span>升學目標</span><span>主動學習</span></span>
           </span>
         </button>
-        <button type="button" class="video-card m-hide" data-yt="Dr_BiKDhL3o" aria-label="播放家長訪談影片：孩子主動想做遊戲">
+        <button type="button" class="video-card" data-yt="Dr_BiKDhL3o" aria-label="播放家長訪談影片：孩子主動想做遊戲">
           <span class="video-thumb"><img width="1280" height="720" src="https://i.ytimg.com/vi/Dr_BiKDhL3o/hq720.jpg" alt="家長訪談影片：孩子主動想做遊戲" loading="lazy">
             <span class="video-play"></span></span>
           <span class="video-copy">
@@ -2954,7 +2961,7 @@
             <span class="video-tags"><span>遊戲創作</span><span>主動探索</span><span>長期學習</span></span>
           </span>
         </button>
-        <button type="button" class="video-card m-hide" data-yt="_exNE-2QSPI" aria-label="播放家長訪談影片：程式訓練孩子的思考方式">
+        <button type="button" class="video-card" data-yt="_exNE-2QSPI" aria-label="播放家長訪談影片：程式訓練孩子的思考方式">
           <span class="video-thumb"><img width="1280" height="720" src="https://i.ytimg.com/vi/_exNE-2QSPI/hq720.jpg" alt="家長訪談影片：程式訓練孩子的思考方式" loading="lazy">
             <span class="video-play"></span></span>
           <span class="video-copy">
@@ -2975,7 +2982,6 @@
           </span>
         </button>
       </div>
-      <a class="videos-more-m" href="https://www.youtube.com/@OrangeAppleTW" target="_blank" rel="noopener">在 YouTube 看更多學員故事 →</a>
       <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
         <div class="video-dialog" role="dialog" aria-modal="true" aria-label="家長訪談影片播放器">
           <button type="button" class="video-close" id="videoClose" aria-label="關閉影片">×</button>
