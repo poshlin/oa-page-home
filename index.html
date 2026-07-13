@@ -569,9 +569,6 @@
       border-radius: var(--r-sm);
       font-weight: 700;
     }
-    .intro-more { margin-top: 20px; font-size: 14px; }
-    .intro-more a { color: var(--link); text-decoration: underline; font-weight: 400; }
-    .intro-more a:hover { color: var(--teal-dark); }
 
     /* ══════════ 4. 年齡分流三卡（三色）══════════ */
     .pathfinder {
@@ -1960,7 +1957,12 @@
       .pathfinder-header { display: block; text-align: center; }
       .pathfinder-copy { text-align: center; }
       .pathfinder-helper { display: none; }
-      .path-grid { grid-template-columns: 1fr; gap: 44px; }
+      /* 課程階梯：直排太長 → 改橫向左滑（露半截當提示） */
+      .path-grid { display: flex; grid-template-columns: none; gap: 16px; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        margin: 0 -24px; padding: 2px 24px 14px; }
+      .path-grid::-webkit-scrollbar { display: none; }
+      .path-grid > .path-card { flex: 0 0 80%; scroll-snap-align: start; }
       .camps-inner { flex-direction: column; align-items: flex-start; }
       .map-panel { padding: 24px; }
       .ms { column-gap: 16px; }
@@ -1970,7 +1972,12 @@
       .map-support { grid-template-columns: 1fr; }
       .classroom-inner { grid-template-columns: 1fr; gap: 56px; }
       .classroom-img-2 { bottom: -24px; }
-      .result-grid { grid-template-columns: 1fr; }
+      /* 成果卡：直排太長 → 改橫向左滑（露半截當提示） */
+      .result-grid { display: flex; grid-template-columns: none; gap: 14px; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+        margin: 0 -24px; padding: 2px 24px 14px; }
+      .result-grid::-webkit-scrollbar { display: none; }
+      .result-grid > .result-card { flex: 0 0 82%; scroll-snap-align: start; }
       .honor-wall { grid-auto-columns: 172px; }
       .review-card { flex-basis: 280px; min-height: 280px; }
       .reviews-nav { display: none; }
@@ -2275,7 +2282,6 @@
           提供從 <span class="intro-code">Scratch</span> 到 <span class="intro-code">AI</span> 的九階段完整課程體系，<br>
           全台 <strong>12 縣市直營教學據點</strong>、線上覆蓋全台 22 縣市，累計超過 <strong>10 萬名學生</strong>。
         </p>
-        <p class="intro-more">想看更多橘蘋觀點與媒體故事？<a href="https://orangeapple.co/articles">閱讀橘蘋觀點 →</a></p>
       </div>
     </div>
   </section>
