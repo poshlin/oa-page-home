@@ -3455,10 +3455,32 @@
       function page(dir) { wall.scrollLeft += dir * Math.round(wall.clientWidth * 0.85); }
       prev.addEventListener('click', function () { page(-1); });
       next.addEventListener('click', function () { page(1); });
-      /* 初始往右捲一點，讓最左那張也露出「半截卡」——左右兩緣對稱 peek，暗示兩邊都能滑 */
-      var sb = wall.style.scrollBehavior; wall.style.scrollBehavior = 'auto';
-      wall.scrollLeft = 104;
-      wall.style.scrollBehavior = sb;
+
+      var originals = Array.prototype.slice.call(wall.querySelectorAll('.htile'));
+      var N = originals.length;
+      if (N < 4) return; /* 太少不做迴圈，只保留按鈕 */
+
+      /* 前後各複製一份 → [複製][原始][複製]，無縫無限迴圈：左右兩緣永遠露出真實半截卡、對稱，第一位學生完整可見 */
+      wall.style.scrollSnapType = 'none';
+      originals.forEach(function (t) { var c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); wall.appendChild(c); });
+      originals.slice().reverse().forEach(function (t) { var c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); wall.insertBefore(c, wall.firstChild); });
+
+      var all = Array.prototype.slice.call(wall.querySelectorAll('.htile'));
+      var PEEK = 104, copyW = 0, originStart = 0, jumping = false;
+      function measure() { originStart = all[N].offsetLeft; copyW = all[2 * N].offsetLeft - originStart; }
+      function setLeft(x) { var sb = wall.style.scrollBehavior; wall.style.scrollBehavior = 'auto'; wall.scrollLeft = x; wall.style.scrollBehavior = sb; }
+      function home() { measure(); setLeft(Math.max(0, originStart - PEEK)); }
+      function normalize() {
+        if (jumping || !copyW) return;
+        var x = wall.scrollLeft;
+        if (x < originStart - copyW * 0.5) { jumping = true; setLeft(x + copyW); jumping = false; }
+        else if (x > originStart + copyW * 0.5) { jumping = true; setLeft(x - copyW); jumping = false; }
+      }
+      var timer;
+      wall.addEventListener('scroll', function () { clearTimeout(timer); timer = setTimeout(normalize, 80); }, { passive: true });
+      window.addEventListener('resize', home);
+      requestAnimationFrame(home);
+      window.addEventListener('load', home); /* 圖片載完寬度會變，再定位一次 */
     })();
   </script>
 
