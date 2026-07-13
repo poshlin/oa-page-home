@@ -1061,8 +1061,8 @@
       -webkit-mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
               mask: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
     }
-    /* 榮譽牆：兩側淡出常亮、左右對稱（與評論一致），一載入就邀請家長往左右滑 */
-    .honor-wall { --fl: var(--fade); --fr: var(--fade); }
+    /* 榮譽牆：左緣永遠完整卡（不淡出）；右緣只在「還有更多」時淡出、當作往右滑的提示 */
+    .honor-wallwrap.more-right .honor-wall { --fr: var(--fade); }
     .honor-wall {
       display: grid;
       grid-template-rows: repeat(2, auto);
@@ -3452,35 +3452,19 @@
       var prev = document.getElementById('honorPrev');
       var next = document.getElementById('honorNext');
       if (!wall || !prev || !next) return;
+      var wrap = wall.closest('.honor-wallwrap');
       function page(dir) { wall.scrollLeft += dir * Math.round(wall.clientWidth * 0.85); }
       prev.addEventListener('click', function () { page(-1); });
       next.addEventListener('click', function () { page(1); });
-
-      var originals = Array.prototype.slice.call(wall.querySelectorAll('.htile'));
-      var N = originals.length;
-      if (N < 4) return; /* 太少不做迴圈，只保留按鈕 */
-
-      /* 前後各複製一份 → [複製][原始][複製]，無縫無限迴圈：左右兩緣永遠露出真實半截卡、對稱，第一位學生完整可見 */
-      wall.style.scrollSnapType = 'none';
-      originals.forEach(function (t) { var c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); wall.appendChild(c); });
-      originals.slice().reverse().forEach(function (t) { var c = t.cloneNode(true); c.setAttribute('aria-hidden', 'true'); wall.insertBefore(c, wall.firstChild); });
-
-      var all = Array.prototype.slice.call(wall.querySelectorAll('.htile'));
-      var PEEK = 104, copyW = 0, originStart = 0, jumping = false;
-      function measure() { originStart = all[N].offsetLeft; copyW = all[2 * N].offsetLeft - originStart; }
-      function setLeft(x) { var sb = wall.style.scrollBehavior; wall.style.scrollBehavior = 'auto'; wall.scrollLeft = x; wall.style.scrollBehavior = sb; }
-      function home() { measure(); setLeft(Math.max(0, originStart - PEEK)); }
-      function normalize() {
-        if (jumping || !copyW) return;
-        var x = wall.scrollLeft;
-        if (x < originStart - copyW * 0.5) { jumping = true; setLeft(x + copyW); jumping = false; }
-        else if (x > originStart + copyW * 0.5) { jumping = true; setLeft(x - copyW); jumping = false; }
+      /* 左緣永遠是完整卡（不淡出）；右緣只在「還有更多」時淡出，當往右滑的提示，滑到底右緣就乾淨 */
+      function updateFade() {
+        var more = wall.scrollLeft < wall.scrollWidth - wall.clientWidth - 4;
+        if (wrap) wrap.classList.toggle('more-right', more);
       }
-      var timer;
-      wall.addEventListener('scroll', function () { clearTimeout(timer); timer = setTimeout(normalize, 80); }, { passive: true });
-      window.addEventListener('resize', home);
-      requestAnimationFrame(home);
-      window.addEventListener('load', home); /* 圖片載完寬度會變，再定位一次 */
+      wall.addEventListener('scroll', updateFade, { passive: true });
+      window.addEventListener('resize', updateFade);
+      window.addEventListener('load', updateFade);
+      updateFade();
     })();
   </script>
 
