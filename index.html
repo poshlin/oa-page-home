@@ -2017,13 +2017,20 @@
     .quickqa { padding: var(--s9) 0 var(--s8); }
     .quickqa-head { text-align: center; margin-bottom: var(--s7); }
     .quickqa-head h2 { margin-top: 8px; }
-    .quickqa-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .quickqa-grid { display: flex; flex-direction: column; gap: 16px; }
+    .quickqa-scroll { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .quickqa-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 24px; box-shadow: var(--e1); }
     .quickqa-card h3 { font-size: 16px; font-weight: 800; color: var(--navy); margin: 0 0 8px; line-height: 1.35; }
     .quickqa-card p { font-size: 14px; line-height: 1.85; color: var(--gray); margin: 0; }
-    .quickqa-card.cost { grid-column: 1 / -1; background: var(--orange-light); border-color: rgba(255,163,0,0.25); }
+    .quickqa-card.cost { background: var(--orange-light); border-color: rgba(255,163,0,0.25); }
     .quickqa-card.cost strong { color: var(--orange-dark); }
-    @media (max-width: 760px) { .quickqa-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) {
+      /* 手機：4 張白卡改橫向左滑，費用卡留在下方 */
+      .quickqa-scroll { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -24px; padding: 2px 24px 12px; }
+      .quickqa-scroll::-webkit-scrollbar { display: none; }
+      .quickqa-scroll > .quickqa-card { flex: 0 0 80%; scroll-snap-align: start; }
+    }
 
     /* ══════════ 8.4 榮譽牆代表成果 marquee（先建立高度）══════════ */
     .honor-marquee { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: var(--s7); }
@@ -2208,6 +2215,7 @@
         <h2>還沒決定？先看家長最想知道的答案</h2>
       </div>
       <div class="quickqa-grid">
+        <div class="quickqa-scroll">
         <div class="quickqa-card">
           <h3>幾歲可以開始學程式？</h3>
           <p>國小一年級（約 6–7 歲）就能從圖像化的玩創系列啟蒙，零基礎完全可以。各年級都有適合的起點，且升上一個年段會<strong>自然銜接、不用重學</strong>（例如小三玩創、小四接 Scratch 菁英）。</p>
@@ -2224,6 +2232,7 @@
           <h3>可以先免費試聽嗎？</h3>
           <p>多數常態課程都能免費試聽。試聽後由顧問依孩子年齡與程度建議起點，不需當場決定，也不會硬推不適合的課。</p>
         </div>
+        </div><!-- /quickqa-scroll -->
         <div class="quickqa-card cost" id="fees">
           <h3>費用大概怎麼算？</h3>
           <p>課程會依孩子的<strong>年齡、程度、上課形式</strong>與適合的學習階段規劃。多數常態課程可<strong>先從單一階段開始</strong>、不必一次規劃多年課程。體驗或程度評估後，顧問會<strong>清楚提供課程內容、堂數與完整費用明細</strong>，不需當場決定，也不會硬推不適合的方案。</p>
