@@ -1593,6 +1593,8 @@
       padding: 8px 4px 8px 10px;
     }
     .award-strip-more:hover { text-decoration: underline; }
+    /* 兩個「看更多」連結獨立成一排、置中（不再黏在獎項膠囊那排右邊）*/
+    .award-strip-links { flex-basis: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 24px; margin-top: 6px; }
 
     /* ══════════ 11. 品保 + 據點（合併帶）══════════ */
     .trust { background: var(--light); padding: var(--s9) 0; }
@@ -2989,8 +2991,10 @@
         <span class="award-pill">品牌金舶獎<span class="y">2021</span></span>
         <span class="award-pill">親子天下教育新創 20+<span class="y">2020</span></span>
         <span class="award-pill">遠見專題報導<span class="y">2017</span></span>
-        <a href="https://orangeapple.co/articles" class="award-strip-more">看橘蘋觀點 →</a>
-        <a href="https://orangeapple.co/about" class="award-strip-more">品牌故事與媒體報導 →</a>
+        <div class="award-strip-links">
+          <a href="https://orangeapple.co/articles" class="award-strip-more">看橘蘋觀點 →</a>
+          <a href="https://orangeapple.co/about" class="award-strip-more">品牌故事與媒體報導 →</a>
+        </div>
       </div>
 
       <div class="trust-grid">
