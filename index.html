@@ -406,8 +406,16 @@
     .hero-promise { font-size: clamp(18px, 2.3vw, 23px); font-weight: 800; color: var(--dark); letter-spacing: -0.01em; line-height: 1.4; margin: 2px 0 22px; }
     .hero-promise b { color: var(--orange-dark); font-weight: 800; }
     .hero-mech { font-size: 14px; line-height: 1.7; color: var(--gray); margin: -14px 0 22px; max-width: 560px; }
-    .results-symbol { font-size: clamp(16px, 2vw, 20px); font-weight: 700; color: var(--dark); margin-top: 16px; line-height: 1.5; }
-    .results-symbol b { color: var(--orange); }
+    .results-symbol { max-width: 640px; margin: 24px auto 0; text-align: center; }
+    .rs-lead { font-size: 15px; font-weight: 700; color: var(--dark); margin: 0 0 16px; }
+    .rs-cases { display: inline-grid; gap: 11px; text-align: left; }
+    .rs-case { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: baseline; font-size: 16px; line-height: 1.55; }
+    .rs-name { position: relative; padding-left: 18px; font-weight: 800; color: var(--dark); white-space: nowrap; }
+    .rs-name::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); }
+    .rs-path { color: var(--dark); font-weight: 600; }
+    .results-symbol b { color: var(--orange); font-weight: 800; }
+    .rs-conclude { font-size: 15px; font-weight: 700; color: var(--dark); margin: 18px 0 0; }
+    @media (max-width: 560px) { .rs-case { font-size: 15px; } }
     .incontent-cta { text-align: center; padding: var(--s6) 0; }
 
     .btn-primary {
@@ -2489,7 +2497,14 @@
         <span class="tag tag-dark">// student_outcomes</span>
         <h2>橘蘋的孩子，走到了哪裡</h2>
         <p>不是「有學到東西」而已——是拿得出證據的成果。</p>
-        <p class="results-symbol">兩個橘蘋孩子、兩種起點：李明謙小學就來、一路長大，以百川計畫錄取 <b>陽明交大</b>；黃昱嘉高中才進來衝 APCS，錄取 <b>清大資工</b>。同一個體系，接得住每一種起點。</p>
+        <div class="results-symbol">
+          <p class="rs-lead">兩個橘蘋孩子、兩種起點</p>
+          <div class="rs-cases">
+            <div class="rs-case"><span class="rs-name">李明謙</span><span class="rs-path">小學就來、一路長大，以百川計畫錄取 <b>陽明交大</b></span></div>
+            <div class="rs-case"><span class="rs-name">黃昱嘉</span><span class="rs-path">高中才進來衝 APCS，錄取 <b>清大資工</b></span></div>
+          </div>
+          <p class="rs-conclude">同一個體系，接得住每一種起點。</p>
+        </div>
       </div>
       <div class="result-grid">
         <a href="https://www.youtube.com/watch?v=QL6EXBbQbDs&amp;t=58s" class="result-card" target="_blank" rel="noopener">
