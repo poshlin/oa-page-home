@@ -1388,13 +1388,10 @@
       width: 100%;
       max-width: 940px;
       margin: 0 auto;
-      border: 2px solid var(--orange);
+      border: 1px solid var(--line);
     }
     .video-card.featured .video-thumb { flex: 0 0 55%; }
-    .video-card.outcome {
-      border: 2px solid var(--orange-deep);
-      box-shadow: 0 12px 34px rgba(255,163,0,0.12), 0 10px 28px rgba(18,21,30,0.06);
-    }
+    /* outcome 與其他卡統一：灰框、統一深 scrim 封面（不再特別橘框/淺底）*/
     .video-thumb {
       position: relative;
       display: block;
@@ -1413,13 +1410,7 @@
       z-index: 1;
       pointer-events: none;
     }
-    .video-card.outcome .video-thumb::after { background: linear-gradient(to top, rgba(18,21,30,0.34), rgba(18,21,30,0.10) 55%, rgba(18,21,30,0.14)); }
     .video-card.featured .video-thumb { min-height: 0; }
-    .video-card.outcome .video-thumb {
-      background:
-        linear-gradient(135deg, rgba(255,248,232,0.95), rgba(255,231,191,0.92));
-      border-top: 4px solid var(--orange);
-    }
     .video-thumb img {
       width: 100%;
       height: 100%;
@@ -2038,7 +2029,9 @@
     @media (max-width: 600px) {
       .intro p br { display: none; }
       .intro-inner { text-align: left; }
-      .award-strip-inner { flex-direction: column; gap: 10px; }
+      .award-strip-inner { gap: 8px; }
+      .award-strip-label { flex-basis: 100%; text-align: center; margin: 0 0 2px; }
+      .award-pill { font-size: 12.5px; padding: 7px 12px; }
       .map-panel { padding: 18px 16px; }
       .map-flow::before { left: 20px; }
       .ms { grid-template-columns: 40px 1fr; column-gap: 14px; }
