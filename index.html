@@ -1898,6 +1898,16 @@
       transition: background 0.25s, color 0.25s;
     }
     .faq-item.open .faq-q::before { background: var(--orange); color: var(--dark); }
+    /* 手機：先顯示 5 題，「看更多問題」按鈕展開 6-10（保留垂直掃讀、無滑動衝突）*/
+    .faq-showmore { display: none; }
+    @media (max-width: 760px) {
+      .faq-list .faq-extra { display: none; }
+      .faq-list.show-all .faq-extra { display: block; }
+      .faq-showmore { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
+        margin-top: 14px; padding: 13px 20px; border-radius: var(--r-pill); border: 1px solid var(--border);
+        background: #fff; color: var(--navy); font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: var(--e1); }
+      .faq-showmore:hover { border-color: var(--orange); color: var(--orange-deep); }
+    }
     .faq-q .q-text { flex: 1; }
     .faq-icon {
       flex-shrink: 0;
@@ -3194,7 +3204,7 @@
               可以先從<strong>單一階段</strong>開始、不必一次承諾長期，每週的學習報告也能讓你及早看出孩子的狀態。若真的不適合，退費依「<a href="https://www.eqaa.org.tw/" target="_blank" rel="noopener">中華民國補教業品保協會</a>」的履約保證規範辦理，預付學費受制度保障。
             </div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item faq-extra">
             <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
               上課頻率是怎麼安排的？每堂多久？
               <span class="faq-icon">+</span>
@@ -3203,7 +3213,7 @@
               常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時、每階段 15 堂，低年級的頑皮艾伯特啟蒙課每堂約 50 分鐘、共 36 堂。孩子依自己的節奏穩定完成。
             </div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item faq-extra">
             <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
               線上課和實體課該怎麼選？
               <span class="faq-icon">+</span>
@@ -3212,7 +3222,7 @@
               雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合<a href="https://orangeapple.co/classroom">實體小班</a>；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，線上班級規模約 1:6 到 1:10。
             </div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item faq-extra">
             <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
               上課需要準備什麼設備？
               <span class="faq-icon">+</span>
@@ -3221,7 +3231,7 @@
               多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前顧問會依孩子選讀的課程，告知需要準備的設備。
             </div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item faq-extra">
             <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
               學程式對升學有什麼幫助？
               <span class="faq-icon">+</span>
@@ -3230,7 +3240,7 @@
               程式能力已納入升學管道：<a href="https://orangeapple.co/courses/apcs">APCS 檢測</a>成績可用於申請資工相關科系，橘蘋學員曾以 APCS 佳績錄取清大資工、透過百川計畫錄取陽明交大。<a href="https://orangeapple.co/courses/its">ITS 國際認證</a>則可放入學習歷程檔案。橘子蘋果是 ITS 官方考場，學員在 APCS、ITS 等國際與國家級認證屢創佳績。
             </div>
           </div>
-          <div class="faq-item">
+          <div class="faq-item faq-extra">
             <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
               預付學費有保障嗎？
               <span class="faq-icon">+</span>
@@ -3239,6 +3249,7 @@
               有。橘子蘋果是「<a href="https://www.eqaa.org.tw/" target="_blank" rel="noopener">中華民國補教業品保協會</a>」正式會員（會員編號 020589，自 2018 年加入），家長預付的學費受協會履約保證機制保障，退費依協會規範辦理。橘蘋自 2012 年深耕程式教育、直營全台教學據點，是超過 10 萬名學生信任的教育品牌。
             </div>
           </div>
+          <button type="button" class="faq-showmore" onclick="this.closest('.faq-list').classList.add('show-all'); this.remove();">看更多問題 <span aria-hidden="true">▾</span></button>
         </div>
       </div>
     </div>
