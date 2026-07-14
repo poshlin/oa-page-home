@@ -2111,6 +2111,14 @@
     .map-panel-head { text-align: center; margin-bottom: 26px; }
     .map-panel-lead { font-size: clamp(19px, 2.4vw, 22px); font-weight: 900; color: var(--dark); }
     .map-panel-sub { font-size: 13px; color: var(--gray); margin-top: 8px; line-height: 1.7; }
+    /* 能力補強線：脊椎之外的「支線」手風琴——虛線＋標記、虛線岔接、預設收合 */
+    .ms-branch { position: relative; margin-top: 4px; }
+    .ms-branch::before { content: ''; position: absolute; left: 26px; transform: translateX(-50%);
+      top: -26px; height: 52px; width: 0; border-left: 3px dashed var(--line); z-index: 0; }
+    .ms-branch .ms-dot { background: transparent; border: 2px dashed var(--gray); color: var(--gray);
+      box-shadow: none; font-size: 24px; font-weight: 700; line-height: 1; }
+    .ms-branch .ms-title { color: var(--dark); }
+    .ms-branch .map-support { margin: 0; padding-top: 0; border-top: none; }
 
     /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
     .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
@@ -2474,22 +2482,33 @@
 
         </div>
 
-        <div class="map-support" aria-label="能力補強支線">
-          <span class="map-support-label">// 能力補強線（可與主幹並行）</span>
-          <a href="https://orangeapple.co/courses/math" class="support-lane">
-            <span class="support-icon">MATH</span>
-            <div>
-              <h4>橘蘋麥思數學</h4>
-              <p>1-6 年級，美國數學思維邏輯系統在地化，補強程式學習背後的推理能力。</p>
+        <div class="ms ms-branch">
+          <div class="ms-dot">＋</div>
+          <details class="ms-body ms-acc">
+            <summary class="ms-head">
+              <h3 class="ms-title">能力補強線</h3>
+              <span class="ms-tag">// 可與主幹並行．選配</span>
+              <svg class="ms-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="ms-reveal">
+              <div class="map-support" aria-label="能力補強支線">
+                <a href="https://orangeapple.co/courses/math" class="support-lane">
+                  <span class="support-icon">MATH</span>
+                  <div>
+                    <h4>橘蘋麥思數學</h4>
+                    <p>1-6 年級，美國數學思維邏輯系統在地化，補強程式學習背後的推理能力。</p>
+                  </div>
+                </a>
+                <a href="https://orangeapple.co/courses/ai-thinking" class="support-lane">
+                  <span class="support-icon">AI</span>
+                  <div>
+                    <h4>AI 思維實戰課</h4>
+                    <p>5 年級以上，訓練提問力、批判性思考與數位倫理，補上 AI 時代的底層能力。</p>
+                  </div>
+                </a>
+              </div>
             </div>
-          </a>
-          <a href="https://orangeapple.co/courses/ai-thinking" class="support-lane">
-            <span class="support-icon">AI</span>
-            <div>
-              <h4>AI 思維實戰課</h4>
-              <p>5 年級以上，訓練提問力、批判性思考與數位倫理，補上 AI 時代的底層能力。</p>
-            </div>
-          </a>
+          </details>
         </div>
 
         <p class="map-endnote">菁英九階段修畢後，孩子將具備完整程式作品力、解題力與 AI 應用基礎；再依年級、目標與升學需求，銜接 ITS、APCS 或選手班。</p>
