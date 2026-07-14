@@ -2039,9 +2039,13 @@
     @media (max-width: 600px) {
       .intro p br { display: none; }
       .intro-inner { text-align: left; }
-      .award-strip-inner { gap: 8px; }
-      .award-strip-label { flex-basis: 100%; text-align: center; margin: 0 0 2px; }
-      .award-pill { font-size: 12.5px; padding: 7px 12px; }
+      /* 徽章改「整齊全寬清單」：每列一個獎、獎名靠左、年份靠右 */
+      .award-strip-inner { flex-direction: column; align-items: stretch; gap: 8px; }
+      .award-strip-label { text-align: center; margin: 0 0 4px; }
+      .award-pill { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        width: 100%; white-space: normal; font-size: 14px; padding: 12px 16px; border-radius: 12px; }
+      .award-pill .y { margin-left: 0; flex-shrink: 0; }
+      .award-strip-links { margin-top: 4px; }
       .map-panel { padding: 18px 16px; }
       .map-flow::before { left: 20px; }
       .ms { grid-template-columns: 40px 1fr; column-gap: 14px; }
