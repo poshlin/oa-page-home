@@ -2067,6 +2067,9 @@
     .quickqa-head h2 { margin-top: 8px; text-wrap: balance; }
     .qa-br { display: none; }
     @media (max-width: 600px) { .qa-br { display: inline; } }
+    /* 通用手機專用斷行（桌機隱藏、窄螢幕才斷）*/
+    .m-br { display: none; }
+    @media (max-width: 560px) { .m-br { display: inline; } }
     .quickqa-grid { display: flex; flex-direction: column; gap: 16px; }
     .quickqa-scroll { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .quickqa-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 24px; box-shadow: var(--e1); }
@@ -2590,7 +2593,7 @@
             <div class="rs-case"><span class="rs-name">李明謙</span><span class="rs-path">小學就來、一路長大，以百川計畫錄取 <b>陽明交大</b></span></div>
             <div class="rs-case"><span class="rs-name">黃昱嘉</span><span class="rs-path">高中才進來衝 APCS，錄取 <b>清大資工</b></span></div>
           </div>
-          <p class="rs-conclude">兩個橘蘋孩子、兩種起點，同一個體系，接得住每一種起點。</p>
+          <p class="rs-conclude">兩個橘蘋孩子、兩種起點，<br class="m-br">同一個體系，接得住每一種起點。</p>
         </div>
       </div>
       <div class="result-grid">
