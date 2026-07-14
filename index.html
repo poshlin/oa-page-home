@@ -1177,14 +1177,14 @@
       margin-top: -6px;
       overflow: hidden;
     }
-    /* 評論（無限迴圈、永遠在中段）：兩側淡出常亮，寬度與榮譽牆統一（--fade）*/
-    .reviews-track { --fl: var(--fade); --fr: var(--fade); }
+    /* 評論（無限迴圈）：左緣＝完整第一張卡不淡出（與獎狀牆一致），右緣淡出當「還有更多」提示 */
+    .reviews-track { --fl: 0; --fr: var(--fade); }
     .reviews-track {
       display: flex;
       gap: 20px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      scroll-padding-left: 52px;
+      scroll-padding-left: 0;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding: 8px 8px 14px;
@@ -1336,7 +1336,7 @@
     }
     /* 其他 6 支：橫向 rail（無限迴圈 + 點點，沿用評論輪播控制）*/
     .videos-rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
-      scroll-padding-left: 40px; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 4px 2px 12px; }
+      scroll-padding-left: 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 4px 8px 12px; }
     .videos-rail::-webkit-scrollbar { display: none; }
     .videos-rail > .video-card { flex: 0 0 calc((100% - 36px) / 3); scroll-snap-align: start; }
     .videos-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; }
@@ -2006,7 +2006,7 @@
       .video-card.featured .video-thumb { flex: none; }
       .video-card.featured .video-copy { justify-content: flex-start; padding: 20px; }
       .video-card.featured .video-title { font-size: 19px; }
-      .videos-rail { margin: 0 -24px; padding: 2px 24px 12px; scroll-padding-left: 24px; }
+      .videos-rail { margin: 0; padding: 2px 0 12px; scroll-padding-left: 0; }
       .videos-rail > .video-card { flex: 0 0 80%; }
       .videos-nav { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -3353,7 +3353,7 @@
         dots.push(dot);
       }
 
-      var PEEK = 52; /* 讓當前卡左側內縮，露出前一張一角、與右側對稱，且邊框不被邊緣 fade 洗掉 */
+      var PEEK = 0; /* 左緣＝完整第一張卡（不露前一張半截），與獎狀牆一致；左內距靠 rail padding */
       function scrollToIndex(idx, smooth) {
         var card = allCards[idx];
         if (!card) return;
@@ -3521,7 +3521,7 @@
         dots.push(dot);
       }
 
-      var PEEK = 40;
+      var PEEK = 0; /* 左緣＝完整第一張卡，與獎狀牆一致 */
       function scrollToIndex(idx, smooth) {
         var card = allCards[idx];
         if (!card) return;
