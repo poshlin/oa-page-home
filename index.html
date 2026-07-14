@@ -2051,7 +2051,9 @@
     /* ══════════ 1.6 家長快速答案 ══════════ */
     .quickqa { padding: var(--s9) 0 var(--s8); }
     .quickqa-head { text-align: center; margin-bottom: var(--s7); }
-    .quickqa-head h2 { margin-top: 8px; }
+    .quickqa-head h2 { margin-top: 8px; text-wrap: balance; }
+    .qa-br { display: none; }
+    @media (max-width: 600px) { .qa-br { display: inline; } }
     .quickqa-grid { display: flex; flex-direction: column; gap: 16px; }
     .quickqa-scroll { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .quickqa-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 22px 24px; box-shadow: var(--e1); }
@@ -2237,7 +2239,7 @@
     <div class="container">
       <div class="quickqa-head">
         <span class="tag">// quick_answers</span>
-        <h2>還沒決定？先看家長最想知道的答案</h2>
+        <h2>還沒決定？先看<br class="qa-br">家長最想知道的答案</h2>
       </div>
       <div class="quickqa-grid">
         <div class="quickqa-scroll">
