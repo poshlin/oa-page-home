@@ -1335,21 +1335,21 @@
       gap: 26px;
       margin-top: 32px;
     }
-    /* 其他 6 支：橫向 rail（桌機一次露 3 張，左右箭頭捲動；手機左滑）*/
-    .videos-rail-wrap { position: relative; }
+    /* 其他 6 支：橫向 rail（無限迴圈 + 點點，沿用評論輪播控制）*/
     .videos-rail { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch; scrollbar-width: none; scroll-behavior: smooth; padding: 4px 2px 12px; }
+      scroll-padding-left: 40px; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 4px 2px 12px; }
     .videos-rail::-webkit-scrollbar { display: none; }
     .videos-rail > .video-card { flex: 0 0 calc((100% - 36px) / 3); scroll-snap-align: start; }
-    .videos-arrow { position: absolute; top: 30%; transform: translateY(-50%); z-index: 3;
-      width: 42px; height: 42px; border-radius: 50%; background: #fff; border: 1px solid var(--line);
-      box-shadow: var(--e2); cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 22px; line-height: 1; color: var(--navy); padding-bottom: 3px;
-      transition: border-color .15s, color .15s, opacity .2s; }
-    .videos-arrow.prev { left: -14px; }
-    .videos-arrow.next { right: -14px; }
-    .videos-arrow:hover { border-color: var(--orange); color: var(--orange-deep); }
-    .videos-arrow[disabled] { opacity: 0; pointer-events: none; }
+    .videos-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; }
+    .videos-nav { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(18,21,30,0.12);
+      background: rgba(255,255,255,0.96); color: var(--dark); font-size: 24px; line-height: 1;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--e1);
+      transition: background 0.18s, color 0.18s, border-color 0.18s; }
+    .videos-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .videos-dots { display: flex; justify-content: center; gap: 7px; }
+    .videos-dots .dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0;
+      border-radius: var(--r-pill); background: #D8DCE3; cursor: pointer; transition: width 0.2s, background 0.2s; }
+    .videos-dots .dot.active { width: 22px; background: var(--orange); }
     .video-card {
       border-radius: var(--r-md);
       overflow: hidden;
@@ -2007,9 +2007,9 @@
       .video-card.featured .video-thumb { flex: none; }
       .video-card.featured .video-copy { justify-content: flex-start; padding: 20px; }
       .video-card.featured .video-title { font-size: 19px; }
-      .videos-rail { margin: 0 -24px; padding: 2px 24px 12px; }
+      .videos-rail { margin: 0 -24px; padding: 2px 24px 12px; scroll-padding-left: 24px; }
       .videos-rail > .video-card { flex: 0 0 80%; }
-      .videos-arrow { display: none; }
+      .videos-nav { display: none; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
       .stat-item { padding: 16px; }
@@ -2948,9 +2948,7 @@
             <span class="video-tags"><span>自律學習</span><span>艾伯特</span><span>Minecraft</span><span>線上課</span></span>
           </span>
         </button>
-        <div class="videos-rail-wrap">
-          <button type="button" class="videos-arrow prev" aria-label="上一批影片" data-dir="-1">‹</button>
-          <div class="videos-rail" id="videosRail">
+        <div class="videos-rail" id="videosRail" tabindex="0" role="group" aria-label="家長訪談影片（可左右滑動）">
         <button type="button" class="video-card" data-yt="rfFJfJha7dg" aria-label="播放家長訪談影片：婷璿的學習故事">
           <span class="video-thumb"><img width="1280" height="720" src="https://i.ytimg.com/vi/rfFJfJha7dg/hq720.jpg" alt="家長訪談影片：婷璿的學習故事" loading="lazy">
             <span class="video-play"></span></span>
@@ -3011,8 +3009,11 @@
             <span class="video-tags"><span>APCS</span><span>清大資工</span><span>升學成果</span></span>
           </span>
         </button>
-          </div>
-          <button type="button" class="videos-arrow next" aria-label="下一批影片" data-dir="1">›</button>
+        </div>
+        <div class="videos-controls" aria-label="影片輪播控制">
+          <button type="button" class="videos-nav" id="videosPrev" aria-label="上一支影片">&#8249;</button>
+          <div class="videos-dots" id="videosDots" aria-label="影片頁面"></div>
+          <button type="button" class="videos-nav" id="videosNext" aria-label="下一支影片">&#8250;</button>
         </div>
       </div>
       <div class="video-lightbox" id="videoLightbox" aria-hidden="true">
@@ -3471,8 +3472,10 @@
         close.focus();
       }
 
-      document.querySelectorAll('.video-card').forEach(function (card) {
-        card.addEventListener('click', function () { openVideo(card); });
+      /* 事件委派：涵蓋 rail 無限迴圈 clone 出來的卡 */
+      document.addEventListener('click', function (ev) {
+        var card = ev.target.closest && ev.target.closest('.video-card');
+        if (card) openVideo(card);
       });
 
       close.addEventListener('click', closeVideo);
@@ -3492,28 +3495,82 @@
       });
     })();
 
-    /* ── 家長訪談影片 rail：左右箭頭捲動 + 端點時箭頭淡出 ── */
+    /* ── 家長訪談影片 rail：無限迴圈 + 點點（沿用評論輪播邏輯）── */
     (function () {
-      var rail = document.getElementById('videosRail');
-      if (!rail) return;
-      var wrap = rail.closest('.videos-rail-wrap');
-      var prev = wrap && wrap.querySelector('.videos-arrow.prev');
-      var next = wrap && wrap.querySelector('.videos-arrow.next');
-      function page() {
-        var card = rail.querySelector('.video-card');
-        var cardW = card ? card.getBoundingClientRect().width + 18 : rail.clientWidth * 0.85;
-        return Math.max(rail.clientWidth - cardW * 0.4, cardW);
+      var track = document.getElementById('videosRail');
+      var prev = document.getElementById('videosPrev');
+      var next = document.getElementById('videosNext');
+      var dotsWrap = document.getElementById('videosDots');
+      if (!track || !prev || !next || !dotsWrap) return;
+
+      var originalCards = Array.prototype.slice.call(track.querySelectorAll('.video-card'));
+      var total = originalCards.length;
+      if (!total) return;
+
+      originalCards.forEach(function (card) { var c = card.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.setAttribute('tabindex', '-1'); track.appendChild(c); });
+      originalCards.slice().reverse().forEach(function (card) { var c = card.cloneNode(true); c.setAttribute('aria-hidden', 'true'); c.setAttribute('tabindex', '-1'); track.insertBefore(c, track.firstChild); });
+
+      var allCards = Array.prototype.slice.call(track.querySelectorAll('.video-card'));
+      var current = total;
+      var jumping = false;
+      var dots = [];
+
+      for (var i = 0; i < total; i += 1) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', '查看第 ' + (i + 1) + ' 支影片');
+        (function (idx) { dot.addEventListener('click', function () { goTo(idx + total); }); })(i);
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
       }
-      function update() {
-        var max = rail.scrollWidth - rail.clientWidth - 2;
-        if (prev) prev.disabled = rail.scrollLeft <= 2;
-        if (next) next.disabled = rail.scrollLeft >= max;
+
+      var PEEK = 40;
+      function scrollToIndex(idx, smooth) {
+        var card = allCards[idx];
+        if (!card) return;
+        var target = Math.max(0, card.offsetLeft - PEEK);
+        if (smooth) { track.scrollTo({ left: target, behavior: 'smooth' }); }
+        else { track.scrollLeft = target; }
       }
-      if (prev) prev.addEventListener('click', function () { rail.scrollBy({ left: -page(), behavior: 'smooth' }); });
-      if (next) next.addEventListener('click', function () { rail.scrollBy({ left: page(), behavior: 'smooth' }); });
-      rail.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
+      function updateDots(idx) {
+        var real = ((idx % total) + total) % total;
+        dots.forEach(function (dot, i) { dot.classList.toggle('active', i === real); });
+      }
+      function goTo(idx) { current = idx; updateDots(current); scrollToIndex(current, true); }
+      function normalizeIfNeeded() {
+        if (jumping) return;
+        if (current < total) { jumping = true; current += total; scrollToIndex(current, false); jumping = false; }
+        else if (current >= total * 2) { jumping = true; current -= total; scrollToIndex(current, false); jumping = false; }
+        updateDots(current);
+      }
+
+      var scrollTimer;
+      track.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          var closest = current, minDist = Infinity;
+          allCards.forEach(function (card, idx) {
+            var dist = Math.abs(card.offsetLeft - (track.scrollLeft + PEEK));
+            if (dist < minDist) { minDist = dist; closest = idx; }
+          });
+          current = closest;
+          normalizeIfNeeded();
+        }, 90);
+      }, { passive: true });
+
+      prev.addEventListener('click', function () { goTo(current - 1); });
+      next.addEventListener('click', function () { goTo(current + 1); });
+
+      function initPosition() {
+        var prevSnap = track.style.scrollSnapType;
+        track.style.scrollSnapType = 'none';
+        scrollToIndex(current, false);
+        void track.offsetWidth;
+        track.style.scrollSnapType = prevSnap || '';
+      }
+      requestAnimationFrame(initPosition);
+      window.addEventListener('load', function () { setTimeout(initPosition, 100); });
     })();
 
     /* ── 學習地圖：捲動時依序點亮三個里程碑（漸進增強 + 保底顯示）── */
