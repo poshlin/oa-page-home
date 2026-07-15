@@ -626,11 +626,7 @@
     .c-orange .path-grade { color: var(--orange-dark); background: var(--orange-light); }
     .c-teal .path-grade { color: var(--teal-dark); background: var(--teal-light); }
     .path-card h3 { font-size: 21px; font-weight: 800; margin-bottom: 10px; }
-    .path-card > p { font-size: 14px; color: var(--gray); line-height: 1.8; flex: 1; }
-    .path-arrow { margin-top: 20px; font-weight: 700; font-size: 14px; }
-    .c-coral .path-arrow { color: var(--coral-dark); }
-    .c-orange .path-arrow { color: var(--orange-dark); }
-    .c-teal .path-arrow { color: var(--teal-dark); }
+    .path-card > p { font-size: 14px; color: var(--gray); line-height: 1.8; }
 
     /* ══════════ 5. 營隊招生 Banner ══════════ */
     .camps {
@@ -896,16 +892,18 @@
     }
     .support-lane h4 { font-size: 16px; font-weight: 800; margin: 0 0 3px; }
     .support-lane p { color: var(--gray); font-size: 12px; line-height: 1.65; margin: 0; }
+    /* 整張地圖的結論句（非註腳）：用虛線與上方手風琴分隔、text-wrap:balance 讓兩行等長
+       （字級被下方「字級尺標」統一成 16px，原本 780px 行長會斷成「滿行＋9 個字」的爛尾） */
     .map-endnote {
-      margin: 22px 0 0;
+      margin: 28px auto 0;
+      padding-top: 22px;
+      border-top: 1px dashed var(--line);
       color: var(--gray);
       text-align: center;
-      font-size: 13px;
-      line-height: 1.7;
+      line-height: 1.75;
       font-weight: 400;
-      max-width: 780px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 660px;
+      text-wrap: balance;
     }
 
     /* ══════════ 7. 一堂課長什麼樣子 ══════════ */
@@ -2187,14 +2185,14 @@
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
-    .hero-label strong, .c-orange .path-grade, .c-orange .path-arrow,
+    .hero-label strong, .c-orange .path-grade,
     .result-action, .trust-proof-label, .quickqa-card.cost strong,
     .proof-head p strong, .hero-promise b, .intro p strong,
     .video-card.outcome .video-eyebrow { color: var(--orange); }
-    .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .c-teal .path-arrow, .county-tag.rc { color: var(--teal-ink); }
+    .entry .g, .trust-link, .region-stat strong, .c-teal .path-grade, .county-tag.rc { color: var(--teal-ink); }
     .htile .badge.t-cert { background: var(--teal-ink); }
     .award-strip-more, .award-pill .y, .faq-icon, .faq-proof b { color: var(--orange); }
-    .c-coral .path-grade, .c-coral .path-arrow, .county-tag.rs { color: var(--coral-ink); }
+    .c-coral .path-grade, .county-tag.rs { color: var(--coral-ink); }
     .video-tags span { color: #5A606B; }
     .cta h2, .cta p, .cta-code, .cta-sub, .cta-sub a, .camps h2, .camps-sub, .camps-chip { color: var(--dark); }
     .camps-chip { border-color: rgba(18,21,30,0.5); }
@@ -2492,19 +2490,16 @@
           <span class="path-grade">GRADE 1-3｜國小低年級</span>
           <h3>玩創系列・程式啟蒙</h3>
           <p>1-2 年級從頑皮艾伯特的圖像化積木、或 STEAM 實體積木手作起步；3 年級建議從麥塊入門，對麥塊沒興趣的孩子，Roblox 是另一個起點。入門階段不用打字、不用英文，玩著玩著就懂了序列、迴圈、條件判斷。</p>
-          <span class="path-arrow">看玩創課程 →</span>
         </a>
         <a href="https://orangeapple.co/courses/scratch-basic" class="path-card c-orange">
           <span class="path-grade">GRADE 4-6｜國小中高年級</span>
           <h3>菁英系列・Scratch 起步</h3>
           <p>MIT 開發的 Scratch 是全球兒童程式教育的黃金標準。從 Scratch 打好基礎，一路銜接 Python、JavaScript，九個階段一條龍，不用中途換體系。</p>
-          <span class="path-arrow">看菁英課程 →</span>
         </a>
         <a href="https://orangeapple.co/courses/python" class="path-card c-teal">
           <span class="path-grade">GRADE 7+｜國中以上</span>
           <h3>Python・檢定認證</h3>
           <p>國中以上零基礎可從 Python 入門，8 年級以上也可從 JavaScript 起步。想衝升學的孩子，可挑戰 APCS 檢定與 ITS 國際認證——橘蘋是 ITS 官方考場，並可安排<strong>程度評估</strong>、規劃到 APCS 的最短路徑。</p>
-          <span class="path-arrow">看 Python 課程 →</span>
         </a>
       </div>
     </div>
@@ -2679,7 +2674,7 @@
           </details>
         </div>
 
-        <p class="map-endnote">菁英九階段修畢後，孩子將具備完整程式作品力、解題力與 AI 應用基礎；再依年級、目標與升學需求，銜接 ITS、APCS 或選手班。</p>
+        <p class="map-endnote">菁英九階段修畢後，孩子將具備完整程式作品力、解題力與 AI 應用基礎；<br>再依年級、目標與升學需求，銜接 ITS、APCS 或選手班。</p>
       </div>
     </div>
   </section>
