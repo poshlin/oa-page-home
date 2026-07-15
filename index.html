@@ -10,6 +10,8 @@
   <meta name="description" content="橘子蘋果程式學苑成立於 2012 年，全台 12 縣市直營、線上覆蓋 22 縣市，累計逾 10 萬名學生。Scratch、Python、AI、麥塊、Roblox 完整課程，國小一年級起可免費試聽。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://orangeapple.co/">
+  <!-- Hero 首圖是首屏最大視覺，優先下載以縮短 LCP；影片稍後再載入 -->
+  <link rel="preload" as="image" href="assets/hero-student-journey-poster.jpg" fetchpriority="high">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -459,7 +461,7 @@
       isolation: isolate;
     }
     .hero-media, .hero-media::before, .hero-media::after { position: absolute; inset: 0; }
-    .hero-media { z-index: 0; background: #11151d; }
+    .hero-media { z-index: 0; background: #11151d url('assets/hero-student-journey-poster.jpg') right center/76% 100% no-repeat; }
     .hero-media video {
       position: absolute; top: 0; right: 0; width: 76%; height: 100%;
       object-fit: cover; object-position: center;
@@ -1969,6 +1971,7 @@
       .hero-inner { padding: 104px 0 126px; align-items: flex-end; }
       .hero-copy { max-width: 620px; }
       .hero-media video { width: 100%; object-position: 57% center; }
+      .hero-media { background-position: 57% center; background-size: cover; }
       .hero-media::before {
         background:
           linear-gradient(0deg, rgba(8,11,16,.98) 0%, rgba(8,11,16,.9) 42%, rgba(8,11,16,.25) 76%),
@@ -2322,7 +2325,6 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .hero-media video { display: none; }
-      .hero-media { background: #11151d url('assets/hero-student-journey-poster.jpg') center/cover no-repeat; }
     }
   </style>
 </head>
@@ -2335,10 +2337,9 @@
   <!-- ══ 1. HERO ══ -->
   <section class="hero" aria-label="橘子蘋果程式學苑">
     <div class="hero-media" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-student-journey-poster.jpg">
-        <source src="assets/hero-student-journey.webm" type="video/webm">
-        <source src="assets/hero-student-journey.mp4" type="video/mp4">
-      </video>
+      <video muted loop playsinline preload="none" poster="assets/hero-student-journey-poster.jpg"
+             data-webm="assets/hero-student-journey.webm"
+             data-mp4="assets/hero-student-journey.mp4"></video>
     </div>
     <div class="container">
       <div class="hero-inner">
@@ -3403,6 +3404,65 @@
   <oa-footer></oa-footer>
 
   <script>
+    /* ── Hero 影片效能策略 ──
+       手機、慢速／省流量網路與減少動態偏好只顯示 Poster；
+       桌機等主要資源完成後才下載影片，避免與首屏 LCP 競爭。 */
+    (function () {
+      var video = document.querySelector('.hero-media video');
+      if (!video) return;
+
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var desktop = window.matchMedia && window.matchMedia('(min-width: 961px)').matches;
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var saveData = connection && connection.saveData;
+      var slowNetwork = connection && /(^|-)2g$/.test(connection.effectiveType || '');
+      if (reduceMotion || !desktop || saveData || slowNetwork) return;
+
+      function loadHeroVideo() {
+        if (video.dataset.loaded === 'true') return;
+        video.dataset.loaded = 'true';
+
+        [
+          { src: video.dataset.webm, type: 'video/webm' },
+          { src: video.dataset.mp4, type: 'video/mp4' }
+        ].forEach(function (asset) {
+          if (!asset.src) return;
+          var source = document.createElement('source');
+          source.src = asset.src;
+          source.type = asset.type;
+          video.appendChild(source);
+        });
+
+        video.load();
+        var playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
+      }
+
+      window.addEventListener('load', function () {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadHeroVideo, { timeout: 1800 });
+        } else {
+          window.setTimeout(loadHeroVideo, 800);
+        }
+      }, { once: true });
+
+      /* Hero 離開畫面後暫停解碼，回到首屏再播放，降低 CPU／耗電。 */
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (video.dataset.loaded !== 'true') return;
+            if (entry.isIntersecting) {
+              var promise = video.play();
+              if (promise && typeof promise.catch === 'function') promise.catch(function () {});
+            } else {
+              video.pause();
+            }
+          });
+        }, { threshold: 0.05 });
+        observer.observe(video);
+      }
+    })();
+
     /* ── 動態年份（成立 2012）── */
     (function () {
       var years = new Date().getFullYear() - 2012;
