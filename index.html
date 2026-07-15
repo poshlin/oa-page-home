@@ -448,86 +448,79 @@
     }
     .btn-secondary:hover { border-color: var(--teal); color: var(--teal-dark); }
 
-    /* ══════════ 1. HERO（橘色斜切）══════════ */
+    /* ══════════ 1. HERO（滿版動態主視覺）══════════ */
     .hero {
       position: relative;
-      background: #fff;
+      min-height: clamp(680px, 88vh, 900px);
+      display: flex;
+      align-items: stretch;
+      background: var(--dark);
       overflow: hidden;
+      isolation: isolate;
     }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 46%;
-      background: linear-gradient(160deg, var(--orange), var(--orange-deep));
-      clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%);
-      z-index: 0;
+    .hero-media, .hero-media::before, .hero-media::after { position: absolute; inset: 0; }
+    .hero-media { z-index: 0; background: #11151d; }
+    .hero-media video {
+      position: absolute; top: 0; right: 0; width: 76%; height: 100%;
+      object-fit: cover; object-position: center;
     }
+    .hero-media::before {
+      content: ''; z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(8,11,16,1) 0%, rgba(8,11,16,.98) 30%, rgba(8,11,16,.86) 43%, rgba(8,11,16,.3) 63%, rgba(8,11,16,.06) 82%),
+        linear-gradient(0deg, rgba(8,11,16,.66) 0%, transparent 36%);
+    }
+    .hero-media::after {
+      content: ''; z-index: 2;
+      background: linear-gradient(135deg, rgba(255,163,0,.16), transparent 34%);
+      mix-blend-mode: screen;
+    }
+    .hero > .container { width: 100%; display: flex; }
     .hero-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 11fr 9fr;
-      gap: 40px;
-      align-items: center;
-      padding: var(--s9) 0;
+      position: relative; z-index: 2; width: 100%; display: flex; align-items: center;
+      padding: clamp(96px, 12vh, 144px) 0 112px;
     }
+    .hero-copy { max-width: 610px; }
     .hero-label {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--gray);
-      margin-bottom: 20px;
-      letter-spacing: 0.05em;
+      font-family: var(--mono); font-size: 13px; color: rgba(255,255,255,.76);
+      margin-bottom: 24px; letter-spacing: .1em;
     }
     .hero-label strong { color: var(--orange); font-weight: 700; }
     .hero h1 {
-      font-size: clamp(32px, 4.3vw, 56px);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 20px;
+      max-width: 610px; color: #fff; font-size: clamp(42px, 4.25vw, 60px); font-weight: 800;
+      line-height: 1.13; letter-spacing: -.025em; margin-bottom: 24px;
+      text-shadow: 0 4px 30px rgba(0,0,0,.3);
     }
     .hero h1 .hl { color: var(--orange); }
     .hero-sub {
-      font-size: 18px;
-      color: var(--gray);
-      line-height: 1.8;
-      margin-bottom: 36px;
+      max-width: 575px; font-size: clamp(17px, 1.45vw, 19px); color: rgba(255,255,255,.84);
+      line-height: 1.75; margin-bottom: 32px;
     }
+    .hero-sub strong { color: #fff; }
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-    .hero-img-wrap { position: relative; }
-    .hero-img {
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      box-shadow: 0 18px 44px rgba(18,21,30,0.13);
-      transform: rotate(2deg);
+    .hero .btn-secondary {
+      color: #fff; background: rgba(10,13,19,.36); border-color: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
     }
-    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-badge {
-      position: absolute;
-      background: var(--dark);
-      color: var(--orange);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 10px 16px;
-      border-radius: var(--r-sm);
-      box-shadow: var(--e2);
-      transform: rotate(-2deg);
+    .hero .btn-secondary:hover { color: var(--dark); background: #fff; border-color: #fff; }
+    .hero-pathline {
+      margin-top: 22px; color: rgba(255,255,255,.68); font-family: var(--mono);
+      font-size: 12px; font-weight: 700; letter-spacing: .04em;
     }
-    .hero-badge.b1 { top: -16px; left: -12px; }
-    .hero-float {
-      position: absolute;
-      bottom: -18px; right: -6px;
-      background: #fff;
-      border-radius: var(--r-md);
-      padding: 12px 18px;
-      box-shadow: var(--e2);
-      transform: rotate(-2deg);
-      font-size: 13px;
-      font-weight: 700;
+    .hero-pathline b { color: var(--orange); }
+    .hero-proof {
+      position: absolute; left: 0; bottom: 38px; display: flex; align-items: center; gap: 18px;
+      color: rgba(255,255,255,.9); font-size: 13px; font-weight: 700; letter-spacing: .02em;
     }
-    .hero-float .stars { color: var(--orange); letter-spacing: 1px; }
+    .hero-proof span + span { padding-left: 18px; border-left: 1px solid rgba(255,255,255,.3); }
+    .hero-proof .stars { color: var(--orange); letter-spacing: 1px; }
+    .hero-scroll {
+      position: absolute; right: 0; bottom: 34px; color: rgba(255,255,255,.78);
+      font-family: var(--mono); font-size: 11px; letter-spacing: .12em; writing-mode: vertical-rl;
+    }
+    .hero-scroll::after {
+      content: ''; display: inline-block; width: 1px; height: 44px; margin-top: 12px; background: var(--orange);
+    }
 
     /* ══════════ 2. 信任數字列（斜切深色帶）══════════ */
     .stats {
@@ -1972,9 +1965,16 @@
 
     /* ══════════ RESPONSIVE ══════════ */
     @media (max-width: 960px) {
-      .hero::after { display: none; }
-      .hero-inner { grid-template-columns: 1fr; padding: 56px 0 72px; }
-      .hero-img { transform: none; }
+      .hero { min-height: 760px; }
+      .hero-inner { padding: 104px 0 126px; align-items: flex-end; }
+      .hero-copy { max-width: 620px; }
+      .hero-media video { width: 100%; object-position: 57% center; }
+      .hero-media::before {
+        background:
+          linear-gradient(0deg, rgba(8,11,16,.98) 0%, rgba(8,11,16,.9) 42%, rgba(8,11,16,.25) 76%),
+          linear-gradient(90deg, rgba(8,11,16,.45), transparent 72%);
+      }
+      .hero-scroll { display: none; }
       .pathfinder-header { display: block; text-align: center; }
       .pathfinder-copy { text-align: center; }
       .pathfinder-helper { display: none; }
@@ -2200,7 +2200,72 @@
     .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--dark); }
     .ms.m3 .ms-dot { color: #fff; }
     .ms-title { margin: 0; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    @media (max-width: 560px) {
+      .hero { min-height: 780px; }
+      .hero > .container { padding: 0 20px; }
+      .hero-inner { padding: 88px 0 118px; }
+      .hero h1 { font-size: clamp(35px, 10.5vw, 48px); }
+      .hero-sub { font-size: 16px; line-height: 1.65; }
+      .hero-sub br { display: none; }
+      .hero-pathline { font-size: 11px; line-height: 1.55; }
+      .hero-cta { gap: 12px; }
+      .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; text-align: center; }
+      .hero-proof { bottom: 34px; gap: 10px; font-size: 11px; }
+      .hero-proof span + span { padding-left: 10px; }
+    }
+
+    /* ══ 閱讀字級優化（第一階段）：保留視覺風格，主要內容不再用 13–14px ══ */
+    .hero-mech,
+    .path-card > p,
+    .ms-desc,
+    .classroom-point p,
+    .result-card p,
+    .trust-card > p,
+    .quickqa-card p,
+    .review-text,
+    .faq-intro,
+    .proof-lead,
+    .proof-hint,
+    .map-endnote,
+    .map-panel-sub,
+    .assure-item span {
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .rs-conclude,
+    .kd-desc,
+    .assure-item strong { font-size: 16px; }
+    .path-card h3,
+    .ms-title,
+    .trust-card h3 { font-size: 22px; }
+    .classroom-point h3,
+    .result-card h3,
+    .quickqa-card h3 { font-size: 19px; }
+    .entry h4,
+    .exit-card h4,
+    .support-lane h4 { font-size: 18px; }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: clamp(36px, 10.5vw, 48px); }
+      .path-card > p,
+      .ms-desc,
+      .classroom-point p,
+      .result-card p,
+      .trust-card > p,
+      .quickqa-card p,
+      .review-text,
+      .faq-intro,
+      .proof-lead,
+      .proof-hint,
+      .map-endnote,
+      .map-panel-sub,
+      .assure-item span { font-size: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-media video { display: none; }
+      .hero-media { background: #11151d url('assets/hero-student-journey-poster.jpg') center/cover no-repeat; }
+    }
   </style>
 </head>
 <body>
@@ -2211,29 +2276,32 @@
   <main>
   <!-- ══ 1. HERO ══ -->
   <section class="hero" aria-label="橘子蘋果程式學苑">
+    <div class="hero-media" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-student-journey-poster.jpg">
+        <source src="assets/hero-student-journey.webm" type="video/webm">
+        <source src="assets/hero-student-journey.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="container">
       <div class="hero-inner">
-        <div>
-          <div class="hero-label"><strong>&lt;code&gt;</strong> since 2012 <strong>&lt;/code&gt;</strong></div>
-          <h1>兒童程式設計課程首選<br><span class="hl">橘子蘋果</span>程式學苑</h1>
+        <div class="hero-copy">
+          <div class="hero-label"><strong>&lt;code&gt;</strong> 兒童程式設計・since 2012 <strong>&lt;/code&gt;</strong></div>
+          <h1>從第一行程式，<br><span class="hl">一路走出成果。</span></h1>
           <p class="hero-sub">
-            從 Scratch、Minecraft、Roblox 到 Python、AI，孩子零基礎也能用一堂<strong>免費試聽</strong>找到適合的起點。<br>
-            國小到高中皆可開始，<span class="oa-years">14</span> 年來陪超過 10 萬名孩子寫下第一行程式。
+            橘子蘋果程式學苑，從 Scratch、Minecraft、Roblox 到 Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
           </p>
-          <p class="hero-promise">找到起點，<b>一路走出成果</b>。</p>
-          <p class="hero-mech">玩創啟蒙 → 菁英九階 → 駭客認證，一條龍系統：孩子不換體系，一路從第一行程式接到升學成果。</p>
           <div class="hero-cta">
             <button type="button" class="btn-primary" data-oa-cta="hero">取得免費試聽</button>
             <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener" class="btn-secondary">LINE@ 線上諮詢</a>
           </div>
+          <p class="hero-pathline">玩創啟蒙 <b>→</b> 菁英九階 <b>→</b> 駭客・升學認證</p>
         </div>
-        <div class="hero-img-wrap">
-          <div class="hero-img">
-            <img width="1800" height="1201" src="assets/photo-hero.jpg" alt="橘子蘋果程式學苑真實課堂：學生專注寫程式，老師在白板講解序列、變數與迴圈" fetchpriority="high">
-          </div>
-          <div class="hero-badge b1">&lt;0&gt; 真實課堂 &lt;/0&gt;</div>
-          <div class="hero-float"><span class="stars">★ 4.9</span>｜Google 評論 2,200+ 則</div>
+        <div class="hero-proof" aria-label="橘子蘋果信任指標">
+          <span><span class="stars">★ 4.9</span> Google 評論 2,200+ 則</span>
+          <span>10 萬+ 學習人次</span>
+          <span>全台直營</span>
         </div>
+        <div class="hero-scroll" aria-hidden="true">SCROLL</div>
       </div>
     </div>
   </section>
