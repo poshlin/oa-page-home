@@ -2213,7 +2213,6 @@
       .hero-pathline { font-size: 11px; line-height: 1.55; }
       .hero-cta { gap: 12px; }
       .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; text-align: center; }
-      .hero-proof { bottom: 34px; gap: 10px; font-size: 11px; }
       .hero-proof span + span { padding-left: 10px; }
     }
 
@@ -2297,6 +2296,24 @@
     .review-source,
     .faq-more { font-size: 15px; line-height: 1.65; }
 
+    /* ⚠️ 手機信任列必須寫在上面那條「字級尺標」之後：那是 base 規則卻排在 @media 後面，
+       而 media query 不增加優先級 → 舊的 @media .hero-proof{font-size:11px} 一直是死碼，
+       實際以 15px 算繪、三顆 chip 需要 478px 但容器只有 335px，每顆都從中間斷字被裁切。
+       （實測：連原設計的 11px 也要 363px，本來就塞不下，非文案變長才壞。）
+       解法＝縮字級＋整顆換行成兩排，並把位置抬高避開 fixed 的 .sticky-cta（原本重疊 20px）。
+       斷點用 620 不用 560：561px 時單行要 510px 而容器只有 513px、只剩 3px 餘裕，擦邊會崩；
+       620 以上容器 ≥573px、餘裕 60px+ 才安全。 */
+    @media (max-width: 620px) {
+      .hero-proof {
+        bottom: 62px;              /* 34px 會被浮動試聽鈕蓋住；62px 讓兩排都淨空 */
+        font-size: 12px; flex-wrap: wrap; column-gap: 10px; row-gap: 5px;
+      }
+      /* 固定切成 1+2 兩排：★4.9 獨佔第一排最醒目，兩個數字並排第二排。
+         不靠自然換行，否則較寬手機會擠回一排、且換行的那顆會在行首留一條孤兒分隔線。 */
+      .hero-proof span:first-child { flex-basis: 100%; }
+      .hero-proof span:nth-child(2) { padding-left: 0; border-left: none; }
+    }
+
     .path-card > p,
     .quickqa-card p,
     .result-card p,
@@ -2358,7 +2375,7 @@
         <div class="hero-proof" aria-label="橘子蘋果信任指標">
           <span><span class="stars">★ 4.9</span> Google 評論 2,200+ 則</span>
           <span>10 萬+ 學習人次</span>
-          <span>全台直營</span>
+          <span>12 縣市直營教室</span>
         </div>
         <div class="hero-scroll" aria-hidden="true">SCROLL</div>
       </div>
