@@ -2131,10 +2131,14 @@
     @media (max-width: 820px) {
       .kd-trail { min-height: 0; }
       .kd-line, .kd-cloud { display: none; }
-      .kd-stops { flex-direction: column; gap: 0; min-height: 0; align-items: stretch; }
-      .kd-stop { max-width: none; flex-direction: row; align-items: center; gap: 16px; text-align: left; margin: 0 0 0 24px !important; padding: 12px 0 12px 20px; border-left: 3px dashed var(--orange); position: relative; }
-      .kd-char { width: 64px; height: 64px; flex-shrink: 0; }
-      .kd-node { position: absolute; left: -10px; margin: 0; }
+      /* 手機：直線改「蛇行波浪路徑」——一段 S 形當 repeat-y 背景，每個站點正好一個波長，站點圓落在波浪中線交叉點 */
+      .kd-stops { flex-direction: column; gap: 0; min-height: 0; align-items: stretch;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='120' viewBox='0 0 40 120' fill='none'%3E%3Cpath d='M20 0C34 28 34 32 20 60C6 88 6 92 20 120' stroke='%23FFC152' stroke-width='4' stroke-linecap='round' stroke-dasharray='2 13'/%3E%3C/svg%3E");
+        background-repeat: repeat-y; background-position: 8px 0; background-size: 40px 120px; }
+      .kd-stop { max-width: none; flex-direction: row; align-items: center; gap: 14px; text-align: left;
+        margin: 0 !important; padding: 0 0 0 62px; min-height: 120px; border-left: 0; position: relative; }
+      .kd-char { width: 62px; height: 62px; flex-shrink: 0; }
+      .kd-node { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); margin: 0; }
       .kd-labelwrap { flex: 1; max-width: none; }
       .kd-label { white-space: normal; }
     }
