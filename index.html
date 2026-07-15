@@ -493,18 +493,32 @@
       line-height: 1.06; letter-spacing: -.025em; margin-bottom: 26px;
       text-shadow: 0 4px 30px rgba(0,0,0,.3);
     }
-    .hero h1 .hl { color: var(--orange); }
+    /* 正式品牌名視為一個完整識別，不再用雙色切割。 */
+    .hero h1 .hl { color: inherit; }
     .hero-tagline {
       max-width: 575px;
-      color: #fff;
-      font-size: clamp(23px, 2.2vw, 30px);
-      font-weight: 800;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--orange);
+      font-size: clamp(18px, 1.65vw, 24px);
+      font-weight: 700;
       line-height: 1.4;
       letter-spacing: -.01em;
-      margin: -6px 0 14px;
+      margin: -4px 0 18px;
+      white-space: nowrap;
       text-shadow: 0 3px 20px rgba(0,0,0,.28);
     }
-    .hero-tagline strong { color: var(--orange); font-weight: 800; }
+    .hero-tagline::before,
+    .hero-tagline::after {
+      content: '';
+      width: 6px;
+      height: 24px;
+      flex: 0 0 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.82);
+    }
     .hero-sub {
       max-width: 575px; font-size: clamp(17px, 1.45vw, 19px); color: rgba(255,255,255,.84);
       line-height: 1.75; margin-bottom: 32px;
@@ -2240,6 +2254,9 @@
       .hero-media video { object-position: 38% center; }
       .hero-media { background-position: 38% center; }
       .hero h1 { font-size: clamp(35px, 10.5vw, 48px); }
+      .hero-tagline { gap: 9px; font-size: clamp(16px, 4.6vw, 19px); }
+      .hero-tagline::before,
+      .hero-tagline::after { width: 5px; height: 18px; flex-basis: 5px; }
       .hero-sub { font-size: 16px; line-height: 1.65; }
       .hero-sub br { display: none; }
       .hero-pathline { font-size: 11px; line-height: 1.55; }
@@ -2396,7 +2413,7 @@
         <div class="hero-copy">
           <div class="hero-label"><strong>&lt;code&gt;</strong> 兒童程式設計課程・since 2012 <strong>&lt;/code&gt;</strong></div>
           <h1>橘子蘋果<br><span class="hl">程式學苑</span></h1>
-          <p class="hero-tagline">從第一行程式，<strong>一路走出成果。</strong></p>
+          <p class="hero-tagline">從第一行程式，一路走出成果</p>
           <p class="hero-sub">
             從 Scratch、Minecraft、Roblox 到 Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
           </p>
