@@ -2305,12 +2305,19 @@
     .proof-head .proof-hint { font-size: 15px; }
     .trust-map-layout p { font-size: 17px !important; }
 
+    /* FAQ 展開答案是主要閱讀內容，不沿用原本 14px 的輔助字級 */
+    .faq-a {
+      font-size: 19px;
+      line-height: 1.9;
+    }
+
     @media (max-width: 560px) {
       .hero h1 { font-size: clamp(42px, 11vw, 48px); line-height: 1.18; }
       main h2 { font-size: clamp(32px, 8.5vw, 38px); }
       main h3 { font-size: 21px; }
       main p,
       main li { font-size: 17px; line-height: 1.8; }
+      .faq-a { font-size: 18px; line-height: 1.85; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
