@@ -2261,6 +2261,57 @@
       .map-panel-sub,
       .assure-item span { font-size: 16px; }
     }
+
+    /* ══ Classroom／FAQ 字級系統全面對齊（第二階段） ══ */
+    main p,
+    main li { font-size: 17px; line-height: 1.75; }
+    main h2 { font-size: clamp(32px, 3.8vw, 44px); line-height: 1.2; }
+    main h3 { font-size: 21px; line-height: 1.4; }
+    main h4 { font-size: 18px; line-height: 1.4; }
+    main button,
+    main .btn-primary,
+    main .btn-secondary { font-size: 16px; }
+
+    /* 只有功能標籤、數據註記與流程輔助字維持次要層級 */
+    .hero-pathline,
+    .hero-proof,
+    .tag,
+    .tag-dark,
+    .path-grade,
+    .ms-tag,
+    .entry .g,
+    .stage .c,
+    .map-cert-links,
+    .map-support-label,
+    .result-label,
+    .video-eyebrow,
+    .marquee-tag,
+    .trust-proof-label,
+    .cta-code,
+    .cta-sub,
+    .proof-stat span,
+    .rating-count,
+    .review-source,
+    .faq-more { font-size: 15px; line-height: 1.65; }
+
+    .path-card > p,
+    .quickqa-card p,
+    .result-card p,
+    .trust-card > p,
+    .classroom-point p,
+    .ms-desc,
+    .review-text,
+    .assure-item span { font-size: 17px; }
+    .proof-head .proof-hint { font-size: 15px; }
+    .trust-map-layout p { font-size: 17px !important; }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: clamp(42px, 11vw, 48px); line-height: 1.18; }
+      main h2 { font-size: clamp(32px, 8.5vw, 38px); }
+      main h3 { font-size: 21px; }
+      main p,
+      main li { font-size: 17px; line-height: 1.8; }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .hero-media video { display: none; }
