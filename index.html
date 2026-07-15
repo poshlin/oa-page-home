@@ -36,7 +36,7 @@
         "@type": ["Organization", "EducationalOrganization"],
         "@id": "https://orangeapple.co/#organization",
         "name": "橘子蘋果程式學苑",
-        "alternateName": ["橘子蘋果", "Orange Apple", "橘子蘋果兒童程式學苑"],
+        "alternateName": ["橘子蘋果", "Orange Apple"],
         "url": "https://orangeapple.co/",
         "logo": { "@type": "ImageObject", "url": "https://orangeapple.co/assets/navbar/logo-mini-2-3ab865a172b2635249a85d3d7f0f7cbe628a89c191f05b6e3c5766c776ffe2d0.png" },
         "foundingDate": "2012",
@@ -494,6 +494,17 @@
       text-shadow: 0 4px 30px rgba(0,0,0,.3);
     }
     .hero h1 .hl { color: var(--orange); }
+    .hero-tagline {
+      max-width: 575px;
+      color: #fff;
+      font-size: clamp(23px, 2.2vw, 30px);
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: -.01em;
+      margin: -6px 0 14px;
+      text-shadow: 0 3px 20px rgba(0,0,0,.28);
+    }
+    .hero-tagline strong { color: var(--orange); font-weight: 800; }
     .hero-sub {
       max-width: 575px; font-size: clamp(17px, 1.45vw, 19px); color: rgba(255,255,255,.84);
       line-height: 1.75; margin-bottom: 32px;
@@ -967,6 +978,8 @@
     .results .container { position: relative; }
     .results h2 { color: var(--text); }
     .results-header { text-align: center; margin-bottom: 56px; }
+    .results-title-break { display: none; }
+    .results-title-tail { white-space: nowrap; }
     .results-header p { color: var(--gray); margin-top: 14px; font-size: 16px; text-wrap: balance; }
     .result-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .result-card {
@@ -1313,9 +1326,7 @@
       max-width: 760px;
       text-align: center;
     }
-    .videos-header h3 {
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 800;
+    .videos-header h2 {
       margin-bottom: 10px;
     }
     .videos-header p {
@@ -2179,7 +2190,27 @@
       text-decoration: none;
     }
     .sticky-cta span { display: block; font-size: 11px; font-weight: 400; opacity: 0.92; margin-top: 2px; }
-    @media (max-width: 760px) { .sticky-cta { display: block; } body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); } }
+    @media (max-width: 760px) {
+      .sticky-cta {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(calc(100% + 28px));
+        transition: opacity .24s ease, transform .3s ease, visibility 0s linear .3s;
+      }
+      .sticky-cta.is-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition-delay: 0s;
+      }
+      body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sticky-cta { transition: none; }
+    }
 
     /* ══ 對比策略（2026-07-12，保旭拍板）：banner 白字→藏藍、按鈕維持深字（過 AA）；但「橘色 accent 強調文字」用品牌亮橘 --orange（＝H1 橘子蘋果同色）、不 darken——經比較深墨土色反傷品牌質感，屬記錄在案的 a11y 例外（同 H1 品牌字/評分星星）。真正閱讀正文（深灰/深墨）本就過 AA；teal/coral accent 不土且過 AA 故保留加深。勿把橘 accent 文字重列為 Critical。 ══ */
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
@@ -2205,6 +2236,9 @@
       .hero { min-height: 780px; }
       .hero > .container { padding: 0 20px; }
       .hero-inner { padding: 88px 0 118px; }
+      /* 手機使用靜態 Poster：焦點放在學生臉部，並保留右側少量筆電情境。 */
+      .hero-media video { object-position: 38% center; }
+      .hero-media { background-position: 38% center; }
       .hero h1 { font-size: clamp(35px, 10.5vw, 48px); }
       .hero-sub { font-size: 16px; line-height: 1.65; }
       .hero-sub br { display: none; }
@@ -2336,6 +2370,7 @@
       main p,
       main li { font-size: 17px; line-height: 1.8; }
       .faq-a { font-size: 18px; line-height: 1.85; }
+      .results-title-break { display: inline; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -2359,10 +2394,11 @@
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="hero-label"><strong>&lt;code&gt;</strong> 兒童程式設計・since 2012 <strong>&lt;/code&gt;</strong></div>
-          <h1>從第一行程式，<br><span class="hl">一路走出成果。</span></h1>
+          <div class="hero-label"><strong>&lt;code&gt;</strong> 兒童程式設計課程・since 2012 <strong>&lt;/code&gt;</strong></div>
+          <h1>橘子蘋果<br><span class="hl">程式學苑</span></h1>
+          <p class="hero-tagline">從第一行程式，<strong>一路走出成果。</strong></p>
           <p class="hero-sub">
-            橘子蘋果程式學苑，從 Scratch、Minecraft、Roblox 到 Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
+            從 Scratch、Minecraft、Roblox 到 Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
           </p>
           <div class="hero-cta">
             <button type="button" class="btn-primary" data-oa-cta="hero">取得免費試聽</button>
@@ -2725,7 +2761,7 @@
     <div class="container">
       <div class="results-header">
         <span class="tag tag-dark">// student_outcomes</span>
-        <h2>橘蘋的孩子，走到了哪裡</h2>
+        <h2>橘蘋的孩子，<br class="results-title-break"><span class="results-title-tail">走到了哪裡</span></h2>
         <p>不是「有學到東西」而已——是拿得出證據的成果。</p>
         <div class="results-symbol">
           <div class="rs-cases">
@@ -3089,7 +3125,7 @@
   <section class="videos" aria-label="家長訪談影片">
     <div class="container">
       <div class="videos-header">
-        <h3>六種家庭故事，一個升學成果</h3>
+        <h2>六種家庭故事，一個升學成果</h2>
         <p>從低年級啟蒙、Scratch 自學、Minecraft 動機，到 APCS、Python 證照、長期邏輯訓練與清大資工錄取，這些是真實走過的學習路徑。</p>
       </div>
       <div class="videos-grid">
@@ -3410,7 +3446,7 @@
 
   <!-- Rails Layout 會把全站頁尾注入這裡 -->
   <!-- 手機常駐浮動 CTA -->
-  <button type="button" class="sticky-cta" data-oa-cta="sticky">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></button>
+  <button type="button" class="sticky-cta" data-oa-cta="sticky" aria-hidden="true" tabindex="-1">取得免費試聽<span>免費・顧問來電說明費用與適合課程</span></button>
   </main>
 
   <oa-footer></oa-footer>
@@ -3472,6 +3508,65 @@
           });
         }, { threshold: 0.05 });
         observer.observe(video);
+      }
+    })();
+
+    /* ── 手機浮動 CTA：滑過 Hero CTA 後才出現，且不與頁內 CTA 重疊 ── */
+    (function () {
+      var sticky = document.querySelector('.sticky-cta');
+      var heroCta = document.querySelector('[data-oa-cta="hero"]');
+      if (!sticky || !heroCta || !window.matchMedia('(max-width: 760px)').matches) return;
+
+      var inlineCtas = Array.prototype.slice.call(document.querySelectorAll('[data-oa-cta]:not([data-oa-cta="sticky"])'));
+      var visibleCtas = new Set();
+      var hasPassedHero = false;
+
+      function setStickyVisible(show) {
+        sticky.classList.toggle('is-visible', show);
+        sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
+        sticky.tabIndex = show ? 0 : -1;
+      }
+
+      function updateSticky() {
+        setStickyVisible(hasPassedHero && visibleCtas.size === 0);
+      }
+
+      if ('IntersectionObserver' in window) {
+        var ctaObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) visibleCtas.add(entry.target);
+            else visibleCtas.delete(entry.target);
+
+            if (entry.target === heroCta) {
+              if (entry.isIntersecting) hasPassedHero = false;
+              else if (entry.boundingClientRect.bottom < 0) hasPassedHero = true;
+              else if (entry.boundingClientRect.top > 0) hasPassedHero = false;
+            }
+          });
+          updateSticky();
+        }, { threshold: 0 });
+
+        inlineCtas.forEach(function (cta) { ctaObserver.observe(cta); });
+      } else {
+        var ticking = false;
+        function checkPositions() {
+          var heroRect = heroCta.getBoundingClientRect();
+          hasPassedHero = heroRect.bottom < 0;
+          var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          var anyVisible = inlineCtas.some(function (cta) {
+            var rect = cta.getBoundingClientRect();
+            return rect.bottom > 0 && rect.top < viewportHeight;
+          });
+          setStickyVisible(hasPassedHero && !anyVisible);
+          ticking = false;
+        }
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            ticking = true;
+            window.requestAnimationFrame(checkPositions);
+          }
+        }, { passive: true });
+        checkPositions();
       }
     })();
 
