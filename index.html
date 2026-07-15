@@ -488,6 +488,7 @@
       margin-bottom: 24px; letter-spacing: .1em;
     }
     .hero-label strong { color: var(--orange); font-weight: 700; }
+    .hero-label-mobile { display: none; }
     .hero h1 {
       max-width: 610px; color: #fff; font-size: clamp(46px, 5vw, 76px); font-weight: 800;
       line-height: 1.06; letter-spacing: -.025em; margin-bottom: 26px;
@@ -2250,9 +2251,17 @@
       .hero { min-height: 780px; }
       .hero > .container { padding: 0 20px; }
       .hero-inner { padding: 88px 0 118px; }
-      /* 手機使用靜態 Poster：焦點放在學生臉部，並保留右側少量筆電情境。 */
-      .hero-media video { object-position: 38% center; }
-      .hero-media { background-position: 38% center; }
+      /* 手機靜態 Poster：露出約六成人臉，眼神避開主標筆畫，並保留筆電情境。 */
+      .hero-media video { object-position: 48% center; }
+      .hero-media { background-position: 48% center; }
+      .hero-label {
+        font-size: 12px;
+        letter-spacing: .04em;
+        white-space: nowrap;
+        margin-bottom: 22px;
+      }
+      .hero-label-desktop { display: none; }
+      .hero-label-mobile { display: inline; }
       .hero h1 { font-size: clamp(35px, 10.5vw, 48px); }
       .hero-tagline { gap: 9px; font-size: clamp(16px, 4.6vw, 19px); }
       .hero-tagline::before,
@@ -2411,7 +2420,10 @@
     <div class="container">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="hero-label"><strong>&lt;code&gt;</strong> 兒童程式設計課程・since 2012 <strong>&lt;/code&gt;</strong></div>
+          <div class="hero-label">
+            <span class="hero-label-desktop"><strong>&lt;code&gt;</strong> 兒童程式設計課程・since 2012 <strong>&lt;/code&gt;</strong></span>
+            <span class="hero-label-mobile"><strong>//</strong> 兒童程式設計課程・since 2012</span>
+          </div>
           <h1>橘子蘋果<br><span class="hl">程式學苑</span></h1>
           <p class="hero-tagline">從第一行程式，一路走出成果</p>
           <p class="hero-sub">
