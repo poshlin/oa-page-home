@@ -569,9 +569,11 @@
       content: ''; display: inline-block; width: 1px; height: 44px; margin-top: 12px; background: var(--orange);
     }
 
-    /* ══════════ 2. 信任數字列（水平深色帶）══════════ */
+    /* ══════════ 2. 信任數字列（水平淡綠信任帶）══════════ */
     .stats {
-      background: #3a4a6b;
+      background: var(--teal-light);
+      border-top: 1px solid rgba(0,158,144,0.18);
+      border-bottom: 1px solid rgba(0,158,144,0.18);
       padding: 56px 0;
       position: relative;
       z-index: 2;
@@ -580,18 +582,18 @@
     .stat-item {
       text-align: center;
       padding: 8px 16px;
-      border-right: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(0,119,107,0.22);
     }
     .stat-item:last-child { border-right: none; }
     .stat-num {
       font-family: var(--mono);
       font-size: clamp(30px, 4vw, 44px);
       font-weight: 800;
-      color: var(--orange);
+      color: var(--teal-ink);
       line-height: 1.2;
     }
     .stat-num .unit { font-size: max(0.55em, 19px); font-weight: 700; margin-left: 2px; }
-    .stat-label { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 6px; }
+    .stat-label { font-size: 14px; color: #46545a; margin-top: 6px; }
 
     /* ══════════ 3. 直答框（縮短版）══════════ */
     .intro { background: #fff; padding: var(--s8) 0; }
