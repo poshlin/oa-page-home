@@ -2461,9 +2461,9 @@
       .hero { min-height: 780px; }
       .hero > .container { padding: 0 20px; }
       .hero-inner { padding: 88px 0 118px; }
-      /* 手機靜態 Poster：露出約六成人臉，眼神避開主標筆畫，並保留筆電情境。 */
-      .hero-media video { object-position: 48% center; }
-      .hero-media { background-position: 48% center; }
+      /* 手機靜態 Poster：回到最初構圖，人物只在左側露出局部，避免臉部與主標互相遮擋。 */
+      .hero-media video { object-position: 38% center; }
+      .hero-media { background-position: 38% center; }
       .hero-label {
         font-size: 12px;
         letter-spacing: .04em;
@@ -2479,8 +2479,20 @@
       .hero-sub { font-size: 16px; line-height: 1.65; }
       .hero-sub br { display: none; }
       .hero-pathline { font-size: 11px; line-height: 1.55; }
-      .hero-cta { gap: 12px; }
-      .hero-cta .btn-primary, .hero-cta .btn-secondary { width: 100%; text-align: center; }
+      .hero-cta { justify-content: center; gap: 10px; }
+      .hero-cta .btn-primary,
+      .hero-cta .btn-secondary {
+        width: clamp(280px, 82vw, 340px);
+        min-height: 52px;
+        padding: 0 22px;
+        font-size: 15px;
+        text-align: center;
+      }
+      .hero .btn-secondary .line-icon {
+        left: 20px;
+        width: 19px;
+        height: 19px;
+      }
       .hero-proof span + span { padding-left: 10px; }
     }
 
