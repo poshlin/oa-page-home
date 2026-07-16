@@ -2210,6 +2210,191 @@
     /* ══════════ 9b. 家長訪談影片獨立成段（與評論拆成兩種節奏）══════════ */
     .videos { padding: var(--s8) 0 var(--s9); border-top: 1px solid var(--line-soft); }
 
+    /* ══════════ 長頁快速導覽：離開 Hero 後出現，接近最終 CTA 時退場 ══════════ */
+    .section-nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 80;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line-soft);
+      box-shadow: 0 8px 28px rgba(18,21,30,0.10);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-110%);
+      transition: opacity .22s ease, transform .28s ease, visibility 0s linear .28s;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+    .section-nav.is-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+    .section-nav-inner {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .section-nav-toggle { display: none; }
+    .section-nav-links {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      flex: 1;
+      min-width: 0;
+    }
+    .section-nav-links a {
+      position: relative;
+      min-height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      color: #5A606B;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color .18s ease, background-color .18s ease;
+    }
+    .section-nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      bottom: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+      background: var(--orange);
+      transform: scaleX(0);
+      transition: transform .18s ease;
+    }
+    .section-nav-links a:hover,
+    .section-nav-links a[aria-current="location"] {
+      color: var(--dark);
+      background: #FFF8E8;
+    }
+    .section-nav-links a[aria-current="location"]::after { transform: scaleX(1); }
+    .section-nav-cta {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: var(--r-pill);
+      background: var(--orange);
+      color: var(--dark);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 5px 16px rgba(255,163,0,0.24);
+    }
+    .section-nav-links a:focus-visible,
+    .section-nav-toggle:focus-visible,
+    .section-nav-cta:focus-visible {
+      outline: 3px solid rgba(255,163,0,0.42);
+      outline-offset: 2px;
+    }
+    #guide, #courses, #learning-path, #class-format, #outcomes, #trust-faq {
+      scroll-margin-top: 76px;
+    }
+    @media (max-width: 760px) {
+      .section-nav-inner {
+        position: relative;
+        min-height: 52px;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .section-nav-toggle {
+        width: 100%;
+        min-height: 52px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--dark);
+        font-family: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+      .section-nav-toggle-label {
+        color: var(--orange-ink, #A86500);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .04em;
+      }
+      .section-nav-current {
+        overflow: hidden;
+        color: var(--dark);
+        font-size: 15px;
+        font-weight: 800;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .section-nav-chevron {
+        width: 18px;
+        height: 18px;
+        transition: transform .2s ease;
+      }
+      .section-nav.is-open .section-nav-chevron { transform: rotate(180deg); }
+      .section-nav-links {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 16px;
+        right: 16px;
+        display: grid;
+        justify-content: stretch;
+        padding: 6px;
+        border: 1px solid var(--line-soft);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 16px 38px rgba(18,21,30,0.16);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity .18s ease, transform .2s ease, visibility 0s linear .2s;
+      }
+      .section-nav.is-open .section-nav-links {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        transition-delay: 0s;
+      }
+      .section-nav-links a {
+        min-height: 46px;
+        justify-content: flex-start;
+        padding: 0 14px;
+        border-radius: 10px;
+        font-size: 15px;
+      }
+      .section-nav-links a::after {
+        left: 0;
+        right: auto;
+        top: 10px;
+        bottom: 10px;
+        width: 4px;
+        height: auto;
+        border-radius: 0 4px 4px 0;
+        transform: scaleY(0);
+      }
+      .section-nav-links a[aria-current="location"]::after { transform: scaleY(1); }
+      .section-nav-cta { display: none; }
+      #guide, #courses, #learning-path, #class-format, #outcomes, #trust-faq {
+        scroll-margin-top: 66px;
+      }
+    }
+
     /* ══════════ 手機常駐浮動 CTA（心動那刻能馬上行動）══════════ */
     .sticky-cta {
       display: none;
@@ -2249,7 +2434,7 @@
       body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .sticky-cta { transition: none; }
+      .section-nav, .section-nav-links, .section-nav-chevron, .sticky-cta { transition: none; }
     }
 
     /* ══ 對比策略（2026-07-12，保旭拍板）：banner 白字→藏藍、按鈕維持深字（過 AA）；但「橘色 accent 強調文字」用品牌亮橘 --orange（＝H1 橘子蘋果同色）、不 darken——經比較深墨土色反傷品牌質感，屬記錄在案的 a11y 例外（同 H1 品牌字/評分星星）。真正閱讀正文（深灰/深墨）本就過 AA；teal/coral accent 不土且過 AA 故保留加深。勿把橘 accent 文字重列為 Critical。 ══ */
@@ -2473,6 +2658,26 @@
     </div>
   </section>
 
+  <!-- 長頁快速導覽：滑過 Hero 後顯示；手機採收合選單，避免壓縮閱讀空間 -->
+  <nav class="section-nav" aria-label="首頁快速導覽" aria-hidden="true">
+    <div class="section-nav-inner container">
+      <button type="button" class="section-nav-toggle" aria-expanded="false" aria-controls="sectionNavLinks">
+        <span class="section-nav-toggle-label">快速導覽</span>
+        <span class="section-nav-current">費用與選課</span>
+        <svg class="section-nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="section-nav-links" id="sectionNavLinks">
+        <a href="#guide" data-section="guide">費用與選課</a>
+        <a href="#courses" data-section="courses">找適合課程</a>
+        <a href="#learning-path" data-section="learning-path">學習路徑</a>
+        <a href="#class-format" data-section="class-format">上課方式</a>
+        <a href="#outcomes" data-section="outcomes">成果口碑</a>
+        <a href="#trust-faq" data-section="trust-faq">信任與 FAQ</a>
+      </div>
+      <button type="button" class="section-nav-cta" data-oa-cta="section-nav">免費試聽</button>
+    </div>
+  </nav>
+
   <!-- ══ 1.5 安心三點 ══ -->
   <section class="assure" aria-label="家長安心保證">
     <div class="container">
@@ -2494,7 +2699,7 @@
   </section>
 
   <!-- ══ 1.6 家長快速答案（AEO：AI 可直接引用）══ -->
-  <section class="quickqa" aria-label="家長常見疑問快速解答">
+  <section class="quickqa" id="guide" aria-label="家長常見疑問快速解答">
     <div class="container">
       <div class="quickqa-head">
         <span class="tag">// quick_answers</span>
@@ -2566,7 +2771,7 @@
   </section>
 
   <!-- ══ 4. 年齡分流三卡 ══ -->
-  <section class="pathfinder" aria-label="依年齡選課程">
+  <section class="pathfinder" id="courses" aria-label="依年齡選課程">
     <div class="container">
       <div class="pathfinder-header">
         <div class="pathfinder-copy">
@@ -2599,7 +2804,7 @@
   </section>
 
   <!-- ══ 6. 完整課程路徑地圖 ══ -->
-  <section class="roadmap" aria-label="完整課程學習地圖">
+  <section class="roadmap" id="learning-path" aria-label="完整課程學習地圖">
     <div class="container">
       <div class="roadmap-header">
         <span class="tag">// learning_roadmap</span>
@@ -2776,7 +2981,7 @@
   </section>
 
   <!-- ══ 7. 一堂課長什麼樣子 ══ -->
-  <section class="classroom" aria-label="上課方式">
+  <section class="classroom" id="class-format" aria-label="上課方式">
     <div class="container">
       <div class="classroom-inner">
         <div class="classroom-img-wrap">
@@ -2817,7 +3022,7 @@
   </section>
 
   <!-- ══ 8. 成果實證 ══ -->
-  <section class="results" aria-label="學習成果">
+  <section class="results" id="outcomes" aria-label="學習成果">
     <div class="container">
       <div class="results-header">
         <span class="tag tag-dark">// student_outcomes</span>
@@ -3299,7 +3504,7 @@
   </section>
 
   <!-- ══ 10. 延伸安心帶：獎項・制度・據點（三層信任證據之「制度層」）══ -->
-  <section class="trust" aria-label="值得信任的理由">
+  <section class="trust" id="trust-faq" aria-label="值得信任的理由">
     <div class="container">
       <div class="trust-header">
         <span class="tag">// why_trust_us</span>
@@ -3494,7 +3699,7 @@
   </section>
 
   <!-- ══ 13. 最終 CTA ══ -->
-  <section class="cta" aria-label="免費試聽">
+  <section class="cta" id="final-cta" aria-label="免費試聽">
     <div class="container" style="position:relative;">
       <p class="cta-code">&lt;first_class free=&quot;true&quot;&gt;</p>
       <h2>第一堂課，免費體驗</h2>
@@ -3571,13 +3776,98 @@
       }
     })();
 
+    /* ── 長頁快速導覽：依閱讀位置顯示、標示目前段落，手機可收合 ── */
+    (function () {
+      var nav = document.querySelector('.section-nav');
+      var heroCta = document.querySelector('[data-oa-cta="hero"]');
+      var finalCta = document.querySelector('#final-cta');
+      if (!nav || !heroCta || !finalCta) return;
+
+      var toggle = nav.querySelector('.section-nav-toggle');
+      var currentLabel = nav.querySelector('.section-nav-current');
+      var links = Array.prototype.slice.call(nav.querySelectorAll('.section-nav-links a'));
+      var sections = links.map(function (link) {
+        return {
+          id: link.getAttribute('data-section'),
+          label: link.textContent.trim(),
+          link: link,
+          element: document.getElementById(link.getAttribute('data-section'))
+        };
+      }).filter(function (item) { return item.element; });
+      var ticking = false;
+
+      function closeMenu() {
+        nav.classList.remove('is-open');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
+
+      function setVisible(show) {
+        nav.classList.toggle('is-visible', show);
+        nav.setAttribute('aria-hidden', show ? 'false' : 'true');
+        if (!show) closeMenu();
+      }
+
+      function setActive(item) {
+        sections.forEach(function (section) {
+          if (section === item) section.link.setAttribute('aria-current', 'location');
+          else section.link.removeAttribute('aria-current');
+        });
+        if (currentLabel && item) currentLabel.textContent = item.label;
+      }
+
+      function updateNav() {
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        var heroRect = heroCta.getBoundingClientRect();
+        var finalRect = finalCta.getBoundingClientRect();
+        var hasPassedHero = heroRect.bottom < 0;
+        var hasReachedFinalCta = finalRect.top < viewportHeight && finalRect.bottom > 0;
+        var hasPassedFinalCta = finalRect.bottom <= 0;
+        setVisible(hasPassedHero && !hasReachedFinalCta && !hasPassedFinalCta);
+
+        var marker = nav.offsetHeight + 28;
+        var active = sections[0];
+        sections.forEach(function (section) {
+          if (section.element.getBoundingClientRect().top <= marker) active = section;
+        });
+        setActive(active);
+        ticking = false;
+      }
+
+      function requestUpdate() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateNav);
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          var open = !nav.classList.contains('is-open');
+          nav.classList.toggle('is-open', open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+      links.forEach(function (link) { link.addEventListener('click', closeMenu); });
+      document.addEventListener('click', function (event) {
+        if (!nav.contains(event.target)) closeMenu();
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+          closeMenu();
+          if (toggle && window.matchMedia('(max-width: 760px)').matches) toggle.focus();
+        }
+      });
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      updateNav();
+    })();
+
     /* ── 手機浮動 CTA：滑過 Hero CTA 後才出現，且不與頁內 CTA 重疊 ── */
     (function () {
       var sticky = document.querySelector('.sticky-cta');
       var heroCta = document.querySelector('[data-oa-cta="hero"]');
       if (!sticky || !heroCta || !window.matchMedia('(max-width: 760px)').matches) return;
 
-      var inlineCtas = Array.prototype.slice.call(document.querySelectorAll('[data-oa-cta]:not([data-oa-cta="sticky"])'));
+      var inlineCtas = Array.prototype.slice.call(document.querySelectorAll('[data-oa-cta]:not([data-oa-cta="sticky"]):not([data-oa-cta="section-nav"])'));
       var visibleCtas = new Set();
       var hasPassedHero = false;
 
