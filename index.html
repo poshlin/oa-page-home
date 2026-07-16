@@ -526,9 +526,28 @@
     }
     .hero-sub strong { color: #fff; }
     .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .hero-cta .btn-primary,
+    .hero-cta .btn-secondary {
+      width: 240px;
+      min-height: 58px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 28px;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
     .hero .btn-secondary {
+      position: relative;
       color: #fff; background: rgba(10,13,19,.36); border-color: rgba(255,255,255,.72);
       backdrop-filter: blur(10px);
+    }
+    .hero .btn-secondary .line-icon {
+      position: absolute; left: 24px;
+      width: 21px; height: 21px; color: #06c755;
     }
     .hero .btn-secondary:hover { color: var(--dark); background: #fff; border-color: #fff; }
     .hero-pathline {
@@ -550,12 +569,10 @@
       content: ''; display: inline-block; width: 1px; height: 44px; margin-top: 12px; background: var(--orange);
     }
 
-    /* ══════════ 2. 信任數字列（斜切深色帶）══════════ */
+    /* ══════════ 2. 信任數字列（水平深色帶）══════════ */
     .stats {
-      background: var(--dark);
-      padding: 72px 0 56px;
-      clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 100%);
-      margin-top: -24px;
+      background: #3a4a6b;
+      padding: 56px 0;
       position: relative;
       z-index: 2;
     }
@@ -563,7 +580,7 @@
     .stat-item {
       text-align: center;
       padding: 8px 16px;
-      border-right: 1px solid rgba(255,255,255,0.08);
+      border-right: 1px solid rgba(255,255,255,0.18);
     }
     .stat-item:last-child { border-right: none; }
     .stat-num {
@@ -573,8 +590,8 @@
       color: var(--orange);
       line-height: 1.2;
     }
-    .stat-num .unit { font-size: 0.55em; font-weight: 700; margin-left: 2px; }
-    .stat-label { font-size: 14px; color: rgba(255,255,255,0.65); margin-top: 6px; }
+    .stat-num .unit { font-size: max(0.55em, 19px); font-weight: 700; margin-left: 2px; }
+    .stat-label { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 6px; }
 
     /* ══════════ 3. 直答框（縮短版）══════════ */
     .intro { background: #fff; padding: var(--s8) 0; }
@@ -1957,7 +1974,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      clip-path: polygon(0 36px, 100% 0, 100% 100%, 0 100%);
     }
     .cta::before {
       content: '';
@@ -2434,11 +2450,14 @@
           <h1>橘子蘋果<br><span class="hl">程式學苑</span></h1>
           <p class="hero-tagline">從第一行程式，一路走出成果</p>
           <p class="hero-sub">
-            從 Scratch、Minecraft、Roblox 到 Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
+            從遊戲啟蒙、Minecraft、Roblox，到 Scratch、Python、AI，<span class="oa-years">14</span> 年陪超過 10 萬名孩子找到適合的起點。
           </p>
           <div class="hero-cta">
             <button type="button" class="btn-primary" data-oa-cta="hero">取得免費試聽</button>
-            <a href="https://line.me/R/ti/p/@291npklp" target="_blank" rel="noopener" class="btn-secondary">LINE@ 線上諮詢</a>
+            <a href="https://lin.ee/ZAqUzzy" target="_blank" rel="noopener noreferrer" class="btn-secondary" aria-label="加入橘子蘋果官方 LINE @qcr5001z">
+              <svg class="line-icon" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M272.1 204.2v71.1c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.1 0-2.1-.6-2.6-1.3l-32.6-44v42.2c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.8 0-3.2-1.4-3.2-3.2v-71.1c0-1.8 1.4-3.2 3.2-3.2H219c1 0 2.1.5 2.6 1.4l32.6 44v-42.2c0-1.8 1.4-3.2 3.2-3.2h11.4c1.8-.1 3.3 1.4 3.3 3.1zm-82-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 1.8 1.4 3.2 3.2 3.2h11.4c1.8 0 3.2-1.4 3.2-3.2v-71.1c0-1.7-1.4-3.2-3.2-3.2zm-27.5 59.6h-31.1v-56.4c0-1.8-1.4-3.2-3.2-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 .9.3 1.6.9 2.2.6.5 1.3.9 2.2.9h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.7-1.4-3.2-3.1-3.2zM332.1 201h-45.7c-1.7 0-3.2 1.4-3.2 3.2v71.1c0 1.7 1.4 3.2 3.2 3.2h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.8-1.4-3.2-3.2-3.2H301v-12h31.1c1.8 0 3.2-1.4 3.2-3.2V234c0-1.8-1.4-3.2-3.2-3.2H301v-12h31.1c1.8 0 3.2-1.4 3.2-3.2v-11.4c-.1-1.7-1.5-3.2-3.2-3.2zM448 113.7V399c-.1 44.8-36.8 81.1-81.7 81H81c-44.8-.1-81.1-36.9-81-81.7V113c.1-44.8 36.9-81.1 81.7-81H367c44.8.1 81.1 36.8 81 81.7zm-61.6 122.6c0-73-73.2-132.4-163.1-132.4-89.9 0-163.1 59.4-163.1 132.4 0 65.4 58 120.2 136.4 130.6 19.1 4.1 16.9 11.1 12.6 36.8-.7 4.1-3.3 16.1 14.1 8.8 17.4-7.3 93.9-55.3 128.2-94.7 23.6-26 34.9-52.3 34.9-81.5z"/></svg>
+              <span>官方 LINE 諮詢</span>
+            </a>
           </div>
           <p class="hero-pathline">玩創啟蒙 <b>→</b> 菁英九階 <b>→</b> 駭客・升學認證</p>
         </div>
