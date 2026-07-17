@@ -10,8 +10,9 @@
   <meta name="description" content="橘子蘋果程式學苑成立於 2012 年，全台 12 縣市直營、線上課程不限地區，累計逾 10 萬名學生。Scratch、Python、AI、麥塊、Roblox 完整課程，國小一年級起可免費試聽。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://orangeapple.co/">
-  <!-- Hero 首圖是首屏最大視覺，優先下載以縮短 LCP；影片稍後再載入 -->
-  <link rel="preload" as="image" href="assets/hero-student-journey-poster.jpg" fetchpriority="high">
+  <!-- Hero 首圖是首屏最大視覺，依裝置只預載對應 Poster；影片稍後再載入 -->
+  <link rel="preload" as="image" href="assets/hero-student-journey-mobile-poster.jpg" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/hero-student-journey-poster.jpg" media="(min-width: 761px)" fetchpriority="high">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -465,7 +466,10 @@
     .hero-media video {
       position: absolute; top: 0; right: 0; width: 76%; height: 100%;
       object-fit: cover; object-position: center;
+      opacity: 0;
+      transition: opacity .45s ease;
     }
+    .hero-media video.is-ready { opacity: 1; }
     .hero-media::before {
       content: ''; z-index: 1;
       background:
@@ -2077,6 +2081,17 @@
       .faq-grid { grid-template-columns: 1fr; gap: 32px; }
       .faq-sticky { position: relative; top: auto; }
     }
+    @media (max-width: 760px) {
+      .hero-media {
+        background-image: url('assets/hero-student-journey-mobile-poster.jpg');
+        background-position: center;
+        background-size: cover;
+      }
+      .hero-media video {
+        width: 100%;
+        object-position: center;
+      }
+    }
     @media (max-width: 600px) {
       .intro p br { display: none; }
       .intro-inner { text-align: left; }
@@ -2461,9 +2476,9 @@
       .hero { min-height: 780px; }
       .hero > .container { padding: 0 20px; }
       .hero-inner { padding: 88px 0 118px; }
-      /* 手機靜態 Poster：依參考畫面將人物推出左側，只保留局部臉部，避免與主標互相遮擋。 */
-      .hero-media video { object-position: 60% center; }
-      .hero-media { background-position: 60% center; }
+      /* 手機使用已重新構圖的直式影片／Poster，不再靠橫式素材的百分比位置猜測裁切。 */
+      .hero-media video { object-position: center; }
+      .hero-media { background-position: center; }
       .hero-label {
         font-size: 12px;
         letter-spacing: .04em;
@@ -2635,9 +2650,11 @@
   <!-- ══ 1. HERO ══ -->
   <section class="hero" aria-label="橘子蘋果程式學苑">
     <div class="hero-media" aria-hidden="true">
-      <video muted loop playsinline preload="none" poster="assets/hero-student-journey-poster.jpg"
+      <video muted loop playsinline preload="none"
              data-webm="assets/hero-student-journey.webm"
-             data-mp4="assets/hero-student-journey.mp4"></video>
+             data-mp4="assets/hero-student-journey.mp4"
+             data-mobile-webm="assets/hero-student-journey-mobile.webm"
+             data-mobile-mp4="assets/hero-student-journey-mobile.mp4"></video>
     </div>
     <div class="container">
       <div class="hero-inner">
@@ -3730,27 +3747,44 @@
 
   <script>
     /* ── Hero 影片效能策略 ──
-       手機、慢速／省流量網路與減少動態偏好只顯示 Poster；
-       桌機等主要資源完成後才下載影片，避免與首屏 LCP 競爭。 */
+       所有裝置先顯示對應 Poster；主要資源完成後，只有一般網路且未開啟
+       省流量／減少動態效果的裝置才延遲載入影片。手機使用專用直式輕量版。 */
     (function () {
       var video = document.querySelector('.hero-media video');
       if (!video) return;
 
       var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var desktop = window.matchMedia && window.matchMedia('(min-width: 961px)').matches;
+      var mobile = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
       var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
       var saveData = connection && connection.saveData;
-      var slowNetwork = connection && /(^|-)2g$/.test(connection.effectiveType || '');
-      if (reduceMotion || !desktop || saveData || slowNetwork) return;
+      var slowNetwork = connection && /^(slow-2g|2g|3g)$/.test(connection.effectiveType || '');
+      var isInView = true;
+      if (reduceMotion || saveData || slowNetwork) return;
+
+      function showPoster() {
+        video.classList.remove('is-ready');
+      }
+
+      function playIfAppropriate() {
+        if (video.dataset.loaded !== 'true' || !isInView || document.hidden) return;
+        var playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(showPoster);
+        }
+      }
 
       function loadHeroVideo() {
         if (video.dataset.loaded === 'true') return;
         video.dataset.loaded = 'true';
 
-        [
+        var assets = mobile ? [
+          { src: video.dataset.mobileWebm, type: 'video/webm' },
+          { src: video.dataset.mobileMp4, type: 'video/mp4' }
+        ] : [
           { src: video.dataset.webm, type: 'video/webm' },
           { src: video.dataset.mp4, type: 'video/mp4' }
-        ].forEach(function (asset) {
+        ];
+        assets.forEach(function (asset) {
           if (!asset.src) return;
           var source = document.createElement('source');
           source.src = asset.src;
@@ -3759,26 +3793,30 @@
         });
 
         video.load();
-        var playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === 'function') playPromise.catch(function () {});
+        playIfAppropriate();
       }
 
       window.addEventListener('load', function () {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(loadHeroVideo, { timeout: 1800 });
-        } else {
-          window.setTimeout(loadHeroVideo, 800);
-        }
+        window.setTimeout(function () {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadHeroVideo, { timeout: mobile ? 2200 : 1800 });
+          } else {
+            loadHeroVideo();
+          }
+        }, mobile ? 1200 : 0);
       }, { once: true });
+
+      /* 影片真正開始播放後才淡入；任何載入／播放失敗都保留 Poster。 */
+      video.addEventListener('playing', function () { video.classList.add('is-ready'); });
+      video.addEventListener('error', showPoster);
 
       /* Hero 離開畫面後暫停解碼，回到首屏再播放，降低 CPU／耗電。 */
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (video.dataset.loaded !== 'true') return;
+            isInView = entry.isIntersecting;
             if (entry.isIntersecting) {
-              var promise = video.play();
-              if (promise && typeof promise.catch === 'function') promise.catch(function () {});
+              playIfAppropriate();
             } else {
               video.pause();
             }
@@ -3786,6 +3824,11 @@
         }, { threshold: 0.05 });
         observer.observe(video);
       }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) video.pause();
+        else playIfAppropriate();
+      });
     })();
 
     /* ── 長頁快速導覽：依閱讀位置顯示、標示目前段落，手機可收合 ── */
