@@ -10,8 +10,9 @@
   <meta name="description" content="橘子蘋果程式學苑成立於 2012 年，全台 12 縣市直營、線上課程不限地區，累計逾 10 萬名學生。Scratch、Python、AI、麥塊、Roblox 完整課程，國小一年級起可免費試聽。">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://orangeapple.co/">
-  <!-- Hero 首圖是首屏最大視覺，優先下載以縮短 LCP；影片稍後再載入 -->
-  <link rel="preload" as="image" href="assets/hero-student-journey-poster.jpg" fetchpriority="high">
+  <!-- Hero 首圖是首屏最大視覺；手機與桌機各自預載最合適的構圖。 -->
+  <link rel="preload" as="image" href="assets/hero-mobile-screen.jpg" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/hero-student-journey-poster.jpg" media="(min-width: 761px)" fetchpriority="high">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -2457,13 +2458,25 @@
     .ms-dot, .mainline-num, .ms .n, .mainline .n { color: var(--dark); }
     .ms.m3 .ms-dot { color: #fff; }
     .ms-title { margin: 0; }
+    @media (max-width: 760px) {
+      /* 手機只顯示專用靜態成果圖：保留學生操作情境與右側程式螢幕，不下載 Hero 影片。 */
+      .hero-media {
+        background-image: url('assets/hero-mobile-screen.jpg');
+        background-position: center top;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .hero-media video { display: none; }
+      .hero-media::before {
+        background:
+          linear-gradient(90deg, rgba(8,11,16,.76) 0%, rgba(8,11,16,.42) 58%, rgba(8,11,16,.12) 100%),
+          linear-gradient(0deg, rgba(8,11,16,.97) 0%, rgba(8,11,16,.82) 48%, rgba(8,11,16,.18) 100%);
+      }
+    }
     @media (max-width: 560px) {
       .hero { min-height: 780px; }
       .hero > .container { padding: 0 20px; }
       .hero-inner { padding: 88px 0 118px; }
-      /* 手機靜態 Poster：依參考畫面將人物推出左側，只保留局部臉部，避免與主標互相遮擋。 */
-      .hero-media video { object-position: 60% center; }
-      .hero-media { background-position: 60% center; }
       .hero-label {
         font-size: 12px;
         letter-spacing: .04em;
