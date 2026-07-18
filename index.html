@@ -333,7 +333,7 @@
       --navy-light: #E9EEF8;
       /* ── 墨與中性 ── */
       --dark: #12151E;
-      --text: #2A2D35;
+      --text: #2D2E32;
       --gray: #5B616D;
       --line: #E6E8EC;
       --line-soft: rgba(18,21,30,0.08);
@@ -1142,7 +1142,7 @@
       display: flex; align-items: center; justify-content: center;
       box-shadow: var(--e1); transition: background 0.18s, color 0.18s, border-color 0.18s;
     }
-    .honor-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .honor-nav:hover { background: var(--orange); color: var(--dark); border-color: var(--orange); }
     .htile {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -1331,7 +1331,7 @@
       box-shadow: var(--e1);
       transition: background 0.18s, color 0.18s, border-color 0.18s;
     }
-    .reviews-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .reviews-nav:hover { background: var(--orange); color: var(--dark); border-color: var(--orange); }
     .reviews-dots {
       display: flex;
       justify-content: center;
@@ -1390,7 +1390,7 @@
       background: rgba(255,255,255,0.96); color: var(--dark); font-size: 24px; line-height: 1;
       display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--e1);
       transition: background 0.18s, color 0.18s, border-color 0.18s; }
-    .videos-nav:hover { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .videos-nav:hover { background: var(--orange); color: var(--dark); border-color: var(--orange); }
     .videos-dots { display: flex; justify-content: center; gap: 7px; }
     .videos-dots .dot { position: relative; width: 7px; height: 7px; padding: 0; border: 0;
       border-radius: var(--r-pill); background: #D8DCE3; cursor: pointer; transition: width 0.2s, background 0.2s; }
@@ -2144,7 +2144,7 @@
     .roadmap-mainline { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: var(--s6); }
     .roadmap-mainline::before { content: ""; position: absolute; top: 22px; left: 13%; right: 13%; height: 2px; background: var(--line); z-index: 0; }
     .mainline-step { position: relative; z-index: 1; text-align: center; padding: 0 8px; }
-    .mainline-num { width: 44px; height: 44px; margin: 0 auto 12px; border-radius: 50%; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 800; font-size: 14px; box-shadow: var(--e1); }
+    .mainline-num { width: 44px; height: 44px; margin: 0 auto 12px; border-radius: 50%; background: var(--orange); color: var(--dark); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 800; font-size: 14px; box-shadow: var(--e1); }
     .mainline-title { font-size: 15px; font-weight: 800; color: var(--navy); margin-bottom: 4px; line-height: 1.3; }
     .mainline-sub { font-size: 12px; color: var(--gray); line-height: 1.55; }
     .roadmap-mainline-note { text-align: center; font-size: 13px; color: var(--gray); margin-bottom: var(--s7); }
@@ -2197,7 +2197,7 @@
     /* 九階段細節：3 里程碑各自展開（預設全收合）*/
     .map-panel { margin-top: var(--s6); }
     .map-panel-head { text-align: center; margin-bottom: 26px; }
-    .map-panel-lead { font-size: clamp(19px, 2.4vw, 22px); font-weight: 900; color: var(--dark); }
+    .map-panel-lead { font-size: clamp(19px, 2.4vw, 22px); font-weight: 800; color: var(--dark); }
     .map-panel-sub { font-size: 13px; color: var(--gray); margin-top: 8px; line-height: 1.7; }
     /* 能力補強線：脊椎之外的「支線」手風琴——虛線＋標記、虛線岔接、預設收合 */
     .ms-branch { position: relative; margin-top: 16px; }
