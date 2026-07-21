@@ -31,290 +31,764 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["Organization", "EducationalOrganization"],
-        "@id": "https://orangeapple.co/#organization",
-        "name": "橘子蘋果程式學苑",
-        "alternateName": ["橘子蘋果", "Orange Apple"],
-        "url": "https://orangeapple.co/",
-        "logo": { "@type": "ImageObject", "url": "https://orangeapple.co/assets/navbar/logo-mini-2-3ab865a172b2635249a85d3d7f0f7cbe628a89c191f05b6e3c5766c776ffe2d0.png" },
-        "foundingDate": "2012",
-        "description": "橘子蘋果程式學苑成立於 2012 年，是台灣規模最大的兒童與青少年程式教育機構之一，提供 Scratch、Python、JavaScript、AI 等完整程式課程體系，全台 12 縣市設有直營教學據點、另在馬來西亞吉隆坡設有海外據點，線上課程不限地區，累計服務超過 10 萬名學生、擁有 500 位以上資深師資。",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "EducationalOrganization",
+        "Organization"
+      ],
+      "@id": "https://orangeapple.co/#organization",
+      "name": "橘子蘋果程式學苑",
+      "alternateName": [
+        "橘蘋",
+        "Orange Apple Coding Academy"
+      ],
+      "url": "https://orangeapple.co",
+      "logo": "https://orangeapple.co/logo-2023-color.svg",
+      "foundingDate": "2012",
+      "slogan": "學會思考與創造，永遠跟得上時代",
+      "description": "橘子蘋果程式學苑成立於 2012 年，是台灣規模最大的兒童與青少年程式教育機構之一，提供 Scratch、Python、JavaScript、AI 等完整程式課程體系，全台 12 縣市均有教學據點，累計超過 10 萬名學生。",
+      "sameAs": [
+        "https://www.facebook.com/OrangeApplePad",
+        "https://www.instagram.com/orangeapple.tw",
+        "https://www.youtube.com/@orangeapple-academy"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
         "telephone": "+886-2-7709-8229",
-        "founder": { "@type": "Person", "name": "賴岳林", "alternateName": "Raymond Lai", "jobTitle": "創辦人" },
-        "employee": { "@type": "Person", "name": "束凱文", "alternateName": "Kevin Shu", "jobTitle": "執行長" },
-        "memberOf": { "@type": "Organization", "name": "中華民國補教業品保協會", "url": "https://www.eqaa.org.tw/" },
-        "areaServed": [{"@type": "Country", "name": "台灣"}, {"@type": "Country", "name": "馬來西亞"}],
-        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "2244", "bestRating": "5" },
-        "sameAs": [
-          "https://www.facebook.com/OrangeAppleTW",
-          "https://www.instagram.com/orangeapple.tw",
-          "https://www.youtube.com/@OrangeAppleTW",
-          "https://maps.app.goo.gl/o2CUPSQVPWfaGtb28"
+        "contactType": "customer service",
+        "areaServed": "TW",
+        "availableLanguage": [
+          "zh-Hant"
+        ]
+      },
+      "telephone": "+886-2-7709-8229",
+      "founder": {
+        "@type": "Person",
+        "name": "賴岳林",
+        "alternateName": "Raymond Lai",
+        "jobTitle": "創辦人"
+      },
+      "employee": {
+        "@type": "Person",
+        "name": "束凱文",
+        "alternateName": "Kevin Shu",
+        "jobTitle": "執行長"
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "中華民國補教業品保協會",
+        "url": "https://www.eqaa.org.tw/"
+      },
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "台灣"
+        },
+        {
+          "@type": "Country",
+          "name": "馬來西亞"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "2244",
+        "bestRating": "5"
+      },
+      "award": [
+        "HolonIQ Taiwan EdTech 50 (2023)",
+        "金塾獎 (2022)",
+        "品牌金舶獎 (2021)",
+        "親子天下教育新創 20+ (2020)"
+      ],
+      "knowsAbout": [
+        "Scratch",
+        "Python",
+        "JavaScript",
+        "Minecraft 程式教育",
+        "Roblox 遊戲開發",
+        "APCS 大學程式設計先修檢測",
+        "ITS 國際認證",
+        "運算思維",
+        "AI 素養"
+      ],
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "林怡妡"
+          },
+          "datePublished": "2025-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "想幫孩子報名 Roblox 課程，但年紀還不夠。諮詢時老師完整說明適齡課程規劃，完全不會為了招生硬推不合適的課，讓我對橘蘋的專業非常放心。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "李依倫"
+          },
+          "datePublished": "2026-06",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "孩子從國小三年級在台南教室一路學到國一，依然很喜歡上課。一路走來看得到他在解決問題、邏輯思考和自主學習上的成長，也變得更有自信。老師專業又有耐心，會依孩子狀況一步一步陪伴。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "范玉珍"
+          },
+          "datePublished": "2025-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "孩子從來不會主動複習才藝課，但上完橘蘋的課回家會自己繼續做專案。老師教法很活潑，孩子說『根本在玩遊戲』，但我看到的是他的邏輯思維在一點一點進步。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "蔡媽媽"
+          },
+          "datePublished": "2024-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "老師會依每個孩子的吸收程度調整教學節奏，孩子真正懂了才往下教——這才是真正的個人化指導，也是我覺得橘蘋和其他補習班最不一樣的地方。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "陳晨音"
+          },
+          "datePublished": "2024-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "這是孩子最期待的才藝課，每週六完全不用催，自己就衝去了。每週的學習報告讓我看見孩子一步步成長，從找組件到完成作品，每個過程都是在學習。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "蔡爸爸"
+          },
+          "datePublished": "2024-08",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "帶 8 歲女兒來上 Minecraft 課，環境整潔，課堂上有多位老師隨時在旁指導。女兒完全沉浸其中，用遊戲學程式邏輯是很聰明的設計！感謝主任的熱心說明。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "朱品叡"
+          },
+          "datePublished": "2024-04",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "線上課程非常方便，省去接送時間。老師很有耐心，依孩子進度個別指導，設備有問題也即時電話協助解決，孩子每次上完課都說收穫很多。"
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "李建志"
+          },
+          "datePublished": "2024-09",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "reviewBody": "孩子採線上方式參與課程，從初階程式開始，每個學習階段都像在闖關，讓他充滿熱情地持續下去。非常期待銜接下一個課程模式！"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://orangeapple.co/#website",
+      "url": "https://orangeapple.co/",
+      "name": "橘子蘋果程式學苑",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "inLanguage": "zh-TW"
+    },
+    {
+      "@type": "ItemList",
+      "name": "橘子蘋果課程體系",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "玩創系列（1-3 年級程式啟蒙）",
+          "url": "https://orangeapple.co/courses/kids-coding-foundations"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Scratch 菁英課程（4 年級以上）",
+          "url": "https://orangeapple.co/courses/scratch-basic"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Python 程式開發班",
+          "url": "https://orangeapple.co/courses/python"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "JavaScript 程式開發班",
+          "url": "https://orangeapple.co/courses/javascript"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "AI 人工智慧班",
+          "url": "https://orangeapple.co/courses/ai"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "駭客學程（ITS 國際認證／APCS 檢定）",
+          "url": "https://orangeapple.co/courses/expert"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "橘蘋麥思數學（1-6 年級）",
+          "url": "https://orangeapple.co/courses/math"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "AI 思維：實戰問題解決課",
+          "url": "https://orangeapple.co/courses/ai-thinking"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "寒暑期營隊",
+          "url": "https://orangeapple.co/camps"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "橘蘋選手班（程式競賽培訓）",
+          "url": "https://orangeapple.co/courses/contestant/"
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "玩創系列（程式啟蒙課程）",
+      "description": "橘子蘋果玩創系列，專為國小 1–3 年級設計的程式啟蒙課程，透過頑皮艾伯特、電子積木、Minecraft 麥塊與 Roblox 等圖像化與遊戲化情境，建立序列、迴圈、條件等基礎程式觀念，零經驗可起步，報名前可免費試聽。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/kids-coding-foundations",
+      "educationalLevel": "國小 1–3 年級",
+      "teaches": "圖像化程式觀念（序列、迴圈、條件）、Minecraft 與 Roblox 遊戲程式、電子積木",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
         ],
-        "slogan": "從玩創啟蒙走到升學認證",
-        "award": [
-          "HolonIQ Taiwan EdTech 50 (2023)",
-          "金塾獎 (2022)",
-          "品牌金舶獎 (2021)",
-          "親子天下教育新創 20+ (2020)"
-        ],
-        "knowsAbout": ["Scratch", "Python", "JavaScript", "Minecraft 程式教育", "Roblox 遊戲開發", "APCS 大學程式設計先修檢測", "ITS 國際認證", "運算思維", "AI 素養"],
-        "review": [
-          { "@type": "Review", "author": { "@type": "Person", "name": "林怡妡" }, "datePublished": "2025-04", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "想幫孩子報名 Roblox 課程，但年紀還不夠。諮詢時老師完整說明適齡課程規劃，完全不會為了招生硬推不合適的課，讓我對橘蘋的專業非常放心。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "李依倫" }, "datePublished": "2026-06", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "孩子從國小三年級在台南教室一路學到國一，依然很喜歡上課。一路走來看得到他在解決問題、邏輯思考和自主學習上的成長，也變得更有自信。老師專業又有耐心，會依孩子狀況一步一步陪伴。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "范玉珍" }, "datePublished": "2025-04", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "孩子從來不會主動複習才藝課，但上完橘蘋的課回家會自己繼續做專案。老師教法很活潑，孩子說『根本在玩遊戲』，但我看到的是他的邏輯思維在一點一點進步。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "蔡媽媽" }, "datePublished": "2024-04", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "老師會依每個孩子的吸收程度調整教學節奏，孩子真正懂了才往下教——這才是真正的個人化指導，也是我覺得橘蘋和其他補習班最不一樣的地方。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "陳晨音" }, "datePublished": "2024-04", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "這是孩子最期待的才藝課，每週六完全不用催，自己就衝去了。每週的學習報告讓我看見孩子一步步成長，從找組件到完成作品，每個過程都是在學習。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "蔡爸爸" }, "datePublished": "2024-08", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "帶 8 歲女兒來上 Minecraft 課，環境整潔，課堂上有多位老師隨時在旁指導。女兒完全沉浸其中，用遊戲學程式邏輯是很聰明的設計！感謝主任的熱心說明。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "朱品叡" }, "datePublished": "2024-04", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "線上課程非常方便，省去接送時間。老師很有耐心，依孩子進度個別指導，設備有問題也即時電話協助解決，孩子每次上完課都說收穫很多。" },
-          { "@type": "Review", "author": { "@type": "Person", "name": "李建志" }, "datePublished": "2024-09", "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }, "reviewBody": "孩子採線上方式參與課程，從初階程式開始，每個學習階段都像在闖關，讓他充滿熱情地持續下去。非常期待銜接下一個課程模式！" }
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://orangeapple.co/#website",
-        "url": "https://orangeapple.co/",
-        "name": "橘子蘋果程式學苑",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "inLanguage": "zh-TW"
-      },
-      {
-        "@type": "ItemList",
-        "name": "橘子蘋果課程體系",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "玩創系列（1-3 年級程式啟蒙）", "url": "https://orangeapple.co/courses/kids-coding-foundations" },
-          { "@type": "ListItem", "position": 2, "name": "Scratch 菁英課程（4 年級以上）", "url": "https://orangeapple.co/courses/scratch-basic" },
-          { "@type": "ListItem", "position": 3, "name": "Python 程式開發班", "url": "https://orangeapple.co/courses/python" },
-          { "@type": "ListItem", "position": 4, "name": "JavaScript 程式開發班", "url": "https://orangeapple.co/courses/javascript" },
-          { "@type": "ListItem", "position": 5, "name": "AI 人工智慧班", "url": "https://orangeapple.co/courses/ai" },
-          { "@type": "ListItem", "position": 6, "name": "駭客學程（ITS 國際認證／APCS 檢定）", "url": "https://orangeapple.co/courses/expert" },
-          { "@type": "ListItem", "position": 7, "name": "橘蘋麥思數學（1-6 年級）", "url": "https://orangeapple.co/courses/math" },
-          { "@type": "ListItem", "position": 8, "name": "AI 思維：實戰問題解決課", "url": "https://orangeapple.co/courses/ai-thinking" },
-          { "@type": "ListItem", "position": 9, "name": "寒暑期營隊", "url": "https://orangeapple.co/camps" },
-          { "@type": "ListItem", "position": 10, "name": "橘蘋選手班（程式競賽培訓）", "url": "https://orangeapple.co/courses/contestant/" }
-        ]
-      },
-      {
-        "@type": "Course",
-        "name": "玩創系列（程式啟蒙課程）",
-        "description": "橘子蘋果玩創系列，專為國小 1–3 年級設計的程式啟蒙課程，透過頑皮艾伯特、電子積木、Minecraft 麥塊與 Roblox 等圖像化與遊戲化情境，建立序列、迴圈、條件等基礎程式觀念，零經驗可起步，報名前可免費試聽。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/kids-coding-foundations",
-        "educationalLevel": "國小 1–3 年級",
-        "teaches": "圖像化程式觀念（序列、迴圈、條件）、Minecraft 與 Roblox 遊戲程式、電子積木",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "Scratch 菁英課程",
-        "description": "橘子蘋果菁英系列第一階段，以 MIT 開發的 Scratch 圖形化程式培養運算思維與程式邏輯，國小四年級以上、零基礎可起步，報名前可免費試聽。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/scratch-basic",
-        "educationalLevel": "國小 4 年級以上",
-        "teaches": "Scratch、運算思維、程式邏輯",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "Python 程式開發班",
-        "description": "橘子蘋果菁英系列 Python 程式開發班，從基礎語法到專案實作培養文字程式能力，國小四年級以上、國中無程式基礎者可直接從 Python 入門，報名前可免費試聽。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/python",
-        "educationalLevel": "國小 4 年級以上循序銜接；國中（7 年級以上）無程式基礎可直接入門",
-        "teaches": "Python 程式設計",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "JavaScript 程式開發班",
-        "description": "橘子蘋果菁英系列 JavaScript 程式開發班，學習網頁互動程式設計，國小四年級以上、8 年級無程式基礎者可直接入門，報名前可免費試聽。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/javascript",
-        "educationalLevel": "國小 4 年級以上循序銜接；8 年級以上無程式基礎可直接入門",
-        "teaches": "JavaScript 程式設計",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "AI 人工智慧班（菁英第九階段）",
-        "description": "橘子蘋果菁英系列第九階段 AI 人工智慧班，銜接演算法與資料庫基礎後，學習人工智慧與機器學習概念；屬進階接續課程，需完成菁英第八階段。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/ai",
-        "educationalLevel": "完成菁英第八階段、18 歲以下",
-        "coursePrerequisites": "完成菁英第八階段（演算法）、JS 測驗 150 分以上",
-        "teaches": "人工智慧、機器學習概念",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "駭客學程（ITS 國際認證／APCS 檢定）",
-        "description": "橘子蘋果駭客學程，針對 APCS 大學程式設計先修檢測與 ITS 國際認證（Python、JavaScript、HTML&CSS、運算思維）的檢定培訓，適合國中以上具程式基礎的學生；橘子蘋果為 ITS 官方考場。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/expert",
-        "educationalLevel": "國中以上為主（ITS 部分課程國小 5 年級以上可評估）",
-        "teaches": "APCS 大學程式設計先修檢測、ITS 國際認證（Python、JavaScript、HTML&CSS、運算思維）",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "橘蘋麥思數學",
-        "description": "橘子蘋果麥思數學，將美國數學思維邏輯系統在地化的線上數學課程，適合國小 1–6 年級，培養跨年級的數學思維與邏輯推理，報名前可免費試聽。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/math",
-        "educationalLevel": "國小 1–6 年級",
-        "teaches": "數學思維、邏輯推理",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "AI 思維：實戰問題解決課",
-        "description": "橘子蘋果 AI 思維：實戰問題解決課，線上課程，適合國小五年級以上，學習 Prompt Engineering、AI 素養、數位倫理與批判性思考。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/ai-thinking",
-        "educationalLevel": "國小 5 年級以上",
-        "teaches": "Prompt Engineering、AI 素養、數位倫理、批判性思考",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "Course",
-        "name": "寒暑假營隊",
-        "description": "橘子蘋果寒暑假營隊，短期密集的程式與科技主題營隊，涵蓋 Minecraft、Roblox、Python、AI 與 APCS 等主題，適合國小一年級至高中，分實體與線上梯次。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/camps",
-        "educationalLevel": "國小 1 年級至高中",
-        "teaches": "Minecraft、Roblox、Python、AI、APCS 主題課程",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "daily" } }
-      },
-      {
-        "@type": "Course",
-        "name": "橘蘋選手班（程式競賽培訓專班）",
-        "description": "橘蘋選手班，國高中程式競賽長期培訓專班，以應用演算法（動態規劃、圖論、遞迴、樹狀圖）為核心，帶學生征戰全年多場程式競賽、將 APCS 從 2 級分推向 5 級分；適合 7 年級以上具程式基礎（如 APCS 實作 2 級分或修畢 APCS 課程）者，入班前須通過能力測驗體驗課評估。",
-        "provider": { "@id": "https://orangeapple.co/#organization" },
-        "url": "https://orangeapple.co/courses/contestant/",
-        "educationalLevel": "國中 7 年級以上、具程式基礎（如 APCS 實作 2 級分或修畢 APCS 課程）",
-        "teaches": "競賽演算法（動態規劃、圖論、遞迴、樹狀圖）、資料結構、程式效能、解題技巧、競賽實戰",
-        "inLanguage": "zh-TW",
-        "audience": { "@type": "EducationalAudience", "educationalRole": "student" },
-        "courseMode": ["onsite", "online"],
-        "hasCourseInstance": { "@type": "CourseInstance", "courseMode": ["onsite", "online"], "courseSchedule": { "@type": "Schedule", "repeatFrequency": "weekly" } }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          { "@type": "Question", "name": "兒童幾歲適合開始學程式？", "acceptedAnswer": { "@type": "Answer", "text": "國小一年級（約 6-7 歲）即可開始。橘子蘋果依年齡與認知發展設計課程：1-3 年級從圖像化的玩創系列啟蒙，4 年級以上進入 Scratch 菁英課程，國中以上可直接從 Python 入門。零經驗完全可以學，課程從邏輯觀念開始建立，不需要任何基礎。" } },
-          { "@type": "Question", "name": "完全沒有基礎的孩子可以學嗎？", "acceptedAnswer": { "@type": "Answer", "text": "可以。橘子蘋果的課程設計以零基礎為預設起點，透過遊戲化情境與專案式學習引導孩子入門。每個孩子上課前會依年齡與程度安排適合的起始課程，程度好的孩子也可透過跳級測驗直接進入進階班，確保每個孩子都在最適合自己的位置學習。" } },
-          { "@type": "Question", "name": "學費怎麼計算？可以先從單一階段開始嗎？", "acceptedAnswer": { "@type": "Answer", "text": "課程費用會依孩子適合的課程、線上或實體形式、購買階段與付款方式而有所不同。多數常態課程可先從單一階段開始，不必一次規劃多年課程。體驗或程度評估後，課程顧問會提供課程內容、堂數與完整費用明細，讓家長充分了解後再決定。想先研究兒童程式課的市場行情與價差，也可閱讀〈兒童程式課費用完整解析〉。" } },
-          { "@type": "Question", "name": "免費試聽之後會被推銷嗎？可以不當場決定嗎？", "acceptedAnswer": { "@type": "Answer", "text": "不會強迫。試聽是讓孩子與家長確認適不適合，試聽後課程顧問會依孩子程度給建議與報價，你可以帶回家考慮、不需要當場決定；覺得不適合直接說不就好。橘蘋以孩子的長期學習為重，不會為了成交硬推不合適的課。" } },
-          { "@type": "Question", "name": "孩子上了之後如果沒興趣怎麼辦？", "acceptedAnswer": { "@type": "Answer", "text": "可以先從單一階段開始、不必一次承諾長期，每週的學習報告也能讓你及早看出孩子的狀態。若真的不適合，退費依「中華民國補教業品保協會」的履約保證規範辦理，預付學費受制度保障。" } },
-          { "@type": "Question", "name": "上課頻率是怎麼安排的？每堂多久？", "acceptedAnswer": { "@type": "Answer", "text": "常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時、每階段 15 堂，低年級的頑皮艾伯特啟蒙課每堂約 50 分鐘、共 36 堂。孩子依自己的節奏穩定完成。" } },
-          { "@type": "Question", "name": "線上課和實體課該怎麼選？", "acceptedAnswer": { "@type": "Answer", "text": "雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合實體小班；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，每位真人老師約輔導 6～10 位學生。" } },
-          { "@type": "Question", "name": "上課需要準備什麼設備？", "acceptedAnswer": { "@type": "Answer", "text": "多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。" } },
-          { "@type": "Question", "name": "學程式對升學有什麼幫助？", "acceptedAnswer": { "@type": "Answer", "text": "程式能力已納入升學管道：APCS 檢測成績可用於申請資工相關科系，橘蘋學員曾以 APCS 佳績錄取清大資工、透過百川計畫錄取陽明交大。ITS 國際認證則可放入學習歷程檔案。橘子蘋果是 ITS 官方考場，學員在 APCS、ITS 等國際與國家級認證屢創佳績。" } },
-          { "@type": "Question", "name": "預付學費有保障嗎？", "acceptedAnswer": { "@type": "Answer", "text": "有。橘子蘋果是「中華民國補教業品保協會」正式會員（會員編號 020589，自 2018 年加入），家長預付的學費受協會履約保證機制保障，退費依協會規範辦理。橘蘋自 2012 年深耕程式教育、直營全台教學據點，是超過 10 萬名學生信任的教育品牌。" } }
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "橘子蘋果程式學苑", "item": "https://orangeapple.co/" }
-        ]
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：永傑的學習故事",
-        "description": "跨語家庭分享孩子從艾伯特一路學到 Minecraft，透過線上程式課培養自律、邏輯思維，也在學習過程中接觸中文。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/37WdvQI4-lk/hqdefault.jpg",
-        "uploadDate": "2024-11-29",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/37WdvQI4-lk"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：婷璿的學習故事",
-        "description": "家長分享孩子從自學 Scratch、想做動畫開始，進入橘子蘋果階段式學習後，邏輯能力提升，學校成績也明顯進步。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/rfFJfJha7dg/hqdefault.jpg",
-        "uploadDate": "2024-06-07",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/rfFJfJha7dg"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：慕唯的學習故事",
-        "description": "家長分享孩子因 Minecraft 產生學程式動機，從玩遊戲走向理解規則、提升學習意願與課堂專注力。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/vBKLmm7a8Ig/hqdefault.jpg",
-        "uploadDate": "2024-01-10",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/vBKLmm7a8Ig"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：七年級挑戰 APCS",
-        "description": "家長分享孩子主動爭取學程式，七年級就開始接觸 APCS 試題，為未來資工升學方向累積能力。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/D7kbJxJFaPU/hqdefault.jpg",
-        "uploadDate": "2023-10-03",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/D7kbJxJFaPU"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：孩子主動想做遊戲",
-        "description": "家長分享孩子主動表達對程式與遊戲創作的興趣，透過遊戲化課程把探索欲轉化成長期學習動力。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/Dr_BiKDhL3o/hqdefault.jpg",
-        "uploadDate": "2024-03-12",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/Dr_BiKDhL3o"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果家長真實訪談：程式訓練孩子的思考方式",
-        "description": "家長分享孩子每次上完課都很有成就感，並透過 Python 證照挑戰與課程銜接，培養歸納與邏輯思考能力。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/_exNE-2QSPI/hqdefault.jpg",
-        "uploadDate": "2024-07-02",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/_exNE-2QSPI"
-      },
-      {
-        "@type": "VideoObject",
-        "name": "橘子蘋果學員成果訪談：APCS 佳績錄取清大資工",
-        "description": "橘子蘋果學員分享透過 APCS 檢定成果與程式能力，錄取國立清華大學資訊工程學系的經驗。",
-        "thumbnailUrl": "https://i.ytimg.com/vi/QL6EXBbQbDs/hqdefault.jpg",
-        "uploadDate": "2020-07-03",
-        "publisher": { "@id": "https://orangeapple.co/#organization" },
-        "embedUrl": "https://www.youtube.com/embed/QL6EXBbQbDs"
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
       }
-    ]
-  }  </script>
+    },
+    {
+      "@type": "Course",
+      "name": "Scratch 菁英課程",
+      "description": "橘子蘋果菁英系列第一階段，以 MIT 開發的 Scratch 圖形化程式培養運算思維與程式邏輯，國小四年級以上、零基礎可起步，報名前可免費試聽。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/scratch-basic",
+      "educationalLevel": "國小 4 年級以上",
+      "teaches": "Scratch、運算思維、程式邏輯",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "Python 程式開發班",
+      "description": "橘子蘋果菁英系列 Python 程式開發班，從基礎語法到專案實作培養文字程式能力，國小四年級以上、國中無程式基礎者可直接從 Python 入門，報名前可免費試聽。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/python",
+      "educationalLevel": "國小 4 年級以上循序銜接；國中（7 年級以上）無程式基礎可直接入門",
+      "teaches": "Python 程式設計",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "JavaScript 程式開發班",
+      "description": "橘子蘋果菁英系列 JavaScript 程式開發班，學習網頁互動程式設計，國小四年級以上、8 年級無程式基礎者可直接入門，報名前可免費試聽。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/javascript",
+      "educationalLevel": "國小 4 年級以上循序銜接；8 年級以上無程式基礎可直接入門",
+      "teaches": "JavaScript 程式設計",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "AI 人工智慧班（菁英第九階段）",
+      "description": "橘子蘋果菁英系列第九階段 AI 人工智慧班，銜接演算法與資料庫基礎後，學習人工智慧與機器學習概念；屬進階接續課程，需完成菁英第八階段。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/ai",
+      "educationalLevel": "完成菁英第八階段、18 歲以下",
+      "coursePrerequisites": "完成菁英第八階段（演算法）、JS 測驗 150 分以上",
+      "teaches": "人工智慧、機器學習概念",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "駭客學程（ITS 國際認證／APCS 檢定）",
+      "description": "橘子蘋果駭客學程，針對 APCS 大學程式設計先修檢測與 ITS 國際認證（Python、JavaScript、HTML&CSS、運算思維）的檢定培訓，適合國中以上具程式基礎的學生；橘子蘋果為 ITS 官方考場。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/expert",
+      "educationalLevel": "國中以上為主（ITS 部分課程國小 5 年級以上可評估）",
+      "teaches": "APCS 大學程式設計先修檢測、ITS 國際認證（Python、JavaScript、HTML&CSS、運算思維）",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "橘蘋麥思數學",
+      "description": "橘子蘋果麥思數學，將美國數學思維邏輯系統在地化的線上數學課程，適合國小 1–6 年級，培養跨年級的數學思維與邏輯推理，報名前可免費試聽。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/math",
+      "educationalLevel": "國小 1–6 年級",
+      "teaches": "數學思維、邏輯推理",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "AI 思維：實戰問題解決課",
+      "description": "橘子蘋果 AI 思維：實戰問題解決課，線上課程，適合國小五年級以上，學習 Prompt Engineering、AI 素養、數位倫理與批判性思考。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/ai-thinking",
+      "educationalLevel": "國小 5 年級以上",
+      "teaches": "Prompt Engineering、AI 素養、數位倫理、批判性思考",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "寒暑假營隊",
+      "description": "橘子蘋果寒暑假營隊，短期密集的程式與科技主題營隊，涵蓋 Minecraft、Roblox、Python、AI 與 APCS 等主題，適合國小一年級至高中，分實體與線上梯次。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/camps",
+      "educationalLevel": "國小 1 年級至高中",
+      "teaches": "Minecraft、Roblox、Python、AI、APCS 主題課程",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "daily"
+        }
+      }
+    },
+    {
+      "@type": "Course",
+      "name": "橘蘋選手班（程式競賽培訓專班）",
+      "description": "橘蘋選手班，國高中程式競賽長期培訓專班，以應用演算法（動態規劃、圖論、遞迴、樹狀圖）為核心，帶學生征戰全年多場程式競賽、將 APCS 從 2 級分推向 5 級分；適合 7 年級以上具程式基礎（如 APCS 實作 2 級分或修畢 APCS 課程）者，入班前須通過能力測驗體驗課評估。",
+      "provider": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "url": "https://orangeapple.co/courses/contestant/",
+      "educationalLevel": "國中 7 年級以上、具程式基礎（如 APCS 實作 2 級分或修畢 APCS 課程）",
+      "teaches": "競賽演算法（動態規劃、圖論、遞迴、樹狀圖）、資料結構、程式效能、解題技巧、競賽實戰",
+      "inLanguage": "zh-TW",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student"
+      },
+      "courseMode": [
+        "onsite",
+        "online"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": [
+          "onsite",
+          "online"
+        ],
+        "courseSchedule": {
+          "@type": "Schedule",
+          "repeatFrequency": "weekly"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "兒童幾歲適合開始學程式？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "國小一年級（約 6-7 歲）即可開始。橘子蘋果依年齡與認知發展設計課程：1-3 年級從圖像化的玩創系列啟蒙，4 年級以上進入 Scratch 菁英課程，國中以上可直接從 Python 入門。零經驗完全可以學，課程從邏輯觀念開始建立，不需要任何基礎。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "完全沒有基礎的孩子可以學嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以。橘子蘋果的課程設計以零基礎為預設起點，透過遊戲化情境與專案式學習引導孩子入門。每個孩子上課前會依年齡與程度安排適合的起始課程，程度好的孩子也可透過跳級測驗直接進入進階班，確保每個孩子都在最適合自己的位置學習。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "學費怎麼計算？可以先從單一階段開始嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "課程費用會依孩子適合的課程、線上或實體形式、購買階段與付款方式而有所不同。多數常態課程可先從單一階段開始，不必一次規劃多年課程。體驗或程度評估後，課程顧問會提供課程內容、堂數與完整費用明細，讓家長充分了解後再決定。想先研究兒童程式課的市場行情與價差，也可閱讀〈兒童程式課費用完整解析〉。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "免費試聽之後會被推銷嗎？可以不當場決定嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不會強迫。試聽是讓孩子與家長確認適不適合，試聽後課程顧問會依孩子程度給建議與報價，你可以帶回家考慮、不需要當場決定；覺得不適合直接說不就好。橘蘋以孩子的長期學習為重，不會為了成交硬推不合適的課。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "孩子上了之後如果沒興趣怎麼辦？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以先從單一階段開始、不必一次承諾長期，每週的學習報告也能讓你及早看出孩子的狀態。若真的不適合，退費依「中華民國補教業品保協會」的履約保證規範辦理，預付學費受制度保障。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "上課頻率是怎麼安排的？每堂多久？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "常態課程通常每週上課一堂，每堂時長依課程而定：菁英系列（Scratch、Python 等）與麥塊、Roblox 每堂約 2 小時、每階段 15 堂，低年級的頑皮艾伯特啟蒙課每堂約 50 分鐘、共 36 堂。孩子依自己的節奏穩定完成。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "線上課和實體課該怎麼選？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合實體小班；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，每位真人老師約輔導 6～10 位學生。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "上課需要準備什麼設備？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "學程式對升學有什麼幫助？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "程式能力已納入升學管道：APCS 檢測成績可用於申請資工相關科系，橘蘋學員曾以 APCS 佳績錄取清大資工、透過百川計畫錄取陽明交大。ITS 國際認證則可放入學習歷程檔案。橘子蘋果是 ITS 官方考場，學員在 APCS、ITS 等國際與國家級認證屢創佳績。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "預付學費有保障嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "有。橘子蘋果是「中華民國補教業品保協會」正式會員（會員編號 020589，自 2018 年加入），家長預付的學費受協會履約保證機制保障，退費依協會規範辦理。橘蘋自 2012 年深耕程式教育、直營全台教學據點，是超過 10 萬名學生信任的教育品牌。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "橘子蘋果程式學苑",
+          "item": "https://orangeapple.co/"
+        }
+      ]
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：永傑的學習故事",
+      "description": "跨語家庭分享孩子從艾伯特一路學到 Minecraft，透過線上程式課培養自律、邏輯思維，也在學習過程中接觸中文。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/37WdvQI4-lk/hqdefault.jpg",
+      "uploadDate": "2024-11-29",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/37WdvQI4-lk"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：婷璿的學習故事",
+      "description": "家長分享孩子從自學 Scratch、想做動畫開始，進入橘子蘋果階段式學習後，邏輯能力提升，學校成績也明顯進步。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/rfFJfJha7dg/hqdefault.jpg",
+      "uploadDate": "2024-06-07",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/rfFJfJha7dg"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：慕唯的學習故事",
+      "description": "家長分享孩子因 Minecraft 產生學程式動機，從玩遊戲走向理解規則、提升學習意願與課堂專注力。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/vBKLmm7a8Ig/hqdefault.jpg",
+      "uploadDate": "2024-01-10",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/vBKLmm7a8Ig"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：七年級挑戰 APCS",
+      "description": "家長分享孩子主動爭取學程式，七年級就開始接觸 APCS 試題，為未來資工升學方向累積能力。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/D7kbJxJFaPU/hqdefault.jpg",
+      "uploadDate": "2023-10-03",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/D7kbJxJFaPU"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：孩子主動想做遊戲",
+      "description": "家長分享孩子主動表達對程式與遊戲創作的興趣，透過遊戲化課程把探索欲轉化成長期學習動力。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/Dr_BiKDhL3o/hqdefault.jpg",
+      "uploadDate": "2024-03-12",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/Dr_BiKDhL3o"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果家長真實訪談：程式訓練孩子的思考方式",
+      "description": "家長分享孩子每次上完課都很有成就感，並透過 Python 證照挑戰與課程銜接，培養歸納與邏輯思考能力。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/_exNE-2QSPI/hqdefault.jpg",
+      "uploadDate": "2024-07-02",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/_exNE-2QSPI"
+    },
+    {
+      "@type": "VideoObject",
+      "name": "橘子蘋果學員成果訪談：APCS 佳績錄取清大資工",
+      "description": "橘子蘋果學員分享透過 APCS 檢定成果與程式能力，錄取國立清華大學資訊工程學系的經驗。",
+      "thumbnailUrl": "https://i.ytimg.com/vi/QL6EXBbQbDs/hqdefault.jpg",
+      "uploadDate": "2020-07-03",
+      "publisher": {
+        "@id": "https://orangeapple.co/#organization"
+      },
+      "embedUrl": "https://www.youtube.com/embed/QL6EXBbQbDs"
+    }
+  ]
+}
+</script>
 
   <style>
     /* ══════════ DESIGN TOKENS（收斂系統）══════════ */
