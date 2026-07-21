@@ -291,27 +291,102 @@ components:
 - 錨點、縣市卡、撥號連結、營隊 chip、一般 `<a>` 導覽 **一律不加**。
 
 ### 其他元件
-- **card**：白底、`--r-md` 16px、`--e1` 陰影、內距 24–32px；hover 升 `--e2`。
+- **card**：白底、`--r-md` 16px、`--e1` 陰影、內距 24–32px；hover 升 `--e2`。**卡片以標題文字主導、不靠 emoji 圖示撐視覺**（見 Iconography）。
 - **input-field**：白底、`--r-sm` 8px、`--line` 邊框、focus 換橘/青焦點環。
 - **badge / chip**：膠囊、`primary-light` 底 + 深墨字。
+
+### Iconography（圖示與 emoji）— 保旭紅線「去廉價／要權威」
+- **禁用彩色 emoji** 當裝飾、卡片圖示、標題前綴、按鈕前綴、chip 標籤、狀態訊息（🎁💰📅📍📞💬🔥⚡📖📚📋🔍😕✦ 等一律清）。彩色 emoji 顯廉價、傷教育品牌權威感。
+- **只允許少數功能性單色字符**：`★`（評分星）、`▸`（區塊小標）、`→ ←`（導覽箭頭）、`⋯`（載入省略）。
+- 真需要圖示時，用**單色線性 SVG**（`stroke: currentColor`、跟隨文字色），不用彩色 emoji。
+- 卡片改用「標題 + 說明」文字結構，不放 emoji 圖示格。
+- 前例：classroom 頁 2026-07-13（commit ee2b9db）已全清，faq 2026-07-19 補齊對齊。
 
 ---
 
 ## Interaction & Motion（互動與動效）
 
-品牌動效個性＝**友善、有彈性**（呼應親子教育的活潑），但不誇張。以 kinetics 彈簧物理值定 token：
+品牌動效個性＝**友善、有彈性**（呼應親子教育的活潑），但不誇張、不干擾閱讀。動效純為品牌印象服務、對 SEO/AEO/GEO 零影響——但**必須守三條護欄**（見下），否則會反傷。全站六頁用**同一套** token 與模式，不各做各的。
+
+### A. 動效 token（kinetics 彈簧值為基礎）
 
 | token | 值 | 用途 |
 |---|---|---|
-| `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | 主互動：按鈕、卡片、chip 的按下/彈回（輕微過衝） |
-| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | 內容進場、區塊揭示（滑順沉降） |
-| `--dur-fast` | `120ms` | hover / 小互動 |
-| `--dur-base` | `180ms` | 標準轉場（按鈕、卡片） |
-| `--dur-slow` | `400ms` | 進場、展開、大轉場 |
+| `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | 彈性回饋：hover 抬升、按壓彈回（輕微過衝） |
+| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | 滑順沉降：內容進場、展開 |
+| `--dur-fast` | `120ms` | 色彩、小 hover、按壓 |
+| `--dur-base` | `220ms` | 標準（hover 抬升、卡片） |
+| `--dur-slow` | `500ms` | 進場浮現、大展開 |
 
-規則：全站只用這 2 條曲線 + 3 個時長，不要各頁各自 cubic-bezier。務必尊重 `prefers-reduced-motion`（關閉過衝與位移）。
+### B. 三個標準動效模式（全站一致，每頁都用同樣 class）
 
-> **已定案（友善彈性）**：主互動用 `--ease-spring` 輕微過衝彈跳（貼親子調性）；內容進場用 `--ease-out` 滑順。選手班深色主題維持自己的滑順風格。
+**1. 進場浮現 `.reveal` / `.reveal-stagger`（faq 2026-07-20 定稿；照抄別自創）**
+```css
+@keyframes oaReveal   { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes oaFailsafe { to { opacity: 1; } }
+/* 基礎：隱藏 + 只掛「6s 後強制顯示」的保命動畫（純 opacity、無位移） */
+html.js .reveal            { opacity: 0; animation: oaFailsafe .01s linear 6s forwards; }
+html.js .reveal-stagger > * { opacity: 0; animation: oaFailsafe .01s linear 6s forwards; }
+/* 進場：換成全新 oaReveal（換動畫名→從頭播，位移才會真的跑） */
+html.js .reveal.is-visible            { animation: oaReveal 800ms ease-out both; }
+html.js .reveal-stagger.is-visible > * { animation: oaReveal 800ms ease-out both; }
+html.js .reveal-stagger.is-visible > *:nth-child(2){animation-delay:120ms}
+html.js .reveal-stagger.is-visible > *:nth-child(3){animation-delay:240ms}
+html.js .reveal-stagger.is-visible > *:nth-child(4){animation-delay:360ms}
+html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
+@media (prefers-reduced-motion: reduce){ html.js .reveal, html.js .reveal-stagger > * { opacity:1 !important; animation:none !important; } }
+```
+- **🔴 兩個踩過的坑（照抄就避開）**：①**特異性**——顯示規則若沒也放進 `html.js` scope，會被隱藏規則壓過→內容全隱形。②**時間軸陷阱**——別把 reveal 動畫掛在基礎元素靠改 delay 觸發（動畫從載入就計時，捲到時早已「播完」→直接跳結尾、沒有位移、像閃一下）。**正解＝基礎只掛 oaFailsafe 保命，`is-visible` 換成全新 oaReveal**（換動畫名＝從頭播）。
+- **保命三層**：基礎 6s CSS 保險（observer 全掛也自動顯示）＋ `html.js` gate（無 JS／爬蟲＝沒 html.js＝立即可見）＋ reduced-motion。內容**永遠不會永久隱形**。
+- **reveal 只掛「首屏以下」的區塊標題與卡片群**（首屏別掛；別每個元素都掛→過度動畫顯廉價、變慢）。卡片群用 `.reveal-stagger`（子元素階梯浮現）。
+- 手感＝ai-thinking 的 AOS（`offset 50 / duration 800 / fade-up`）：位移 40px、800ms、`ease-out`。觸發見 D。
+
+**2. hover 抬升 `.lift`（卡片、可點元素）**
+```css
+.lift { transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out); }
+.lift:hover { transform: translateY(-3px); box-shadow: var(--e2); }  /* 按鈕用 -2px */
+```
+
+**3. 按壓彈回（所有按鈕/CTA）**
+```css
+.btn-primary:active, .btn-secondary:active { transform: scale(0.97); transition-duration: var(--dur-fast); }
+```
+
+### C. 三條護欄（做對＝零風險，做錯才傷 SEO/體驗）
+1. **只動 `transform` 與 `opacity`**——絕不動 width/height/top/margin/位移版面 → 不觸發 CLS（版面位移是唯一跟 SEO 沾邊的動效風險）。
+2. **內容永遠在 DOM、預設可見**（隱藏態只在 `html.js` 下）→ 爬蟲與無 JS 使用者都讀得到。
+3. **每頁都要 `prefers-reduced-motion: reduce`**：關閉所有 transform/transition/進場（前庭敏感、暈動症使用者）。
+```css
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
+```
+
+### D. 共用進場觸發（兩段，照抄）
+**① `<head>` 第一行**（首屏繪製前設 `js` flag，確保無 JS/爬蟲看到完整內容）：
+```html
+<script>document.documentElement.classList.add('js');</script>
+```
+**② `</body>` 前**（共用 IntersectionObserver，觸發早＝進場就開始播、看得到浮動）：
+```html
+<script>
+addEventListener('DOMContentLoaded', function () {
+  var els = document.querySelectorAll('.reveal, .reveal-stagger');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+  els.forEach(function (el) { io.observe(el); });
+});
+</script>
+```
+
+### E. 一致性規則
+- 六頁全部用 `.reveal`／`.lift`／按壓彈回這套；**不再有頁面自建 cubic-bezier 或裝外掛 AOS**。
+- **ai-thinking**（現有 58 個 AOS 進場、重度動畫）＝**收斂**到這套共用 class、拿掉外掛 AOS。
+- **其他 5 頁**＝**補上** `.reveal` 進場（區塊標題、卡片群、CTA 帶），讓「友善彈性」每頁都感覺得到。
+- 環境裝飾動畫（浮動形狀 `float` 等）可留，但要細、慢、且被 reduced-motion 關掉。
+- **選手班深色主題**：進場/hover/按壓照這套；只有它的 glow 光暈維持主題特例。
+
+> **已定案（友善彈性）**：hover/按壓用 `--ease-spring` 輕微過衝；進場用 `--ease-out` 滑順浮現。純品牌印象投資、零 SEO 成本。
 
 ---
 
@@ -359,9 +434,23 @@ components:
 ## Known Gaps & Themed Variants（已知缺口與主題分支）
 
 - **選手班（contestant）＝刻意的深色奇幻主題分支**：白字、JetBrains Mono 大寫、硬直角、glow 陰影——**允許保留為特例**，但主色仍用品牌橘、CTA 語意仍遵守本系統。
-- **✅ ai-thinking 已拉齊（2026-07-18 試點頁）**：文字色 #2D2E32、CTA 紅→橘膠囊、圓角 4 階、陰影/動效 token 化、字重 800、橘底白字 49→0（兩輪獨立驗證）。
-- **仍待收斂的舊頁**：about（無陰影 token、藥丸 50px→999px、orange-dark #E69200→#E08900、刪 --orange-deep #C47A00 土色變數）、classroom＋faq（按鈕 12px→膠囊、orange-dark #e8920a→#E08900）、home（--text #2A2D35→#2D2E32、孤兒 font-weight:900）。
+- **ai-thinking 游標光點（cursor glow `#cursorGlow`）＝核准特例（2026-07-20 保旭拍板）**：跟隨滑鼠的亮橘光暈，**只留 ai-thinking 一頁**（AI 課、科技感最強）、**其他頁一律不加**。理由：桌機限定（手機無效）、屬 techy 裝飾；當作 ai-thinking 的品牌小巧思保留，不視為跨頁不一致。
+- **✅ 六頁全部拉齊完成（2026-07-18~19，各頁獨立驗證後上線）**：ai-thinking `66926ef`（試點，橘底白字 49→0）、faq `afdab57`、about `e3f0cb3`、classroom `5fcf262`、home `b90a375`（poshlin staging）、contestant `7cd3dd2`（僅部署規範檔，深色主題稽核合規免改）。各 repo 根目錄皆有 DESIGN.md 副本＋CLAUDE.md 啟用指令。**副本同步政策：本檔（知識庫）為 SSOT，repo 副本於各 repo 下次改動時順手 cp 更新。**
+- **🔴 emphasis 色系已改制（2026-07-20，faq 為準；⚠️舊「應改 orange-ink」的建議作廢）**：`--orange-ink #9A5A00`＝**土色、已廢除**（橘色永不當淺底文字）。淺底強調正解＝「**深墨粗體基底 ＋ 深暖紅 `--coral-ink #BE3B2C` 能量字（少量）＋ 橘螢光帶 `.hl-mark` 重點**」，連結用青墨 `--teal-ink #00776B`；`--text-mute` 由 `#8a8c8f` 加深到 `#6e7278`（3.37→4.6 過 AA），橘底卡副標另改深墨。**⚠️待辦：about/classroom/home 仍殘留 orange-ink 土色與舊 text-mute，需比照 faq 全部遷移。** 其餘舊候選（②紫 chip ③my-badge ④reduced-motion ⑤調色板 ⑥按鈕 border）已於 2026-07-19/20 修畢。
 - **ai-thinking 文案層待辦（非視覺）**：全頁 15+ 處「ChatGPT、Midjourney」具名工具（含 Course schema、FAQ、內文），與課程文案紅線「AI 思維課不列具體工具名」相抵觸，待保旭拍板改寫方向。
 - **✅ faq 紅線已修（2026-07-18，commit `45db87b`）**：btn-primary(+hover)、分類 chip 選中態、tldr-eyebrow、搜尋清除鈕 hover 共 4 處橘底白字改深墨字，已推 OrangeApple-Lab/oa-page-faq。
 - 核心決策（按鈕膠囊 999px、字重 800、動效彈性）已於 2026-07-18 定案。
 - **原版 Rails 官網**（nav/footer/課程頁等）仍是 `#ffa400`/`#4d4d4d`/Bootstrap，屬 legacy，之後由數位長逐步遷移對齊本系統。
+
+---
+
+## 參考資源評估（採納與否，勿重複討論）
+
+| 資源 | 是什麼 | 判定 |
+|---|---|---|
+| **google-labs-code/design.md** | Google Labs 官方格式（YAML token＋散文＋CLI lint WCAG） | ✅ **骨架來源**，本檔即據此格式 |
+| **awesome-design-md** | 73 份真實品牌 design.md 逆向拆解 | ✅ **章節骨架參考**（氣質最近＝Notion 暖色極簡／Airbnb 圓角） |
+| **kinetics.colorion.co** | 彈簧物理動效庫（117 效果） | 🟡 **只取彈簧曲線值**入動效 token（`--ease-spring`）；不搬整庫 |
+| **21st.dev** | React 元件市集＋MCP | ❌ **不採納**：React、不對症靜態 HTML；免費層當靈感圖庫可以 |
+| **OriginKit（originkit.dev）** | 50 動畫元件、**可輸出 CSS**、有 MCP | 🟡 **當「零件靈感庫」**：比 21st.dev 好（出 CSS＋MCP 契合 AI 流程）；**硬規則＝拿來的元件用前一律換成 OA token（色/圓角/`--ease-spring`/時長）再上**，否則破壞一致性 |
+| **AVAL（pixel-point）** | 互動式影片格式 `.avl`（技術預覽） | ❌ **不採納、觀望**：影片內容爬蟲讀不到（傷 GEO）＋WebGL2 播放器載入重（傷 CWV）＋需影片編譯 pipeline（非工程師做不出）＋實驗性。**互動吉祥物改用 Lottie/SVG/CSS** |

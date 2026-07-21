@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+  <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -344,7 +345,7 @@
       /* ── 文字連結：藍綠深階（加深至過 WCAG AA 4.5:1），取代 Google 藍 ── */
       --link: #007368;
       /* ── accent「當文字」專用深墨色（過 WCAG AA；背景仍用亮色 --orange 等） ── */
-      --orange-ink: #9A5A00;
+      /* --orange-ink 已廢除：#9A5A00＝土色；淺底強調改用深墨 --text，連結用 --teal-ink（對齊 faq 定稿） */
       --teal-ink: #00776B;
       --coral-ink: #BE3B2C;
       --mono: 'SF Mono', 'JetBrains Mono', Consolas, monospace;
@@ -1052,7 +1053,7 @@
     .result-card.rc-teal   { --rc: var(--teal); }
     .result-card.rc-coral  { --rc: var(--coral); }
     .result-card.rc-navy   { --rc: var(--navy); }
-    .result-card.rc-orange .result-label, .result-card.rc-orange .result-action { color: var(--orange-ink); }
+    .result-card.rc-orange .result-label, .result-card.rc-orange .result-action { color: var(--text); }
     .result-card.rc-teal   .result-label, .result-card.rc-teal   .result-action { color: var(--teal-ink); }
     .result-card.rc-coral  .result-label, .result-card.rc-coral  .result-action { color: var(--coral-ink); }
     .result-card.rc-navy   .result-label, .result-card.rc-navy   .result-action { color: var(--navy); }
@@ -2328,7 +2329,7 @@
         cursor: pointer;
       }
       .section-nav-toggle-label {
-        color: var(--orange-ink, #A86500);
+        color: var(--text);
         font-size: 12px;
         font-weight: 800;
         letter-spacing: .04em;
@@ -2633,9 +2634,33 @@
       .faq-a { font-size: 18px; line-height: 1.85; }
       .results-title-break { display: inline; }
     }
+    /* ── 暖度系統（過 AA、不土）：橘螢光帶重點 + 深暖紅能量字，配深墨基底（對齊 faq 定稿）── */
+    .hl-mark {
+      background: linear-gradient(180deg, transparent 55%, rgba(255,163,0,0.5) 55%);
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
+      padding: 0 2px; font-weight: 700; color: var(--text);
+    }
+    .tldr-summary strong.energy, .energy { color: var(--coral-ink); font-weight: 700; }
+    /* ── 進場浮現 + 互動彈性（DESIGN.md 動效系統，逐字對齊 faq）── */
+    /* 進場浮現：隱藏優先→進場淡入一次(不閃)；CSS 內建 6s 保險→observer 全掛也最遲 6s 自動顯示(純 CSS)；無 JS/爬蟲→無 html.js→立即可見 */
+    @keyframes oaReveal   { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+    @keyframes oaFailsafe { to { opacity: 1; } }
+    /* 基礎：隱藏 + 只掛「6s 後強制顯示」的保險動畫（不含位移，純保命） */
+    html.js .reveal            { opacity: 0; animation: oaFailsafe .01s linear 6s forwards; }
+    html.js .reveal-stagger > * { opacity: 0; animation: oaFailsafe .01s linear 6s forwards; }
+    /* 進場：換成全新 oaReveal（換動畫名→從頭播，位移才會真的跑） */
+    html.js .reveal.is-visible            { animation: oaReveal 800ms ease-out both; }
+    html.js .reveal-stagger.is-visible > * { animation: oaReveal 800ms ease-out both; }
+    html.js .reveal-stagger.is-visible > *:nth-child(2){animation-delay:120ms}
+    html.js .reveal-stagger.is-visible > *:nth-child(3){animation-delay:240ms}
+    html.js .reveal-stagger.is-visible > *:nth-child(4){animation-delay:360ms}
+    html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
+    /* 按壓彈回（主要可點元素；home 無 --dur-fast，用字面 120ms） */
+    .btn-primary:active, .btn-secondary:active, .path-card:active, .result-card:active, .entry:active { transform: scale(0.97); transition-duration: 120ms; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .hero-media video { display: none; }
+      html.js .reveal, html.js .reveal-stagger > * { opacity:1 !important; animation:none !important; }
     }
   </style>
 </head>
@@ -2728,7 +2753,7 @@
     <div class="container">
       <div class="quickqa-head">
         <span class="tag">// quick_answers</span>
-        <h2>還沒決定？先看<br class="qa-br">家長最想知道的答案</h2>
+        <h2 class="reveal">還沒決定？先看<br class="qa-br">家長最想知道的答案</h2>
       </div>
       <div class="quickqa-grid">
         <div class="quickqa-scroll">
@@ -2801,14 +2826,14 @@
       <div class="pathfinder-header">
         <div class="pathfinder-copy">
           <span class="tag">// find_your_path</span>
-          <h2>孩子幾年級？<br>從這裡開始找課程</h2>
+          <h2 class="reveal">孩子幾年級？<br>從這裡開始找課程</h2>
           <p>每個年齡有不同的認知發展，橘蘋為每個階段設計了最適合的起點。</p>
         </div>
         <div class="pathfinder-helper" aria-hidden="true">
           <img width="500" height="767" src="assets/koding-flag-hold.png" alt="" loading="lazy">
         </div>
       </div>
-      <div class="path-grid">
+      <div class="path-grid reveal-stagger">
         <a href="https://orangeapple.co/courses/kids-coding-foundations" class="path-card c-coral">
           <span class="path-grade">GRADE 1-3｜國小低年級</span>
           <h3>玩創系列・程式啟蒙</h3>
@@ -3019,7 +3044,7 @@
         </div>
         <div>
           <span class="tag">// in_the_classroom</span>
-          <h2>一堂課，<br>長什麼樣子？</h2>
+          <h2 class="reveal">一堂課，<br>長什麼樣子？</h2>
           <div class="classroom-point">
             <div class="classroom-point-icon cp-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></div>
             <div>
@@ -3051,17 +3076,17 @@
     <div class="container">
       <div class="results-header">
         <span class="tag tag-dark">// student_outcomes</span>
-        <h2>橘蘋的孩子，<br class="results-title-break"><span class="results-title-tail">走到了哪裡</span></h2>
-        <p>不是「有學到東西」而已——是拿得出證據的成果。</p>
+        <h2 class="reveal">橘蘋的孩子，<br class="results-title-break"><span class="results-title-tail">走到了哪裡</span></h2>
+        <p>不是「有學到東西」而已——是<strong class="energy">拿得出證據的成果</strong>。</p>
         <div class="results-symbol">
           <div class="rs-cases">
             <div class="rs-case"><span class="rs-name">李明謙</span><span class="rs-path">小學起步、累積作品，以百川計畫錄取 <b>陽明交大</b></span></div>
             <div class="rs-case"><span class="rs-name">黃昱嘉</span><span class="rs-path">高中才進來衝 APCS，錄取 <b>清大資工</b></span></div>
           </div>
-          <p class="rs-conclude">兩個橘蘋孩子、兩種起點，<br class="m-br">同一個體系，接得住每一種起點。</p>
+          <p class="rs-conclude">兩個橘蘋孩子、兩種起點，<br class="m-br">同一個體系，<strong class="hl-mark">接得住每一種起點</strong>。</p>
         </div>
       </div>
-      <div class="result-grid">
+      <div class="result-grid reveal-stagger">
         <a href="https://www.youtube.com/watch?v=QL6EXBbQbDs&amp;t=58s" class="result-card rc-orange" target="_blank" rel="noopener">
           <span class="result-label">APCS 檢定</span>
           <h3>APCS 佳績，錄取清大資工</h3>
@@ -3348,7 +3373,7 @@
     <div class="container">
       <div class="reviews-header">
         <span class="tag">// parent_reviews</span>
-        <h2>超過 2,200 個家庭的真實回饋</h2>
+        <h2 class="reveal">超過 2,200 個家庭的真實回饋</h2>
       </div>
       <div class="reviews-rating">
         <span class="rating-num">4.9</span>
@@ -3415,7 +3440,7 @@
   <section class="videos" aria-label="家長訪談影片">
     <div class="container">
       <div class="videos-header">
-        <h2>六種家庭故事，一個升學成果</h2>
+        <h2 class="reveal">六種家庭故事，一個升學成果</h2>
         <p>從低年級啟蒙、Scratch 自學、Minecraft 動機，到 APCS、Python 證照、長期邏輯訓練與清大資工錄取，這些是真實走過的學習路徑。</p>
       </div>
       <div class="videos-grid">
@@ -3533,7 +3558,7 @@
     <div class="container">
       <div class="trust-header">
         <span class="tag">// why_trust_us</span>
-        <h2>超過 10 萬名學生信任橘蘋的理由</h2>
+        <h2 class="reveal">超過 10 萬名學生信任橘蘋的理由</h2>
         <p>得獎肯定、制度保障，加上遍佈全台的據點——把「放心」建立在可查證的事實上。</p>
       </div>
 
@@ -3606,7 +3631,7 @@
       <div class="faq-grid">
         <div class="faq-sticky">
           <span class="tag">// faq</span>
-          <h2>選課前，<br>家長最常問的問題</h2>
+          <h2 class="reveal">選課前，<br>家長最常問的問題</h2>
           <p class="faq-intro">為孩子選一堂課之前，先把年齡、程度、費用與上課形式釐清，才不會用錯方式開始。</p>
           <div class="faq-proof-list" aria-label="選課前確認重點">
             <div class="faq-proof">
@@ -4305,6 +4330,18 @@
       window.addEventListener('load', updateFade);
       updateFade();
     })();
+  </script>
+
+  <!-- 進場浮現：共用 IntersectionObserver（無外掛、內容永遠在 DOM 可爬） -->
+  <script>
+  addEventListener('DOMContentLoaded', function () {
+    var els = document.querySelectorAll('.reveal, .reveal-stagger');
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  });
   </script>
 
 </body>
