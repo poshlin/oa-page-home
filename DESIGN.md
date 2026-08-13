@@ -313,10 +313,11 @@ components:
 | token | 值 | 用途 |
 |---|---|---|
 | `--ease-spring` | `cubic-bezier(0.34, 1.56, 0.64, 1)` | 彈性回饋：hover 抬升、按壓彈回（輕微過衝） |
-| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | 滑順沉降：內容進場、展開 |
+| `--ease-out` | `cubic-bezier(0.16, 1, 0.3, 1)` | 滑順沉降：內容進場、展開。**✅ 業界背書**：2026-08-13 實測，Stripe（20 個元素）與 Vercel（3 個具名動畫 token）採用完全同一條曲線 |
+| `--ease-in-out` | `cubic-bezier(0.65, 0, 0.35, 1)` | **雙向動作**：手風琴收合／展開、篩選器開關。2026-08-13 新增（先前只有 spring 與 out，收合動作只能拿 out 硬套）。值＝標準 ease-in-out-cubic，非實測值，日後可依手感調整 |
 | `--dur-fast` | `120ms` | 色彩、小 hover、按壓 |
 | `--dur-base` | `220ms` | 標準（hover 抬升、卡片） |
-| `--dur-slow` | `500ms` | 進場浮現、大展開 |
+| `--dur-slow` | `500ms` | 大展開、手風琴收合。**⚠️ 不含 `.reveal` 進場**——進場的定案值是 800ms，見 B-1 |
 
 ### B. 三個標準動效模式（全站一致，每頁都用同樣 class）
 
@@ -339,7 +340,15 @@ html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
 - **🔴 兩個踩過的坑（照抄就避開）**：①**特異性**——顯示規則若沒也放進 `html.js` scope，會被隱藏規則壓過→內容全隱形。②**時間軸陷阱**——別把 reveal 動畫掛在基礎元素靠改 delay 觸發（動畫從載入就計時，捲到時早已「播完」→直接跳結尾、沒有位移、像閃一下）。**正解＝基礎只掛 oaFailsafe 保命，`is-visible` 換成全新 oaReveal**（換動畫名＝從頭播）。
 - **保命三層**：基礎 6s CSS 保險（observer 全掛也自動顯示）＋ `html.js` gate（無 JS／爬蟲＝沒 html.js＝立即可見）＋ reduced-motion。內容**永遠不會永久隱形**。
 - **reveal 只掛「首屏以下」的區塊標題與卡片群**（首屏別掛；別每個元素都掛→過度動畫顯廉價、變慢）。卡片群用 `.reveal-stagger`（子元素階梯浮現）。
-- 手感＝ai-thinking 的 AOS（`offset 50 / duration 800 / fade-up`）：位移 40px、800ms、`ease-out`。觸發見 D。
+- 🔴 **`.reveal` 一律掛「容器」，絕不掛 `<h2>`／`<p>` 這種文字元素本身（2026-08-13 立為硬規則）**
+  - **症狀**：把 `.reveal` 掛在 `<h2>` 上，它上下的 eyebrow 小標與 subtitle 副標是靜止的，只有中間那行字滑 40px ⇒ 讀起來像**排版錯位、標題跑掉**，不是「內容浮現」。
+  - **正解**：掛在包住整組（eyebrow ＋ 標題 ＋ 副標）的容器上，例如 `.sec-header`，整塊一起浮現。沒有現成容器就包一層 `<div class="reveal">`。
+  - **唯一例外**：該文字元素**沒有任何靜止的鄰居**時可直接掛（例如標題下面緊接著就是 `.reveal-stagger` 卡片群，全部都會動）。
+  - **實證來源**：2026-08-13 保旭肉眼比對 classroom（全部掛容器）vs faq（6 處掛文字），指出 faq「字的移動幅度過大、有移位感」。兩頁參數完全相同（800ms／40px），差別純粹在掛載位置 ⇒ **這是掛法問題，不是數值問題**。當時全六頁共 24 處掛在文字上，classroom 是唯一 0 處的頁面。
+  - **稽核指令**：`grep -cE '<(h[0-9]|p)[^>]*class="[^"]*reveal[^"]*"' index.html` 應為 0。
+- **進場定案值＝位移 40px、800ms、`ease-out`**（來源＝ai-thinking 原本 AOS 的 `offset 50 / duration 800 / fade-up`，2026-07-18 沿用為全站標準）。觸發見 D。
+  - ⚠️ **這三個值刻意不等於 `--dur-slow`（500ms）**——`--dur-slow` 管的是展開／收合，進場自成一格。先前兩處數字對不起來曾被誤判為 bug，2026-08-13 澄清為刻意區分。
+  - 📎 業界對照（`Claude知識庫/OA_動效業界對照_2026-08-13.md`）：Linear 4px/400ms、Vercel 8px/350ms、Framer 10px/650ms、Stripe 遮罩式/325ms ⇒ OA 的 40px/800ms 明顯較大較慢。**保留現值是 2026-08-13 的決定**（那四家全是 B2B 開發者工具，克制是他們的品牌調性，不是兒童教育品牌的）。要改屬品味決策，須另案拍板。
 
 **2. hover 抬升 `.lift`（卡片、可點元素）**
 ```css
@@ -352,10 +361,17 @@ html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
 .btn-primary:active, .btn-secondary:active { transform: scale(0.97); transition-duration: var(--dur-fast); }
 ```
 
-### C. 三條護欄（做對＝零風險，做錯才傷 SEO/體驗）
+### C. 四條護欄（做對＝零風險，做錯才傷 SEO/體驗）
 1. **只動 `transform` 與 `opacity`**——絕不動 width/height/top/margin/位移版面 → 不觸發 CLS（版面位移是唯一跟 SEO 沾邊的動效風險）。
 2. **內容永遠在 DOM、預設可見**（隱藏態只在 `html.js` 下）→ 爬蟲與無 JS 使用者都讀得到。
-3. **每頁都要 `prefers-reduced-motion: reduce`**：關閉所有 transform/transition/進場（前庭敏感、暈動症使用者）。
+3. **每頁都要 `prefers-reduced-motion: reduce`**：關閉所有 transform/transition/進場（前庭功能障礙、暈動症使用者）。
+   - ⚠️ **這條護欄要放在 `<style>` 結尾當全域規則**（`*, *::before, *::after`）。只寫 `.reveal` 專用那條**不算數**——它蓋不到 `.lift`、按壓、以及 `infinite` 環境裝飾動畫。稽核時要看檔案末端那條，不是只看 `.reveal` 那條。
+4. **禁用 `transition: all`（2026-08-13 新增，⚠️ 只約束新程式碼）**：一律明列要轉場的屬性，例如 `transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);`。
+   - 理由：`all` 會把日後新增的任何屬性一起吃進轉場（含 width/height 這類會觸發 CLS 的），等於讓護欄 1 隨時可能失效；同時造成無謂的重繪。
+   - 業界對照（2026-08-13 實測）：Stripe 0 個 `all`、Linear 0 個、Vercel 僅 15/166。
+   - 🔴 **既有違規基線（2026-08-13 實測，尚未清理）**：ai-thinking 43、faq 9、contestant 9、classroom 8、about 2、minecraft-python 1，**合計 72 處**；home／online／course-minecraft 為 0。
+   - **本條的效力＝從 2026-08-13 起新增或改寫的 CSS 一律明列屬性**。清理那 72 處屬獨立專案（每一處都要判斷該頁實際想轉場哪些屬性，無法機械替換），未排程。
+   - 稽核指令：`grep -c 'transition: *all' index.html`。**新頁應為 0；舊頁對照上面的基線數字，只准降不准升。**
 ```css
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1!important;transform:none!important}}
 ```
@@ -381,8 +397,10 @@ addEventListener('DOMContentLoaded', function () {
 
 ### E. 一致性規則
 - 六頁全部用 `.reveal`／`.lift`／按壓彈回這套；**不再有頁面自建 cubic-bezier 或裝外掛 AOS**。
-- **ai-thinking**（現有 58 個 AOS 進場、重度動畫）＝**收斂**到這套共用 class、拿掉外掛 AOS。
-- **其他 5 頁**＝**補上** `.reveal` 進場（區塊標題、卡片群、CTA 帶），讓「友善彈性」每頁都感覺得到。
+- ✅ **ai-thinking 的外掛 AOS 已拆除**（2026-07-20 commit `3eb2037`），已收斂到共用 class。2026-08-13 全 9 repo 複掃：**AOS 命中歸零**。
+- ✅ **六頁 `.reveal` 進場已全數補齊**（區塊標題、卡片群、CTA 帶）。
+- ✅ **`.reveal` 掛載位置已全站校正**（2026-08-13）：原有 24 處誤掛在 `<h2>`／`<p>` 文字元素上，已改掛容器，詳見 B-1 的硬規則。校正後全六頁「掛在文字上」的數量＝0（faq 的 `.quick-title` 為唯一保留例外，因其無靜態鄰居）。
+- ⚠️ **未接共用 token 的頁面**：`oa-page-online` 的動效完全沒有使用 `--ease-*`／`--dur-*`（連 `.reveal` 都是硬寫 `.7s ease`），另有 1 條自建 cubic-bezier 與 9 組自訂 keyframes。屬待拍板的特例，詳見該 repo 的 `DESIGN-LOCAL.md`。**改本檔的 token 不會影響該頁。**
 - 環境裝飾動畫（浮動形狀 `float` 等）可留，但要細、慢、且被 reduced-motion 關掉。
 - **選手班深色主題**：進場/hover/按壓照這套；只有它的 glow 光暈維持主題特例。
 
