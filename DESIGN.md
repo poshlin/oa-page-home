@@ -10,7 +10,7 @@ colors:
   primary: "#FFA300"          # 品牌亮橘。絕不變暗、絕不土色、絕不配白字
   primary-dark: "#E08900"     # 橘 hover（仍亮不土）
   primary-light: "#FFF3DC"    # 極淺橘底（區塊/標籤底）
-  primary-ink: "#9A5A00"      # 橘語意當文字時的深橘（僅限白底小面積強調）
+  primary-ink: "#9A5A00"      # 🔴 已廢除（2026-07-20 改制）＝土色，違反紅線「橘色永不當淺底文字」。欄位保留只為辨識舊碼，禁止新用。淺底強調正解＝深墨粗體基底＋coral-ink 能量字＋hl-mark 橘螢光帶，詳見 Known Gaps
   # ── 品牌輔色 ──
   teal: "#00C4B3"             # 青綠：線上課程分眾色
   teal-dark: "#009E90"
@@ -435,11 +435,12 @@ addEventListener('DOMContentLoaded', function () {
 
 - **選手班（contestant）＝刻意的深色奇幻主題分支**：白字、JetBrains Mono 大寫、硬直角、glow 陰影——**允許保留為特例**，但主色仍用品牌橘、CTA 語意仍遵守本系統。
 - **ai-thinking 游標光點（cursor glow `#cursorGlow`）＝核准特例（2026-07-20 保旭拍板）**：跟隨滑鼠的亮橘光暈，**只留 ai-thinking 一頁**（AI 課、科技感最強）、**其他頁一律不加**。理由：桌機限定（手機無效）、屬 techy 裝飾；當作 ai-thinking 的品牌小巧思保留，不視為跨頁不一致。
-- **✅ 六頁全部拉齊完成（2026-07-18~19，各頁獨立驗證後上線）**：ai-thinking `66926ef`（試點，橘底白字 49→0）、faq `afdab57`、about `e3f0cb3`、classroom `5fcf262`、home `b90a375`（poshlin staging）、contestant `7cd3dd2`（僅部署規範檔，深色主題稽核合規免改）。各 repo 根目錄皆有 DESIGN.md 副本＋CLAUDE.md 啟用指令。**副本同步政策：本檔（知識庫）為 SSOT，repo 副本於各 repo 下次改動時順手 cp 更新。**
+- **✅ 六頁全部拉齊完成（2026-07-18~19，各頁獨立驗證後上線）**：ai-thinking `66926ef`（試點，橘底白字 49→0）、faq `afdab57`、about `e3f0cb3`、classroom `5fcf262`、home `b90a375`（poshlin staging）、contestant `7cd3dd2`（僅部署規範檔，深色主題稽核合規免改）。各 repo 根目錄皆有 DESIGN.md 副本＋CLAUDE.md 啟用指令。**副本同步政策（🔴 2026-08-13 修正方向）：本檔（知識庫）為 SSOT，同步一律「單向 SSOT → repo」，且 cp 前必先 `diff` 確認 repo 副本沒有更新的內容；若 repo 副本較新，先把差異回寫進本檔、再往下推。⚠️ 舊政策「repo 副本下次改動時順手 cp 更新」方向是反的，會讓較新的 repo 內容被舊 SSOT 蓋掉——2026-07-22 的 emphasis 遷移完成紀錄就只活在 repo 副本裡、本檔落後 22 天（已於 2026-08-13 回寫）。**
 - **🔴 emphasis 色系已改制（2026-07-20，faq 為準；⚠️舊「應改 orange-ink」的建議作廢）**：`--orange-ink #9A5A00`＝**土色、已廢除**（橘色永不當淺底文字）。淺底強調正解＝「**深墨粗體基底 ＋ 深暖紅 `--coral-ink #BE3B2C` 能量字（少量）＋ 橘螢光帶 `.hl-mark` 重點**」，連結用青墨 `--teal-ink #00776B`；`--text-mute` 由 `#8a8c8f` 加深到 `#6e7278`（3.37→4.6 過 AA），橘底卡副標另改深墨。**✅ about/classroom/home 已完成遷移（2026-07-22 驗：頁面無殘留 orange-ink 土色與舊 text-mute、僅存已廢除註解）。** 其餘舊候選（②紫 chip ③my-badge ④reduced-motion ⑤調色板 ⑥按鈕 border）已於 2026-07-19/20 修畢。
 - **ai-thinking 文案層待辦（非視覺）**：全頁 15+ 處「ChatGPT、Midjourney」具名工具（含 Course schema、FAQ、內文），與課程文案紅線「AI 思維課不列具體工具名」相抵觸，待保旭拍板改寫方向。
 - **✅ faq 紅線已修（2026-07-18，commit `45db87b`）**：btn-primary(+hover)、分類 chip 選中態、tldr-eyebrow、搜尋清除鈕 hover 共 4 處橘底白字改深墨字，已推 OrangeApple-Lab/oa-page-faq。
 - 核心決策（按鈕膠囊 999px、字重 800、動效彈性）已於 2026-07-18 定案。
+- **🔴 頁面級偏差寫在 `DESIGN-LOCAL.md`，不准寫進 DESIGN.md 副本（2026-08-13 立）**：本檔會由 SSOT **單向 cp 覆蓋**，任何直接加在 repo 副本裡的註記下次同步就會消失。因此「這一頁跟共用系統哪裡不一樣、為什麼、待辦是什麼」一律另開該 repo 根目錄的 `DESIGN-LOCAL.md`。**DESIGN.md 全站保持 byte 一致（同一 md5）＝同步是否正確的判斷依據。** 目前有 DESIGN-LOCAL.md 的：`oa-page-online`、`oa-page-minecraft-python`、`oa-page-course-minecraft`。
 - **原版 Rails 官網**（nav/footer/課程頁等）仍是 `#ffa400`/`#4d4d4d`/Bootstrap，屬 legacy，之後由數位長逐步遷移對齊本系統。
 
 ---
@@ -449,7 +450,7 @@ addEventListener('DOMContentLoaded', function () {
 | 資源 | 是什麼 | 判定 |
 |---|---|---|
 | **google-labs-code/design.md** | Google Labs 官方格式（YAML token＋散文＋CLI lint WCAG） | ✅ **骨架來源**，本檔即據此格式 |
-| **awesome-design-md** | 73 份真實品牌 design.md 逆向拆解 | ✅ **章節骨架參考**（氣質最近＝Notion 暖色極簡／Airbnb 圓角） |
+| **awesome-design-md** | 131 家品牌 design.md 策展清單（2026-08-13 複查更新，非舊記的 73 份） | ✅ **章節骨架參考**（氣質最近＝Notion 暖色極簡／Airbnb 圓角）。**🔴 動效方面零產出、勿再重掃**：實測 14 份（含 Linear／Framer／Raycast 等以動效見長者），逐字搜尋 motion／animation／transition／easing／duration／prefers-reduced-motion＝**全數零命中**；Google 官方 design.md 的 8 個標準區塊（Overview／Colors／Typography／Layout／Elevation／Shapes／Components／Do's-Don'ts）本就**不含 Motion**，配套 lint CLI 的 11 條規則也只查色彩對比與章節結構。**⇒ 本檔的 Interaction & Motion 是 OA 自建的第 9 區塊，外面沒有範本可抄；要校準只能實測各家官網的 computed CSS。** |
 | **kinetics.colorion.co** | 彈簧物理動效庫（117 效果） | 🟡 **只取彈簧曲線值**入動效 token（`--ease-spring`）；不搬整庫 |
 | **21st.dev** | React 元件市集＋MCP | ❌ **不採納**：React、不對症靜態 HTML；免費層當靈感圖庫可以 |
 | **OriginKit（originkit.dev）** | 50 動畫元件、**可輸出 CSS**、有 MCP | 🟡 **當「零件靈感庫」**：比 21st.dev 好（出 CSS＋MCP 契合 AI 流程）；**硬規則＝拿來的元件用前一律換成 OA token（色/圓角/`--ease-spring`/時長）再上**，否則破壞一致性 |
