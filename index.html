@@ -3144,6 +3144,9 @@
       .hero-media video { display: none; }
       html.js .reveal, html.js .reveal-stagger > * { opacity:1 !important; animation:none !important; }
     }
+
+    /* 無障礙：減少動態偏好（全域護欄）— 來源＝定稿頁 oa-page-faq，DESIGN.md 護欄 3 */
+    @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
   </style>
 </head>
 <body>
