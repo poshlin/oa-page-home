@@ -682,7 +682,7 @@
           "name": "線上課和實體課該怎麼選？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合實體小班；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，每位真人老師約輔導 6～10 位學生。"
+            "text": "雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合實體小班；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，孩子按「我要發問」後排入輔導，由真人輔導老師個別引導除錯，每位真人老師約輔導 6～10 位學生。"
           }
         },
         {
@@ -690,7 +690,7 @@
           "name": "上課需要準備什麼設備？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。"
+            "text": "多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路，上課前可用線上教室設備測試檢查耳機、麥克風與螢幕分享。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。"
           }
         },
         {
@@ -1396,7 +1396,7 @@
     /* 支線（能力補強線）：脊椎之外的註腳 */
     .map-support {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin: 32px 0 0;
       padding-top: 24px;
@@ -2228,7 +2228,7 @@
     .trust-region-card {
       margin-top: 20px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
     }
     .region-stat {
@@ -2258,7 +2258,10 @@
       font-weight: 700;
       padding: 5px 13px;
       border-radius: var(--r-pill);
+      display: inline-block;
+      text-decoration: none;
     }
+    a.county-tag:hover, a.county-tag:focus-visible { text-decoration: underline; }
     .county-tag.rn { background: var(--orange-light); color: var(--orange-dark); }
     .county-tag.rc { background: var(--teal-light); color: var(--teal-dark); }
     .county-tag.rs { background: var(--coral-light); color: var(--coral-dark); }
@@ -3214,7 +3217,7 @@
         <a href="#outcomes" data-section="outcomes">成果口碑</a>
         <a href="#trust-faq" data-section="trust-faq">信任與 FAQ</a>
       </div>
-      <button type="button" class="section-nav-cta" data-oa-cta="section-nav">免費試聽</button>
+      <button type="button" class="section-nav-cta" data-oa-cta="nav">免費試聽</button>
     </div>
   </nav>
 
@@ -3257,7 +3260,7 @@
         </div>
         <div class="quickqa-card">
           <h3>線上課和實體課怎麼選？</h3>
-          <p>雙師制課程的線上與實體內容與進度相同（少數檢定、AI 素養課程僅單一形式）。喜歡面對面互動選實體小班；想省接送選線上——採「影片講師＋真人輔導」雙師，上課時老師在線即時解答。</p>
+          <p>雙師制課程的線上與實體內容與進度相同（少數檢定、AI 素養課程僅單一形式）。喜歡面對面互動選實體小班；想省接送選線上——採「影片講師＋真人輔導」雙師，孩子按「我要發問」後排入輔導，真人老師個別引導。</p>
         </div>
         <div class="quickqa-card">
           <h3>可以先免費試聽嗎？</h3>
@@ -3303,7 +3306,7 @@
         <span class="tag">// orange_apple</span>
         <p>
           <strong>橘子蘋果程式學苑</strong>成立於 2012 年，是台灣規模最大的兒童與青少年程式教育機構之一。<br>
-          提供從 <span class="intro-code">Scratch</span> 到 <span class="intro-code">AI</span> 的九階段完整課程體系，<br>
+          橘蘋把<strong>玩創啟蒙</strong>、<strong>菁英九階</strong>主線與國高中的<strong>升學認證</strong>整合成同一條路徑，另有麥思數學、AI 思維與財商素養等能力課程，<br>
           全台 <strong>12 縣市直營教學據點</strong>、另在馬來西亞設有海外據點，線上課程不限地區，累計超過 <strong>10 萬名學生</strong>。
         </p>
       </div>
@@ -3385,7 +3388,7 @@
                 <svg class="ms-chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </summary>
               <div class="ms-reveal">
-              <p class="ms-desc">玩創系列以 1–3 年級為主要起點：低年級先用遊戲、手作與圖像化任務，建立序列、迴圈、條件與規則感；3 年級以上可從 Minecraft、Roblox 的熟悉情境開始創作，5–9 年級再依程度延伸到 Python、Lua 遊戲設計（進階兩門即將開課）。</p>
+              <p class="ms-desc">玩創系列以 1–3 年級為主要起點：低年級先用遊戲、手作與圖像化任務，建立序列、迴圈、條件與規則感；3 年級以上可從 Minecraft、Roblox 的熟悉情境開始創作，5–9 年級再依程度延伸到麥塊 Python 進階課程。</p>
               <div class="ms-content">
                 <div class="entry-grid">
                   <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
@@ -3393,23 +3396,21 @@
                     <h4>艾伯特 / 創意機械積木</h4>
                     <p>線上圖像化啟蒙，或實體 STEAM 積木手作。</p>
                   </a>
-                  <a href="https://orangeapple.co/courses/kids-coding-foundations" class="entry">
+                  <a href="https://orangeapple.co/courses/minecraft" class="entry">
                     <span class="g">GRADE 3-6</span>
-                    <h4>Minecraft / Roblox AI</h4>
+                    <h4>麥塊程式</h4>
                     <p>從熟悉的遊戲情境轉向規則設計與作品創作。</p>
                   </a>
-                  <div class="entry entry-soon">
-                    <span class="soon-badge">即將開課</span>
+                  <a href="https://orangeapple.co/courses/roblox_ai" class="entry">
+                    <span class="g">GRADE 3-8</span>
+                    <h4>Roblox AI 遊戲設計</h4>
+                    <p>用 AI 協作打造遊戲場景、互動規則與關卡。</p>
+                  </a>
+                  <a href="https://orangeapple.co/courses/minecraft_python/" class="entry">
                     <span class="g">GRADE 5-9</span>
                     <h4>麥塊 Python</h4>
                     <p>線上獨家進階課，用 MakeCode Python 對 Minecraft 下指令、做任務創作。</p>
-                  </div>
-                  <div class="entry entry-soon">
-                    <span class="soon-badge">即將開課</span>
-                    <span class="g">GRADE 5-9</span>
-                    <h4>Roblox Lua</h4>
-                    <p>線上獨家進階課，用 Lua 打造遊戲機制、互動規則與關卡設計。</p>
-                  </div>
+                  </a>
                 </div>
               </div>
               </div>
@@ -3510,6 +3511,13 @@
                     <p>5 年級以上，訓練提問力、批判性思考與數位倫理，補上 AI 時代的底層能力。</p>
                   </div>
                 </a>
+                <a href="https://orangeapple.co/courses/financial/" class="support-lane">
+                  <span class="support-icon">FIN</span>
+                  <div>
+                    <h4>橘蘋財商素養課程</h4>
+                    <p>國小 3-6 年級，雙師線上教學，用理財決策與金錢觀念補上程式之外的生活素養。</p>
+                  </div>
+                </a>
               </div>
             </div>
           </details>
@@ -3526,7 +3534,7 @@
       <div class="classroom-inner">
         <div class="classroom-img-wrap">
           <div class="classroom-img">
-            <img width="1800" height="1201" src="assets/photo-teacher.jpg" alt="橘子蘋果課堂：老師在學生身旁一對一指導程式" loading="lazy">
+            <img width="1800" height="1201" src="assets/photo-teacher.jpg" alt="橘子蘋果課堂：老師在學生身旁個別指導程式" loading="lazy">
           </div>
           <div class="classroom-img-2">
             <img width="1200" height="801" src="assets/photo-home.jpg" alt="橘子蘋果線上課程：孩子在家用筆電專注學程式" loading="lazy">
@@ -3547,6 +3555,7 @@
             <div>
               <h3>線上雙師：一個能重播、一個在現場</h3>
               <p>線上採「<strong>影片講師＋真人輔導老師</strong>」雙師模式：影片老師帶著孩子寫、<strong>隨時可倒回重看</strong>沒懂的段落；真人老師在線上巡看每個孩子的螢幕，孩子按「我要發問」即<strong>排入輔導</strong>，等待時還能先回看影片複習、不會乾等。線上每位真人老師約輔導 6～10 位學生；實體課則依課程安排小班教學。</p>
+              <a href="https://orangeapple.co/campaigns/online/" class="trust-link">看線上課實際怎麼上 →</a>
             </div>
           </div>
           <div class="classroom-point">
@@ -3614,7 +3623,7 @@
         <span class="tag">// student_honors</span>
         <h2>學生得獎與檢定成果</h2>
         <p class="proof-lead">從校內、縣市到全國賽事，再到 APCS 大學程式設計先修檢測，橘蘋孩子的成果一路累積。</p>
-        <p class="proof-hint">先看幾項代表性成果，下方再精選近年 <strong>49</strong> 位，皆有得獎證書與檢定成績可查。</p>
+        <p class="proof-hint">先看幾項代表性成果，下方再精選近年 <strong>49</strong> 位，得獎與檢定成果皆由學員與家長提供佐證。</p>
         <div class="proof-stats" aria-label="成果分類">
           <div class="proof-stat"><strong>2021–2026</strong><span>持續累積</span></div>
           <div class="proof-stat"><strong>競賽</strong><span>Scratch・貓咪盃</span></div>
@@ -3689,12 +3698,12 @@
           <div class="nm">陳韋呈</div><div class="cap">AI 素養賽 · 2025</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img width="506" height="900" src="assets/honors/vid-16.jpg" alt="橘子蘋果學生黃傑熙 高雄創意101 Scratch 程式競賽生活應用組銅牌成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">銅牌</span></div>
-          <div class="nm">黃傑熙</div><div class="cap">創意101 · 2025</div>
+          <div class="ph"><img width="506" height="900" src="assets/honors/vid-16.jpg" alt="橘子蘋果學生黃傑熙 高雄市創意101 SCRATCH 程式設計競賽國中生活應用組銅牌獎成果（與陳翊恩同組）" style="object-position:center 8%" loading="lazy"><span class="badge t-race">銅牌</span></div>
+          <div class="nm">黃傑熙</div><div class="cap">創意101 · 2024</div>
         </figure>
         <figure class="htile">
-          <div class="ph"><img width="600" height="800" src="assets/honors/honor-02.jpg" alt="橘子蘋果學生陳榆之 臺南市中小學 SCRATCH 暨 AI 程式設計競賽國小動畫組第一名成果" style="object-position:center 22%" loading="lazy"><span class="badge t-race">第一名</span></div>
-          <div class="nm">陳榆之</div><div class="cap">貓咪盃 · 2025</div>
+          <div class="ph"><img width="600" height="800" src="assets/honors/honor-02.jpg" alt="橘子蘋果學生陳榆之 臺南市中小學 SCRATCH 暨 AI 程式設計競賽國小動畫組第一名成果（與劉佳霓同組）" style="object-position:center 22%" loading="lazy"><span class="badge t-race">第一名</span></div>
+          <div class="nm">陳榆之</div><div class="cap">臺南 AI 賽 · 2024</div>
         </figure>
         <figure class="htile">
           <div class="ph"><img width="450" height="800" src="assets/honors/vid-06.jpg" alt="橘子蘋果學生蘇修鋐 Scratch 程式競賽國中互動遊戲組第三名成果" style="object-position:center 8%" loading="lazy"><span class="badge t-race">第三名</span></div>
@@ -4022,8 +4031,8 @@
     <div class="container">
       <div class="camps-inner">
         <div>
-          <h2>2026 暑假營隊，熱烈招生中</h2>
-          <p class="camps-sub">多為 4 天密集創作、APCS 培訓營 5 天，寒暑假最好的安排——實體與線上梯次皆有。</p>
+          <h2>2027 冬令營，晚鳥優惠開跑</h2>
+          <p class="camps-sub">寒假的完整創作時間，一梯就做出一件作品——實體與線上梯次皆有。</p>
           <div class="camps-chips">
             <a class="camps-chip" href="https://orangeapple.co/camps/stemkids">小小創客營</a>
             <a class="camps-chip" href="https://orangeapple.co/camps/financial_quotient">財商數學創客營</a>
@@ -4095,12 +4104,11 @@
             </div>
             <div>
               <div class="county-tags">
-                <span class="county-tag rn">台北</span><span class="county-tag rn">新北</span><span class="county-tag rn">基隆</span><span class="county-tag rn">桃園</span><span class="county-tag rn">新竹市</span><span class="county-tag rn">新竹縣</span><span class="county-tag rc">苗栗</span><span class="county-tag rc">台中</span><span class="county-tag rs">嘉義</span><span class="county-tag rs">台南</span><span class="county-tag rs">高雄</span><span class="county-tag rs">屏東</span>
+                <a class="county-tag rn" href="https://orangeapple.co/classroom/taipei/">台北</a><a class="county-tag rn" href="https://orangeapple.co/classroom/new_taipei/">新北</a><a class="county-tag rn" href="https://orangeapple.co/classroom/keelung/">基隆</a><a class="county-tag rn" href="https://orangeapple.co/classroom/taoyuan/">桃園</a><a class="county-tag rn" href="https://orangeapple.co/classroom/hsinchu/">新竹市</a><a class="county-tag rn" href="https://orangeapple.co/classroom/hsinchu/">新竹縣</a><a class="county-tag rc" href="https://orangeapple.co/classroom/miaoli/">苗栗</a><a class="county-tag rc" href="https://orangeapple.co/classroom/taichung/">台中</a><a class="county-tag rs" href="https://orangeapple.co/classroom/chiayi/">嘉義</a><a class="county-tag rs" href="https://orangeapple.co/classroom/tainan/">台南</a><a class="county-tag rs" href="https://orangeapple.co/classroom/kaohsiung/">高雄</a><a class="county-tag rs" href="https://orangeapple.co/classroom/pingtung/">屏東</a>
               </div>
-              <p style="margin-bottom:14px; font-size:14px; line-height:1.9; color:var(--gray);">實體與線上教室並行，另在馬來西亞吉隆坡設有海外據點。</p>
+              <p style="margin-bottom:14px; font-size:14px; line-height:1.9; color:var(--gray);">實體教室與線上課程並行，線上不限地區；另在馬來西亞吉隆坡設有海外據點。</p>
               <div class="trust-region-card" aria-label="教學據點摘要">
                 <div class="region-stat"><strong>12</strong><span>實體縣市</span></div>
-                <div class="region-stat"><strong>22</strong><span>線上縣市</span></div>
                 <div class="region-stat"><strong>MY</strong><span>吉隆坡</span></div>
               </div>
               <a href="https://orangeapple.co/classroom" class="trust-link">查看所有教室位置 →</a>
@@ -4198,7 +4206,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合<a href="https://orangeapple.co/classroom">實體小班</a>；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，上課時真人老師在線一對一解答，每位真人老師約輔導 6～10 位學生。
+              雙師制課程的線上與實體教學內容與進度相同，可依家庭作息選擇（部分檢定培訓、AI 素養等講述型課程僅線上或僅實體開課，報名時課程顧問會說明）。住教學據點附近、喜歡實體互動的孩子適合<a href="https://orangeapple.co/classroom">實體小班</a>；想省接送時間的家庭適合線上課——採「影片講師＋真人輔導老師」雙師模式，課程影片可反覆觀看，孩子按「我要發問」後排入輔導，由真人輔導老師個別引導除錯，每位真人老師約輔導 6～10 位學生。
             </div>
           </div>
           <div class="faq-item faq-extra">
@@ -4207,7 +4215,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-a">
-              多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。
+              多數程式課程使用筆電（搭配滑鼠操作更順手），Minecraft、Roblox 等課程對電腦規格需求較高，建議中階以上筆電；低年級啟蒙課程（如頑皮艾伯特、積木課）則使用平板或專用教具。線上課程建議搭配耳機與穩定網路，上課前可用<a href="https://orangeapple.co/testing">線上教室設備測試</a>檢查耳機、麥克風與螢幕分享。報名前課程顧問會依孩子選讀的課程，告知需要準備的設備。
             </div>
           </div>
           <div class="faq-item faq-extra">
@@ -4403,7 +4411,7 @@
       var heroCta = document.querySelector('[data-oa-cta="hero"]');
       if (!sticky || !heroCta || !window.matchMedia('(max-width: 760px)').matches) return;
 
-      var inlineCtas = Array.prototype.slice.call(document.querySelectorAll('[data-oa-cta]:not([data-oa-cta="sticky"]):not([data-oa-cta="section-nav"])'));
+      var inlineCtas = Array.prototype.slice.call(document.querySelectorAll('[data-oa-cta]:not([data-oa-cta="sticky"]):not([data-oa-cta="nav"])'));
       var visibleCtas = new Set();
       var hasPassedHero = false;
 
