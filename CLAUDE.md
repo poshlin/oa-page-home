@@ -19,3 +19,7 @@
 contestant-prototype／course-math 已於 2026-09-04 完成此步驟）。
 
 本專案的設計系統定義在根目錄的 `DESIGN.md`。產生或修改任何 UI 元件前，一律先讀它，並嚴格對齊其色彩、字體、間距、圓角、陰影、動效與 Do's and Don'ts（含：亮橘 #FFA300 絕不配白字、免費試聽才用橘實心、實心鈕必寫 border: 2px solid transparent）。
+
+## 每次改內容必做（2026-09-09 起）
+
+`index.html` 有兩個同值的更新日期：JSON-LD 的 `WebPage.dateModified` 與信任區可見的「本頁資料更新：YYYY-MM-DD」（`<p class="trust-people trust-updated">`）。改內容時兩處一起改成當天，只改一邊＝站內矛盾（AEO 稽核會抓）。
