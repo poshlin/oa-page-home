@@ -213,7 +213,9 @@
       "dateModified": "2026-09-12",
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": [".intro-inner p"]
+        "cssSelector": [
+          ".intro-inner p"
+        ]
       }
     },
     {
@@ -590,7 +592,8 @@
         "courseSchedule": {
           "@type": "Schedule",
           "repeatFrequency": "weekly"
-        }
+        },
+        "courseWorkload": "PT2H"
       }
     },
     {
@@ -659,6 +662,7 @@
       ],
       "hasCourseInstance": {
         "@type": "CourseInstance",
+        "courseWorkload": "PT2H",
         "courseMode": [
           "onsite",
           "online"
@@ -691,14 +695,18 @@
         "@type": "EducationalAudience",
         "educationalRole": "student"
       },
-      "courseMode": "online",
+      "courseMode": [
+        "online"
+      ],
       "hasCourseInstance": {
         "@type": "CourseInstance",
-        "courseMode": "online",
+        "courseMode": [
+          "online"
+        ],
         "courseWorkload": "PT90M",
         "courseSchedule": {
           "@type": "Schedule",
-          "repeatFrequency": "P1W",
+          "repeatFrequency": "weekly",
           "repeatCount": 45,
           "duration": "PT90M"
         },
@@ -843,17 +851,6 @@
             "@type": "Answer",
             "text": "Google 評論 4.9 星、超過 2,200 則，可在 Google 地圖逐則查看；全台 12 縣市的直營教室都能實地參觀（見教室據點頁）。多數常態課程可免費試聽，適不適合由孩子實際上過一堂再判斷，試聽當天不需要做決定。"
           }
-        }
-      ]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "橘子蘋果程式學苑",
-          "item": "https://orangeapple.co/"
         }
       ]
     },
