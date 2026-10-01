@@ -142,7 +142,7 @@ components:
 ---
 
 > **v0.2｜2026-07-18｜核心決策已定案**
-> 方向＝A＋C（以保旭新系統為 SSOT、`oa-page-home` 當骨架；沿用全站不變量：Noto Sans TC 字型、橘/青/紅三色相、Bootstrap 斷點與 container 數值）。
+> 方向＝A＋C（以本系統為 SSOT、`oa-page-home` 當骨架；沿用全站不變量：Noto Sans TC 字型、橘/青/紅三色相、Bootstrap 斷點與 container 數值）。
 > 已定案：品牌橘 `#FFA300`、內文 `#2D2E32`、按鈕膠囊 999px、標題字重 800、動效「友善彈性（過衝彈跳）」。
 > 本檔為 SSOT，之後複製到各 `oa-page-*` repo 根目錄，並在 `CLAUDE.md` 掛「改 UI 前先讀 design.md」。
 
@@ -273,7 +273,7 @@ components:
 | 意圖 | 樣式 | 說明 |
 |---|---|---|
 | **免費試聽（主 CTA）** | **亮橘實心 + 深墨字 + 膠囊** | 全站唯一橘實心；`button-primary` |
-| **免費試聽（坐在橘色滿版區塊上）** | **白底 + 深墨字 + 膠囊（反轉款）** | 正式例外（2026-07-18 保旭拍板）：橘實心放橘底會隱形；ai-thinking 的 `.btn-trust-cta`/`.btn-footer` 為範本 |
+| **免費試聽（坐在橘色滿版區塊上）** | **白底 + 深墨字 + 膠囊（反轉款）** | 正式例外：橘實心放橘底會隱形；ai-thinking 的 `.btn-trust-cta`/`.btn-footer` 為範本 |
 | 線上 vs 實體試聽並列 | 實體＝橘實心、線上＝青實心（對稱、皆深墨字） | 見 `button-online`；兩顆等高對稱、不一實心一外框 |
 | LINE@ 諮詢 | 白底 + 深墨字 + 深墨外框（膠囊） | `button-secondary` |
 | 區塊主行動（如看營隊） | 白底膠囊鈕 | — |
@@ -295,12 +295,16 @@ components:
 - **input-field**：白底、`--r-sm` 8px、`--line` 邊框、focus 換橘/青焦點環。
 - **badge / chip**：膠囊、`primary-light` 底 + 深墨字。
 
-### Iconography（圖示與 emoji）— 保旭紅線「去廉價／要權威」
+### Iconography（圖示與 emoji）— 紅線「去廉價／要權威」
+> **適用範圍＝網頁。email 不套用這節**：收件匣的信本來就靠小圖示分辨輕重，
+> email 可用彩色 emoji，但守四條——不放在彩色實心塊上（會挖白洞）、不承載資訊（Outlook 顯示方框）、
+> 一封信 1–2 個為限、避開會被 iOS 改畫成彩色的幾何符號（`▶ ★ ◆`，改用 `▸ → ·`）。
+> **社群貼文／LINE 群發文字也不套用這節**：可用彩色 emoji，須對應該行內容、不承載資訊、避開 💻📱🎰（財商不提投資時另避 📈💹）；社群圖卡圖片仍照本節。
+> 細節見記憶 `feedback_oa_no_color_emoji`。
 - **禁用彩色 emoji** 當裝飾、卡片圖示、標題前綴、按鈕前綴、chip 標籤、狀態訊息（🎁💰📅📍📞💬🔥⚡📖📚📋🔍😕✦ 等一律清）。彩色 emoji 顯廉價、傷教育品牌權威感。
 - **只允許少數功能性單色字符**：`★`（評分星）、`▸`（區塊小標）、`→ ←`（導覽箭頭）、`⋯`（載入省略）。
 - 真需要圖示時，用**單色線性 SVG**（`stroke: currentColor`、跟隨文字色），不用彩色 emoji。
 - 卡片改用「標題 + 說明」文字結構，不放 emoji 圖示格。
-- 前例：classroom 頁 2026-07-13（commit ee2b9db）已全清，faq 2026-07-19 補齊對齊。
 
 ---
 
@@ -344,7 +348,6 @@ html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
   - **症狀**：把 `.reveal` 掛在 `<h2>` 上，它上下的 eyebrow 小標與 subtitle 副標是靜止的，只有中間那行字滑 40px ⇒ 讀起來像**排版錯位、標題跑掉**，不是「內容浮現」。
   - **正解**：掛在包住整組（eyebrow ＋ 標題 ＋ 副標）的容器上，例如 `.sec-header`，整塊一起浮現。沒有現成容器就包一層 `<div class="reveal">`。
   - **唯一例外**：該文字元素**沒有任何靜止的鄰居**時可直接掛（例如標題下面緊接著就是 `.reveal-stagger` 卡片群，全部都會動）。
-  - **實證來源**：2026-08-13 保旭肉眼比對 classroom（全部掛容器）vs faq（6 處掛文字），指出 faq「字的移動幅度過大、有移位感」。兩頁參數完全相同（800ms／40px），差別純粹在掛載位置 ⇒ **這是掛法問題，不是數值問題**。當時全六頁共 24 處掛在文字上，classroom 是唯一 0 處的頁面。
   - **稽核指令**：`grep -cE '<(h[0-9]|p)[^>]*class="[^"]*reveal[^"]*"' index.html` 應為 0。
 - **進場定案值＝位移 40px、800ms、`ease-out`**（來源＝ai-thinking 原本 AOS 的 `offset 50 / duration 800 / fade-up`，2026-07-18 沿用為全站標準）。觸發見 D。
   - ⚠️ **這三個值刻意不等於 `--dur-slow`（500ms）**——`--dur-slow` 管的是展開／收合，進場自成一格。先前兩處數字對不起來曾被誤判為 bug，2026-08-13 澄清為刻意區分。
@@ -369,7 +372,6 @@ html.js .reveal-stagger.is-visible > *:nth-child(n+5){animation-delay:480ms}
 4. **禁用 `transition: all`（2026-08-13 新增，⚠️ 只約束新程式碼）**：一律明列要轉場的屬性，例如 `transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease-out);`。
    - 理由：`all` 會把日後新增的任何屬性一起吃進轉場（含 width/height 這類會觸發 CLS 的），等於讓護欄 1 隨時可能失效；同時造成無謂的重繪。
    - 業界對照（2026-08-13 實測）：Stripe 0 個 `all`、Linear 0 個、Vercel 僅 15/166。
-   - 🔴 **既有違規基線（2026-08-13 實測，尚未清理）**：ai-thinking 43、faq 9、contestant 9、classroom 8、about 2、minecraft-python 1，**合計 72 處**；home／online／course-minecraft 為 0。
    - **本條的效力＝從 2026-08-13 起新增或改寫的 CSS 一律明列屬性**。清理那 72 處屬獨立專案（每一處都要判斷該頁實際想轉場哪些屬性，無法機械替換），未排程。
    - 稽核指令：`grep -c 'transition: *all' index.html`。**新頁應為 0；舊頁對照上面的基線數字，只准降不准升。**
 ```css
@@ -397,9 +399,7 @@ addEventListener('DOMContentLoaded', function () {
 
 ### E. 一致性規則
 - 六頁全部用 `.reveal`／`.lift`／按壓彈回這套；**不再有頁面自建 cubic-bezier 或裝外掛 AOS**。
-- ✅ **ai-thinking 的外掛 AOS 已拆除**（2026-07-20 commit `3eb2037`），已收斂到共用 class。2026-08-13 全 9 repo 複掃：**AOS 命中歸零**。
 - ✅ **六頁 `.reveal` 進場已全數補齊**（區塊標題、卡片群、CTA 帶）。
-- ✅ **`.reveal` 掛載位置已全站校正**（2026-08-13）：原有 24 處誤掛在 `<h2>`／`<p>` 文字元素上，已改掛容器，詳見 B-1 的硬規則。校正後全六頁「掛在文字上」的數量＝0（faq 的 `.quick-title` 為唯一保留例外，因其無靜態鄰居）。
 - ⚠️ **未接共用 token 的頁面**：`oa-page-online` 的動效完全沒有使用 `--ease-*`／`--dur-*`（連 `.reveal` 都是硬寫 `.7s ease`），另有 1 條自建 cubic-bezier 與 9 組自訂 keyframes。屬待拍板的特例，詳見該 repo 的 `DESIGN-LOCAL.md`。**改本檔的 token 不會影響該頁。**
 - 環境裝飾動畫（浮動形狀 `float` 等）可留，但要細、慢、且被 reduced-motion 關掉。
 - **選手班深色主題**：進場/hover/按壓照這套；只有它的 glow 光暈維持主題特例。
@@ -452,14 +452,10 @@ addEventListener('DOMContentLoaded', function () {
 ## Known Gaps & Themed Variants（已知缺口與主題分支）
 
 - **選手班（contestant）＝刻意的深色奇幻主題分支**：白字、JetBrains Mono 大寫、硬直角、glow 陰影——**允許保留為特例**，但主色仍用品牌橘、CTA 語意仍遵守本系統。
-- **ai-thinking 游標光點（cursor glow `#cursorGlow`）＝核准特例（2026-07-20 保旭拍板）**：跟隨滑鼠的亮橘光暈，**只留 ai-thinking 一頁**（AI 課、科技感最強）、**其他頁一律不加**。理由：桌機限定（手機無效）、屬 techy 裝飾；當作 ai-thinking 的品牌小巧思保留，不視為跨頁不一致。
-- **✅ 六頁全部拉齊完成（2026-07-18~19，各頁獨立驗證後上線）**：ai-thinking `66926ef`（試點，橘底白字 49→0）、faq `afdab57`、about `e3f0cb3`、classroom `5fcf262`、home `b90a375`（poshlin staging）、contestant `7cd3dd2`（僅部署規範檔，深色主題稽核合規免改）。各 repo 根目錄皆有 DESIGN.md 副本＋CLAUDE.md 啟用指令。**副本同步政策（🔴 2026-08-13 修正方向）：本檔（知識庫）為 SSOT，同步一律「單向 SSOT → repo」，且 cp 前必先 `diff` 確認 repo 副本沒有更新的內容；若 repo 副本較新，先把差異回寫進本檔、再往下推。⚠️ 舊政策「repo 副本下次改動時順手 cp 更新」方向是反的，會讓較新的 repo 內容被舊 SSOT 蓋掉——2026-07-22 的 emphasis 遷移完成紀錄就只活在 repo 副本裡、本檔落後 22 天（已於 2026-08-13 回寫）。**
+- **ai-thinking 游標光點（cursor glow `#cursorGlow`）＝核准特例**：跟隨滑鼠的亮橘光暈，**只留 ai-thinking 一頁**（AI 課、科技感最強）、**其他頁一律不加**。理由：桌機限定（手機無效）、屬 techy 裝飾；當作 ai-thinking 的品牌小巧思保留，不視為跨頁不一致。
 - **🔴 emphasis 色系已改制（2026-07-20，faq 為準；⚠️舊「應改 orange-ink」的建議作廢）**：`--orange-ink #9A5A00`＝**土色、已廢除**（橘色永不當淺底文字）。淺底強調正解＝「**深墨粗體基底 ＋ 深暖紅 `--coral-ink #BE3B2C` 能量字（少量）＋ 橘螢光帶 `.hl-mark` 重點**」，連結用青墨 `--teal-ink #00776B`；`--text-mute` 由 `#8a8c8f` 加深到 `#6e7278`（3.37→4.6 過 AA），橘底卡副標另改深墨。**✅ about/classroom/home 已完成遷移（2026-07-22 驗：頁面無殘留 orange-ink 土色與舊 text-mute、僅存已廢除註解）。** 其餘舊候選（②紫 chip ③my-badge ④reduced-motion ⑤調色板 ⑥按鈕 border）已於 2026-07-19/20 修畢。
-- **ai-thinking 文案層待辦（非視覺）**：全頁 15+ 處「ChatGPT、Midjourney」具名工具（含 Course schema、FAQ、內文），與課程文案紅線「AI 思維課不列具體工具名」相抵觸，待保旭拍板改寫方向。
-- **✅ faq 紅線已修（2026-07-18，commit `45db87b`）**：btn-primary(+hover)、分類 chip 選中態、tldr-eyebrow、搜尋清除鈕 hover 共 4 處橘底白字改深墨字，已推 OrangeApple-Lab/oa-page-faq。
-- 核心決策（按鈕膠囊 999px、字重 800、動效彈性）已於 2026-07-18 定案。
 - **🔴 頁面級偏差寫在 `DESIGN-LOCAL.md`，不准寫進 DESIGN.md 副本（2026-08-13 立）**：本檔會由 SSOT **單向 cp 覆蓋**，任何直接加在 repo 副本裡的註記下次同步就會消失。因此「這一頁跟共用系統哪裡不一樣、為什麼、待辦是什麼」一律另開該 repo 根目錄的 `DESIGN-LOCAL.md`。**DESIGN.md 全站保持 byte 一致（同一 md5）＝同步是否正確的判斷依據。** 目前有 DESIGN-LOCAL.md 的：`oa-page-online`、`oa-page-minecraft-python`、`oa-page-course-minecraft`。
-- **原版 Rails 官網**（nav/footer/課程頁等）仍是 `#ffa400`/`#4d4d4d`/Bootstrap，屬 legacy，之後由數位長逐步遷移對齊本系統。
+- **原版 Rails 官網**（nav/footer/課程頁等）仍是 `#ffa400`/`#4d4d4d`/Bootstrap，屬 legacy，之後由工程端逐步遷移對齊本系統。
 
 ---
 
