@@ -1,1 +1,5 @@
 .DS_Store
+
+# 給 Claude 的 repo 指令與設計系統：本機保留（iCloud 兩機共用），不進公開 repo（2026-10-01 資安掃描）
+/CLAUDE.md
+/DESIGN.md

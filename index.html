@@ -2839,7 +2839,7 @@
       .kd-line, .kd-cloud { display: none; }
       /* 手機：與桌機同一套語彙——橘色虛線＝路徑、灰色腳印＝叩叮走過的痕跡。
          一段 S 形波浪＋2 對腳印當 repeat-y 圖磚，每站 120px＝一個波長，
-         腳印成對(成對是保旭要求的視覺決定)落在波浪左右外擺處，站點圓落在中線交叉點(圖磚中線 x=25＋background-position 0.5px → 對回圓心 25.5px；圓是 border-box、width:15px 已含 3px 邊框，實寬 15 不是 21)。
+         腳印成對(固定設計，勿改成單隻)落在波浪左右外擺處，站點圓落在中線交叉點(圖磚中線 x=25＋background-position 0.5px → 對回圓心 25.5px；圓是 border-box、width:15px 已含 3px 邊框，實寬 15 不是 21)。
          路徑畫在 ::before 且上下各內縮 60px(＝半站)，讓它精準起於第一站圓、收在最後一站圓，
          不像 repeat-y 鋪滿容器那樣在頭尾溢出——升學成果是終點，路不該再往下延伸 */
       .kd-stops { flex-direction: column; gap: 0; min-height: 0; align-items: stretch; }
@@ -3099,7 +3099,7 @@
       .section-nav, .section-nav-links, .section-nav-chevron, .sticky-cta { transition: none; }
     }
 
-    /* ══ 對比策略（2026-07-12，保旭拍板）：banner 白字→藏藍、按鈕維持深字（過 AA）；但「橘色 accent 強調文字」用品牌亮橘 --orange（＝H1 橘子蘋果同色）、不 darken——經比較深墨土色反傷品牌質感，屬記錄在案的 a11y 例外（同 H1 品牌字/評分星星）。真正閱讀正文（深灰/深墨）本就過 AA；teal/coral accent 不土且過 AA 故保留加深。勿把橘 accent 文字重列為 Critical。 ══ */
+    /* ══ 對比策略：banner 白字→藏藍、按鈕維持深字（過 AA）；「橘色 accent 強調文字」用品牌亮橘 --orange（＝H1 橘子蘋果同色）、不 darken，屬 a11y 例外（同 H1 品牌字/評分星星）。真正閱讀正文（深灰/深墨）本就過 AA；teal/coral accent 不土且過 AA 故保留加深。勿把橘 accent 文字重列為 Critical。 ══ */
     .tag, .tag-dark, .stage .n, .stage .c, .fact-chip, .intro-code, .county-tag.rn,
     .exit-card .arrow, .result-label, .video-eyebrow, .marquee-tag,
     .proof-stat strong, .honor-count strong, .map-cert-links a,
