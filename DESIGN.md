@@ -8,7 +8,7 @@ description: >
 colors:
   # ── 品牌主色（識別核心）──
   primary: "#FFA300"          # 品牌亮橘。絕不變暗、絕不土色、絕不配白字
-  primary-dark: "#E08900"     # 橘 hover（仍亮不土）
+  # primary-dark 已廢除：紅線「#FFA300 不准變暗」，按鈕 hover 不換底色（見 hover 規則）
   primary-light: "#FFF3DC"    # 極淺橘底（區塊/標籤底）
   primary-ink: "#9A5A00"      # 🔴 已廢除（2026-07-20 改制）＝土色，違反紅線「橘色永不當淺底文字」。欄位保留只為辨識舊碼，禁止新用。淺底強調正解＝深墨粗體基底＋coral-ink 能量字＋hl-mark 橘螢光帶，詳見 Known Gaps
   # ── 品牌輔色 ──
@@ -172,7 +172,7 @@ components:
 | 語意名 | 值 | 角色 / 使用時機 | 禁區 |
 |---|---|---|---|
 | **primary 亮橘** | `#FFA300` | 品牌識別核心；免費試聽主 CTA、關鍵強調、星星 | 絕不配白字、絕不 darken 成土色、不當大面積背景 |
-| primary-dark | `#E08900` | 橘按鈕 hover | — |
+| ~~primary-dark~~ | 已廢除 | 按鈕 hover 不換底色，維持 `#FFA300` | 紅線：亮橘不准變暗 |
 | primary-light | `#FFF3DC` | 淺橘區塊底、badge 底 | — |
 | **teal 青** | `#00C4B3` | 線上課程分眾、成功/正向狀態 | 配白字僅 2.2:1，白字要壓到 `#00706A` |
 | teal-ink | `#00776B` | 青系文字、連結 | — |
@@ -283,7 +283,7 @@ components:
 ### 按鈕狀態與鐵則
 - **實心鈕務必 `border: 2px solid transparent`**（否則 `<button>` 會漏出瀏覽器預設灰黑框；順便與外框鈕等高對齊）。填色鈕的邊框只能透明或同底色，**絕不掛對比色外框**。
 - **連結型 `<a>` 按鈕務必明寫 `color`**（避免已訪紫）。
-- hover：橘鈕底色轉 `--orange-dark #E08900`、微幅上浮（`translateY(-2px)` + 陰影升一階）。
+- hover：橘鈕**底色維持 `#FFA300` 不變**（紅線：亮橘不准變暗，禁用 `#E08900` 等暗橘），只做微幅上浮（`translateY(-2px)`）＋陰影升一階（可用亮橘半透明陰影）。
 - 主 CTA 帶 `--e-cta` 暖光暈；hover 光暈加強。
 
 ### data-oa-cta 埋碼規則
